@@ -2558,7 +2558,7 @@ let SellerSignalService = class SellerSignalService {
         this.startConnection = () => {
             this.hubConnection
                 .start()
-                .then((data) => {
+                .then(() => {
                 console.log('connection starting seller ...: ');
             })
                 //.then(() => this.getConnectionId())
@@ -3029,8 +3029,6 @@ let ProductCreateComponent = class ProductCreateComponent {
             this.fileList = this.fileList.concat(file);
             console.log('beforeUpload');
             console.log(this.fileList);
-            console.log(file);
-            console.log(file.uid);
             this.handlePreview(file.uid.toString(), file);
             this.ready = true;
             return false;

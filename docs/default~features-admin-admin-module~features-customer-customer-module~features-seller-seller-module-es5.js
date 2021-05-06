@@ -877,11 +877,7 @@
 
       var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
       /*! @angular/core */
-      "8Y7J"); // enum ThemeType {
-      // 	dark = 'dark',
-      // 	default = 'default'
-      // }
-
+      "8Y7J");
 
       var ThemeService = /*#__PURE__*/function () {
         function ThemeService() {

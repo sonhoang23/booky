@@ -46198,7 +46198,7 @@
         };
 
         this.startConnection = function () {
-          _this300.hubConnection.start().then(function (data) {
+          _this300.hubConnection.start().then(function () {
             console.log('connection starting seller ...: ');
           }) //.then(() => this.getConnectionId())
           .then(function () {
@@ -47006,8 +47006,6 @@
             _this301.fileList = _this301.fileList.concat(file);
             console.log('beforeUpload');
             console.log(_this301.fileList);
-            console.log(file);
-            console.log(file.uid);
 
             _this301.handlePreview(file.uid.toString(), file);
 

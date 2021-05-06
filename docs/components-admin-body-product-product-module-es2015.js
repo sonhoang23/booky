@@ -176,8 +176,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/core/services/comon-services/destroy-service/destroy.service */ "ekmL");
 /* harmony import */ var src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/core/services/comon-services/spinner/spinner.service */ "LXV+");
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/environments/environment */ "AytR");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/forms */ "s7LF");
-
 
 
 
@@ -190,33 +188,40 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ProducInactivtingComponent = class ProducInactivtingComponent {
-    constructor(destroy$, adminProductService, notificationService, spinner, appErrorHandler, formBuilder) {
+    constructor(destroy$, adminProductService, notificationService, spinner, appErrorHandler) {
         this.destroy$ = destroy$;
         this.adminProductService = adminProductService;
         this.notificationService = notificationService;
         this.spinner = spinner;
         this.appErrorHandler = appErrorHandler;
-        this.formBuilder = formBuilder;
         this.loading = false;
         this.startOfIndex = 1;
         this.listOfData = [];
         this.host = src_environments_environment__WEBPACK_IMPORTED_MODULE_10__["environment"].apiUrl;
         this.isMessageModalVisible = false;
+        this.unComfirmMessage = '';
         this.pageResult = {};
     }
     ngOnInit() {
-        this.loading = true;
         this.getProducts();
     }
+    displayModalMessage() {
+        this.unComfirmMessage = '';
+        this.isMessageModalVisible = true;
+    }
+    onKeyMessage(event) {
+        if (event.target) {
+            if (event.target) {
+                this.unComfirmMessage = event.target.value;
+            }
+        }
+    }
     unConfirmProduct(productId) {
-        if (this.unconfirmModalMessageForm.value.message) {
+        if (this.unComfirmMessage) {
             this.isMessageModalVisible = false;
             this.spinner.subjectSubmitLoadingHaveData$.next({ isSubmitted: true });
             this.adminProductService
-                .postUnComfirmProduct({
-                productId: productId,
-                uncomfirmComment: this.unconfirmModalMessageForm.value.message
-            })
+                .postUnComfirmProduct({ productId: productId, uncomfirmComment: this.unComfirmMessage })
                 .pipe(Object(rxjs_internal_operators_takeUntil__WEBPACK_IMPORTED_MODULE_4__["takeUntil"])(this.destroy$))
                 .subscribe((result) => {
                 if (result.isSuccessed) {
@@ -224,7 +229,6 @@ let ProducInactivtingComponent = class ProducInactivtingComponent {
                     if (result.message) {
                         this.notificationService.showSuccessNotification(result.message);
                     }
-                    this.startOfIndex = 1;
                     this.listOfData = [];
                     this.getProducts();
                     this.spinner.subjectSubmitLoadingHaveData$.next({ isSubmitted: false });
@@ -252,7 +256,6 @@ let ProducInactivtingComponent = class ProducInactivtingComponent {
                 if (result.message) {
                     this.notificationService.showSuccessNotification(result.message);
                 }
-                this.startOfIndex = 1;
                 this.listOfData = [];
                 this.getProducts();
                 this.spinner.subjectSubmitLoadingHaveData$.next({ isSubmitted: false });
@@ -268,6 +271,7 @@ let ProducInactivtingComponent = class ProducInactivtingComponent {
     }
     cancel() { }
     getProducts() {
+        this.loading = true;
         console.log('getProducts!!' + this.startOfIndex);
         this.adminProductService
             .getProductInActivating(this.startOfIndex)
@@ -311,21 +315,13 @@ let ProducInactivtingComponent = class ProducInactivtingComponent {
         this.startOfIndex++;
         this.getProducts();
     }
-    initUnconfirmModalMessageForm() {
-        //init form
-        this.unconfirmModalMessageForm = this.formBuilder.group({
-            message: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_11__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_11__["Validators"].minLength(3)]]
-        });
-        this.isMessageModalVisible = true;
-    }
 };
 ProducInactivtingComponent.ctorParameters = () => [
     { type: src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_8__["DestroyService"] },
     { type: src_app_core_services_admin_product_admin_product_service__WEBPACK_IMPORTED_MODULE_7__["AdminProductService"] },
     { type: src_app_core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_6__["NotificationService"] },
     { type: src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_9__["SpinnerService"] },
-    { type: src_app_core_error_handler_app_error_handler_service__WEBPACK_IMPORTED_MODULE_5__["AppErrorHandler"] },
-    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_11__["FormBuilder"] }
+    { type: src_app_core_error_handler_app_error_handler_service__WEBPACK_IMPORTED_MODULE_5__["AppErrorHandler"] }
 ];
 ProducInactivtingComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
@@ -400,22 +396,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _produc_inactivting_produc_inactivting_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./produc-inactivting/produc-inactivting.component */ "PrDE");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "8Y7J");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "iInd");
+/* harmony import */ var _product_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./product.component */ "fw9G");
+
 
 
 
 
 const routes = [
-    // {
-    // 	path: '',
-    // 	component: ProductComponent,
-    // 	children: [
     {
-        path: 'inactivating',
-        component: _produc_inactivting_produc_inactivting_component__WEBPACK_IMPORTED_MODULE_1__["ProducInactivtingComponent"]
+        path: '',
+        component: _product_component__WEBPACK_IMPORTED_MODULE_4__["ProductComponent"],
+        children: [
+            {
+                path: 'inactivating',
+                component: _produc_inactivting_produc_inactivting_component__WEBPACK_IMPORTED_MODULE_1__["ProducInactivtingComponent"]
+            },
+            {}
+        ]
     }
-    // 		{}
-    // 	]
-    // }
 ];
 let ProductRoutingModule = class ProductRoutingModule {
 };
@@ -576,7 +574,7 @@ AdminProductService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\n<ng-template #loaded>\n\t<nz-page-header style=\"padding-left: 0; padding-right: 0;\">\n\t\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\n\t\t<!--title-->\n\t\t<nz-page-header-title>Xác Nhận Sản Phẩm Nhà Cung Cấp</nz-page-header-title>\n\t\t<!--subtitle-->\n\t\t<nz-page-header-subtitle></nz-page-header-subtitle>\n\t\t<!--content-->\n\t\t<nz-page-header-content>\n\t\t\t<nz-table #basicTable>\n\t\t\t\t<thead>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<th>Ảnh</th>\n\t\t\t\t\t\t<th>Tên Sản Phẩm</th>\n\t\t\t\t\t\t<th>Tên Shop</th>\n\t\t\t\t\t\t<th>Ngày Tạo</th>\n\t\t\t\t\t\t<th>Tình Trạng</th>\n\t\t\t\t\t\t<th>Hành Động</th>\n\t\t\t\t\t</tr>\n\t\t\t\t</thead>\n\t\t\t\t<tbody>\n\t\t\t\t\t<tr *ngFor=\"let data of listOfData \">\n\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t<img nz-image max-width=\"100%\" height=\"50px\" nzSrc=\"{{host}}/{{data.avatarImage}}\" alt=\"\" />\n\t\t\t\t\t\t</td>\n\t\t\t\t\t\t<td>{{data.productName}}</td>\n\t\t\t\t\t\t<td>{{data.shopName}}</td>\n\t\t\t\t\t\t<td>{{data.dateCreate}}</td>\n\t\t\t\t\t\t<td>{{data.productStatusString}}</td>\n\t\t\t\t\t\t<td>\n\t\t\t\t\t\t\t<div class=\"row col\">\n\t\t\t\t\t\t\t\t<button nz-button [nzType]=\"'primary'\" (click)=\"showModalProductDetail(data)\">\n\t\t\t\t\t\t\t\t\t<span>Chi Tiết</span>\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t<nz-modal\n\t\t\t\t\t\t\t\t\t[nzVisible]=\"data.isProductDetailVisible\"\n\t\t\t\t\t\t\t\t\tnzTitle=\"Chi Tiết Sản Phẩm\"\n\t\t\t\t\t\t\t\t\t(nzOnCancel)=\"handleCancelProductDetail(data)\"\n\t\t\t\t\t\t\t\t\t[nzFooter]=\"modalFooter\"\n\t\t\t\t\t\t\t\t\tnzWidth=\"1200px\"\n\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t<ng-container *nzModalContent>\n\t\t\t\t\t\t\t\t\t\t<div class=\"grid wide row\">\n\t\t\t\t\t\t\t\t\t\t\t<app-product-detail-select-modal\n\t\t\t\t\t\t\t\t\t\t\t\t[productId]=\"data.productId\"\n\t\t\t\t\t\t\t\t\t\t\t></app-product-detail-select-modal>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</ng-container>\n\t\t\t\t\t\t\t\t\t<ng-template #modalFooter>\n\t\t\t\t\t\t\t\t\t\t<button nz-button nzType=\"primary\" (click)=\"handleOkProductDetail(data)\">\n\t\t\t\t\t\t\t\t\t\t\tOK\n\t\t\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t\t\t</nz-modal>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"row col\">\n\t\t\t\t\t\t\t\t<button\n\t\t\t\t\t\t\t\t\tnz-popconfirm\n\t\t\t\t\t\t\t\t\tnzPopconfirmTitle=\"Xác Nhận Sản Phẩm?\"\n\t\t\t\t\t\t\t\t\t(nzOnConfirm)=\"confirmProduct(data.productId)\"\n\t\t\t\t\t\t\t\t\t(nzOnCancel)=\"cancel()\"\n\t\t\t\t\t\t\t\t\tnzPopconfirmPlacement=\"top\"\n\t\t\t\t\t\t\t\t\tnz-button\n\t\t\t\t\t\t\t\t\tnzType=\"primary\"\n\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\tXác Nhận\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"row col\">\n\t\t\t\t\t\t\t\t<button (click)=\"initUnconfirmModalMessageForm()\" nz-button nzType=\"primary\" nzDanger>\n\t\t\t\t\t\t\t\t\tKhông Xác Nhận\n\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t<nz-modal [(nzVisible)]=\"isMessageModalVisible\" nzTitle=\"Lý Do Không Xác Nhận\">\n\t\t\t\t\t\t\t\t\t<ng-container *nzModalContent>\n\t\t\t\t\t\t\t\t\t\t<form\n\t\t\t\t\t\t\t\t\t\t\tnz-form\n\t\t\t\t\t\t\t\t\t\t\t[formGroup]=\"unconfirmModalMessageForm\"\n\t\t\t\t\t\t\t\t\t\t\t(ngSubmit)=\"unConfirmProduct(data.productId)\"\n\t\t\t\t\t\t\t\t\t\t\t#form=\"ngForm\"\n\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t<nz-form-item>\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Lý Do: \">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-input-group nzPrefixIcon=\"user\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<textarea\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"message\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Ex: Hình Ảnh Không Phù Hợp, Chứa Nội Dung Không Liên Quan Đến Sản Phẩm\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t></textarea>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-input-group>\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-form-control>\n\t\t\t\t\t\t\t\t\t\t\t</nz-form-item>\n\t\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t</ng-container>\n\t\t\t\t\t\t\t\t\t<ng-container *nzModalFooter>\n\t\t\t\t\t\t\t\t\t\t<button\n\t\t\t\t\t\t\t\t\t\t\tnz-popconfirm\n\t\t\t\t\t\t\t\t\t\t\tnzPopconfirmTitle=\"Có Chắc Chắn Không Xác Nhận?\"\n\t\t\t\t\t\t\t\t\t\t\t(nzOnConfirm)=\"unConfirmProduct(data.productId)\"\n\t\t\t\t\t\t\t\t\t\t\t(nzOnCancel)=\"cancel()\"\n\t\t\t\t\t\t\t\t\t\t\tnzPopconfirmPlacement=\"topLeft\"\n\t\t\t\t\t\t\t\t\t\t\tnz-button\n\t\t\t\t\t\t\t\t\t\t\ttype=\"submit\"\n\t\t\t\t\t\t\t\t\t\t\tnzType=\"primary\"\n\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\tXác Nhận\n\t\t\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t\t\t<button (click)=\"handleCancelUncomfirmMesage()\" nz-button nzType=\"default\">\n\t\t\t\t\t\t\t\t\t\t\tHủy\n\t\t\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t\t</ng-container>\n\t\t\t\t\t\t\t\t</nz-modal>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</td>\n\t\t\t\t\t</tr>\n\t\t\t\t</tbody>\n\t\t\t\t<!-- <ng-template #rangeTemplate let-range=\"range\" let-total>\n\t\t\t\t\t{{ range[0] }}-{{ range[1] }} of {{ total }} items\n\t\t\t\t</ng-template> -->\n\t\t\t</nz-table>\n\t\t\t<div\n\t\t\t\tclass=\"search-results\"\n\t\t\t\tinfiniteScroll\n\t\t\t\t[infiniteScrollDistance]=\"2\"\n\t\t\t\t[infiniteScrollThrottle]=\"50\"\n\t\t\t\t(scrolled)=\"onScroll()\"\n\t\t\t></div>\n\t\t</nz-page-header-content>\n\t</nz-page-header>\n</ng-template>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n<ng-template #loaded>\r\n\t<nz-page-header style=\"padding-left: 0; padding-right: 0;\">\r\n\t\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\r\n\t\t<!--title-->\r\n\t\t<nz-page-header-title>Xác Nhận Sản Phẩm Nhà Cung Cấp</nz-page-header-title>\r\n\t\t<!--subtitle-->\r\n\t\t<nz-page-header-subtitle></nz-page-header-subtitle>\r\n\t\t<!--content-->\r\n\t\t<nz-page-header-content>\r\n\t\t\t<nz-table #basicTable [nzData]=\"listOfData\">\r\n\t\t\t\t<thead>\r\n\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<th>Ảnh</th>\r\n\t\t\t\t\t\t<th>Tên Sản Phẩm</th>\r\n\t\t\t\t\t\t<th>Tên Shop</th>\r\n\t\t\t\t\t\t<th>Ngày Tạo</th>\r\n\t\t\t\t\t\t<th>Tình Trạng</th>\r\n\t\t\t\t\t\t<th>Hành Động</th>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t</thead>\r\n\t\t\t\t<tbody>\r\n\t\t\t\t\t<tr *ngFor=\"let data of basicTable.data \">\r\n\t\t\t\t\t\t<td>\r\n\t\t\t\t\t\t\t<img nz-image max-width=\"100%\" height=\"50px\" nzSrc=\"{{host}}/{{data.avatarImage}}\" alt=\"\" />\r\n\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t<td>{{data.productName}}</td>\r\n\t\t\t\t\t\t<td>{{data.shopName}}</td>\r\n\t\t\t\t\t\t<td>{{data.dateCreate}}</td>\r\n\t\t\t\t\t\t<td>{{data.status}}</td>\r\n\t\t\t\t\t\t<td>\r\n\t\t\t\t\t\t\t<div class=\"row col\">\r\n\t\t\t\t\t\t\t\t<button nz-button [nzType]=\"'primary'\" (click)=\"showModalProductDetail(data)\">\r\n\t\t\t\t\t\t\t\t\t<span>Chi Tiết</span>\r\n\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t<nz-modal\r\n\t\t\t\t\t\t\t\t\t[nzVisible]=\"data.isProductDetailVisible\"\r\n\t\t\t\t\t\t\t\t\tnzTitle=\"Chi Tiết Sản Phẩm\"\r\n\t\t\t\t\t\t\t\t\t(nzOnCancel)=\"handleCancelProductDetail(data)\"\r\n\t\t\t\t\t\t\t\t\t[nzFooter]=\"modalFooter\"\r\n\t\t\t\t\t\t\t\t\tnzWidth=\"1200px\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<ng-container *nzModalContent>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"grid wide row\">\r\n\t\t\t\t\t\t\t\t\t\t\t<app-product-detail-select-modal\r\n\t\t\t\t\t\t\t\t\t\t\t\t[productId]=\"data.productId\"\r\n\t\t\t\t\t\t\t\t\t\t\t></app-product-detail-select-modal>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t<ng-template #modalFooter>\r\n\t\t\t\t\t\t\t\t\t\t<button nz-button nzType=\"primary\" (click)=\"handleOkProductDetail(data)\">\r\n\t\t\t\t\t\t\t\t\t\t\tOK\r\n\t\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t\t\t\t</nz-modal>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"row col\">\r\n\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\tnz-popconfirm\r\n\t\t\t\t\t\t\t\t\tnzPopconfirmTitle=\"Xác Nhận Sản Phẩm?\"\r\n\t\t\t\t\t\t\t\t\t(nzOnConfirm)=\"confirmProduct(data.productId)\"\r\n\t\t\t\t\t\t\t\t\t(nzOnCancel)=\"cancel()\"\r\n\t\t\t\t\t\t\t\t\tnzPopconfirmPlacement=\"top\"\r\n\t\t\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\t\t\tnzType=\"primary\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\tXác Nhận\r\n\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"row col\">\r\n\t\t\t\t\t\t\t\t<button (click)=\"displayModalMessage()\" nz-button nzType=\"primary\" nzDanger>\r\n\t\t\t\t\t\t\t\t\tKhông Xác Nhận\r\n\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t<nz-modal [(nzVisible)]=\"isMessageModalVisible\" nzTitle=\"Lý Do Không Xác Nhận\">\r\n\t\t\t\t\t\t\t\t\t<ng-container *nzModalContent>\r\n\t\t\t\t\t\t\t\t\t\t<textarea\r\n\t\t\t\t\t\t\t\t\t\t\t(keyup)=\"onKeyMessage($event)\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Ex: Hình Ảnh Không Phù Hợp, Chứa Nội Dung Không Liên Quan Đến Sản Phẩm\"\r\n\t\t\t\t\t\t\t\t\t\t></textarea>\r\n\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t<ng-container *nzModalFooter>\r\n\t\t\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\t\t\tnz-popconfirm\r\n\t\t\t\t\t\t\t\t\t\t\tnzPopconfirmTitle=\"Có Chắc Chắn Không Xác Nhận?\"\r\n\t\t\t\t\t\t\t\t\t\t\t(nzOnConfirm)=\"unConfirmProduct(data.productId)\"\r\n\t\t\t\t\t\t\t\t\t\t\t(nzOnCancel)=\"cancel()\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzPopconfirmPlacement=\"topLeft\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\t\t\t\t\tnzType=\"primary\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\tXác Nhận\r\n\t\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t\t\t<button (click)=\"handleCancelUncomfirmMesage()\" nz-button nzType=\"default\">\r\n\t\t\t\t\t\t\t\t\t\t\tHủy\r\n\t\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t</nz-modal>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t</tbody>\r\n\t\t\t\t<!-- <ng-template #rangeTemplate let-range=\"range\" let-total>\r\n\t\t\t\t\t{{ range[0] }}-{{ range[1] }} of {{ total }} items\r\n\t\t\t\t</ng-template> -->\r\n\t\t\t</nz-table>\r\n\t\t\t<div\r\n\t\t\t\tclass=\"search-results\"\r\n\t\t\t\tinfiniteScroll\r\n\t\t\t\t[infiniteScrollDistance]=\"2\"\r\n\t\t\t\t[infiniteScrollThrottle]=\"50\"\r\n\t\t\t\t(scrolled)=\"onScroll()\"\r\n\t\t\t></div>\r\n\t\t</nz-page-header-content>\r\n\t</nz-page-header>\r\n</ng-template>\r\n");
 
 /***/ })
 

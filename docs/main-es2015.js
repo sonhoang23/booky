@@ -417,7 +417,6 @@ const environment = {
     test: false,
     i18nPrefix: '',
     apiUrl: 'https://booky.somee.com',
-    //apiUrl: 'https://localhost:5005',
     clientUrlForgotPassword: 'http://localhost:4200/password/reset-password',
     versions: {
         app: packageJson.version,
@@ -538,14 +537,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "8Y7J");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "IheW");
 /* harmony import */ var _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/auth/auth.service */ "RL7/");
-/* harmony import */ var _services_comon_services_cookie_service_app_cookie_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/comon-services/cookie-service/app-cookie.service */ "kH6Y");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ "iInd");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ngrx/store */ "tqRt");
-/* harmony import */ var _store_customer_login_customer_login_actions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../store/customer/login/customer-login.actions */ "sMhy");
-/* harmony import */ var _utils_URL_admin_url_admin_url_base__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../utils/URL/admin-url/admin-url-base */ "xZP7");
-/* harmony import */ var _services_comon_services_local_storage_service_localstorage_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../services/comon-services/local-storage-service/localstorage.service */ "px64");
-
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "iInd");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngrx/store */ "tqRt");
+/* harmony import */ var _store_customer_login_customer_login_actions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../store/customer/login/customer-login.actions */ "sMhy");
+/* harmony import */ var _utils_URL_admin_url_admin_url_base__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/URL/admin-url/admin-url-base */ "xZP7");
+/* harmony import */ var _services_comon_services_local_storage_service_localstorage_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../services/comon-services/local-storage-service/localstorage.service */ "px64");
 
 
 
@@ -559,9 +556,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppAuthInterceptor = class AppAuthInterceptor {
-    constructor(router, appCookieService, authService, sellerUrlString, adminUrlString, customerUrlString, store, localStore) {
+    constructor(router, authService, sellerUrlString, adminUrlString, customerUrlString, store, localStore) {
         this.router = router;
-        this.appCookieService = appCookieService;
         this.authService = authService;
         this.sellerUrlString = sellerUrlString;
         this.adminUrlString = adminUrlString;
@@ -580,7 +576,7 @@ let AppAuthInterceptor = class AppAuthInterceptor {
                 return next.handle(cloned);
             }
             else {
-                return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])({
+                return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])({
                     error: (err) => {
                         if (err instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpErrorResponse"]) {
                             if (err.status === 401) {
@@ -589,6 +585,12 @@ let AppAuthInterceptor = class AppAuthInterceptor {
                                 // this.localStorageService.removeItem('customerlogin');
                                 // this.store.dispatch(customerLoginResetAction({message: 'logout'}));
                             }
+                            else {
+                                return;
+                            }
+                        }
+                        else {
+                            return;
                         }
                     }
                 }));
@@ -605,15 +607,21 @@ let AppAuthInterceptor = class AppAuthInterceptor {
                 return next.handle(cloned);
             }
             else {
-                return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])({
+                return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])({
                     error: (err) => {
                         if (err instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpErrorResponse"]) {
                             if (err.status === 401) {
                                 //mỗi khi gửi token đi, nếu không có token hoặc token hết hạn thì dispatch logout
                                 return;
                                 //this.localStorageService.removeItem('customerlogin');
-                                this.store.dispatch(Object(_store_customer_login_customer_login_actions__WEBPACK_IMPORTED_MODULE_10__["customerLoginResetAction"])({ message: 'logout' }));
+                                this.store.dispatch(Object(_store_customer_login_customer_login_actions__WEBPACK_IMPORTED_MODULE_9__["customerLoginResetAction"])({ message: 'logout' }));
                             }
+                            else {
+                                return;
+                            }
+                        }
+                        else {
+                            return;
                         }
                     }
                 }));
@@ -632,17 +640,19 @@ let AppAuthInterceptor = class AppAuthInterceptor {
                 return next.handle(request);
             }
         }
+        else {
+            return next.handle(request);
+        }
     }
 };
 AppAuthInterceptor.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_8__["Router"] },
-    { type: _services_comon_services_cookie_service_app_cookie_service__WEBPACK_IMPORTED_MODULE_6__["AppCookieService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] },
     { type: _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"] },
     { type: _utils_URL_seller_url_seller_url_base__WEBPACK_IMPORTED_MODULE_2__["SellerUrlBase"] },
-    { type: _utils_URL_admin_url_admin_url_base__WEBPACK_IMPORTED_MODULE_11__["AdminUrlBase"] },
+    { type: _utils_URL_admin_url_admin_url_base__WEBPACK_IMPORTED_MODULE_10__["AdminUrlBase"] },
     { type: _utils_URL_customer_url_customer_url_base__WEBPACK_IMPORTED_MODULE_1__["CustomerUrlBase"] },
-    { type: _ngrx_store__WEBPACK_IMPORTED_MODULE_9__["Store"] },
-    { type: _services_comon_services_local_storage_service_localstorage_service__WEBPACK_IMPORTED_MODULE_12__["LocalStorageService"] }
+    { type: _ngrx_store__WEBPACK_IMPORTED_MODULE_8__["Store"] },
+    { type: _services_comon_services_local_storage_service_localstorage_service__WEBPACK_IMPORTED_MODULE_11__["LocalStorageService"] }
 ];
 AppAuthInterceptor = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])()
@@ -716,6 +726,9 @@ let JWTTokenService = class JWTTokenService {
         if (jwtToken) {
             this.decodedToken = Object(jwt_decode__WEBPACK_IMPORTED_MODULE_2__["default"])(jwtToken);
             return this.decodedToken;
+        }
+        else {
+            return null;
         }
     }
     getDecodeToken(jwtToken) {
@@ -2011,10 +2024,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "8Y7J");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
 /* harmony import */ var src_app_core_utils_URL_admin_url_admin_url_account__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/core/utils/URL/admin-url/admin-url-account */ "5ZM+");
-/* harmony import */ var _comon_services_jwt_token_service_jwttoken_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../comon-services/jwt-token-service/jwttoken.service */ "FftL");
-/* harmony import */ var _comon_services_cookie_service_app_cookie_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../comon-services/cookie-service/app-cookie.service */ "kH6Y");
-
-
 
 
 
@@ -2022,10 +2031,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AccountService = class AccountService {
-    constructor(http, jwtTokenService, appCookieService, adminUrlAccountString, localStorageService) {
+    constructor(http, adminUrlAccountString, localStorageService) {
         this.http = http;
-        this.jwtTokenService = jwtTokenService;
-        this.appCookieService = appCookieService;
         this.adminUrlAccountString = adminUrlAccountString;
         this.localStorageService = localStorageService;
     }
@@ -2080,8 +2087,6 @@ let AccountService = class AccountService {
 };
 AccountService.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
-    { type: _comon_services_jwt_token_service_jwttoken_service__WEBPACK_IMPORTED_MODULE_6__["JWTTokenService"] },
-    { type: _comon_services_cookie_service_app_cookie_service__WEBPACK_IMPORTED_MODULE_7__["AppCookieService"] },
     { type: src_app_core_utils_URL_admin_url_admin_url_account__WEBPACK_IMPORTED_MODULE_5__["AdminUrlAccount"] },
     { type: src_app_core_services_comon_services_local_storage_service_localstorage_service__WEBPACK_IMPORTED_MODULE_1__["LocalStorageService"] }
 ];
@@ -2242,7 +2247,7 @@ class URL_String {
 /*! exports provided: name, version, _comment_, author, description, engines, publisher, homepage, bugs, repository, config, bin, scripts, private, dependencies, devDependencies, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"name\":\"personalblogfrontend\",\"version\":\"0.0.1\",\"_comment_\":\"version instruction: https://medium.com/@tolvaly.zs/how-to-version-number-angular-6-applications-4436c03a3bd3\",\"author\":{\"name\":\"Hoàng Sơn\",\"email\":\"hoangson.hust@gmail.com\",\"url\":\"https://github.com/sonhoang23\"},\"description\":\"Bài Tập Làm Đồ Án Tốt Nghiệp\",\"engines\":{\"node\":\"^12.0.0\"},\"publisher\":\"Hoàng Sơn\",\"homepage\":\"https://github.com/sonhoang23/Final-Hust-Project-HoangSon\",\"bugs\":{\"url\":\"https://github.com/sonhoang23/Final-Hust-Project-HoangSon/issues\",\"email\":\"hoangson.hust@gmail.com\"},\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/sonhoang23/Final-Hust-Project-HoangSon\"},\"config\":{},\"bin\":{},\"scripts\":{\"ng\":\"ng\",\"start\":\"ng serve --open\",\"build\":\"ng build\",\"test\":\"ng test\",\"lint\":\"ng lint\",\"e2e\":\"ng e2e\",\"format\":\"prettier\"},\"private\":true,\"dependencies\":{\"@angular-builders/custom-webpack\":\"^11.1.1\",\"@angular/animations\":\"^11.1.2\",\"@angular/cdk\":\"^11.2.3\",\"@angular/common\":\"^11.1.2\",\"@angular/compiler\":\"^11.1.2\",\"@angular/core\":\"^11.1.2\",\"@angular/fire\":\"^6.1.4\",\"@angular/forms\":\"^11.1.2\",\"@angular/material\":\"^11.2.3\",\"@angular/platform-browser\":\"^11.1.2\",\"@angular/platform-browser-dynamic\":\"^11.1.2\",\"@angular/router\":\"^11.1.2\",\"@ant-design/icons-angular\":\"^11.0.1\",\"@aspnet/signalr\":\"^1.1.4\",\"@auth0/angular-jwt\":\"^5.0.2\",\"@ckeditor/ckeditor5-angular\":\"^2.0.1\",\"@ckeditor/ckeditor5-build-classic\":\"^25.0.0\",\"@microsoft/signalr\":\"^5.0.4\",\"@ngrx/effects\":\"^11.0.1\",\"@ngrx/store\":\"^11.0.1\",\"@ngrx/store-devtools\":\"^11.0.1\",\"@ngx-translate/core\":\"^13.0.0\",\"@ngx-translate/http-loader\":\"^6.0.0\",\"angular-responsive-carousel\":\"^2.0.2\",\"chart.js\":\"^2.9.4\",\"cors\":\"^2.8.5\",\"firebase\":\"^8.2.10\",\"hammerjs\":\"^2.0.8\",\"jwt-decode\":\"^3.1.2\",\"ng-zorro-antd\":\"^11.2.0\",\"ng2-charts\":\"^2.4.2\",\"ngx-infinite-scroll\":\"^10.0.1\",\"ngx-pagination\":\"^5.0.0\",\"ngx-spinner\":\"^0.0.2\",\"rxjs\":\"^6.6.6\",\"tslib\":\"^2.1.0\",\"zone.js\":\"^0.11.4\"},\"devDependencies\":{\"@angular-devkit/architect\":\"^0.1102.3\",\"@angular-devkit/build-angular\":\"^0.1100.7\",\"@angular-eslint/builder\":\"1.2.0\",\"@angular-eslint/eslint-plugin\":\"1.2.0\",\"@angular-eslint/eslint-plugin-template\":\"1.2.0\",\"@angular-eslint/schematics\":\"1.2.0\",\"@angular-eslint/template-parser\":\"1.2.0\",\"@angular/cli\":\"^11.2.3\",\"@angular/compiler-cli\":\"^11.1.2\",\"@angular/language-service\":\"^11.1.2\",\"@types/jasmine\":\"^3.6.6\",\"@types/jasminewd2\":\"~2.0.8\",\"@types/node\":\"^14.14.33\",\"@typescript-eslint/eslint-plugin\":\"4.3.0\",\"@typescript-eslint/parser\":\"4.3.0\",\"codelyzer\":\"^6.0.1\",\"eslint\":\"^7.2.0\",\"eslint-config-airbnb\":\"^18.2.1\",\"eslint-plugin-import\":\"^2.22.1\",\"eslint-plugin-jsdoc\":\"30.7.6\",\"eslint-plugin-jsx-a11y\":\"^6.4.1\",\"eslint-plugin-prefer-arrow\":\"1.2.2\",\"eslint-plugin-react\":\"^7.21.5\",\"eslint-plugin-react-hooks\":\"^1.7.0\",\"firebase-tools\":\"^7.2.4\",\"fuzzy\":\"^0.1.3\",\"inquirer\":\"^6.2.2\",\"inquirer-autocomplete-prompt\":\"^1.0.1\",\"jasmine-core\":\"~3.6.0\",\"jasmine-spec-reporter\":\"~6.0.0\",\"karma\":\"^6.0.4\",\"karma-chrome-launcher\":\"~3.1.0\",\"karma-coverage-istanbul-reporter\":\"~3.0.3\",\"karma-jasmine\":\"~4.0.1\",\"karma-jasmine-html-reporter\":\"^1.5.4\",\"less\":\"^3.13.1\",\"less-loader\":\"^7.3.0\",\"open\":\"^7.4.2\",\"prettier\":\"^2.2.1\",\"protractor\":\"~7.0.0\",\"ts-node\":\"~9.1.1\",\"tslint\":\"~5.20.1\",\"typescript\":\"^4.1.5\"}}");
+module.exports = JSON.parse("{\"name\":\"personalblogfrontend\",\"version\":\"0.0.1\",\"_comment_\":\"version instruction: https://medium.com/@tolvaly.zs/how-to-version-number-angular-6-applications-4436c03a3bd3\",\"author\":{\"name\":\"Hoàng Sơn\",\"email\":\"hoangson.hust@gmail.com\",\"url\":\"https://github.com/sonhoang23\"},\"description\":\"Bài Tập Làm Đồ Án Tốt Nghiệp\",\"engines\":{\"node\":\"^12.0.0\"},\"publisher\":\"Hoàng Sơn\",\"homepage\":\"https://github.com/sonhoang23/Final-Hust-Project-HoangSon\",\"bugs\":{\"url\":\"https://github.com/sonhoang23/Final-Hust-Project-HoangSon/issues\",\"email\":\"hoangson.hust@gmail.com\"},\"repository\":{\"type\":\"git\",\"url\":\"https://github.com/sonhoang23/Final-Hust-Project-HoangSon\"},\"config\":{},\"bin\":{},\"scripts\":{\"ng\":\"ng\",\"start\":\"ng serve --open\",\"build\":\"ng build\",\"test\":\"ng test\",\"lint\":\"ng lint\",\"e2e\":\"ng e2e\",\"format\":\"prettier\"},\"private\":true,\"dependencies\":{\"@angular-builders/custom-webpack\":\"^11.1.1\",\"@angular/animations\":\"^11.1.2\",\"@angular/cdk\":\"^11.2.3\",\"@angular/common\":\"^11.1.2\",\"@angular/compiler\":\"^11.1.2\",\"@angular/core\":\"^11.1.2\",\"@angular/fire\":\"^6.1.0-rc.4\",\"@angular/forms\":\"^11.1.2\",\"@angular/material\":\"^11.2.3\",\"@angular/platform-browser\":\"^11.1.2\",\"@angular/platform-browser-dynamic\":\"^11.1.2\",\"@angular/router\":\"^11.1.2\",\"@ant-design/icons-angular\":\"^11.0.1\",\"@aspnet/signalr\":\"^1.1.4\",\"@auth0/angular-jwt\":\"^5.0.2\",\"@ckeditor/ckeditor5-angular\":\"^2.0.1\",\"@ckeditor/ckeditor5-build-classic\":\"^25.0.0\",\"@microsoft/signalr\":\"^5.0.4\",\"@ngrx/effects\":\"^11.0.1\",\"@ngrx/store\":\"^11.0.1\",\"@ngrx/store-devtools\":\"^11.0.1\",\"@ngx-translate/core\":\"^13.0.0\",\"@ngx-translate/http-loader\":\"^6.0.0\",\"angular-responsive-carousel\":\"^2.0.2\",\"chart.js\":\"^2.9.4\",\"cors\":\"^2.8.5\",\"firebase\":\"^8.2.10\",\"hammerjs\":\"^2.0.8\",\"jwt-decode\":\"^3.1.2\",\"ng-zorro-antd\":\"^11.2.0\",\"ng2-charts\":\"^2.4.2\",\"ngx-infinite-scroll\":\"^10.0.1\",\"ngx-pagination\":\"^5.0.0\",\"ngx-spinner\":\"^0.0.2\",\"rxjs\":\"^6.6.6\",\"triple-beam\":\"^1.3.0\",\"tslib\":\"^2.1.0\",\"zone.js\":\"^0.11.4\"},\"devDependencies\":{\"@angular-devkit/architect\":\"^0.1102.3\",\"@angular-devkit/build-angular\":\"^0.1100.7\",\"@angular-eslint/builder\":\"1.2.0\",\"@angular-eslint/eslint-plugin\":\"1.2.0\",\"@angular-eslint/eslint-plugin-template\":\"1.2.0\",\"@angular-eslint/schematics\":\"1.2.0\",\"@angular-eslint/template-parser\":\"1.2.0\",\"@angular/cli\":\"^11.2.3\",\"@angular/compiler-cli\":\"^11.1.2\",\"@angular/language-service\":\"^11.1.2\",\"@types/jasmine\":\"^3.6.6\",\"@types/jasminewd2\":\"~2.0.8\",\"@types/node\":\"^14.14.33\",\"@typescript-eslint/eslint-plugin\":\"4.3.0\",\"@typescript-eslint/parser\":\"4.3.0\",\"codelyzer\":\"^6.0.1\",\"eslint\":\"^7.6.0\",\"eslint-config-airbnb\":\"^18.2.1\",\"eslint-plugin-import\":\"2.22.1\",\"eslint-plugin-jsdoc\":\"30.7.6\",\"eslint-plugin-jsx-a11y\":\"^6.4.1\",\"eslint-plugin-prefer-arrow\":\"1.2.2\",\"eslint-plugin-react\":\"^7.21.5\",\"eslint-plugin-react-hooks\":\"^1.7.0\",\"firebase-tools\":\"^7.2.4\",\"fuzzy\":\"^0.1.3\",\"inquirer\":\"^6.2.2\",\"inquirer-autocomplete-prompt\":\"^1.0.1\",\"jasmine-core\":\"~3.6.0\",\"jasmine-spec-reporter\":\"~6.0.0\",\"karma\":\"^6.0.4\",\"karma-chrome-launcher\":\"~3.1.0\",\"karma-coverage-istanbul-reporter\":\"~3.0.3\",\"karma-jasmine\":\"~4.0.1\",\"karma-jasmine-html-reporter\":\"^1.5.4\",\"less\":\"^3.13.1\",\"less-loader\":\"^7.3.0\",\"open\":\"^7.4.2\",\"prettier\":\"^2.2.1\",\"protractor\":\"~7.0.0\",\"ts-node\":\"~9.1.1\",\"tslint\":\"~5.20.1\",\"typescript\":\"^4.1.5\"}}");
 
 /***/ }),
 

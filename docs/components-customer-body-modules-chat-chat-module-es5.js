@@ -152,22 +152,15 @@
       /* harmony import */
 
 
-      var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-      /*! @angular/router */
-      "iInd");
-      /* harmony import */
-
-
-      var src_app_core_services_customer_notification_hubs_signal_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      var src_app_core_services_customer_notification_hubs_signal_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! src/app/core/services/customer/notification/hubs/signal.service */
       "jY/3");
 
       var ChatComponent = /*#__PURE__*/function () {
-        function ChatComponent(signalService, route) {
+        function ChatComponent(signalService) {
           _classCallCheck(this, ChatComponent);
 
           this.signalService = signalService;
-          this.route = route;
           this.signalList = [];
         }
 
@@ -189,9 +182,7 @@
 
       ChatComponent.ctorParameters = function () {
         return [{
-          type: src_app_core_services_customer_notification_hubs_signal_service__WEBPACK_IMPORTED_MODULE_5__["SignalService"]
-        }, {
-          type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"]
+          type: src_app_core_services_customer_notification_hubs_signal_service__WEBPACK_IMPORTED_MODULE_4__["SignalService"]
         }];
       };
 

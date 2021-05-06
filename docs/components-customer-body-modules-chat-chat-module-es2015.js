@@ -77,18 +77,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _raw_loader_chat_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./chat.component.html */ "ilxe");
 /* harmony import */ var _chat_component_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chat.component.less */ "VeRM");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "8Y7J");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "iInd");
-/* harmony import */ var src_app_core_services_customer_notification_hubs_signal_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/core/services/customer/notification/hubs/signal.service */ "jY/3");
-
+/* harmony import */ var src_app_core_services_customer_notification_hubs_signal_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/core/services/customer/notification/hubs/signal.service */ "jY/3");
 
 
 
 
 
 let ChatComponent = class ChatComponent {
-    constructor(signalService, route) {
+    constructor(signalService) {
         this.signalService = signalService;
-        this.route = route;
         this.signalList = [];
     }
     ngOnInit() {
@@ -99,8 +96,7 @@ let ChatComponent = class ChatComponent {
     }
 };
 ChatComponent.ctorParameters = () => [
-    { type: src_app_core_services_customer_notification_hubs_signal_service__WEBPACK_IMPORTED_MODULE_5__["SignalService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"] }
+    { type: src_app_core_services_customer_notification_hubs_signal_service__WEBPACK_IMPORTED_MODULE_4__["SignalService"] }
 ];
 ChatComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({

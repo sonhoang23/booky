@@ -1605,7 +1605,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<!-- <div class=\"sidebar__container\">\r\n\t<ul class=\"sidebar__menu\">\r\n\t\t<li class=\"sidebar__menu--box\"> -->\r\n\t\t\t<!--mat -->\r\n\t\t\t<!-- <mat-accordion> -->\r\n\t\t\t\t<!-- <mat-expansion-panel\r\n\t\t\t\t\tclass=\"sidebar__menu--box-expansion-panel\"\r\n\t\t\t\t\t(opened)=\"panelOpenState = true\"\r\n\t\t\t\t\t(closed)=\"panelOpenState = false\"\r\n\t\t\t\t> -->\r\n\t\t\t\t\t<!-- <mat-expansion-panel-header class=\"sidebar__menu--box-item\">\r\n\t\t\t\t\t\t<img\r\n\t\t\t\t\t\t\tsrc=\"https://cf.shopee.vn/file/c15905d5a6284687c4a6ad00d0feb511\"\r\n\t\t\t\t\t\t\talt=\"\"\r\n\t\t\t\t\t\t\tclass=\"sidebar__menu--box-item-icon\"\r\n\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t<span class=\"sidebar__menu--box-item-text\"> Vận Chuyển </span>\r\n\t\t\t\t\t</mat-expansion-panel-header>\r\n\t\t\t\t\t<ul class=\"sidebar__menu--box-submenu\">\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t</ul> -->\r\n\t\t\t\t<!-- </mat-expansion-panel> -->\r\n\t\t\t<!-- </mat-accordion> -->\r\n\t\t\t<!---->\r\n\t\t<!-- </li>\r\n\t</ul>\r\n</div>  có thay đổi nên tìm bản sửa gần nhất -->\r\n ";
+      __webpack_exports__["default"] = "<div class=\"sidebar__container\">\r\n\t<ul class=\"sidebar__menu\">\r\n\t\t<li class=\"sidebar__menu--box\">\r\n\t\t\t<!--mat -->\r\n\t\t\t<mat-accordion>\r\n\t\t\t\t<!-- <mat-expansion-panel\r\n\t\t\t\t\tclass=\"sidebar__menu--box-expansion-panel\"\r\n\t\t\t\t\t(opened)=\"panelOpenState = true\"\r\n\t\t\t\t\t(closed)=\"panelOpenState = false\"\r\n\t\t\t\t> -->\r\n\t\t\t\t\t<mat-expansion-panel-header class=\"sidebar__menu--box-item\">\r\n\t\t\t\t\t\t<img\r\n\t\t\t\t\t\t\tsrc=\"https://cf.shopee.vn/file/c15905d5a6284687c4a6ad00d0feb511\"\r\n\t\t\t\t\t\t\talt=\"\"\r\n\t\t\t\t\t\t\tclass=\"sidebar__menu--box-item-icon\"\r\n\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t<span class=\"sidebar__menu--box-item-text\"> Vận Chuyển </span>\r\n\t\t\t\t\t</mat-expansion-panel-header>\r\n\t\t\t\t\t<ul class=\"sidebar__menu--box-submenu\">\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t</ul>\r\n\t\t\t\t<!-- </mat-expansion-panel> -->\r\n\t\t\t</mat-accordion>\r\n\t\t\t<!---->\r\n\t\t</li>\r\n\t</ul>\r\n</div>\r\n";
       /***/
     },
 
@@ -1658,20 +1658,13 @@
       var _services_comon_services_cookie_service_app_cookie_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! ../../services/comon-services/cookie-service/app-cookie.service */
       "kH6Y");
-      /* harmony import */
-
-
-      var _services_comon_services_local_storage_service_localstorage_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-      /*! ../../services/comon-services/local-storage-service/localstorage.service */
-      "px64");
 
       var AdminGuardGuard = /*#__PURE__*/function () {
-        function AdminGuardGuard(router, authService, localStorageService, appCookieService) {
+        function AdminGuardGuard(router, authService, appCookieService) {
           _classCallCheck(this, AdminGuardGuard);
 
           this.router = router;
           this.authService = authService;
-          this.localStorageService = localStorageService;
           this.appCookieService = appCookieService;
         }
 
@@ -1720,8 +1713,6 @@
           type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
         }, {
           type: _services_auth_auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"]
-        }, {
-          type: _services_comon_services_local_storage_service_localstorage_service__WEBPACK_IMPORTED_MODULE_5__["LocalStorageService"]
         }, {
           type: _services_comon_services_cookie_service_app_cookie_service__WEBPACK_IMPORTED_MODULE_4__["AppCookieService"]
         }];
@@ -2097,6 +2088,75 @@
     },
 
     /***/
+    "fw9G":
+    /*!***********************************************************************************!*\
+      !*** ./src/app/features/admin/components/admin-body/product/product.component.ts ***!
+      \***********************************************************************************/
+
+    /*! exports provided: ProductComponent */
+
+    /***/
+    function fw9G(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ProductComponent", function () {
+        return ProductComponent;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _raw_loader_product_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! raw-loader!./product.component.html */
+      "zm27");
+      /* harmony import */
+
+
+      var _product_component_sass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ./product.component.sass */
+      "kBQW");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @angular/core */
+      "8Y7J");
+
+      var ProductComponent = /*#__PURE__*/function () {
+        function ProductComponent() {
+          _classCallCheck(this, ProductComponent);
+        }
+
+        _createClass(ProductComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {}
+        }]);
+
+        return ProductComponent;
+      }();
+
+      ProductComponent.ctorParameters = function () {
+        return [];
+      };
+
+      ProductComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+        selector: 'app-product',
+        template: _raw_loader_product_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        styles: [_product_component_sass__WEBPACK_IMPORTED_MODULE_2__["default"]]
+      })], ProductComponent);
+      /***/
+    },
+
+    /***/
     "gVk/":
     /*!*******************************************************************************************************************************!*\
       !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/admin/components/admin-body/marketing/marketing.component.html ***!
@@ -2213,6 +2273,26 @@
 
 
       __webpack_exports__["default"] = "<p>finance works!</p>\r\n";
+      /***/
+    },
+
+    /***/
+    "kBQW":
+    /*!*************************************************************************************!*\
+      !*** ./src/app/features/admin/components/admin-body/product/product.component.sass ***!
+      \*************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function kBQW(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwcm9kdWN0LmNvbXBvbmVudC5zYXNzIn0= */";
       /***/
     },
 
@@ -3082,31 +3162,37 @@
       /* harmony import */
 
 
-      var _components_admin_header_admin_header_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(
+      var _components_admin_body_product_product_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(
+      /*! ./components/admin-body/product/product.component */
+      "fw9G");
+      /* harmony import */
+
+
+      var _components_admin_header_admin_header_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(
       /*! ./components/admin-header/admin-header.component */
       "ujF4");
       /* harmony import */
 
 
-      var _components_admin_sidebar_admin_sidebar_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(
+      var _components_admin_sidebar_admin_sidebar_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(
       /*! ./components/admin-sidebar/admin-sidebar.component */
       "wCe+");
       /* harmony import */
 
 
-      var _components_draw_container_draw_container_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(
+      var _components_draw_container_draw_container_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(
       /*! ./components/draw-container/draw-container.component */
       "Mh6h");
       /* harmony import */
 
 
-      var _components_page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(
+      var _components_page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(
       /*! ./components/page-not-found/page-not-found.component */
       "/6rS");
       /* harmony import */
 
 
-      var _modules_login_login_module__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(
+      var _modules_login_login_module__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(
       /*! ./modules/login/login.module */
       "5Se5");
       /* eslint-disable prefer-arrow/prefer-arrow-functions */
@@ -3118,10 +3204,9 @@
       };
 
       AdminModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
-        declarations: [_admin_component__WEBPACK_IMPORTED_MODULE_17__["AdminComponent"], _components_admin_header_admin_header_component__WEBPACK_IMPORTED_MODULE_24__["AdminHeaderComponent"], _components_admin_body_admin_body_component__WEBPACK_IMPORTED_MODULE_18__["AdminBodyComponent"], _components_admin_body_index_index_component__WEBPACK_IMPORTED_MODULE_21__["IndexComponent"], _components_draw_container_draw_container_component__WEBPACK_IMPORTED_MODULE_26__["DrawContainerComponent"], _components_admin_body_home_home_component__WEBPACK_IMPORTED_MODULE_20__["HomeComponent"], _components_admin_body_portal_portal_component__WEBPACK_IMPORTED_MODULE_23__["PortalComponent"], //OrderComponent,
-        //ProductComponent,
-        _components_admin_body_marketing_marketing_component__WEBPACK_IMPORTED_MODULE_22__["MarketingComponent"], _components_admin_body_finance_finance_component__WEBPACK_IMPORTED_MODULE_19__["FinanceComponent"], _components_page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_27__["PageNotFoundComponent"], _components_admin_sidebar_admin_sidebar_component__WEBPACK_IMPORTED_MODULE_25__["AdminSidebarComponent"]],
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], src_app_core_utils_ng_zorro_antd_ng_zorro_antd_module__WEBPACK_IMPORTED_MODULE_13__["NgZorroAntdModule"], _admin_routing_module__WEBPACK_IMPORTED_MODULE_16__["AdminRoutingModule"], src_app_icons_provider_module__WEBPACK_IMPORTED_MODULE_14__["IconsProviderModule"], ng_zorro_antd_layout__WEBPACK_IMPORTED_MODULE_8__["NzLayoutModule"], ng_zorro_antd_menu__WEBPACK_IMPORTED_MODULE_9__["NzMenuModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"], src_app_core_utils_material_module__WEBPACK_IMPORTED_MODULE_12__["MaterialModule"], _modules_login_login_module__WEBPACK_IMPORTED_MODULE_28__["LoginModule"], _modules_statistic_statistic_module__WEBPACK_IMPORTED_MODULE_15__["StatisticModule"], ngx_infinite_scroll__WEBPACK_IMPORTED_MODULE_10__["InfiniteScrollModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateModule"].forRoot({
+        declarations: [_admin_component__WEBPACK_IMPORTED_MODULE_17__["AdminComponent"], _components_admin_header_admin_header_component__WEBPACK_IMPORTED_MODULE_25__["AdminHeaderComponent"], _components_admin_body_admin_body_component__WEBPACK_IMPORTED_MODULE_18__["AdminBodyComponent"], _components_admin_body_index_index_component__WEBPACK_IMPORTED_MODULE_21__["IndexComponent"], _components_draw_container_draw_container_component__WEBPACK_IMPORTED_MODULE_27__["DrawContainerComponent"], _components_admin_body_home_home_component__WEBPACK_IMPORTED_MODULE_20__["HomeComponent"], _components_admin_body_portal_portal_component__WEBPACK_IMPORTED_MODULE_23__["PortalComponent"], //OrderComponent,
+        _components_admin_body_product_product_component__WEBPACK_IMPORTED_MODULE_24__["ProductComponent"], _components_admin_body_marketing_marketing_component__WEBPACK_IMPORTED_MODULE_22__["MarketingComponent"], _components_admin_body_finance_finance_component__WEBPACK_IMPORTED_MODULE_19__["FinanceComponent"], _components_page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_28__["PageNotFoundComponent"], _components_admin_sidebar_admin_sidebar_component__WEBPACK_IMPORTED_MODULE_26__["AdminSidebarComponent"]],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], src_app_core_utils_ng_zorro_antd_ng_zorro_antd_module__WEBPACK_IMPORTED_MODULE_13__["NgZorroAntdModule"], _admin_routing_module__WEBPACK_IMPORTED_MODULE_16__["AdminRoutingModule"], src_app_icons_provider_module__WEBPACK_IMPORTED_MODULE_14__["IconsProviderModule"], ng_zorro_antd_layout__WEBPACK_IMPORTED_MODULE_8__["NzLayoutModule"], ng_zorro_antd_menu__WEBPACK_IMPORTED_MODULE_9__["NzMenuModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"], src_app_core_utils_material_module__WEBPACK_IMPORTED_MODULE_12__["MaterialModule"], _modules_login_login_module__WEBPACK_IMPORTED_MODULE_29__["LoginModule"], _modules_statistic_statistic_module__WEBPACK_IMPORTED_MODULE_15__["StatisticModule"], ngx_infinite_scroll__WEBPACK_IMPORTED_MODULE_10__["InfiniteScrollModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateModule"].forRoot({
           loader: {
             provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateModule"],
             useFactory: httpLoaderFactory,
@@ -3219,6 +3304,26 @@
       AdminStatisticService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
         providedIn: 'root'
       })], AdminStatisticService);
+      /***/
+    },
+
+    /***/
+    "zm27":
+    /*!***************************************************************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/admin/components/admin-body/product/product.component.html ***!
+      \***************************************************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function zm27(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "<router-outlet></router-outlet>";
       /***/
     }
   }]);

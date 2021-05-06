@@ -416,7 +416,7 @@ const environment = {
     production: false,
     test: false,
     i18nPrefix: '',
-    apiUrl: 'http://booky.somee.com',
+    apiUrl: 'https://booky.somee.com',
     //apiUrl: 'https://localhost:5005',
     clientUrlForgotPassword: 'http://localhost:4200/password/reset-password',
     versions: {

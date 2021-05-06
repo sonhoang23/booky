@@ -1,0 +1,128 @@
+{
+	"Customer-app": {
+		"header": {
+			"title": "bản mẫu nhé"
+		},
+		"body": {
+			"home": {
+				"title": "Trang chủ"
+			},
+			"product-detail": {
+				"title": "Sản Phẩm",
+				"add-cart": "Thêm Vào Giỏ Hàng",
+				"buy-now": "Mua Ngay",
+				"sold": "Đã Bán",
+				"count": "Số Lượng",
+				"describe-product": {
+					"describe-product": "Mô Tả Sản Phẩm",
+					"author": "Tác Giả",
+					"publisher": "Nhà Xuất Bản",
+					"country": "Quốc Gia",
+					"date-publisher": "Ngày Xuất Bản",
+					"page": "Số Trang",
+					"category": "Danh Mục",
+					"category-variation": "Bao Gồm"
+				}
+			},
+			"cart": {
+				"title": "Giỏ Hàng"
+			},
+			"author": {
+				"title": "Tác Giả"
+			},
+			"register": {
+				"title": "Trang Đăng Ký",
+				"header": "Thông Tin Khách Hàng",
+				"e-mail": "Email",
+				"e-mail-error": "Mời Nhập Email!",
+				"pass-word": "Mật Khẩu",
+				"pass-word-error": "Mời Nhập Mật Khẩu!",
+				"pass-word-comfirm": "Mật Khẩu Xác Nhận",
+				"pass-word-comfirm-error": "Mời Nhập Mật Khẩu Xác Nhận!",
+				"phone-number": "Số Điện Thoại",
+				"phone-number-error": "Mời Nhập Số Điện Thoại!",
+				"name": "Tên Bạn",
+				"name-error": "Mời Nhập Tên Bạn!",
+				"dob":"Ngày Sinh",
+				"dob-error":"Mời Nhập Ngày Tháng Năm Sinh!",
+				"country": "Tên Quốc Gia!",
+				"country-error": "Mời Nhập Tên Quốc Gia!",
+				"province": "Tên Tỉnh",
+				"province-error": "Mời Nhập Tên Tỉnh!",
+				"city": "Tên Thành Phố",
+				"city-error": "Mời Nhập Tên Thành Phố!",
+				"address": "Địa Chỉ",
+				"address-error": "Mời Nhập Địa Chỉ!",
+				"avatar": "Ảnh Cá Nhân",
+				"avatar-error": "Mời Tải Ảnh Cá Nhân!",
+				"upload-button":"Tải Ảnh",
+				"help-title":"Trợ Giúp",
+				"help-description":"Chỉ Tải Duy Nhất Một Ảnh",
+				"submit-button": "Đăng Ký"
+			}
+		}
+	},
+	"notification": {
+		"app-error-handler": {
+			"common": "Có Lỗi Xảy Ra",
+			"addition": "Xem Console Thêm Chi Tiết"
+		},
+		"login": {
+			"common": {
+				"successfully": "Đăng Nhập Thành Công",
+				"unsuccessfully": {
+					"common": "Đăng Nhập Thất Bại",
+					"email-notfound": "Không Tìm Thấy Email",
+					"wrong-password": "Sai Mật Khẩu",
+					"token-generate-error": "Có Lỗi Khi Tạo Token",
+					"knock-email": "Email Đã Bị Khóa"
+				}
+			}
+		},
+		"register": {
+			"successfully": {
+				"common": "Đăng Ký Thành Công!"
+			},
+			"unsuccessfully": {
+				"common": "Đăng Ký Không Thành Công!",
+				"email-exist": "Email Đã Tồn Tại, Mời Nhập Email Khác Hoặc Đăng Nhập!",
+				"password-not-match":"Mật Khẩu Không Trùng!"
+			},
+			"uncommon": {
+				"common": "Có Lỗi Xảy Ra"
+			}
+		},
+		"shop": {
+			"update-follow": {
+				"follow": {
+					"successfully": {
+						"common": "Theo Dõi Shop Thành Công"
+					},
+					"unsuccessfully": {
+						"common": "Theo Dõi Shop Thất Bại"
+					}
+				},
+				"un-follow": {
+					"successfully": {
+						"common": "Hủy Dõi Shop Thành Công"
+					},
+					"unsuccessfully": {
+						"common": "Hủy Dõi Shop Thất Bại"
+					}
+				}
+			}
+		},
+		"cart":{
+			"cart-product":{
+				"successfully":{
+					"delete":"Xóa Thành Công"
+				},
+				"error":{
+					"delete":{
+						"not-found":"Không Tìm Thấy Sản Phẩm"
+					}
+				}
+			}
+		}
+	}
+}

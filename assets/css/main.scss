@@ -1,0 +1,131 @@
+@import "./theme.scss";
+@import "./gird.scss";
+@import "./basestyle.scss";
+
+.admin-app {
+	.containertest {
+		height: 60px;
+		background-color: aqua;
+	}
+	.mat-toolbar_header {
+		padding-left: 0;
+		padding-right: 0;
+		.admin-header {
+			width: 100%;
+			justify-content: space-between;
+
+			.admin-header__logo {
+				width: 380px;
+				.header-logo__button-toolbar {
+					width: 50px;
+				}
+				.header-logo__brand {
+					width: 300px;
+					margin-left: 10px;
+					.header-logo__brand-image {
+						height: 60px;
+					}
+				}
+			}
+			.admin-header__tool {
+				width: 350px;
+				align-self: center;
+				.admin-header__admin-information-boder {
+					background-color: rgba(0, 0, 0, 0.1);
+					border-radius: 20px;
+					align-self: center;
+					.admin-header__admin-information--avatar {
+						align-items: center;
+						.admin-header__admin-information--avatar-img {
+							width: 32px;
+							height: 32px;
+							border-radius: 50%;
+						}
+					}
+					.admin-header__admin-information--name {
+						min-width: 64px;
+						font-weight: 400;
+						font-size: 1.5rem;
+					}
+				}
+				.admin-header__tool--extra-tool {
+					.admin-header__other-information--extra-tool {
+					}
+					.admin-header__other-information--notify {
+					}
+				}
+			}
+		}
+	}
+	.admin-mat-drawer-container {
+		width: 100%;
+		height: 1000000px;
+		.admin-mat-drawer {
+			width: 220px;
+			.sidebar__container {
+				.sidebar__menu {
+					padding: 0px 5px 0 5px;
+					height: 100%;
+					list-style: none;
+					.sidebar__menu--box {
+						margin-bottom: 1.6rem;
+						list-style: none;
+						.sidebar__menu--box-item {
+							padding: 5px 5px 0;
+							display: flex;
+							align-items: center;
+							.sidebar__menu--box-item-icon {
+								width: 16px;
+								height: 16px;
+								margin-right: 8px;
+							}
+							.sidebar__menu--box-item-text {
+								height: 16px;
+								font-size: 14px;
+								font-weight: 500;
+								line-height: 18px;
+								max-width: 140px;
+							}
+						}
+						.mat-expansion-panel-body {
+							padding: 0 20px 10px 24px;
+							.sidebar__menu--box-submenu {
+								padding-left: 0px;
+								.sidebar__submenu-item {
+									list-style: none;
+									.sidebar__submenu-item--link {
+										p {
+											margin-bottom: 1.4rem;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.admin-mat-drawer-content {
+			.main-content {
+				display: flex;
+				width: 100%;
+				.index-component {
+					width: 800px;
+					display: flex;
+					.main-column {
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+}
+
+.modal__inner--login-content {
+	width: 500px;
+	.login__input--username {
+		width: 100%;
+		font-size: 1.6rem;
+	}
+}
+

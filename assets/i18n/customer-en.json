@@ -1,0 +1,115 @@
+{
+	"Customer-app": {
+		"header": {
+			"title": "bản mẫu nhé"
+		},
+		"body": {
+			"home": {
+				"title": "Home"
+			},
+			"product-detail": {
+				"add-cart": "Add Cart",
+				"buy-now": "Buy Now",
+				"sold": "Sold",
+				"count": "Count",
+				"describe-product": {
+					"describe-product": "Describe Product",
+					"author": "Author",
+					"publisher": "Publisher",
+					"country": "Country",
+					"date-publisher": "Date Publish",
+					"page": "Page",
+					"category": "Category",
+					"category-variation": "Category Variation"
+				}
+			},
+			"cart": {
+				"title": "Cart"
+			},
+			"author": {
+				"title": "Author"
+			},
+			"register": {
+				"title": "Register Page",
+				"header": "Customer Information",
+				"e-mail": "Email",
+				"e-mail-error": "Please Input Your Email!",
+				"pass-word": "Password",
+				"pass-word-error": "Please Input Your Password!",
+				"pass-word-comfirm": "Password Comfirm",
+				"pass-word-comfirm-error": "Please Input Your Password Comfirm!",
+				"phone-number": "Phone Number",
+				"phone-number-error": "Please Input Your PhoneNumber!",
+				"name": "Your Name",
+				"name-error": "Please Input Your Name!",
+				"dob":"Date Of Birth",
+				"dob-error":"Please Input Your Date Of Birth!",
+				"country": "Country",
+				"country-error": "Please Input Your Country!",
+				"province": "Province",
+				"province-error": "Please Input Your Province!",
+				"city": "City",
+				"city-error": "Please Input Your City!",
+				"address": "Address",
+				"address-error": "Please Input Your Address!",
+				"avatar": "Avatar",
+				"avatar-error": "Please Upload Your Avatar!",
+				"upload-button":"Upload",
+				"help-title":"Help",
+				"help-description":"Just Upload ONE Avatar Image",
+				"submit-button": "Submit"
+			}
+		}
+	},
+	"notification": {
+		"app-error-handler": {
+			"common": "An Error Occurred.",
+			"addition":"See Console For Details."
+		},
+		"login": {
+			"common": {
+				"successfully": "Login Successfully",
+				"unsuccessfully": {
+					"common": "Login Unsuccessfuly",
+					"email-notfound": "Email Not Found",
+					"wrong-password": "Wrong Pass Word",
+					"token-generate-error": "Token Generation error",
+					"knock-email": "Email Knocked"
+				}
+			}
+		},
+		"register": {
+			"successfully": {
+				"common": "Register Successfully!"
+			},
+			"unsuccessfully": {
+				"common": "Register Un-Successfully!",
+				"email-exist": "Email Exist, Input Other Email OR Redirect Login Page!",
+				"password-not-match":"PassWord Not Match!"
+			},
+			"uncommon": {
+				"common": "Occour Error!"
+			}
+		},
+		"shop": {
+			"update-follow": {
+				"follow": {
+					"successfully": {
+						"common": "Follow Shop Successfully"
+					},
+					"unsuccessfully": {
+						"common": "Follow Shop Un-Successfully"
+					}
+				},
+				"un-follow": {
+					"successfully": {
+						"common": "Cancel Follow Shop Successfully"
+					},
+					"unsuccessfully": {
+						"common": "Cancel Follow Shop Un-Successfully"
+					}
+				}
+			}
+		}
+	}
+}

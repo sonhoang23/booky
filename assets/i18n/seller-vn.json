@@ -1,0 +1,261 @@
+{
+	"Seller-app": {
+		"header": {},
+		"content": {
+			"side-bar": {},
+			"body": {
+				"home": {
+					"title": "Trang Chủ",
+					"breadcrumb": "Trang Chủ",
+					"main-title": "Trang Chủ",
+					"sub-title": ""
+				},
+				"product": {
+					"product-all": {
+						"title": "Sản Phẩm",
+						"breadcrumb": "Các Sản Phẩm",
+						"main-title": "Tất Cả Sản Phẩm",
+						"sub-title": "Các Sản Phẩm Cửa Hàng"
+					},
+					"product-create": {
+						"title": "Tạo Mới Sản Phẩm",
+						"breadcrumb": "Tạo Mới Sản Phẩm",
+						"main-title": "Tạo Mới Sản Phẩm",
+						"sub-title": "Tạo Mới Các Sản Phẩm Cửa Hàng",
+						"product": {
+							"basic-infomation": {
+								"title": "Thông Tin Cơ Bản",
+								"product-name": {
+									"title": "Tên Sản Phẩm",
+									"placeholder": "Tên Sản Phẩm",
+									"error": "Phải Nhập!"
+								},
+								"description": {
+									"title": "Miêu Tả Chi Tiết",
+									"placeholder": "Miêu Tả Chi Tiết",
+									"error": "Phải Nhập!"
+								},
+								"author": {
+									"title": "Tác Giả",
+									"placeholder": "Tác Giả",
+									"error": "Phải Nhập!"
+								},
+								"publisher": {
+									"title": "Nhà Xuất Bản",
+									"placeholder": "Nhà Xuất Bản",
+									"error": "Phải Nhập!"
+								},
+								"category-variation": {
+									"title": "Danh Mục Liên Quan",
+									"placeholder": "Danh Mục Liên Quan",
+									"error": "Phải Nhập!"
+								},
+								"page": {
+									"title": "Số Trang",
+									"placeholder": "Số Trang",
+									"error": "Phải Nhập!"
+								},
+								"publishing-year": {
+									"title": "Năm Xuất Bản",
+									"placeholder": "Năm Xuất Bản",
+									"error": "Phải Nhập!"
+								},
+								"country": {
+									"title": "Quốc Gia",
+									"placeholder": "Quốc Gia",
+									"error": "Phải Nhập!"
+								}
+							},
+
+							"product-image": {
+								"title": "Hình Ảnh Sản Phẩm",
+								"select-file": {
+									"title": "Thêm File"
+								},
+								"help": {
+									"title": "Thêm Ảnh",
+									"description": "Tải Lên Tối Đa 8 Ảnh Và Ảnh Đầu Tiên Sẽ Là Ảnh Đại Diện Cho Sản Phẩm"
+								}
+							},
+							"sell-information": {
+								"title": "Thông Tin Bán Hàng",
+								"price": {
+									"title": "Giá Bán",
+									"placeholder": "Giá Bán",
+									"error": "Phải Nhập!"
+								},
+								"original-price": {
+									"title": "Giá Gốc",
+									"placeholder": "Giá Gốc",
+									"error": "Phải Nhập!"
+								},
+								"stock": {
+									"title": "Kho Hàng",
+									"placeholder": "Kho Hàng",
+									"error": "Phải Nhập!"
+								}
+							},
+							"delivery-information": {
+								"title": "Thông Tin Vận Chuyển",
+								"mass": {
+									"title": "Trọng Lượng",
+									"placeholder": "Trọng Lượng",
+									"error": "Phải Nhập!"
+								},
+								"length": {
+									"title": "Chiều Dài",
+									"placeholder": "Chiều Dài",
+									"error": "Phải Nhập!"
+								},
+								"width": {
+									"title": "Chiều Rộng",
+									"placeholder": "Chiều Rộng",
+									"error": "Phải Nhập!"
+								},
+								"thickness": {
+									"title": "Độ Dày",
+									"placeholder": "Độ Dày",
+									"error": "Phải Nhập!"
+								}
+							},
+							"button": {
+								"title": "Tạo Sản Phẩm"
+							}
+						}
+					},
+					"product-update": {
+						"title": "Tạo Mới Sản Phẩm",
+						"breadcrumb": "Tạo Mới Sản Phẩm",
+						"main-title": "Tạo Mới Sản Phẩm",
+						"sub-title": "Tạo Mới Các Sản Phẩm Cửa Hàng",
+						"product": {
+							"basic-infomation": {
+								"title": "Thông Tin Cơ Bản",
+								"product-name": {
+									"title": "Tên Sản Phẩm",
+									"placeholder": "Tên Sản Phẩm",
+									"error": "Phải Nhập!"
+								},
+								"description": {
+									"title": "Miêu Tả Chi Tiết",
+									"placeholder": "Miêu Tả Chi Tiết",
+									"error": "Phải Nhập!"
+								},
+								"author": {
+									"title": "Tác Giả",
+									"placeholder": "Tác Giả",
+									"error": "Phải Nhập!"
+								},
+								"publisher": {
+									"title": "Nhà Xuất Bản",
+									"placeholder": "Nhà Xuất Bản",
+									"error": "Phải Nhập!"
+								},
+								"category-variation": {
+									"title": "Danh Mục Liên Quan",
+									"placeholder": "Danh Mục Liên Quan",
+									"error": "Phải Nhập!"
+								},
+								"page": {
+									"title": "Số Trang",
+									"placeholder": "Số Trang",
+									"error": "Phải Nhập!"
+								},
+								"publishing-year": {
+									"title": "Năm Xuất Bản",
+									"placeholder": "Năm Xuất Bản",
+									"error": "Phải Nhập!"
+								},
+								"country": {
+									"title": "Quốc Gia",
+									"placeholder": "Quốc Gia",
+									"error": "Phải Nhập!"
+								}
+							},
+
+							"product-image": {
+								"title": "Hình Ảnh Sản Phẩm",
+								"select-file": {
+									"title": "Thêm File"
+								},
+								"help": {
+									"title": "Thêm Ảnh",
+									"description": "Tải Lên Tối Đa 8 Ảnh Và Ảnh Đầu Tiên Sẽ Là Ảnh Đại Diện Cho Sản Phẩm"
+								}
+							},
+							"sell-information": {
+								"title": "Thông Tin Bán Hàng",
+								"price": {
+									"title": "Giá Bán",
+									"placeholder": "Giá Bán",
+									"error": "Phải Nhập!"
+								},
+								"original-price": {
+									"title": "Giá Gốc",
+									"placeholder": "Giá Gốc",
+									"error": "Phải Nhập!"
+								},
+								"stock": {
+									"title": "Kho Hàng",
+									"placeholder": "Kho Hàng",
+									"error": "Phải Nhập!"
+								}
+							},
+							"delivery-information": {
+								"title": "Thông Tin Vận Chuyển",
+								"mass": {
+									"title": "Trọng Lượng",
+									"placeholder": "Trọng Lượng",
+									"error": "Phải Nhập!"
+								},
+								"length": {
+									"title": "Chiều Dài",
+									"placeholder": "Chiều Dài",
+									"error": "Phải Nhập!"
+								},
+								"width": {
+									"title": "Chiều Rộng",
+									"placeholder": "Chiều Rộng",
+									"error": "Phải Nhập!"
+								},
+								"thickness": {
+									"title": "Độ Dày",
+									"placeholder": "Độ Dày",
+									"error": "Phải Nhập!"
+								}
+							},
+							"button": {
+								"title": "Cập Nhật"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"notification": {
+		"app-error-handler": {
+			"common": "Có Lỗi Xảy ra",
+			"addition":"Xem Console Thêm Chi Tiết"
+		},
+		"login": {
+			"common": {
+				"successfully": "Đăng Nhập Thành Công",
+				"unsuccessfully": {
+					"common": "Đăng Nhập Thất Bại",
+					"email-notfound": "Không Tìm Thấy Email",
+					"wrong-password": "Sai Mật Khẩu",
+					"token-generate-error": "Có Lỗi Khi Tạo Token",
+					"knock-email": "Email Đã Bị Khóa"
+				}
+			},
+			"seller": {
+				"successfully": {},
+				"unsuccessfully": {
+					"wrong-role": "Không Tìm Thấy Vai Trò"
+				}
+			}
+		},
+		"register": {}
+	}
+}

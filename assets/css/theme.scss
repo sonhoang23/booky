@@ -1,0 +1,45 @@
+/*Customer-header*/
+//@import "../../../../personalblogfrontend/node_modules/@angular/material/theming";
+@import "../../../node_modules/@angular/material/theming";
+@include mat-core();
+
+$my-primary: mat-palette($mat-grey, 800);
+$my-accent: mat-palette($mat-amber);
+$my-warn: mat-palette($mat-red);
+//color
+$primary-color: mat-color($my-primary);
+$accent-color: mat-color($my-accent);
+$warn-color: mat-color($my-warn);
+
+$my-primary-text: mat-palette($mat-grey);
+$my-theme: mat-light-theme($my-primary, $my-accent, $my-warn);
+$text-color-hover: mat-color($my-warn);
+// $input-theme : mat-palette($light-primary-text);
+//.default {
+	@include angular-material-theme($my-theme);
+//}
+// Define an alternate dark theme.
+$dark-primary: mat-palette($mat-indigo, A200);
+$dark-accent: mat-palette($mat-purple);
+$dark-warn: mat-palette($mat-deep-orange);
+
+//color
+$primary-color: mat-color($my-primary);
+$accent-color: mat-color($my-accent);
+$warn-color: mat-color($my-warn);
+$my-primary-text: mat-palette($mat-red);
+// $input-theme : mat-palette($dark-primary-text);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+.darka {
+	@include angular-material-theme($dark-theme);
+}
+$container-wrapper-height: 35px;
+$header-with-search-wrapper-height: 85px;
+
+@media screen and (max-width: 46.1875em) {
+}
+/*table 740px <= width <= 1024px */
+@media screen and (min-width: 46.25em) and (max-width: 63.9375em) {
+}
+@media screen and (min-width: 64em) {
+}

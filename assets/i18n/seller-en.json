@@ -1,0 +1,155 @@
+{
+	"Seller-app": {
+		"header": {},
+		"content": {
+			"side-bar": {},
+			"body": {
+				"home": {
+					"title": "Home",
+					"breadcrumb": "Home",
+					"main-title": "Home",
+					"sub-title": ""
+				},
+				"product": {
+					"product-all": {
+						"title": "Products",
+						"breadcrumb": "Products",
+						"main-title": "Products",
+						"sub-title": "Products In Your Store"
+					},
+					"product-create": {
+						"title": "Create Product",
+						"breadcrumb": "Create Product",
+						"main-title": "Create Product",
+						"sub-title": "Create Product In Your Store",
+						"product": {
+							"basic-infomation": {
+								"title": "Basic Infomation",
+								"product-name": {
+									"title": "Product Name",
+									"placeholder": "Product Name",
+									"error": "Please input Product Name!"
+								},
+								"description": {
+									"title": "Description",
+									"placeholder": "Description",
+									"error": "Please input Description!"
+								},
+								"author": {
+									"title": "Author",
+									"placeholder": "Author",
+									"error": "Please input Author!"
+								},
+								"publisher": {
+									"title": "Publisher",
+									"placeholder": "Publisher",
+									"error": "Please input Publisher!"
+								},
+								"category-variation": {
+									"title": "Category Variaton",
+									"placeholder": "Category Variaton",
+									"error": "Please input Category Variaton!"
+								},
+								"page": {
+									"title": "Page",
+									"placeholder": "Page",
+									"error": "Please input Page!"
+								},
+								"publishing-year": {
+									"title": "Publishing Year",
+									"placeholder": "Publishing Year",
+									"error": "Please input Publishing Year!"
+								},
+								"country": {
+									"title": "Country",
+									"placeholder": "Country",
+									"error": "Please input Country!"
+								}
+							},
+
+							"product-image": {
+								"title": "Product Images",
+								"select-file": {
+									"title": "Select File"
+								},
+								"help": {
+									"title": "Upload Image",
+									"description": "Upload Maxium 8 Image Files and First File Will Be Product's Avatar"
+								}
+							},
+							"sell-information": {
+								"title": "Selle Information",
+								"price": {
+									"title": "Price",
+									"placeholder": "Price",
+									"error": "Please input Price!"
+								},
+								"original-price": {
+									"title": "Original Price",
+									"placeholder": "Original Price",
+									"error": "Please input Original Price!"
+								},
+								"stock": {
+									"title": "Stock",
+									"placeholder": "Stock",
+									"error": "Please input Stock!"
+								}
+							},
+							"delivery-information": {
+								"title": "Delivery Information",
+								"mass": {
+									"title": "Mass",
+									"placeholder": "Mass",
+									"error": "Please input Mass!"
+								},
+								"length": {
+									"title": "Length",
+									"placeholder": "Length",
+									"error": "Please input Length!"
+								},
+								"width": {
+									"title": "Width",
+									"placeholder": "Width",
+									"error": "Please input Width!"
+								},
+								"thickness": {
+									"title": "Thickness",
+									"placeholder": "Thickness",
+									"error": "Please input Thickness!"
+								}
+							},
+							"button": {
+								"title": "Create Product"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"notification": {
+		"app-error-handler": {
+			"common": "An error occurred.",
+			"addition":"See Console For Details."
+		},
+		"login": {
+			"common": {
+				"successfully": "Login Successfully",
+				"unsuccessfully": {
+					"common": "Login Unsuccessfuly",
+					"email-notfound": "Email Not Found",
+					"wrong-password": "Wrong Pass Word",
+					"token-generate-error": "Token Generation error",
+					"knock-email": "Email Knocked"
+				}
+			},
+			"seller": {
+				"successfully": {},
+				"unsuccessfully": {
+					"wrong-role": "Not Found Role"
+				}
+			}
+		},
+		"register": {}
+	}
+}

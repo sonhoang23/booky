@@ -418,8 +418,8 @@ const environment = {
     i18nPrefix: '',
     //apiUrl: 'http://booky.somee.com',
     //apiUrl: 'https://booky.somee.com',
-    apiUrl: 'https://localhost:5005',
-    //apiUrl: 'https://bookyapideploy.azurewebsites.net',
+    //apiUrl: 'https://localhost:5005',
+    apiUrl: 'https://bookyapideploy.azurewebsites.net',
     //////////////////////////////////////////////////////////////////
     //clientUrlForgotPassword: 'http://localhost:4200/password/reset-password',
     clientUrlForgotPassword: 'https://booky.digital/password/reset-password',

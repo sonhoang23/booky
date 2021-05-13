@@ -582,6 +582,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "8Y7J");
 
 
+// enum ThemeType {
+// 	dark = 'dark',
+// 	default = 'default'
+// }
 let ThemeService = class ThemeService {
     constructor() {
         this.currentTheme = 'default';

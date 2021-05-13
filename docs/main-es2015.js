@@ -416,8 +416,13 @@ const environment = {
     production: false,
     test: false,
     i18nPrefix: '',
-    apiUrl: 'https://booky.somee.com',
-    clientUrlForgotPassword: 'http://localhost:4200/password/reset-password',
+    //apiUrl: 'http://booky.somee.com',
+    //apiUrl: 'https://booky.somee.com',
+    //apiUrl: 'https://localhost:5005',
+    apiUrl: 'https://bookyapideploy.azurewebsites.net',
+    //////////////////////////////////////////////////////////////////
+    //clientUrlForgotPassword: 'http://localhost:4200/password/reset-password',
+    clientUrlForgotPassword: 'https://booky.digital/password/reset-password',
     versions: {
         app: packageJson.version,
         angular: packageJson.dependencies['@angular/core'],
@@ -2552,11 +2557,11 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: 'seller',
-        loadChildren: () => Promise.all(/*! import() | features-seller-seller-module */[__webpack_require__.e("default~features-admin-admin-module~features-customer-customer-module~features-seller-seller-module"), __webpack_require__.e("default~features-customer-customer-module~features-seller-seller-module"), __webpack_require__.e("features-seller-seller-module")]).then(__webpack_require__.bind(null, /*! ./features/seller/seller.module */ "0fuU")).then((m) => m.SellerModule), data: { breadcrumb: 'Home' }
+        loadChildren: () => Promise.all(/*! import() | features-seller-seller-module */[__webpack_require__.e("default~features-admin-admin-module~features-customer-customer-module~features-seller-seller-module"), __webpack_require__.e("default~features-customer-customer-module~features-seller-seller-module"), __webpack_require__.e("common"), __webpack_require__.e("features-seller-seller-module")]).then(__webpack_require__.bind(null, /*! ./features/seller/seller.module */ "0fuU")).then((m) => m.SellerModule), data: { breadcrumb: 'Home' }
     },
     {
         path: 'admin',
-        loadChildren: () => Promise.all(/*! import() | features-admin-admin-module */[__webpack_require__.e("default~features-admin-admin-module~features-customer-customer-module~features-seller-seller-module"), __webpack_require__.e("features-admin-admin-module")]).then(__webpack_require__.bind(null, /*! ./features/admin/admin.module */ "xDfr")).then((m) => m.AdminModule)
+        loadChildren: () => Promise.all(/*! import() | features-admin-admin-module */[__webpack_require__.e("default~features-admin-admin-module~features-customer-customer-module~features-seller-seller-module"), __webpack_require__.e("common"), __webpack_require__.e("features-admin-admin-module")]).then(__webpack_require__.bind(null, /*! ./features/admin/admin.module */ "xDfr")).then((m) => m.AdminModule)
     },
     {
         path: 'shipper',

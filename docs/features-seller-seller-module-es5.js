@@ -43038,6 +43038,12 @@
       var _components_seller_body_product_components_product_uncomfirm_table_product_uncomfirm_table_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(
       /*! ./components/seller-body/product/components/product-uncomfirm-table/product-uncomfirm-table.component */
       "W3CE");
+      /* harmony import */
+
+
+      var _modules_statistic_statistic_module__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(
+      /*! ../modules/statistic/statistic.module */
+      "PQX7");
       /* eslint-disable prefer-arrow/prefer-arrow-functions */
 
       /* eslint-disable @typescript-eslint/naming-convention */
@@ -43049,7 +43055,7 @@
 
       SellerModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
         declarations: [_seller_component__WEBPACK_IMPORTED_MODULE_5__["SellerComponent"], _components_seller_body_seller_body_component__WEBPACK_IMPORTED_MODULE_6__["SellerBodyComponent"], _components_seller_header_seller_header_component__WEBPACK_IMPORTED_MODULE_7__["SellerHeaderComponent"], _components_seller_body_home_home_component__WEBPACK_IMPORTED_MODULE_18__["HomeComponent"], _components_seller_body_product_product_component__WEBPACK_IMPORTED_MODULE_21__["ProductComponent"], _components_seller_sidebar_seller_sidebar_component__WEBPACK_IMPORTED_MODULE_22__["SellerSidebarComponent"], _components_seller_body_product_product_create_product_create_component__WEBPACK_IMPORTED_MODULE_23__["ProductCreateComponent"], _components_seller_body_product_product_all_product_all_component__WEBPACK_IMPORTED_MODULE_24__["ProductAllComponent"], _components_seller_body_product_product_update_product_update_component__WEBPACK_IMPORTED_MODULE_28__["ProductUpdateComponent"], _components_seller_header_seller_notificatio_header_seller_notification_header_component__WEBPACK_IMPORTED_MODULE_29__["SellerNotificatioHeaderComponent"], _components_seller_body_product_components_product_show_table_product_show_table_component__WEBPACK_IMPORTED_MODULE_30__["ProductShowTableComponent"], _components_seller_body_product_components_product_uncomfirm_table_product_uncomfirm_table_component__WEBPACK_IMPORTED_MODULE_31__["ProductUncomfirmTableComponent"]],
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_13__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_13__["FormsModule"], src_app_core_utils_ng_zorro_antd_ng_zorro_antd_module__WEBPACK_IMPORTED_MODULE_9__["NgZorroAntdModule"], _seller_routing_module__WEBPACK_IMPORTED_MODULE_8__["SellerRoutingModule"], src_app_icons_provider_module__WEBPACK_IMPORTED_MODULE_10__["IconsProviderModule"], ng_zorro_antd_layout__WEBPACK_IMPORTED_MODULE_11__["NzLayoutModule"], ng_zorro_antd_menu__WEBPACK_IMPORTED_MODULE_12__["NzMenuModule"], _module_seller_login_seller_login_module__WEBPACK_IMPORTED_MODULE_19__["SellerLoginModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HttpClientModule"], src_app_core_utils_material_module__WEBPACK_IMPORTED_MODULE_15__["MaterialModule"], _ckeditor_ckeditor5_angular__WEBPACK_IMPORTED_MODULE_27__["CKEditorModule"], _modules_notification_notification_module__WEBPACK_IMPORTED_MODULE_1__["NotificationModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_16__["TranslateModule"].forRoot({
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_4__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_13__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_13__["FormsModule"], src_app_core_utils_ng_zorro_antd_ng_zorro_antd_module__WEBPACK_IMPORTED_MODULE_9__["NgZorroAntdModule"], _seller_routing_module__WEBPACK_IMPORTED_MODULE_8__["SellerRoutingModule"], src_app_icons_provider_module__WEBPACK_IMPORTED_MODULE_10__["IconsProviderModule"], ng_zorro_antd_layout__WEBPACK_IMPORTED_MODULE_11__["NzLayoutModule"], ng_zorro_antd_menu__WEBPACK_IMPORTED_MODULE_12__["NzMenuModule"], _module_seller_login_seller_login_module__WEBPACK_IMPORTED_MODULE_19__["SellerLoginModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HttpClientModule"], src_app_core_utils_material_module__WEBPACK_IMPORTED_MODULE_15__["MaterialModule"], _ckeditor_ckeditor5_angular__WEBPACK_IMPORTED_MODULE_27__["CKEditorModule"], _modules_statistic_statistic_module__WEBPACK_IMPORTED_MODULE_32__["StatisticModule"], _modules_notification_notification_module__WEBPACK_IMPORTED_MODULE_1__["NotificationModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_16__["TranslateModule"].forRoot({
           loader: {
             provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_16__["TranslateLoader"],
             useFactory: HttpLoaderFactory,
@@ -43475,7 +43481,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"seller-app\">\n\t<nz-layout>\n\t\t<nz-header style=\" padding: 0 0 0 0;\">\n\t\t\t<app-seller-header style=\"width: 100%; height: 100%;\"></app-seller-header>\n\t\t</nz-header>\n\t\t<nz-spin [nzSpinning]=\"isSubmited\">\n\t\t\t<nz-content>\n\t\t\t\t<div class=\"inner-content\"  style=\"min-height: 100vh;\">\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<div class=\"col l-2\"><app-seller-sidebar></app-seller-sidebar></div>\n\t\t\t\t\t\t<div class=\"col l-10\">\n\t\t\t\t\t\t\t<div class=\"grid wide\">\n\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">\n\t\t\t\t\t\t\t\t\t\t<router-outlet></router-outlet>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<nz-back-top></nz-back-top>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<!-- <div class=\"footer-content\">\n\t\t\t\t\t<nz-footer></nz-footer>\n\t\t\t\t</div> -->\n\t\t\t</nz-content>\n\t\t</nz-spin>\n\t</nz-layout>\n</div>\n";
+      __webpack_exports__["default"] = "<div class=\"seller-app\">\n\t<nz-layout>\n\t\t<nz-header style=\" padding: 0 0 0 0;\">\n\t\t\t<app-seller-header style=\"width: 100%; height: 100%;\"></app-seller-header>\n\t\t</nz-header>\n\t\t<nz-spin [nzSpinning]=\"isSubmited\">\n\t\t\t<nz-content>\n\t\t\t\t<div class=\"inner-content\"  style=\"min-height: 100vh;\">\n\t\t\t\t\t<div class=\"row\" style=\"margin-right: 0px;\">\n\t\t\t\t\t\t<div class=\"col l-2\"><app-seller-sidebar></app-seller-sidebar></div>\n\t\t\t\t\t\t<div class=\"col l-10\">\n\t\t\t\t\t\t\t<div class=\"grid wide\">\n\t\t\t\t\t\t\t\t<div class=\"row\" style=\"margin-right: 0px;\">\n\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">\n\t\t\t\t\t\t\t\t\t\t<router-outlet></router-outlet>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<nz-back-top></nz-back-top>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\n\t\t\t</nz-content>\n\t\t</nz-spin>\n\t</nz-layout>\n</div>\n";
       /***/
     },
 
@@ -43908,6 +43914,75 @@
     },
 
     /***/
+    "7RrW":
+    /*!************************************************************************************!*\
+      !*** ./src/app/core/utils/URL/seller-url/seller-statistic/seller-url-statistic.ts ***!
+      \************************************************************************************/
+
+    /*! exports provided: SellerUrlStatistic */
+
+    /***/
+    function RrW(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "SellerUrlStatistic", function () {
+        return SellerUrlStatistic;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "8Y7J");
+      /* harmony import */
+
+
+      var _seller_url_base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! ../seller-url-base */
+      "KfMq");
+
+      var SellerUrlStatistic = /*#__PURE__*/function (_seller_url_base__WEB2) {
+        _inherits(SellerUrlStatistic, _seller_url_base__WEB2);
+
+        var _super208 = _createSuper(SellerUrlStatistic);
+
+        function SellerUrlStatistic() {
+          var _this292;
+
+          _classCallCheck(this, SellerUrlStatistic);
+
+          _this292 = _super208.apply(this, arguments);
+          _this292.adminUrlStatistic = _this292.sellerUrl + '/statistic';
+          return _this292;
+        }
+
+        _createClass(SellerUrlStatistic, [{
+          key: "getStatistic",
+          value: function getStatistic() {
+            return this.adminUrlStatistic;
+          }
+        }]);
+
+        return SellerUrlStatistic;
+      }(_seller_url_base__WEBPACK_IMPORTED_MODULE_2__["SellerUrlBase"]);
+
+      SellerUrlStatistic = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+      })], SellerUrlStatistic);
+      /***/
+    },
+
+    /***/
     "7wYV":
     /*!*******************************************************************************!*\
       !*** ./src/app/features/seller/module/seller-login/seller-login.component.ts ***!
@@ -44062,32 +44137,32 @@
         }, {
           key: "sub",
           value: function sub() {
-            var _this292 = this;
+            var _this293 = this;
 
             this.store.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["takeUntil"])(this.destroy$), Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_7__["select"])(src_app_core_store_seller_login_login_sellector__WEBPACK_IMPORTED_MODULE_12__["loginStateSelector"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["filter"])(function (loginState) {
               return loginState.message !== '';
             })).subscribe(function (result) {
               if (result.isAuthenticated) {
                 if (result.message) {
-                  _this292.router.navigate(['/seller']);
+                  _this293.router.navigate(['/seller']);
 
                   console.log(result.message);
 
-                  _this292.notificationService.showSuccessNotification(_this292.appTranslateService.instant(result.message));
+                  _this293.notificationService.showSuccessNotification(_this293.appTranslateService.instant(result.message));
                 }
               } else {
                 if (result.message) {
                   console.log(result.message);
 
-                  _this292.notificationService.showErrorNotification(_this292.appTranslateService.instant(result.message));
+                  _this293.notificationService.showErrorNotification(_this293.appTranslateService.instant(result.message));
                 }
               }
 
-              _this292.submitted = false;
+              _this293.submitted = false;
             }, function (error) {
-              _this292.submitted = false;
+              _this293.submitted = false;
 
-              _this292.appErrorHandler.handleErrorWithNoti(error);
+              _this293.appErrorHandler.handleErrorWithNoti(error);
             }, function () {});
           }
         }, {
@@ -44207,15 +44282,15 @@
       /*! ./../seller-url-base */
       "KfMq");
 
-      var SellerUrlPublisher = /*#__PURE__*/function (_seller_url_base__WEB2) {
-        _inherits(SellerUrlPublisher, _seller_url_base__WEB2);
+      var SellerUrlPublisher = /*#__PURE__*/function (_seller_url_base__WEB3) {
+        _inherits(SellerUrlPublisher, _seller_url_base__WEB3);
 
-        var _super208 = _createSuper(SellerUrlPublisher);
+        var _super209 = _createSuper(SellerUrlPublisher);
 
         function SellerUrlPublisher() {
           _classCallCheck(this, SellerUrlPublisher);
 
-          return _super208.call(this);
+          return _super209.call(this);
         }
 
         _createClass(SellerUrlPublisher, [{
@@ -45110,19 +45185,19 @@
         }, {
           key: "attachToWatchdog",
           value: function attachToWatchdog() {
-            var _this293 = this;
+            var _this294 = this;
 
             var creator = function creator(element, config) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this293, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
-                var _this294 = this;
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this294, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+                var _this295 = this;
 
                 return regeneratorRuntime.wrap(function _callee5$(_context40) {
                   while (1) {
                     switch (_context40.prev = _context40.next) {
                       case 0:
                         return _context40.abrupt("return", this.ngZone.runOutsideAngular(function () {
-                          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this294, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-                            var _this295 = this;
+                          return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this295, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+                            var _this296 = this;
 
                             var editor;
                             return regeneratorRuntime.wrap(function _callee4$(_context39) {
@@ -45141,7 +45216,7 @@
                                     }
 
                                     this.ngZone.run(function () {
-                                      _this295.ready.emit(editor);
+                                      _this296.ready.emit(editor);
                                     });
                                     this.setUpEditorEvents(editor);
                                     return _context39.abrupt("return", editor);
@@ -45165,7 +45240,7 @@
             };
 
             var destructor = function destructor(editor) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this293, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this294, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
                 return regeneratorRuntime.wrap(function _callee6$(_context41) {
                   while (1) {
                     switch (_context41.prev = _context41.next) {
@@ -45186,8 +45261,8 @@
             };
 
             var emitError = function emitError() {
-              _this293.ngZone.run(function () {
-                _this293.error.emit();
+              _this294.ngZone.run(function () {
+                _this294.error.emit();
               });
             };
 
@@ -45208,7 +45283,7 @@
               this.watchdog.on('itemError', function (_, _ref78) {
                 var itemId = _ref78.itemId;
 
-                if (itemId === _this293.id) {
+                if (itemId === _this294.id) {
                   emitError();
                 }
               });
@@ -45241,39 +45316,39 @@
         }, {
           key: "setUpEditorEvents",
           value: function setUpEditorEvents(editor) {
-            var _this296 = this;
+            var _this297 = this;
 
             var modelDocument = editor.model.document;
             var viewDocument = editor.editing.view.document;
             modelDocument.on('change:data', function (evt) {
-              _this296.ngZone.run(function () {
-                if (_this296.cvaOnChange && !_this296.isEditorSettingData) {
+              _this297.ngZone.run(function () {
+                if (_this297.cvaOnChange && !_this297.isEditorSettingData) {
                   var data = editor.getData();
 
-                  _this296.cvaOnChange(data);
+                  _this297.cvaOnChange(data);
                 }
 
-                _this296.change.emit({
+                _this297.change.emit({
                   event: evt,
                   editor: editor
                 });
               });
             });
             viewDocument.on('focus', function (evt) {
-              _this296.ngZone.run(function () {
-                _this296.focus.emit({
+              _this297.ngZone.run(function () {
+                _this297.focus.emit({
                   event: evt,
                   editor: editor
                 });
               });
             });
             viewDocument.on('blur', function (evt) {
-              _this296.ngZone.run(function () {
-                if (_this296.cvaOnTouched) {
-                  _this296.cvaOnTouched();
+              _this297.ngZone.run(function () {
+                if (_this297.cvaOnTouched) {
+                  _this297.cvaOnTouched();
                 }
 
-                _this296.blur.emit({
+                _this297.blur.emit({
                   event: evt,
                   editor: editor
                 });
@@ -45520,22 +45595,22 @@
         }, {
           key: "getProducts",
           value: function getProducts(pageIndex, typeProduct) {
-            var _this297 = this;
+            var _this298 = this;
 
             this.loading = true;
             this.sellerProductService.getAllProductPaging(pageIndex, typeProduct).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["takeUntil"])(this.destroy$)).subscribe(function (result) {
               if (result.resultObj) {
-                _this297.pageResult = result.resultObj;
-                Array.prototype.push.apply(_this297.listOfData, result.resultObj.items);
-                _this297.loading = false;
-                console.log(_this297.listOfData);
+                _this298.pageResult = result.resultObj;
+                Array.prototype.push.apply(_this298.listOfData, result.resultObj.items);
+                _this298.loading = false;
+                console.log(_this298.listOfData);
               }
 
-              _this297.loading = false;
+              _this298.loading = false;
             }, function (error) {
-              _this297.loading = false;
+              _this298.loading = false;
 
-              _this297.notificationService.showErrorNotification(error.message);
+              _this298.notificationService.showErrorNotification(error.message);
             });
           }
         }, {
@@ -45558,46 +45633,13 @@
         }, {
           key: "confirmDeleteProduct",
           value: function confirmDeleteProduct(productId) {
-            var _this298 = this;
-
-            this.spinner.subjectSubmitLoadingHaveData$.next({
-              isSubmitted: true
-            });
-            console.log(productId);
-            this.sellerProductService.deleteProduct(productId).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["takeUntil"])(this.destroy$)).subscribe(function (result) {
-              if (result) {
-                if (result.isSuccessed) {
-                  _this298.listOfData = [];
-
-                  _this298.getProducts(1, _this298.tabIndex);
-
-                  if (result.message) {
-                    _this298.notificationService.showSuccessNotification(result.message);
-                  }
-                } else {
-                  if (result.message) {
-                    _this298.notificationService.showSuccessNotification(result.message);
-                  }
-                }
-              }
-
-              _this298.spinner.subjectSubmitLoadingHaveData$.next({
-                isSubmitted: false
-              });
-            }, function (error) {
-              _this298.appErrorHandler.handleErrorWithNoti(error);
-            });
-          }
-        }, {
-          key: "confirmLockProduct",
-          value: function confirmLockProduct(productId) {
             var _this299 = this;
 
             this.spinner.subjectSubmitLoadingHaveData$.next({
               isSubmitted: true
             });
             console.log(productId);
-            this.sellerProductService.lockProduct(productId).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["takeUntil"])(this.destroy$)).subscribe(function (result) {
+            this.sellerProductService.deleteProduct(productId).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["takeUntil"])(this.destroy$)).subscribe(function (result) {
               if (result) {
                 if (result.isSuccessed) {
                   _this299.listOfData = [];
@@ -45609,7 +45651,7 @@
                   }
                 } else {
                   if (result.message) {
-                    _this299.notificationService.showErrorNotification(result.message);
+                    _this299.notificationService.showSuccessNotification(result.message);
                   }
                 }
               }
@@ -45619,6 +45661,39 @@
               });
             }, function (error) {
               _this299.appErrorHandler.handleErrorWithNoti(error);
+            });
+          }
+        }, {
+          key: "confirmLockProduct",
+          value: function confirmLockProduct(productId) {
+            var _this300 = this;
+
+            this.spinner.subjectSubmitLoadingHaveData$.next({
+              isSubmitted: true
+            });
+            console.log(productId);
+            this.sellerProductService.lockProduct(productId).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["takeUntil"])(this.destroy$)).subscribe(function (result) {
+              if (result) {
+                if (result.isSuccessed) {
+                  _this300.listOfData = [];
+
+                  _this300.getProducts(1, _this300.tabIndex);
+
+                  if (result.message) {
+                    _this300.notificationService.showSuccessNotification(result.message);
+                  }
+                } else {
+                  if (result.message) {
+                    _this300.notificationService.showErrorNotification(result.message);
+                  }
+                }
+              }
+
+              _this300.spinner.subjectSubmitLoadingHaveData$.next({
+                isSubmitted: false
+              });
+            }, function (error) {
+              _this300.appErrorHandler.handleErrorWithNoti(error);
             });
           }
         }]);
@@ -45992,15 +46067,15 @@
       /*! @angular/core */
       "8Y7J");
 
-      var SellerUrlNotification = /*#__PURE__*/function (_seller_url_base__WEB3) {
-        _inherits(SellerUrlNotification, _seller_url_base__WEB3);
+      var SellerUrlNotification = /*#__PURE__*/function (_seller_url_base__WEB4) {
+        _inherits(SellerUrlNotification, _seller_url_base__WEB4);
 
-        var _super209 = _createSuper(SellerUrlNotification);
+        var _super210 = _createSuper(SellerUrlNotification);
 
         function SellerUrlNotification() {
           _classCallCheck(this, SellerUrlNotification);
 
-          return _super209.call(this);
+          return _super210.call(this);
         }
 
         _createClass(SellerUrlNotification, [{
@@ -46179,7 +46254,7 @@
       "px64");
 
       var SellerSignalService = function SellerSignalService(sellerUrlSignal, localStorage) {
-        var _this300 = this;
+        var _this301 = this;
 
         _classCallCheck(this, SellerSignalService);
 
@@ -46190,29 +46265,29 @@
         this.signalNotificationCount = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
 
         this.buiConnection = function () {
-          _this300.hubConnection = new _microsoft_signalr__WEBPACK_IMPORTED_MODULE_2__["HubConnectionBuilder"]().withUrl(_this300.sellerUrlSignal.getNotificationConnection(), {
+          _this301.hubConnection = new _microsoft_signalr__WEBPACK_IMPORTED_MODULE_2__["HubConnectionBuilder"]().withUrl(_this301.sellerUrlSignal.getNotificationConnection(), {
             accessTokenFactory: function accessTokenFactory() {
-              return _this300.localStorage.getItem('seller-token');
+              return _this301.localStorage.getItem('seller-token');
             }
           }).withAutomaticReconnect().build();
         };
 
         this.startConnection = function () {
-          _this300.hubConnection.start().then(function () {
+          _this301.hubConnection.start().then(function () {
             console.log('connection starting seller ...: ');
           }) //.then(() => this.getConnectionId())
           .then(function () {
-            return _this300.getNotificationCount();
+            return _this301.getNotificationCount();
           })["catch"](function (err) {
             console.log('errroororooror: ' + err);
           });
         };
 
         this.getNotificationCount = function () {
-          _this300.hubConnection.on('SendNotificationCount', function (data) {
+          _this301.hubConnection.on('SendNotificationCount', function (data) {
             console.log(data);
 
-            _this300.signalNotificationCount.emit(data);
+            _this301.signalNotificationCount.emit(data);
           });
         };
 
@@ -46719,7 +46794,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<p>{{ 'notification.login.successfully.common' | translate }}</p>\n";
+      __webpack_exports__["default"] = "\r\n<nz-page-header>\r\n\t<!--breadcrumb-->\r\n\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\r\n\t<!--title-->\r\n\t<nz-page-header-title></nz-page-header-title>\r\n\r\n\t<!--subtitle-->\r\n\t<nz-page-header-subtitle></nz-page-header-subtitle>\r\n\t<!--content-->\r\n\t<nz-page-header-content>\r\n\t\t<app-statistic [statisticItems]=\"statisticItems\" ></app-statistic>\r\n\t\r\n\t</nz-page-header-content>\r\n</nz-page-header>\r\n";
       /***/
     },
 
@@ -46962,7 +47037,7 @@
 
       var ProductCreateComponent = /*#__PURE__*/function () {
         function ProductCreateComponent(sellerProductService, sellerCategoryService, sellerAuthorService, sellerPublisherService, formBuilder, destroy$, appErrorHandler, spinner, notificationService) {
-          var _this301 = this;
+          var _this302 = this;
 
           _classCallCheck(this, ProductCreateComponent);
 
@@ -46991,11 +47066,11 @@
           this.thumbshandlePreview = []; //removeImageFile from thumbshandlePreview
 
           this.removeImageFile = function (file) {
-            _this301.thumbshandlePreview.splice(_this301.thumbshandlePreview.findIndex(function (x) {
+            _this302.thumbshandlePreview.splice(_this302.thumbshandlePreview.findIndex(function (x) {
               return x.uid === file.uid.toString();
             }), 1);
 
-            _this301.thumbshandlePreview.find(function (x) {
+            _this302.thumbshandlePreview.find(function (x) {
               return x.uid === file.uid;
             });
 
@@ -47003,13 +47078,15 @@
           };
 
           this.beforeUpload = function (file) {
-            _this301.fileList = _this301.fileList.concat(file);
+            _this302.fileList = _this302.fileList.concat(file);
             console.log('beforeUpload');
-            console.log(_this301.fileList);
+            console.log(_this302.fileList);
+            console.log(file);
+            console.log(file.uid);
 
-            _this301.handlePreview(file.uid.toString(), file);
+            _this302.handlePreview(file.uid.toString(), file);
 
-            _this301.ready = true;
+            _this302.ready = true;
             return false;
           };
         } //process change index in image file
@@ -47106,36 +47183,36 @@
         }, {
           key: "initAuthorList",
           value: function initAuthorList(searchKeyWord) {
-            var _this302 = this;
+            var _this303 = this;
 
             this.isAuthorSelectLoading = true;
             this.sellerAuthorService.getAuthorList(searchKeyWord).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$)).subscribe(function (result) {
-              _this302.authorSelectList = result.resultObj;
-              _this302.isAuthorSelectLoading = false;
+              _this303.authorSelectList = result.resultObj;
+              _this303.isAuthorSelectLoading = false;
             });
           }
         }, {
           key: "initPublisherList",
           value: function initPublisherList(searchKeyWord) {
-            var _this303 = this;
+            var _this304 = this;
 
             this.isPublisherSelectLoading = true;
             this.sellerPublisherService.getPublisherList(searchKeyWord).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["debounceTime"])(500)).subscribe(function (result) {
-              _this303.publisherSelectList = result.resultObj;
-              _this303.isPublisherSelectLoading = false;
+              _this304.publisherSelectList = result.resultObj;
+              _this304.isPublisherSelectLoading = false;
             });
           }
         }, {
           key: "initCategoryVariatonsList",
           value: function initCategoryVariatonsList(searchKeyWord) {
-            var _this304 = this;
+            var _this305 = this;
 
             console.log('GetCategoryVariationByCatgoryId');
             this.isCategoryVariatonsSelectLoading = true;
             this.sellerCategoryService.getCategoryVariationByCatgoryIdBySearchKeyWord(searchKeyWord).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["debounceTime"])(500)).subscribe(function (result) {
-              _this304.categoryVariationSelectList = result.resultObj;
-              _this304.isCategoryVariatonsSelectLoading = false;
-              console.log(_this304.categoryVariationSelectList);
+              _this305.categoryVariationSelectList = result.resultObj;
+              _this305.isCategoryVariatonsSelectLoading = false;
+              console.log(_this305.categoryVariationSelectList);
             });
           }
         }, {
@@ -47194,7 +47271,7 @@
         }, {
           key: "submitForm",
           value: function submitForm() {
-            var _this305 = this;
+            var _this306 = this;
 
             this.spinner.subjectSubmitLoadingHaveData$.next({
               isSubmitted: true
@@ -47206,21 +47283,21 @@
 
                 if (res.isSuccessed) {
                   if (res.message) {
-                    _this305.notificationService.showSuccessNotification(res.message);
+                    _this306.notificationService.showSuccessNotification(res.message);
                   }
                 } else {
                   if (res.message) {
-                    _this305.notificationService.showErrorNotification(res.message);
+                    _this306.notificationService.showErrorNotification(res.message);
                   }
                 }
 
-                _this305.spinner.subjectSubmitLoadingHaveData$.next({
+                _this306.spinner.subjectSubmitLoadingHaveData$.next({
                   isSubmitted: false
                 });
               }, function () {
-                _this305.notificationService.showErrorNotification('Có Lỗi Xảy Ra, Vui Lòng Thử Lại');
+                _this306.notificationService.showErrorNotification('Có Lỗi Xảy Ra, Vui Lòng Thử Lại');
 
-                _this305.spinner.subjectSubmitLoadingHaveData$.next({
+                _this306.spinner.subjectSubmitLoadingHaveData$.next({
                   isSubmitted: false
                 });
               });
@@ -47432,14 +47509,14 @@
         _createClass(SellerHeaderComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this306 = this;
+            var _this307 = this;
 
             this.checkLogin();
             this.store.select(src_app_core_store_seller_setting_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_6__["selectTheme"]).pipe(Object(rxjs_internal_operators_takeUntil__WEBPACK_IMPORTED_MODULE_8__["takeUntil"])(this.destroy$)).subscribe(function (result) {
-              _this306.themeDefault = result;
+              _this307.themeDefault = result;
             });
             this.store.select(src_app_core_store_seller_setting_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_6__["selectSettingsLanguage"]).pipe(Object(rxjs_internal_operators_takeUntil__WEBPACK_IMPORTED_MODULE_8__["takeUntil"])(this.destroy$)).subscribe(function (result) {
-              _this306.languageDefault = result != null ? result : 'seller-vn';
+              _this307.languageDefault = result != null ? result : 'seller-vn';
             });
           }
         }, {
@@ -47681,7 +47758,7 @@
       var INIT = Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["of"])('anms-init-effect-trigger');
 
       var SellerSettingsEffects = function SellerSettingsEffects(actions$, store, router, localStorageService, titleService, translateService, themeService) {
-        var _this307 = this;
+        var _this308 = this;
 
         _classCallCheck(this, SellerSettingsEffects);
 
@@ -47694,43 +47771,43 @@
         this.themeService = themeService;
         this.count = 1;
         this.setTitle = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-          return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["merge"])(_this307.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeLanguage"])), _this307.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["filter"])(function (event) {
+          return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["merge"])(_this308.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeLanguage"])), _this308.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["filter"])(function (event) {
             return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivationEnd"];
           }))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function () {
             // console.log('effect');
             // console.log('lan: '+ this.count);
-            _this307.count++;
+            _this308.count++;
 
-            _this307.titleService.setTitle(_this307.router.routerState.snapshot.root, _this307.translateService);
+            _this308.titleService.setTitle(_this308.router.routerState.snapshot.root, _this308.translateService);
           }));
         }, {
           dispatch: false
         });
         this.updateTheme = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-          return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["merge"])(INIT, _this307.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeTheme"]))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["withLatestFrom"])(_this307.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["select"])(_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_11__["selectTheme"]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function (_ref79) {
+          return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["merge"])(INIT, _this308.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeTheme"]))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["withLatestFrom"])(_this308.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["select"])(_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_11__["selectTheme"]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function (_ref79) {
             var _ref80 = _slicedToArray(_ref79, 2),
                 effectiveTheme = _ref80[1];
 
-            return _this307.themeService.loadTheme(false, effectiveTheme);
+            return _this308.themeService.loadTheme(false, effectiveTheme);
           }));
         }, {
           dispatch: false
         });
         this.setTranslateServiceLanguage = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-          return _this307.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["select"])(_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_11__["selectSettingsLanguage"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function (language) {
+          return _this308.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["select"])(_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_11__["selectSettingsLanguage"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function (language) {
             console.log('trong seller efff');
             console.log(language);
-            return _this307.translateService.use(language);
+            return _this308.translateService.use(language);
           }));
         }, {
           dispatch: false
         });
         this.persistSettings = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-          return _this307.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeLanguage"], _seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeTheme"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["withLatestFrom"])(_this307.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["select"])(_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_11__["selectSettingsState"]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function (_ref81) {
+          return _this308.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeLanguage"], _seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeTheme"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["withLatestFrom"])(_this308.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["select"])(_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_11__["selectSettingsState"]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function (_ref81) {
             var _ref82 = _slicedToArray(_ref81, 2),
                 settings = _ref82[1];
 
-            _this307.localStorageService.setItem(SELLER_SETTINGS_KEY, settings);
+            _this308.localStorageService.setItem(SELLER_SETTINGS_KEY, settings);
           }));
         }, {
           dispatch: false
@@ -47804,7 +47881,7 @@
          * @param {module:watchdog/watchdog~WatchdogConfig} config The watchdog plugin configuration.
          */
         function Watchdog(config) {
-          var _this308 = this;
+          var _this309 = this;
 
           _classCallCheck(this, Watchdog);
 
@@ -47873,7 +47950,7 @@
             // Similarly everything that is thrown lands in `evt.error`.
 
             if (error instanceof Error) {
-              _this308._handleError(error, evt);
+              _this309._handleError(error, evt);
             }
           };
           /**
@@ -48238,20 +48315,20 @@
       var EditorWatchdog = /*#__PURE__*/function (_watchdog__WEBPACK_IM) {
         _inherits(EditorWatchdog, _watchdog__WEBPACK_IM);
 
-        var _super210 = _createSuper(EditorWatchdog);
+        var _super211 = _createSuper(EditorWatchdog);
 
         /**
          * @param {*} Editor The editor class.
          * @param {module:watchdog/watchdog~WatchdogConfig} [watchdogConfig] The watchdog plugin configuration.
          */
         function EditorWatchdog(Editor) {
-          var _this309;
+          var _this310;
 
           var watchdogConfig = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
           _classCallCheck(this, EditorWatchdog);
 
-          _this309 = _super210.call(this, watchdogConfig);
+          _this310 = _super211.call(this, watchdogConfig);
           /**
            * The current editor instance.
            *
@@ -48259,7 +48336,7 @@
            * @type {module:core/editor/editor~Editor}
            */
 
-          _this309._editor = null;
+          _this310._editor = null;
           /**
            * Throttled save method. The `save()` method is called the specified `saveInterval` after `throttledSave()` is called,
            * unless a new action happens in the meantime.
@@ -48268,7 +48345,7 @@
            * @type {Function}
            */
 
-          _this309._throttledSave = Object(lodash_es__WEBPACK_IMPORTED_MODULE_0__["throttle"])(_this309._save.bind(_assertThisInitialized(_this309)), typeof watchdogConfig.saveInterval === 'number' ? watchdogConfig.saveInterval : 5000);
+          _this310._throttledSave = Object(lodash_es__WEBPACK_IMPORTED_MODULE_0__["throttle"])(_this310._save.bind(_assertThisInitialized(_this310)), typeof watchdogConfig.saveInterval === 'number' ? watchdogConfig.saveInterval : 5000);
           /**
            * The latest saved editor data represented as a root name -> root data object.
            *
@@ -48298,15 +48375,15 @@
            */
           // Set default creator and destructor functions:
 
-          _this309._creator = function (elementOrData, config) {
+          _this310._creator = function (elementOrData, config) {
             return Editor.create(elementOrData, config);
           };
 
-          _this309._destructor = function (editor) {
+          _this310._destructor = function (editor) {
             return editor.destroy();
           };
 
-          return _this309;
+          return _this310;
         }
         /**
          * The current editor instance.
@@ -48357,27 +48434,27 @@
            * @returns {Promise}
            */
           value: function _restart() {
-            var _this310 = this;
+            var _this311 = this;
 
             return Promise.resolve().then(function () {
-              _this310.state = 'initializing';
+              _this311.state = 'initializing';
 
-              _this310._fire('stateChange');
+              _this311._fire('stateChange');
 
-              return _this310._destroy();
+              return _this311._destroy();
             })["catch"](function (err) {
               console.error('An error happened during the editor destroying.', err);
             }).then(function () {
-              if (typeof _this310._elementOrData === 'string') {
-                return _this310.create(_this310._data, _this310._config, _this310._config.context);
+              if (typeof _this311._elementOrData === 'string') {
+                return _this311.create(_this311._data, _this311._config, _this311._config.context);
               } else {
-                var updatedConfig = Object.assign({}, _this310._config, {
-                  initialData: _this310._data
+                var updatedConfig = Object.assign({}, _this311._config, {
+                  initialData: _this311._data
                 });
-                return _this310.create(_this310._elementOrData, updatedConfig, updatedConfig.context);
+                return _this311.create(_this311._elementOrData, updatedConfig, updatedConfig.context);
               }
             }).then(function () {
-              _this310._fire('restart');
+              _this311._fire('restart');
             });
           }
           /**
@@ -48393,28 +48470,28 @@
         }, {
           key: "create",
           value: function create() {
-            var _this311 = this;
+            var _this312 = this;
 
             var elementOrData = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this._elementOrData;
             var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this._config;
             var context = arguments.length > 2 ? arguments[2] : undefined;
             return Promise.resolve().then(function () {
-              _get(_getPrototypeOf(EditorWatchdog.prototype), "_startErrorHandling", _this311).call(_this311);
+              _get(_getPrototypeOf(EditorWatchdog.prototype), "_startErrorHandling", _this312).call(_this312);
 
-              _this311._elementOrData = elementOrData; // Clone configuration because it might be shared within multiple watchdog instances. Otherwise,
+              _this312._elementOrData = elementOrData; // Clone configuration because it might be shared within multiple watchdog instances. Otherwise,
               // when an error occurs in one of these editors, the watchdog will restart all of them.
 
-              _this311._config = _this311._cloneEditorConfiguration(config) || {};
-              _this311._config.context = context;
-              return _this311._creator(elementOrData, _this311._config);
+              _this312._config = _this312._cloneEditorConfiguration(config) || {};
+              _this312._config.context = context;
+              return _this312._creator(elementOrData, _this312._config);
             }).then(function (editor) {
-              _this311._editor = editor;
-              editor.model.document.on('change:data', _this311._throttledSave);
-              _this311._lastDocumentVersion = editor.model.document.version;
-              _this311._data = _this311._getData();
-              _this311.state = 'ready';
+              _this312._editor = editor;
+              editor.model.document.on('change:data', _this312._throttledSave);
+              _this312._lastDocumentVersion = editor.model.document.version;
+              _this312._data = _this312._getData();
+              _this312.state = 'ready';
 
-              _this311._fire('stateChange');
+              _this312._fire('stateChange');
             });
           }
           /**
@@ -48428,16 +48505,16 @@
         }, {
           key: "destroy",
           value: function destroy() {
-            var _this312 = this;
+            var _this313 = this;
 
             return Promise.resolve().then(function () {
-              _this312.state = 'destroyed';
+              _this313.state = 'destroyed';
 
-              _this312._fire('stateChange');
+              _this313._fire('stateChange');
 
-              _get(_getPrototypeOf(EditorWatchdog.prototype), "destroy", _this312).call(_this312);
+              _get(_getPrototypeOf(EditorWatchdog.prototype), "destroy", _this313).call(_this313);
 
-              return _this312._destroy();
+              return _this313._destroy();
             });
           }
           /**
@@ -48448,17 +48525,17 @@
         }, {
           key: "_destroy",
           value: function _destroy() {
-            var _this313 = this;
+            var _this314 = this;
 
             return Promise.resolve().then(function () {
-              _this313._stopErrorHandling(); // Save data if there is a remaining editor data change.
+              _this314._stopErrorHandling(); // Save data if there is a remaining editor data change.
 
 
-              _this313._throttledSave.flush();
+              _this314._throttledSave.flush();
 
-              var editor = _this313._editor;
-              _this313._editor = null;
-              return _this313._destructor(editor);
+              var editor = _this314._editor;
+              _this314._editor = null;
+              return _this314._destructor(editor);
             });
           }
           /**
@@ -48624,15 +48701,15 @@
       /*! ./../seller-url-base */
       "KfMq");
 
-      var SellerUrlAuthor = /*#__PURE__*/function (_seller_url_base__WEB4) {
-        _inherits(SellerUrlAuthor, _seller_url_base__WEB4);
+      var SellerUrlAuthor = /*#__PURE__*/function (_seller_url_base__WEB5) {
+        _inherits(SellerUrlAuthor, _seller_url_base__WEB5);
 
-        var _super211 = _createSuper(SellerUrlAuthor);
+        var _super212 = _createSuper(SellerUrlAuthor);
 
         function SellerUrlAuthor() {
           _classCallCheck(this, SellerUrlAuthor);
 
-          return _super211.call(this);
+          return _super212.call(this);
         }
 
         _createClass(SellerUrlAuthor, [{
@@ -48733,7 +48810,7 @@
       "px64");
 
       var LoginEffects = function LoginEffects(actions$, sellerAccountService, localStorageService) {
-        var _this314 = this;
+        var _this315 = this;
 
         _classCallCheck(this, LoginEffects);
 
@@ -48741,16 +48818,16 @@
         this.sellerAccountService = sellerAccountService;
         this.localStorageService = localStorageService;
         this.loadSellerLogin$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-          return _this314.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_login_actions__WEBPACK_IMPORTED_MODULE_4__["login"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (action) {
+          return _this315.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_login_actions__WEBPACK_IMPORTED_MODULE_4__["login"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (action) {
             return action.userLogin;
           }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["exhaustMap"])(function (userLogin) {
-            return _this314.sellerAccountService.login(userLogin.email, userLogin.passWord, userLogin.remember, userLogin.urlReturn).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (result) {
+            return _this315.sellerAccountService.login(userLogin.email, userLogin.passWord, userLogin.remember, userLogin.urlReturn).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (result) {
               if (result.isSuccessed && result.resultObj) {
                 if (result.resultObj.tokenValue) {
                   if (result.resultObj.remember) {
-                    _this314.localStorageService.removeItem('seller-token');
+                    _this315.localStorageService.removeItem('seller-token');
 
-                    _this314.localStorageService.setItem('seller-token', result.resultObj.tokenValue); // this.appCookieService.remove('seller-token');
+                    _this315.localStorageService.setItem('seller-token', result.resultObj.tokenValue); // this.appCookieService.remove('seller-token');
                     // this.appCookieService.remove('seller-infor');
                     // this.appCookieService.set(
                     // 	'seller-token',
@@ -48875,15 +48952,15 @@
       /*! ../seller-url-base */
       "KfMq");
 
-      var SellerUrlCategory = /*#__PURE__*/function (_seller_url_base__WEB5) {
-        _inherits(SellerUrlCategory, _seller_url_base__WEB5);
+      var SellerUrlCategory = /*#__PURE__*/function (_seller_url_base__WEB6) {
+        _inherits(SellerUrlCategory, _seller_url_base__WEB6);
 
-        var _super212 = _createSuper(SellerUrlCategory);
+        var _super213 = _createSuper(SellerUrlCategory);
 
         function SellerUrlCategory() {
           _classCallCheck(this, SellerUrlCategory);
 
-          return _super212.call(this);
+          return _super213.call(this);
         }
 
         _createClass(SellerUrlCategory, [{
@@ -49021,6 +49098,17 @@
             /*! ../seller/components/seller-body/module/shop/shop.module */
             "mgIP")).then(function (m) {
               return m.ShopModule;
+            });
+          }
+        }, {
+          path: 'finance',
+          loadChildren: function loadChildren() {
+            return __webpack_require__.e(
+            /*! import() | seller-components-seller-body-module-finance-finance-module */
+            "seller-components-seller-body-module-finance-finance-module").then(__webpack_require__.bind(null,
+            /*! ../seller/components/seller-body/module/finance/finance.module */
+            "VDop")).then(function (m) {
+              return m.FinanceModule;
             });
           }
         }, {
@@ -49185,11 +49273,11 @@
         }, {
           key: "controlSpinner",
           value: function controlSpinner() {
-            var _this315 = this;
+            var _this316 = this;
 
             this.sellerSpinnerService.subjectSubmitLoadingHaveData$.pipe(Object(rxjs_internal_operators_takeUntil__WEBPACK_IMPORTED_MODULE_4__["takeUntil"])(this.destroy$)).subscribe(function (result) {
-              _this315.isSubmited = result.isSubmitted;
-              console.log(_this315.isSubmited);
+              _this316.isSubmited = result.isSubmitted;
+              console.log(_this316.isSubmited);
             });
           }
         }]);
@@ -49258,22 +49346,51 @@
       var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @angular/core */
       "8Y7J");
+      /* harmony import */
+
+
+      var src_app_core_services_seller_seller_statistic_seller_statistic_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      /*! src/app/core/services/seller/seller-statistic/seller-statistic.service */
+      "xUTS");
 
       var HomeComponent = /*#__PURE__*/function () {
-        function HomeComponent() {
+        function HomeComponent(sellerStatisticService) {
           _classCallCheck(this, HomeComponent);
+
+          this.sellerStatisticService = sellerStatisticService;
+          this.statisticItems = [];
         }
 
         _createClass(HomeComponent, [{
           key: "ngOnInit",
-          value: function ngOnInit() {}
+          value: function ngOnInit() {
+            this.getStatistics();
+          }
+        }, {
+          key: "getStatistics",
+          value: function getStatistics() {
+            var _this317 = this;
+
+            this.sellerStatisticService.getStatistics().subscribe(function (result) {
+              if (result) {
+                if (result.isSuccessed) {
+                  if (result.resultObj) {
+                    _this317.statisticItems = result.resultObj;
+                    console.log(_this317.statisticItems);
+                  }
+                } else {}
+              } else {}
+            });
+          }
         }]);
 
         return HomeComponent;
       }();
 
       HomeComponent.ctorParameters = function () {
-        return [];
+        return [{
+          type: src_app_core_services_seller_seller_statistic_seller_statistic_service__WEBPACK_IMPORTED_MODULE_4__["SellerStatisticService"]
+        }];
       };
 
       HomeComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
@@ -49281,6 +49398,82 @@
         template: _raw_loader_home_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
         styles: [_home_component_less__WEBPACK_IMPORTED_MODULE_2__["default"]]
       })], HomeComponent);
+      /***/
+    },
+
+    /***/
+    "xUTS":
+    /*!***********************************************************************************!*\
+      !*** ./src/app/core/services/seller/seller-statistic/seller-statistic.service.ts ***!
+      \***********************************************************************************/
+
+    /*! exports provided: SellerStatisticService */
+
+    /***/
+    function xUTS(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "SellerStatisticService", function () {
+        return SellerStatisticService;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/common/http */
+      "IheW");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/core */
+      "8Y7J");
+      /* harmony import */
+
+
+      var src_app_core_utils_URL_seller_url_seller_statistic_seller_url_statistic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! src/app/core/utils/URL/seller-url/seller-statistic/seller-url-statistic */
+      "7RrW");
+
+      var SellerStatisticService = /*#__PURE__*/function () {
+        function SellerStatisticService(sellerUrlStatistic, http) {
+          _classCallCheck(this, SellerStatisticService);
+
+          this.sellerUrlStatistic = sellerUrlStatistic;
+          this.http = http;
+        }
+
+        _createClass(SellerStatisticService, [{
+          key: "getStatistics",
+          value: function getStatistics() {
+            return this.http.get(this.sellerUrlStatistic.getStatistic());
+          }
+        }]);
+
+        return SellerStatisticService;
+      }();
+
+      SellerStatisticService.ctorParameters = function () {
+        return [{
+          type: src_app_core_utils_URL_seller_url_seller_statistic_seller_url_statistic__WEBPACK_IMPORTED_MODULE_3__["SellerUrlStatistic"]
+        }, {
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]
+        }];
+      };
+
+      SellerStatisticService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
+        providedIn: 'root'
+      })], SellerStatisticService);
       /***/
     },
 

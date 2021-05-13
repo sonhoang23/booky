@@ -495,10 +495,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_seller_header_seller_notificatio_header_seller_notification_header_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./components/seller-header/seller-notificatio-header/seller-notification-header.component */ "6ze9");
 /* harmony import */ var _components_seller_body_product_components_product_show_table_product_show_table_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./components/seller-body/product/components/product-show-table/product-show-table.component */ "3Yyq");
 /* harmony import */ var _components_seller_body_product_components_product_uncomfirm_table_product_uncomfirm_table_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./components/seller-body/product/components/product-uncomfirm-table/product-uncomfirm-table.component */ "W3CE");
+/* harmony import */ var _modules_statistic_statistic_module__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../modules/statistic/statistic.module */ "PQX7");
 
 
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 /* eslint-disable @typescript-eslint/naming-convention */
+
 
 
 
@@ -560,6 +562,7 @@ SellerModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HttpClientModule"],
             src_app_core_utils_material_module__WEBPACK_IMPORTED_MODULE_15__["MaterialModule"],
             _ckeditor_ckeditor5_angular__WEBPACK_IMPORTED_MODULE_27__["CKEditorModule"],
+            _modules_statistic_statistic_module__WEBPACK_IMPORTED_MODULE_32__["StatisticModule"],
             _modules_notification_notification_module__WEBPACK_IMPORTED_MODULE_1__["NotificationModule"],
             _ngx_translate_core__WEBPACK_IMPORTED_MODULE_16__["TranslateModule"].forRoot({
                 loader: {
@@ -854,7 +857,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"seller-app\">\n\t<nz-layout>\n\t\t<nz-header style=\" padding: 0 0 0 0;\">\n\t\t\t<app-seller-header style=\"width: 100%; height: 100%;\"></app-seller-header>\n\t\t</nz-header>\n\t\t<nz-spin [nzSpinning]=\"isSubmited\">\n\t\t\t<nz-content>\n\t\t\t\t<div class=\"inner-content\"  style=\"min-height: 100vh;\">\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<div class=\"col l-2\"><app-seller-sidebar></app-seller-sidebar></div>\n\t\t\t\t\t\t<div class=\"col l-10\">\n\t\t\t\t\t\t\t<div class=\"grid wide\">\n\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">\n\t\t\t\t\t\t\t\t\t\t<router-outlet></router-outlet>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<nz-back-top></nz-back-top>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<!-- <div class=\"footer-content\">\n\t\t\t\t\t<nz-footer></nz-footer>\n\t\t\t\t</div> -->\n\t\t\t</nz-content>\n\t\t</nz-spin>\n\t</nz-layout>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"seller-app\">\n\t<nz-layout>\n\t\t<nz-header style=\" padding: 0 0 0 0;\">\n\t\t\t<app-seller-header style=\"width: 100%; height: 100%;\"></app-seller-header>\n\t\t</nz-header>\n\t\t<nz-spin [nzSpinning]=\"isSubmited\">\n\t\t\t<nz-content>\n\t\t\t\t<div class=\"inner-content\"  style=\"min-height: 100vh;\">\n\t\t\t\t\t<div class=\"row\" style=\"margin-right: 0px;\">\n\t\t\t\t\t\t<div class=\"col l-2\"><app-seller-sidebar></app-seller-sidebar></div>\n\t\t\t\t\t\t<div class=\"col l-10\">\n\t\t\t\t\t\t\t<div class=\"grid wide\">\n\t\t\t\t\t\t\t\t<div class=\"row\" style=\"margin-right: 0px;\">\n\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">\n\t\t\t\t\t\t\t\t\t\t<router-outlet></router-outlet>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<nz-back-top></nz-back-top>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\n\t\t\t</nz-content>\n\t\t</nz-spin>\n\t</nz-layout>\n</div>\n");
 
 /***/ }),
 
@@ -1136,6 +1139,41 @@ var BehaviorSubject = (function (_super) {
 }(Subject_1.Subject));
 exports.BehaviorSubject = BehaviorSubject;
 //# sourceMappingURL=BehaviorSubject.js.map
+
+/***/ }),
+
+/***/ "7RrW":
+/*!************************************************************************************!*\
+  !*** ./src/app/core/utils/URL/seller-url/seller-statistic/seller-url-statistic.ts ***!
+  \************************************************************************************/
+/*! exports provided: SellerUrlStatistic */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SellerUrlStatistic", function() { return SellerUrlStatistic; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+/* harmony import */ var _seller_url_base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../seller-url-base */ "KfMq");
+
+
+
+let SellerUrlStatistic = class SellerUrlStatistic extends _seller_url_base__WEBPACK_IMPORTED_MODULE_2__["SellerUrlBase"] {
+    constructor() {
+        super(...arguments);
+        this.adminUrlStatistic = this.sellerUrl + '/statistic';
+    }
+    getStatistic() {
+        return this.adminUrlStatistic;
+    }
+};
+SellerUrlStatistic = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root'
+    })
+], SellerUrlStatistic);
+
+
 
 /***/ }),
 
@@ -2883,7 +2921,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>{{ 'notification.login.successfully.common' | translate }}</p>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\r\n<nz-page-header>\r\n\t<!--breadcrumb-->\r\n\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\r\n\t<!--title-->\r\n\t<nz-page-header-title></nz-page-header-title>\r\n\r\n\t<!--subtitle-->\r\n\t<nz-page-header-subtitle></nz-page-header-subtitle>\r\n\t<!--content-->\r\n\t<nz-page-header-content>\r\n\t\t<app-statistic [statisticItems]=\"statisticItems\" ></app-statistic>\r\n\t\r\n\t</nz-page-header-content>\r\n</nz-page-header>\r\n");
 
 /***/ }),
 
@@ -3029,6 +3067,8 @@ let ProductCreateComponent = class ProductCreateComponent {
             this.fileList = this.fileList.concat(file);
             console.log('beforeUpload');
             console.log(this.fileList);
+            console.log(file);
+            console.log(file.uid);
             this.handlePreview(file.uid.toString(), file);
             this.ready = true;
             return false;
@@ -4430,6 +4470,10 @@ const routes = [
                 loadChildren: () => __webpack_require__.e(/*! import() | seller-components-seller-body-module-shop-shop-module */ "seller-components-seller-body-module-shop-shop-module").then(__webpack_require__.bind(null, /*! ../seller/components/seller-body/module/shop/shop.module */ "mgIP")).then((m) => m.ShopModule)
             },
             {
+                path: 'finance',
+                loadChildren: () => __webpack_require__.e(/*! import() | seller-components-seller-body-module-finance-finance-module */ "seller-components-seller-body-module-finance-finance-module").then(__webpack_require__.bind(null, /*! ../seller/components/seller-body/module/finance/finance.module */ "VDop")).then((m) => m.FinanceModule)
+            },
+            {
                 path: 'product',
                 component: _components_seller_body_product_product_component__WEBPACK_IMPORTED_MODULE_9__["ProductComponent"],
                 data: {
@@ -4561,16 +4605,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _raw_loader_home_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./home.component.html */ "fB9k");
 /* harmony import */ var _home_component_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home.component.less */ "3cif");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+/* harmony import */ var src_app_core_services_seller_seller_statistic_seller_statistic_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/core/services/seller/seller-statistic/seller-statistic.service */ "xUTS");
+
 
 
 
 
 let HomeComponent = class HomeComponent {
-    constructor() { }
+    constructor(sellerStatisticService) {
+        this.sellerStatisticService = sellerStatisticService;
+        this.statisticItems = [];
+    }
     ngOnInit() {
+        this.getStatistics();
+    }
+    getStatistics() {
+        this.sellerStatisticService.getStatistics().subscribe((result) => {
+            if (result) {
+                if (result.isSuccessed) {
+                    if (result.resultObj) {
+                        this.statisticItems = result.resultObj;
+                        console.log(this.statisticItems);
+                    }
+                }
+                else {
+                }
+            }
+            else {
+            }
+        });
     }
 };
-HomeComponent.ctorParameters = () => [];
+HomeComponent.ctorParameters = () => [
+    { type: src_app_core_services_seller_seller_statistic_seller_statistic_service__WEBPACK_IMPORTED_MODULE_4__["SellerStatisticService"] }
+];
 HomeComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
         selector: 'app-home',
@@ -4578,6 +4646,47 @@ HomeComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
         styles: [_home_component_less__WEBPACK_IMPORTED_MODULE_2__["default"]]
     })
 ], HomeComponent);
+
+
+
+/***/ }),
+
+/***/ "xUTS":
+/*!***********************************************************************************!*\
+  !*** ./src/app/core/services/seller/seller-statistic/seller-statistic.service.ts ***!
+  \***********************************************************************************/
+/*! exports provided: SellerStatisticService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SellerStatisticService", function() { return SellerStatisticService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "IheW");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+/* harmony import */ var src_app_core_utils_URL_seller_url_seller_statistic_seller_url_statistic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/core/utils/URL/seller-url/seller-statistic/seller-url-statistic */ "7RrW");
+
+
+
+
+let SellerStatisticService = class SellerStatisticService {
+    constructor(sellerUrlStatistic, http) {
+        this.sellerUrlStatistic = sellerUrlStatistic;
+        this.http = http;
+    }
+    getStatistics() {
+        return this.http.get(this.sellerUrlStatistic.getStatistic());
+    }
+};
+SellerStatisticService.ctorParameters = () => [
+    { type: src_app_core_utils_URL_seller_url_seller_statistic_seller_url_statistic__WEBPACK_IMPORTED_MODULE_3__["SellerUrlStatistic"] },
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+];
+SellerStatisticService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
+        providedIn: 'root'
+    })
+], SellerStatisticService);
 
 
 

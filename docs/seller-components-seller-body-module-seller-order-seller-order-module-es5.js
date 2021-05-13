@@ -197,22 +197,36 @@
       /* harmony import */
 
 
-      var src_app_core_enums_OrderStatus_enum__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      var src_app_core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      /*! src/app/core/notification/notifications/customer/notification.service */
+      "7IKN");
+      /* harmony import */
+
+
+      var src_app_core_enums_OrderStatus_enum__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! src/app/core/enums/OrderStatus.enum */
       "EvTH");
       /* harmony import */
 
 
-      var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      var src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! src/app/core/services/comon-services/spinner/spinner.service */
+      "LXV+");
+      /* harmony import */
+
+
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
       /*! rxjs/operators */
       "kU1M");
 
       var SellerAllOrderComponent = /*#__PURE__*/function () {
-        function SellerAllOrderComponent(sellerOrderService, destroy$) {
+        function SellerAllOrderComponent(sellerOrderService, destroy$, notificationService, sellerSpinnerService) {
           _classCallCheck(this, SellerAllOrderComponent);
 
           this.sellerOrderService = sellerOrderService;
           this.destroy$ = destroy$;
+          this.notificationService = notificationService;
+          this.sellerSpinnerService = sellerSpinnerService;
           this.isLoading = true;
           this.isSubmited = false;
           this.isModalVisible = false;
@@ -222,7 +236,7 @@
         _createClass(SellerAllOrderComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            console.log('on init ' + src_app_core_enums_OrderStatus_enum__WEBPACK_IMPORTED_MODULE_6__["OrderStatus"].inProgress.toString());
+            console.log('on init ' + src_app_core_enums_OrderStatus_enum__WEBPACK_IMPORTED_MODULE_7__["OrderStatus"].inProgress.toString());
             this.getData(1);
           }
         }, {
@@ -231,10 +245,10 @@
             var _this = this;
 
             this.sellerOrderService.getOrders({
-              orderRequestType: src_app_core_enums_OrderStatus_enum__WEBPACK_IMPORTED_MODULE_6__["OrderStatus"].inProgress,
+              orderRequestType: src_app_core_enums_OrderStatus_enum__WEBPACK_IMPORTED_MODULE_7__["OrderStatus"].inProgress,
               pageIndex: pageIndex,
               pageSize: 10
-            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (value) {
+            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["takeUntil"])(this.destroy$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["map"])(function (value) {
               if (value.resultObj) {
                 value.resultObj.items.map(function (order) {
                   order.status = 'Cần Duyệt';
@@ -272,6 +286,10 @@
           type: _core_services_seller_seller_order_seller_order_service__WEBPACK_IMPORTED_MODULE_3__["SellerOrderService"]
         }, {
           type: src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_5__["DestroyService"]
+        }, {
+          type: src_app_core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_6__["NotificationService"]
+        }, {
+          type: src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_8__["SpinnerService"]
         }];
       };
 

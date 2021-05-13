@@ -470,83 +470,6 @@
     },
 
     /***/
-    "77hN":
-    /*!*****************************************************************************!*\
-      !*** ./src/app/features/modules/statistic/statistic/statistic.component.ts ***!
-      \*****************************************************************************/
-
-    /*! exports provided: StatisticComponent */
-
-    /***/
-    function hN(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "StatisticComponent", function () {
-        return StatisticComponent;
-      });
-      /* harmony import */
-
-
-      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! tslib */
-      "mrSG");
-      /* harmony import */
-
-
-      var _raw_loader_statistic_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! raw-loader!./statistic.component.html */
-      "c23f");
-      /* harmony import */
-
-
-      var _statistic_component_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ./statistic.component.less */
-      "i97J");
-      /* harmony import */
-
-
-      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! @angular/core */
-      "8Y7J");
-
-      var StatisticComponent = /*#__PURE__*/function () {
-        function StatisticComponent() {
-          _classCallCheck(this, StatisticComponent);
-
-          this.statisticItems = [];
-        }
-
-        _createClass(StatisticComponent, [{
-          key: "ngOnInit",
-          value: function ngOnInit() {//console.log(this.statisticItems);
-          }
-        }]);
-
-        return StatisticComponent;
-      }();
-
-      StatisticComponent.ctorParameters = function () {
-        return [];
-      };
-
-      StatisticComponent.propDecorators = {
-        statisticItems: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_3__["Input"]
-        }]
-      };
-      StatisticComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
-        selector: 'app-statistic',
-        template: _raw_loader_statistic_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
-        styles: [_statistic_component_less__WEBPACK_IMPORTED_MODULE_2__["default"]]
-      })], StatisticComponent);
-      /***/
-    },
-
-    /***/
     "Bb7K":
     /*!********************************************************************!*\
       !*** ./src/app/core/store/admin/setting/admin-settings.effects.ts ***!
@@ -811,26 +734,6 @@
         template: _raw_loader_portal_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
         styles: [_portal_component_sass__WEBPACK_IMPORTED_MODULE_2__["default"]]
       })], PortalComponent);
-      /***/
-    },
-
-    /***/
-    "FdM4":
-    /*!*****************************************************************************************!*\
-      !*** ./src/app/features/modules/statistic/statistic-item/statistic-item.component.less ***!
-      \*****************************************************************************************/
-
-    /*! exports provided: default */
-
-    /***/
-    function FdM4(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */
-
-
-      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdGF0aXN0aWMtaXRlbS5jb21wb25lbnQubGVzcyJ9 */";
       /***/
     },
 
@@ -1194,80 +1097,6 @@
     },
 
     /***/
-    "PQX7":
-    /*!****************************************************************!*\
-      !*** ./src/app/features/modules/statistic/statistic.module.ts ***!
-      \****************************************************************/
-
-    /*! exports provided: StatisticModule */
-
-    /***/
-    function PQX7(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "StatisticModule", function () {
-        return StatisticModule;
-      });
-      /* harmony import */
-
-
-      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! tslib */
-      "mrSG");
-      /* harmony import */
-
-
-      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! @angular/core */
-      "8Y7J");
-      /* harmony import */
-
-
-      var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! @angular/common */
-      "SVse");
-      /* harmony import */
-
-
-      var _statistic_statistic_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! ./statistic/statistic.component */
-      "77hN");
-      /* harmony import */
-
-
-      var _statistic_item_statistic_item_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-      /*! ./statistic-item/statistic-item.component */
-      "cBh0");
-      /* harmony import */
-
-
-      var src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-      /*! src/app/core/module/core.module */
-      "gfFi");
-      /* harmony import */
-
-
-      var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
-      /*! @angular/router */
-      "iInd");
-
-      var StatisticModule = function StatisticModule() {
-        _classCallCheck(this, StatisticModule);
-      };
-
-      StatisticModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        declarations: [_statistic_statistic_component__WEBPACK_IMPORTED_MODULE_3__["StatisticComponent"], _statistic_item_statistic_item_component__WEBPACK_IMPORTED_MODULE_4__["StatisticItemComponent"]],
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_5__["FormsModule"], src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_5__["NgZorroAntdModule"], src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_5__["IconsProviderModule"], src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_5__["NzLayoutModule"], src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_5__["NzMenuModule"], src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"], _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"]],
-        exports: [_statistic_statistic_component__WEBPACK_IMPORTED_MODULE_3__["StatisticComponent"], _statistic_item_statistic_item_component__WEBPACK_IMPORTED_MODULE_4__["StatisticItemComponent"]]
-      })], StatisticModule);
-      /***/
-    },
-
-    /***/
     "QbRs":
     /*!****************************************************************************************!*\
       !*** ./src/app/features/admin/components/page-not-found/page-not-found.component.sass ***!
@@ -1570,26 +1399,6 @@
     },
 
     /***/
-    "WVa7":
-    /*!*******************************************************************************************************************************!*\
-      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/modules/statistic/statistic-item/statistic-item.component.html ***!
-      \*******************************************************************************************************************************/
-
-    /*! exports provided: default */
-
-    /***/
-    function WVa7(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */
-
-
-      __webpack_exports__["default"] = "<div style=\"cursor: pointer;\" [routerLink]=\"[statisticItem.statisticPathUrl]\">\n\t<div class=\"row\">\n\t\t<div style=\"\" class=\"col l-12\">{{statisticItem.statisticNumber}}</div>\n\t</div>\n\t<div class=\"row\">\n\t\t<div class=\"col l-12\">{{statisticItem.statisticContent}}</div>\n\t</div>\n</div>\n";
-      /***/
-    },
-
-    /***/
     "Wub6":
     /*!******************************************************************************************************************************!*\
       !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/admin/components/draw-container/draw-container.component.html ***!
@@ -1605,7 +1414,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"sidebar__container\">\r\n\t<ul class=\"sidebar__menu\">\r\n\t\t<li class=\"sidebar__menu--box\">\r\n\t\t\t<!--mat -->\r\n\t\t\t<mat-accordion>\r\n\t\t\t\t<!-- <mat-expansion-panel\r\n\t\t\t\t\tclass=\"sidebar__menu--box-expansion-panel\"\r\n\t\t\t\t\t(opened)=\"panelOpenState = true\"\r\n\t\t\t\t\t(closed)=\"panelOpenState = false\"\r\n\t\t\t\t> -->\r\n\t\t\t\t\t<mat-expansion-panel-header class=\"sidebar__menu--box-item\">\r\n\t\t\t\t\t\t<img\r\n\t\t\t\t\t\t\tsrc=\"https://cf.shopee.vn/file/c15905d5a6284687c4a6ad00d0feb511\"\r\n\t\t\t\t\t\t\talt=\"\"\r\n\t\t\t\t\t\t\tclass=\"sidebar__menu--box-item-icon\"\r\n\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t<span class=\"sidebar__menu--box-item-text\"> Vận Chuyển </span>\r\n\t\t\t\t\t</mat-expansion-panel-header>\r\n\t\t\t\t\t<ul class=\"sidebar__menu--box-submenu\">\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t</ul>\r\n\t\t\t\t<!-- </mat-expansion-panel> -->\r\n\t\t\t</mat-accordion>\r\n\t\t\t<!---->\r\n\t\t</li>\r\n\t</ul>\r\n</div>\r\n";
+      __webpack_exports__["default"] = "<!-- <div class=\"sidebar__container\">\r\n\t<ul class=\"sidebar__menu\">\r\n\t\t<li class=\"sidebar__menu--box\"> -->\r\n\t\t\t<!--mat -->\r\n\t\t\t<!-- <mat-accordion> -->\r\n\t\t\t\t<!-- <mat-expansion-panel\r\n\t\t\t\t\tclass=\"sidebar__menu--box-expansion-panel\"\r\n\t\t\t\t\t(opened)=\"panelOpenState = true\"\r\n\t\t\t\t\t(closed)=\"panelOpenState = false\"\r\n\t\t\t\t> -->\r\n\t\t\t\t\t<!-- <mat-expansion-panel-header class=\"sidebar__menu--box-item\">\r\n\t\t\t\t\t\t<img\r\n\t\t\t\t\t\t\tsrc=\"https://cf.shopee.vn/file/c15905d5a6284687c4a6ad00d0feb511\"\r\n\t\t\t\t\t\t\talt=\"\"\r\n\t\t\t\t\t\t\tclass=\"sidebar__menu--box-item-icon\"\r\n\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t<span class=\"sidebar__menu--box-item-text\"> Vận Chuyển </span>\r\n\t\t\t\t\t</mat-expansion-panel-header>\r\n\t\t\t\t\t<ul class=\"sidebar__menu--box-submenu\">\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t\t<li class=\"sidebar__submenu-item\">\r\n\t\t\t\t\t\t\t<a>I'm visible because I am open</a>\r\n\t\t\t\t\t\t</li>\r\n\t\t\t\t\t</ul> -->\r\n\t\t\t\t<!-- </mat-expansion-panel> -->\r\n\t\t\t<!-- </mat-accordion> -->\r\n\t\t\t<!---->\r\n\t\t<!-- </li>\r\n\t</ul>\r\n</div>  có thay đổi nên tìm bản sửa gần nhất -->\r\n ";
       /***/
     },
 
@@ -1721,105 +1530,6 @@
       AdminGuardGuard = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
         providedIn: 'root'
       })], AdminGuardGuard);
-      /***/
-    },
-
-    /***/
-    "c23f":
-    /*!*********************************************************************************************************************!*\
-      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/modules/statistic/statistic/statistic.component.html ***!
-      \*********************************************************************************************************************/
-
-    /*! exports provided: default */
-
-    /***/
-    function c23f(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */
-
-
-      __webpack_exports__["default"] = "<nz-card nzTitle=\"Thống Kê\">\n\t<div class=\"row\">\n\t\t<div class=\"col l-3\" *ngFor=\"let statisticItem of statisticItems\">\n\t\t\t<app-statistic-item [statisticItem]=\"statisticItem\"></app-statistic-item>\n\t\t</div>\n\t</div>\n</nz-card>\n";
-      /***/
-    },
-
-    /***/
-    "cBh0":
-    /*!***************************************************************************************!*\
-      !*** ./src/app/features/modules/statistic/statistic-item/statistic-item.component.ts ***!
-      \***************************************************************************************/
-
-    /*! exports provided: StatisticItemComponent */
-
-    /***/
-    function cBh0(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "StatisticItemComponent", function () {
-        return StatisticItemComponent;
-      });
-      /* harmony import */
-
-
-      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! tslib */
-      "mrSG");
-      /* harmony import */
-
-
-      var _raw_loader_statistic_item_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! raw-loader!./statistic-item.component.html */
-      "WVa7");
-      /* harmony import */
-
-
-      var _statistic_item_component_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ./statistic-item.component.less */
-      "FdM4");
-      /* harmony import */
-
-
-      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! @angular/core */
-      "8Y7J");
-
-      var StatisticItemComponent = /*#__PURE__*/function () {
-        function StatisticItemComponent() {
-          _classCallCheck(this, StatisticItemComponent);
-
-          this.statisticItem = {
-            statisticNumber: 0,
-            statisticContent: ''
-          };
-        }
-
-        _createClass(StatisticItemComponent, [{
-          key: "ngOnInit",
-          value: function ngOnInit() {}
-        }]);
-
-        return StatisticItemComponent;
-      }();
-
-      StatisticItemComponent.ctorParameters = function () {
-        return [];
-      };
-
-      StatisticItemComponent.propDecorators = {
-        statisticItem: [{
-          type: _angular_core__WEBPACK_IMPORTED_MODULE_3__["Input"]
-        }]
-      };
-      StatisticItemComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
-        selector: 'app-statistic-item',
-        template: _raw_loader_statistic_item_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
-        styles: [_statistic_item_component_less__WEBPACK_IMPORTED_MODULE_2__["default"]]
-      })], StatisticItemComponent);
       /***/
     },
 
@@ -2088,75 +1798,6 @@
     },
 
     /***/
-    "fw9G":
-    /*!***********************************************************************************!*\
-      !*** ./src/app/features/admin/components/admin-body/product/product.component.ts ***!
-      \***********************************************************************************/
-
-    /*! exports provided: ProductComponent */
-
-    /***/
-    function fw9G(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony export (binding) */
-
-
-      __webpack_require__.d(__webpack_exports__, "ProductComponent", function () {
-        return ProductComponent;
-      });
-      /* harmony import */
-
-
-      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-      /*! tslib */
-      "mrSG");
-      /* harmony import */
-
-
-      var _raw_loader_product_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-      /*! raw-loader!./product.component.html */
-      "zm27");
-      /* harmony import */
-
-
-      var _product_component_sass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-      /*! ./product.component.sass */
-      "kBQW");
-      /* harmony import */
-
-
-      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
-      /*! @angular/core */
-      "8Y7J");
-
-      var ProductComponent = /*#__PURE__*/function () {
-        function ProductComponent() {
-          _classCallCheck(this, ProductComponent);
-        }
-
-        _createClass(ProductComponent, [{
-          key: "ngOnInit",
-          value: function ngOnInit() {}
-        }]);
-
-        return ProductComponent;
-      }();
-
-      ProductComponent.ctorParameters = function () {
-        return [];
-      };
-
-      ProductComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
-        selector: 'app-product',
-        template: _raw_loader_product_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
-        styles: [_product_component_sass__WEBPACK_IMPORTED_MODULE_2__["default"]]
-      })], ProductComponent);
-      /***/
-    },
-
-    /***/
     "gVk/":
     /*!*******************************************************************************************************************************!*\
       !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/admin/components/admin-body/marketing/marketing.component.html ***!
@@ -2217,26 +1858,6 @@
     },
 
     /***/
-    "i97J":
-    /*!*******************************************************************************!*\
-      !*** ./src/app/features/modules/statistic/statistic/statistic.component.less ***!
-      \*******************************************************************************/
-
-    /*! exports provided: default */
-
-    /***/
-    function i97J(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */
-
-
-      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdGF0aXN0aWMuY29tcG9uZW50Lmxlc3MifQ== */";
-      /***/
-    },
-
-    /***/
     "iecl":
     /*!*******************************************************************************************!*\
       !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/admin/admin.component.html ***!
@@ -2273,26 +1894,6 @@
 
 
       __webpack_exports__["default"] = "<p>finance works!</p>\r\n";
-      /***/
-    },
-
-    /***/
-    "kBQW":
-    /*!*************************************************************************************!*\
-      !*** ./src/app/features/admin/components/admin-body/product/product.component.sass ***!
-      \*************************************************************************************/
-
-    /*! exports provided: default */
-
-    /***/
-    function kBQW(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */
-
-
-      __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwcm9kdWN0LmNvbXBvbmVudC5zYXNzIn0= */";
       /***/
     },
 
@@ -3162,37 +2763,31 @@
       /* harmony import */
 
 
-      var _components_admin_body_product_product_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(
-      /*! ./components/admin-body/product/product.component */
-      "fw9G");
-      /* harmony import */
-
-
-      var _components_admin_header_admin_header_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(
+      var _components_admin_header_admin_header_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(
       /*! ./components/admin-header/admin-header.component */
       "ujF4");
       /* harmony import */
 
 
-      var _components_admin_sidebar_admin_sidebar_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(
+      var _components_admin_sidebar_admin_sidebar_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(
       /*! ./components/admin-sidebar/admin-sidebar.component */
       "wCe+");
       /* harmony import */
 
 
-      var _components_draw_container_draw_container_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(
+      var _components_draw_container_draw_container_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(
       /*! ./components/draw-container/draw-container.component */
       "Mh6h");
       /* harmony import */
 
 
-      var _components_page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(
+      var _components_page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(
       /*! ./components/page-not-found/page-not-found.component */
       "/6rS");
       /* harmony import */
 
 
-      var _modules_login_login_module__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(
+      var _modules_login_login_module__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(
       /*! ./modules/login/login.module */
       "5Se5");
       /* eslint-disable prefer-arrow/prefer-arrow-functions */
@@ -3204,9 +2799,10 @@
       };
 
       AdminModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
-        declarations: [_admin_component__WEBPACK_IMPORTED_MODULE_17__["AdminComponent"], _components_admin_header_admin_header_component__WEBPACK_IMPORTED_MODULE_25__["AdminHeaderComponent"], _components_admin_body_admin_body_component__WEBPACK_IMPORTED_MODULE_18__["AdminBodyComponent"], _components_admin_body_index_index_component__WEBPACK_IMPORTED_MODULE_21__["IndexComponent"], _components_draw_container_draw_container_component__WEBPACK_IMPORTED_MODULE_27__["DrawContainerComponent"], _components_admin_body_home_home_component__WEBPACK_IMPORTED_MODULE_20__["HomeComponent"], _components_admin_body_portal_portal_component__WEBPACK_IMPORTED_MODULE_23__["PortalComponent"], //OrderComponent,
-        _components_admin_body_product_product_component__WEBPACK_IMPORTED_MODULE_24__["ProductComponent"], _components_admin_body_marketing_marketing_component__WEBPACK_IMPORTED_MODULE_22__["MarketingComponent"], _components_admin_body_finance_finance_component__WEBPACK_IMPORTED_MODULE_19__["FinanceComponent"], _components_page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_28__["PageNotFoundComponent"], _components_admin_sidebar_admin_sidebar_component__WEBPACK_IMPORTED_MODULE_26__["AdminSidebarComponent"]],
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], src_app_core_utils_ng_zorro_antd_ng_zorro_antd_module__WEBPACK_IMPORTED_MODULE_13__["NgZorroAntdModule"], _admin_routing_module__WEBPACK_IMPORTED_MODULE_16__["AdminRoutingModule"], src_app_icons_provider_module__WEBPACK_IMPORTED_MODULE_14__["IconsProviderModule"], ng_zorro_antd_layout__WEBPACK_IMPORTED_MODULE_8__["NzLayoutModule"], ng_zorro_antd_menu__WEBPACK_IMPORTED_MODULE_9__["NzMenuModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"], src_app_core_utils_material_module__WEBPACK_IMPORTED_MODULE_12__["MaterialModule"], _modules_login_login_module__WEBPACK_IMPORTED_MODULE_29__["LoginModule"], _modules_statistic_statistic_module__WEBPACK_IMPORTED_MODULE_15__["StatisticModule"], ngx_infinite_scroll__WEBPACK_IMPORTED_MODULE_10__["InfiniteScrollModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateModule"].forRoot({
+        declarations: [_admin_component__WEBPACK_IMPORTED_MODULE_17__["AdminComponent"], _components_admin_header_admin_header_component__WEBPACK_IMPORTED_MODULE_24__["AdminHeaderComponent"], _components_admin_body_admin_body_component__WEBPACK_IMPORTED_MODULE_18__["AdminBodyComponent"], _components_admin_body_index_index_component__WEBPACK_IMPORTED_MODULE_21__["IndexComponent"], _components_draw_container_draw_container_component__WEBPACK_IMPORTED_MODULE_26__["DrawContainerComponent"], _components_admin_body_home_home_component__WEBPACK_IMPORTED_MODULE_20__["HomeComponent"], _components_admin_body_portal_portal_component__WEBPACK_IMPORTED_MODULE_23__["PortalComponent"], //OrderComponent,
+        //ProductComponent,
+        _components_admin_body_marketing_marketing_component__WEBPACK_IMPORTED_MODULE_22__["MarketingComponent"], _components_admin_body_finance_finance_component__WEBPACK_IMPORTED_MODULE_19__["FinanceComponent"], _components_page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_27__["PageNotFoundComponent"], _components_admin_sidebar_admin_sidebar_component__WEBPACK_IMPORTED_MODULE_25__["AdminSidebarComponent"]],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], src_app_core_utils_ng_zorro_antd_ng_zorro_antd_module__WEBPACK_IMPORTED_MODULE_13__["NgZorroAntdModule"], _admin_routing_module__WEBPACK_IMPORTED_MODULE_16__["AdminRoutingModule"], src_app_icons_provider_module__WEBPACK_IMPORTED_MODULE_14__["IconsProviderModule"], ng_zorro_antd_layout__WEBPACK_IMPORTED_MODULE_8__["NzLayoutModule"], ng_zorro_antd_menu__WEBPACK_IMPORTED_MODULE_9__["NzMenuModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClientModule"], src_app_core_utils_material_module__WEBPACK_IMPORTED_MODULE_12__["MaterialModule"], _modules_login_login_module__WEBPACK_IMPORTED_MODULE_28__["LoginModule"], _modules_statistic_statistic_module__WEBPACK_IMPORTED_MODULE_15__["StatisticModule"], ngx_infinite_scroll__WEBPACK_IMPORTED_MODULE_10__["InfiniteScrollModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateModule"].forRoot({
           loader: {
             provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__["TranslateModule"],
             useFactory: httpLoaderFactory,
@@ -3304,26 +2900,6 @@
       AdminStatisticService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])({
         providedIn: 'root'
       })], AdminStatisticService);
-      /***/
-    },
-
-    /***/
-    "zm27":
-    /*!***************************************************************************************************************************!*\
-      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/admin/components/admin-body/product/product.component.html ***!
-      \***************************************************************************************************************************/
-
-    /*! exports provided: default */
-
-    /***/
-    function zm27(module, __webpack_exports__, __webpack_require__) {
-      "use strict";
-
-      __webpack_require__.r(__webpack_exports__);
-      /* harmony default export */
-
-
-      __webpack_exports__["default"] = "<router-outlet></router-outlet>";
       /***/
     }
   }]);

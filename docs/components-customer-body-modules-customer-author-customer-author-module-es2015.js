@@ -1,15 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["components-customer-body-modules-customer-author-customer-author-module"],{
 
-/***/ "ARRg":
-/*!***********************************************************************************************************************************!*\
-  !*** ./src/app/features/customer/components/customer-body/modules/customer-author/customer-author/customer-author.component.less ***!
-  \***********************************************************************************************************************************/
+/***/ "+QeF":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/customer/components/customer-body/modules/customer-author/components/customer-author/customer-author.component.html ***!
+  \************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjdXN0b21lci1hdXRob3IuY29tcG9uZW50Lmxlc3MifQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("<nz-skeleton *ngIf=\"isLoading; else completedLoading\" [nzLoading]=\"isLoading\" [nzActive]=\"true\"></nz-skeleton>\r\n<ng-template #completedLoading>\r\n\t<nz-empty style=\"margin-top: 50px;\" *ngIf=\"isNotHaveData; else haveData\">\r\n\t\t<span> Không Tìm Thấy Tác Gỉa </span>\r\n\t</nz-empty>\r\n\t<ng-template #haveData>\r\n\t\t<div class=\"grid wide\">\r\n\t\t\t<nz-page-header>\r\n\t\t\t\t<!--breadcrumb-->\r\n\t\t\t\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\r\n\t\t\t\t<!--title-->\r\n\t\t\t\t<nz-page-header-title>{{authorResponse.authorName}}</nz-page-header-title>\r\n\t\t\t\t<!--subtitle-->\r\n\t\t\t\t<nz-page-header-subtitle></nz-page-header-subtitle>\r\n\t\t\t\t<!--content-->\r\n\t\t\t\t<nz-page-header-content>\r\n\t\t\t\t\t{{authorResponse.description}}\r\n\t\t\t\t</nz-page-header-content>\r\n\t\t\t</nz-page-header>\r\n\t\t</div>\r\n\t</ng-template>\r\n</ng-template>\r\n");
 
 /***/ }),
 
@@ -27,7 +27,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "8Y7J");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "SVse");
 /* harmony import */ var _customer_author_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./customer-author-routing.module */ "eyHd");
-/* harmony import */ var _customer_author_customer_author_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./customer-author/customer-author.component */ "QLjM");
+/* harmony import */ var _components_customer_author_customer_author_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/customer-author/customer-author.component */ "jJcE");
 /* harmony import */ var ngx_infinite_scroll__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-infinite-scroll */ "MNke");
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngx-translate/core */ "TSSN");
 /* harmony import */ var src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/core/module/core.module */ "gfFi");
@@ -43,7 +43,7 @@ let CustomerAuthorModule = class CustomerAuthorModule {
 };
 CustomerAuthorModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        declarations: [_customer_author_customer_author_component__WEBPACK_IMPORTED_MODULE_4__["CustomerAuthorComponent"]],
+        declarations: [_components_customer_author_customer_author_component__WEBPACK_IMPORTED_MODULE_4__["CustomerAuthorComponent"]],
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
             _customer_author_routing_module__WEBPACK_IMPORTED_MODULE_3__["CustomerAuthorRoutingModule"],
@@ -92,10 +92,42 @@ CustomerUrlAuthor = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
-/***/ "QLjM":
-/*!*********************************************************************************************************************************!*\
-  !*** ./src/app/features/customer/components/customer-body/modules/customer-author/customer-author/customer-author.component.ts ***!
-  \*********************************************************************************************************************************/
+/***/ "eyHd":
+/*!**********************************************************************************************************************!*\
+  !*** ./src/app/features/customer/components/customer-body/modules/customer-author/customer-author-routing.module.ts ***!
+  \**********************************************************************************************************************/
+/*! exports provided: CustomerAuthorRoutingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerAuthorRoutingModule", function() { return CustomerAuthorRoutingModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "iInd");
+/* harmony import */ var _components_customer_author_customer_author_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/customer-author/customer-author.component */ "jJcE");
+
+
+
+
+const routes = [{ path: ':authorId', component: _components_customer_author_customer_author_component__WEBPACK_IMPORTED_MODULE_3__["CustomerAuthorComponent"] }];
+let CustomerAuthorRoutingModule = class CustomerAuthorRoutingModule {
+};
+CustomerAuthorRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
+    })
+], CustomerAuthorRoutingModule);
+
+
+
+/***/ }),
+
+/***/ "jJcE":
+/*!********************************************************************************************************************************************!*\
+  !*** ./src/app/features/customer/components/customer-body/modules/customer-author/components/customer-author/customer-author.component.ts ***!
+  \********************************************************************************************************************************************/
 /*! exports provided: CustomerAuthorComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -103,8 +135,8 @@ CustomerUrlAuthor = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerAuthorComponent", function() { return CustomerAuthorComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
-/* harmony import */ var _raw_loader_customer_author_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./customer-author.component.html */ "brWK");
-/* harmony import */ var _customer_author_component_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./customer-author.component.less */ "ARRg");
+/* harmony import */ var _raw_loader_customer_author_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./customer-author.component.html */ "+QeF");
+/* harmony import */ var _customer_author_component_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./customer-author.component.less */ "r+0l");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "8Y7J");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "iInd");
 /* harmony import */ var rxjs_internal_operators_takeUntil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/internal/operators/takeUntil */ "IW2O");
@@ -157,11 +189,13 @@ let CustomerAuthorComponent = class CustomerAuthorComponent {
                 }
             }
             else {
+                this.isNotHaveData = true;
                 if (result.message) {
                     this.notificationService.showErrorNotification(result.message);
                 }
             }
         }, (error) => {
+            this.isNotHaveData = true;
             this.appErrorHandler.handleErrorWithNoti(error);
         }, () => { });
     }
@@ -186,48 +220,16 @@ CustomerAuthorComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"
 
 /***/ }),
 
-/***/ "brWK":
-/*!*************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/customer/components/customer-body/modules/customer-author/customer-author/customer-author.component.html ***!
-  \*************************************************************************************************************************************************************************/
+/***/ "r+0l":
+/*!**********************************************************************************************************************************************!*\
+  !*** ./src/app/features/customer/components/customer-body/modules/customer-author/components/customer-author/customer-author.component.less ***!
+  \**********************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nz-skeleton *ngIf=\"isLoading; else completedLoading\" [nzLoading]=\"isLoading\" [nzActive]=\"true\"></nz-skeleton>\n<ng-template #completedLoading>\n\t<nz-empty style=\"margin-top: 50px;\" *ngIf=\"isNotHaveData; else haveData\">\n\t\t<span> Không Tìm Thấy Tác Gỉa </span>\n\t</nz-empty>\n\t<ng-template #haveData>\n\t\t<div class=\"grid wide\">\n\t\t\t<nz-page-header>\n\t\t\t\t<!--breadcrumb-->\n\t\t\t\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\n\t\t\t\t<!--title-->\n\t\t\t\t<nz-page-header-title></nz-page-header-title>\n\t\t\t\t<!--subtitle-->\n\t\t\t\t<nz-page-header-subtitle></nz-page-header-subtitle>\n\t\t\t\t<!--content-->\n\t\t\t\t<nz-page-header-content>\n\t\t\t\t\n\t\t\t\t</nz-page-header-content>\n\t\t\t</nz-page-header>\n\t\t</div>\n\t</ng-template>\n</ng-template>\n");
-
-/***/ }),
-
-/***/ "eyHd":
-/*!**********************************************************************************************************************!*\
-  !*** ./src/app/features/customer/components/customer-body/modules/customer-author/customer-author-routing.module.ts ***!
-  \**********************************************************************************************************************/
-/*! exports provided: CustomerAuthorRoutingModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerAuthorRoutingModule", function() { return CustomerAuthorRoutingModule; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "8Y7J");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "iInd");
-/* harmony import */ var _customer_author_customer_author_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./customer-author/customer-author.component */ "QLjM");
-
-
-
-
-const routes = [{ path: '', component: _customer_author_customer_author_component__WEBPACK_IMPORTED_MODULE_3__["CustomerAuthorComponent"] }];
-let CustomerAuthorRoutingModule = class CustomerAuthorRoutingModule {
-};
-CustomerAuthorRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
-        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
-    })
-], CustomerAuthorRoutingModule);
-
-
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjdXN0b21lci1hdXRob3IuY29tcG9uZW50Lmxlc3MifQ== */");
 
 /***/ }),
 

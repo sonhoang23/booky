@@ -87,8 +87,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _core_services_seller_seller_order_seller_order_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../../../../../core/services/seller/seller-order/seller-order.service */ "sc59");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "8Y7J");
 /* harmony import */ var src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/core/services/comon-services/destroy-service/destroy.service */ "ekmL");
-/* harmony import */ var src_app_core_enums_OrderStatus_enum__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/core/enums/OrderStatus.enum */ "EvTH");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var src_app_core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/core/notification/notifications/customer/notification.service */ "7IKN");
+/* harmony import */ var src_app_core_enums_OrderStatus_enum__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/core/enums/OrderStatus.enum */ "EvTH");
+/* harmony import */ var src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/core/services/comon-services/spinner/spinner.service */ "LXV+");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+
+
 
 
 
@@ -98,26 +102,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let SellerAllOrderComponent = class SellerAllOrderComponent {
-    constructor(sellerOrderService, destroy$) {
+    constructor(sellerOrderService, destroy$, notificationService, sellerSpinnerService) {
         this.sellerOrderService = sellerOrderService;
         this.destroy$ = destroy$;
+        this.notificationService = notificationService;
+        this.sellerSpinnerService = sellerSpinnerService;
         this.isLoading = true;
         this.isSubmited = false;
         this.isModalVisible = false;
         this.pageResult = {};
     }
     ngOnInit() {
-        console.log('on init ' + src_app_core_enums_OrderStatus_enum__WEBPACK_IMPORTED_MODULE_6__["OrderStatus"].inProgress.toString());
+        console.log('on init ' + src_app_core_enums_OrderStatus_enum__WEBPACK_IMPORTED_MODULE_7__["OrderStatus"].inProgress.toString());
         this.getData(1);
     }
     getData(pageIndex) {
         this.sellerOrderService
             .getOrders({
-            orderRequestType: src_app_core_enums_OrderStatus_enum__WEBPACK_IMPORTED_MODULE_6__["OrderStatus"].inProgress,
+            orderRequestType: src_app_core_enums_OrderStatus_enum__WEBPACK_IMPORTED_MODULE_7__["OrderStatus"].inProgress,
             pageIndex: pageIndex,
             pageSize: 10
         })
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])((value) => {
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["takeUntil"])(this.destroy$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["map"])((value) => {
             if (value.resultObj) {
                 value.resultObj.items.map((order) => {
                     order.status = 'Cần Duyệt';
@@ -153,7 +159,9 @@ let SellerAllOrderComponent = class SellerAllOrderComponent {
 };
 SellerAllOrderComponent.ctorParameters = () => [
     { type: _core_services_seller_seller_order_seller_order_service__WEBPACK_IMPORTED_MODULE_3__["SellerOrderService"] },
-    { type: src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_5__["DestroyService"] }
+    { type: src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_5__["DestroyService"] },
+    { type: src_app_core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_6__["NotificationService"] },
+    { type: src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_8__["SpinnerService"] }
 ];
 SellerAllOrderComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Component"])({

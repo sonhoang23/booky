@@ -827,8 +827,13 @@
         production: false,
         test: false,
         i18nPrefix: '',
-        apiUrl: 'https://booky.somee.com',
-        clientUrlForgotPassword: 'http://localhost:4200/password/reset-password',
+        //apiUrl: 'http://booky.somee.com',
+        //apiUrl: 'https://booky.somee.com',
+        //apiUrl: 'https://localhost:5005',
+        apiUrl: 'https://bookyapideploy.azurewebsites.net',
+        //////////////////////////////////////////////////////////////////
+        //clientUrlForgotPassword: 'http://localhost:4200/password/reset-password',
+        clientUrlForgotPassword: 'https://booky.digital/password/reset-password',
         versions: {
           app: packageJson.version,
           angular: packageJson.dependencies['@angular/core'],
@@ -4319,7 +4324,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | features-seller-seller-module */
-          [__webpack_require__.e("default~features-admin-admin-module~features-customer-customer-module~features-seller-seller-module"), __webpack_require__.e("default~features-customer-customer-module~features-seller-seller-module"), __webpack_require__.e("features-seller-seller-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~features-admin-admin-module~features-customer-customer-module~features-seller-seller-module"), __webpack_require__.e("default~features-customer-customer-module~features-seller-seller-module"), __webpack_require__.e("common"), __webpack_require__.e("features-seller-seller-module")]).then(__webpack_require__.bind(null,
           /*! ./features/seller/seller.module */
           "0fuU")).then(function (m) {
             return m.SellerModule;
@@ -4333,7 +4338,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() | features-admin-admin-module */
-          [__webpack_require__.e("default~features-admin-admin-module~features-customer-customer-module~features-seller-seller-module"), __webpack_require__.e("features-admin-admin-module")]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e("default~features-admin-admin-module~features-customer-customer-module~features-seller-seller-module"), __webpack_require__.e("common"), __webpack_require__.e("features-admin-admin-module")]).then(__webpack_require__.bind(null,
           /*! ./features/admin/admin.module */
           "xDfr")).then(function (m) {
             return m.AdminModule;

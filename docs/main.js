@@ -418,11 +418,12 @@ const environment = {
     i18nPrefix: '',
     //apiUrl: 'http://booky.somee.com',
     //apiUrl: 'https://booky.somee.com',
-    apiUrl: 'https://localhost:5005',
-    //apiUrl: 'https://bookyapideploy.azurewebsites.net',
+    //apiUrl: 'https://localhost:5005',
+    apiUrl: 'https://bookyapideploy.azurewebsites.net',
     //////////////////////////////////////////////////////////////////
     //clientUrlForgotPassword: 'http://localhost:4200/password/reset-password',
-    clientUrl: "http://localhost:4200",
+    //clientUrl:"http://localhost:4200",
+    clientUrl: "https://booky.digital",
     clientUrlForgotPassword: 'https://booky.digital/password/reset-password',
     versions: {
         app: packageJson.version,
@@ -1554,7 +1555,7 @@ init-state-from-local-storage.reducer.ts:33 Ngoai if ***************************
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<router-outlet></router-outlet>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<router-outlet></router-outlet> \r\n\r\n");
 
 /***/ }),
 

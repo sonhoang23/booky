@@ -45,7 +45,7 @@
 				"name-error": "Mời Nhập Tên Bạn!",
 				"dob":"Ngày Sinh",
 				"dob-error":"Mời Nhập Ngày Tháng Năm Sinh!",
-				"country": "Tên Quốc Gia!",
+				"country": "Tên Quốc Gia",
 				"country-error": "Mời Nhập Tên Quốc Gia!",
 				"province": "Tên Tỉnh",
 				"province-error": "Mời Nhập Tên Tỉnh!",

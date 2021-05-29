@@ -829,7 +829,7 @@
         i18nPrefix: '',
         //apiUrl: 'https://localhost:5005',
         //apiUrl: 'https://localhost:44360',
-        apiUrl: 'http://18.222.113.192',
+        apiUrl: 'https://18.222.113.192',
         //apiUrl: 'https://bookyapideploy.azurewebsites.net',
         //////////////////////////////////////////////////////////////////
         //clientUrlForgotPassword: 'http://localhost:4200/password/reset-password',

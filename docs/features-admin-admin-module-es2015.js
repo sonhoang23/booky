@@ -703,6 +703,14 @@ const routes = [
             {
                 path: 'order',
                 loadChildren: () => Promise.all(/*! import() | components-admin-body-admin-order-admin-order-module */[__webpack_require__.e("common"), __webpack_require__.e("components-admin-body-admin-order-admin-order-module")]).then(__webpack_require__.bind(null, /*! ./components/admin-body/admin-order/admin-order.module */ "zHAb")).then((m) => m.AdminOrderModule)
+            },
+            {
+                path: 'author',
+                loadChildren: () => Promise.all(/*! import() | components-admin-body-Author-Author-module */[__webpack_require__.e("default~components-admin-body-Author-Author-module~components-admin-body-publisher-publisher-module~~0ae09f18"), __webpack_require__.e("default~components-admin-body-Author-Author-module~components-admin-body-publisher-publisher-module~~226f9d23"), __webpack_require__.e("components-admin-body-Author-Author-module")]).then(__webpack_require__.bind(null, /*! ./components/admin-body/Author/Author.module */ "f5CR")).then((m) => m.AuthorModule)
+            },
+            {
+                path: 'publisher',
+                loadChildren: () => Promise.all(/*! import() | components-admin-body-publisher-publisher-module */[__webpack_require__.e("default~components-admin-body-Author-Author-module~components-admin-body-publisher-publisher-module~~0ae09f18"), __webpack_require__.e("default~components-admin-body-Author-Author-module~components-admin-body-publisher-publisher-module~~226f9d23"), __webpack_require__.e("components-admin-body-publisher-publisher-module")]).then(__webpack_require__.bind(null, /*! ./components/admin-body/publisher/publisher.module */ "jVRb")).then((m) => m.PublisherModule)
             }
         ]
     },
@@ -1411,7 +1419,7 @@ AdminSidebarComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrapper\">\n\t<!-- <button nz-button nzType=\"primary\" (click)=\"toggleCollapsed()\">\n\t\t<i nz-icon [nzType]=\"isCollapsed ? 'menu-unfold' : 'menu-fold'\"></i>\n\t</button> -->\n\t<ul nz-menu nzMode=\"inline\" >\n\t\t<li nz-menu-group><span title><i nz-icon nzType=\"appstore\"></i><span> Sản Phẩm</span></span>\n\t\t\t<ul>\n\t\t\t\t<li nz-menu-item [routerLink]=\"['product/inactivating']\">Đang Cần Xác Nhận</li>\n\t\t\t</ul>\n\t\t</li>\n\t\t<li nz-menu-group><span title><i nz-icon nzType=\"ordered-list\"></i><span> Đơn Hàng</span></span>\n\t\t\t<ul>\n\t\t\t\t<li nz-menu-item [routerLink]=\"['order/need-comfirm']\">Đang Cần Xác Nhận</li>\n\t\t\t</ul>\n\t\t</li>\n\t</ul>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrapper\">\n\t<!-- <button nz-button nzType=\"primary\" (click)=\"toggleCollapsed()\">\n\t\t<i nz-icon [nzType]=\"isCollapsed ? 'menu-unfold' : 'menu-fold'\"></i>\n\t</button> -->\n\t<ul nz-menu nzMode=\"inline\" >\n\t\t<li nz-menu-group><span title><i nz-icon nzType=\"appstore\"></i><span> Sản Phẩm</span></span>\n\t\t\t<ul>\n\t\t\t\t<li nz-menu-item [routerLink]=\"['product/inactivating']\">Đang Cần Xác Nhận</li>\n\t\t\t</ul>\n\t\t</li>\n\t\t<li nz-menu-group><span title><i nz-icon nzType=\"ordered-list\"></i><span> Đơn Hàng</span></span>\n\t\t\t<ul>\n\t\t\t\t<li nz-menu-item [routerLink]=\"['order/need-comfirm']\">Đang Cần Xác Nhận</li>\n\t\t\t</ul>\n\t\t</li>\n\t\t<li nz-menu-group><span title><i nz-icon nzType=\"ordered-list\"></i><span> Nội Dung Trang Web</span></span>\n\t\t\t<ul>\n\t\t\t\t<li nz-menu-item [routerLink]=\"['author']\">Tác Giả</li>\n\t\t\t\t<li nz-menu-item [routerLink]=\"['publisher']\">Nhà Xuất Bản</li>\n\t\t\t</ul>\n\t\t</li>\n\t</ul>\n</div>\n");
 
 /***/ }),
 

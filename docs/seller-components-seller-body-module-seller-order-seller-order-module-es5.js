@@ -121,10 +121,16 @@
         component: _seller_order_component__WEBPACK_IMPORTED_MODULE_2__["SellerOrderComponent"],
         children: [{
           path: 'orders',
-          component: _seller_all_order_order_tab_all_order_tab_all_component__WEBPACK_IMPORTED_MODULE_5__["OrderTabAllComponent"]
+          component: _seller_all_order_order_tab_all_order_tab_all_component__WEBPACK_IMPORTED_MODULE_5__["OrderTabAllComponent"],
+          data: {
+            title: 'Seller-app.content.body.order.order'
+          }
         }, {
           path: 'inprogress',
-          component: _seller_all_order_seller_order_inprogress_seller_order_inprogress_component__WEBPACK_IMPORTED_MODULE_1__["SellerOrderInprogressComponent"]
+          component: _seller_all_order_seller_order_inprogress_seller_order_inprogress_component__WEBPACK_IMPORTED_MODULE_1__["SellerOrderInprogressComponent"],
+          data: {
+            title: 'Seller-app.content.body.order.inprogress'
+          }
         }]
       }];
 
@@ -737,6 +743,12 @@
       var _components_order_show_table_order_show_table_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
       /*! ./components/order-show-table/order-show-table.component */
       "RSOq");
+      /* harmony import */
+
+
+      var _swimlane_ngx_charts__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+      /*! @swimlane/ngx-charts */
+      "Lnru");
 
       var SellerOrderModule = function SellerOrderModule() {
         _classCallCheck(this, SellerOrderModule);
@@ -744,7 +756,7 @@
 
       SellerOrderModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["NgModule"])({
         declarations: [_seller_order_component__WEBPACK_IMPORTED_MODULE_9__["SellerOrderComponent"], _seller_all_order_seller_all_order_component__WEBPACK_IMPORTED_MODULE_8__["SellerAllOrderComponent"], _seller_all_order_order_tab_all_order_tab_all_component__WEBPACK_IMPORTED_MODULE_11__["OrderTabAllComponent"], _seller_all_order_seller_order_inprogress_seller_order_inprogress_component__WEBPACK_IMPORTED_MODULE_12__["SellerOrderInprogressComponent"], _components_order_show_table_order_show_table_component__WEBPACK_IMPORTED_MODULE_14__["OrderShowTableComponent"]],
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_6__["CommonModule"], _seller_order_routing_module__WEBPACK_IMPORTED_MODULE_7__["SellerOrderRoutingModule"], _core_utils_ng_zorro_antd_ng_zorro_antd_module__WEBPACK_IMPORTED_MODULE_4__["NgZorroAntdModule"], _core_utils_material_module__WEBPACK_IMPORTED_MODULE_3__["MaterialModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_1__["TranslateModule"], ngx_infinite_scroll__WEBPACK_IMPORTED_MODULE_10__["InfiniteScrollModule"], src_app_features_modules_order_order_detail_select_modal_order_detail_select_modal_module__WEBPACK_IMPORTED_MODULE_13__["OrderDetailSelectModalModule"]]
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_6__["CommonModule"], _seller_order_routing_module__WEBPACK_IMPORTED_MODULE_7__["SellerOrderRoutingModule"], _core_utils_ng_zorro_antd_ng_zorro_antd_module__WEBPACK_IMPORTED_MODULE_4__["NgZorroAntdModule"], _core_utils_material_module__WEBPACK_IMPORTED_MODULE_3__["MaterialModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_1__["TranslateModule"], ngx_infinite_scroll__WEBPACK_IMPORTED_MODULE_10__["InfiniteScrollModule"], src_app_features_modules_order_order_detail_select_modal_order_detail_select_modal_module__WEBPACK_IMPORTED_MODULE_13__["OrderDetailSelectModalModule"], _swimlane_ngx_charts__WEBPACK_IMPORTED_MODULE_15__["NgxChartsModule"]]
       })], SellerOrderModule);
       /***/
     },
@@ -969,7 +981,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<nz-page-header style=\"padding-left: 0; padding-right: 0;\">\r\n\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\r\n\t<!--title-->\r\n\t<nz-page-header-title>Tất Cả Đơn Hàng</nz-page-header-title>\r\n\t<!--subtitle-->\r\n\t<nz-page-header-subtitle>Đơn Hàng Của Cửa Hàng</nz-page-header-subtitle>\r\n\t<!--content-->\r\n\t<nz-page-header-content>\r\n\t\t<nz-tabset (nzSelectedIndexChange)=\"changeTab($event)\">\r\n\t\t\t<!-- <nz-tab nzTitle=\"Tất Cả\">\r\n\t\t\t\t\t<app-product-show-table></app-product-show-table>\r\n\t\t\t\t</nz-tab> -->\r\n\r\n\t\t\t<nz-tab nzTitle=\"Đơn Chưa Xác Nhận\">\r\n\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t<app-order-show-table [pageResult]=\"pageResult\" [listOfData]=\"listOfData\"></app-order-show-table>\r\n\t\t\t\t</ng-template>\r\n\t\t\t</nz-tab>\r\n\t\t\t<nz-tab nzTitle=\"Đơn Đã Xác Nhận\">\r\n\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t<app-order-show-table [pageResult]=\"pageResult\" [listOfData]=\"listOfData\"></app-order-show-table>\r\n\t\t\t\t</ng-template>\r\n\t\t\t</nz-tab>\r\n\t\t\t<nz-tab nzTitle=\"Đơn Đã Được Lấy Đi\">\r\n\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t<app-order-show-table [pageResult]=\"pageResult\" [listOfData]=\"listOfData\"></app-order-show-table>\r\n\t\t\t\t</ng-template>\r\n\t\t\t</nz-tab>\r\n\t\t\t<nz-tab nzTitle=\"Đơn Đang Vận Chuyển\">\r\n\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t<app-order-show-table [pageResult]=\"pageResult\" [listOfData]=\"listOfData\"></app-order-show-table>\r\n\t\t\t\t</ng-template>\r\n\t\t\t</nz-tab>\r\n\t\t\t<nz-tab nzTitle=\"Đơn Giao Thành Công\">\r\n\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t<app-order-show-table [pageResult]=\"pageResult\" [listOfData]=\"listOfData\"></app-order-show-table>\r\n\t\t\t\t</ng-template>\r\n\t\t\t</nz-tab>\r\n\t\t\t<nz-tab nzTitle=\"Đơn Hủy Bởi Shop\">\r\n\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t<app-order-show-table [pageResult]=\"pageResult\" [listOfData]=\"listOfData\"></app-order-show-table>\r\n\t\t\t\t</ng-template>\r\n\t\t\t</nz-tab>\r\n\t\t\t<nz-tab nzTitle=\"Đơn Hủy Bởi Khách Hàng\">\r\n\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t<app-order-show-table [pageResult]=\"pageResult\" [listOfData]=\"listOfData\"></app-order-show-table>\r\n\t\t\t\t</ng-template>\r\n\t\t\t</nz-tab>\r\n\t\t\t<nz-tab nzTitle=\"Đơn Hủy Bởi Booky\">\r\n\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t<app-order-show-table [pageResult]=\"pageResult\" [listOfData]=\"listOfData\"></app-order-show-table>\r\n\t\t\t\t</ng-template>\r\n\t\t\t</nz-tab>\r\n\t\t\t<nz-tab nzTitle=\"Đơn Đang Hoàn Trả\">\r\n\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t<app-order-show-table [pageResult]=\"pageResult\" [listOfData]=\"listOfData\"></app-order-show-table>\r\n\t\t\t\t</ng-template>\r\n\t\t\t</nz-tab>\r\n\t\t\t<nz-tab nzTitle=\"Đơn Đã Hoàn Trả\">\r\n\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t<app-order-show-table [pageResult]=\"pageResult\" [listOfData]=\"listOfData\"></app-order-show-table>\r\n\t\t\t\t</ng-template>\r\n\t\t\t</nz-tab>\r\n\t\t</nz-tabset>\r\n\t\t<div\r\n\t\t\tclass=\"search-results\"\r\n\t\t\tinfiniteScroll\r\n\t\t\t[infiniteScrollDistance]=\"2\"\r\n\t\t\t[infiniteScrollThrottle]=\"50\"\r\n\t\t\t(scrolled)=\"onScroll()\"\r\n\t\t></div>\r\n\t</nz-page-header-content>\r\n</nz-page-header>\r\n";
+      __webpack_exports__["default"] = "<nz-page-header style=\"padding-left: 0; padding-right: 0;\">\r\n\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\r\n\t<!--title-->\r\n\t<nz-page-header-title>Tất Cả Đơn Hàng</nz-page-header-title>\r\n\t<!--subtitle-->\r\n\t<nz-page-header-subtitle>Đơn Hàng Của Cửa Hàng</nz-page-header-subtitle>\r\n\t<!--content-->\r\n\t<nz-page-header-content>\r\n\t\t<div style=\"margin-top: 15px;\" class=\"row\">\r\n\t\t\t<div class=\"col l-12\">\r\n\t\t\t\t<nz-skeleton\r\n\t\t\t\t\t*ngIf=\"isStatisticsOrderByOrderStatusLoading; else completedStatisticsOrderByOrderStatusLoading\"\r\n\t\t\t\t\t[nzLoading]=\"true\"\r\n\t\t\t\t\t[nzActive]=\"true\"\r\n\t\t\t\t></nz-skeleton>\r\n\t\t\t\t<ng-template #completedStatisticsOrderByOrderStatusLoading>\r\n\t\t\t\t\t<ngx-charts-advanced-pie-chart\r\n\t\t\t\t\t\t[results]=\"statisticsOrderByOrderStatus.results\"\r\n\t\t\t\t\t\t[label]=\"statisticsOrderByOrderStatus.legendTitle\"\r\n\t\t\t\t\t\t[gradient]=\"false\"\r\n\t\t\t\t\t>\r\n\t\t\t\t\t</ngx-charts-advanced-pie-chart>\r\n\t\t\t\t</ng-template>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div style=\"margin-top: 75px;\" class=\"row\">\r\n\t\t\t<div class=\"col l-12\">\r\n\t\t\t\t<nz-tabset (nzSelectedIndexChange)=\"changeTab($event)\">\r\n\t\t\t\t\t<nz-tab nzTitle=\"Đơn Chưa Xác Nhận\">\r\n\t\t\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t\t\t<app-order-show-table\r\n\t\t\t\t\t\t\t\t[pageResult]=\"pageResult\"\r\n\t\t\t\t\t\t\t\t[listOfData]=\"listOfData\"\r\n\t\t\t\t\t\t\t></app-order-show-table>\r\n\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t</nz-tab>\r\n\t\t\t\t\t<nz-tab nzTitle=\"Đơn Đã Xác Nhận\">\r\n\t\t\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t\t\t<app-order-show-table\r\n\t\t\t\t\t\t\t\t[pageResult]=\"pageResult\"\r\n\t\t\t\t\t\t\t\t[listOfData]=\"listOfData\"\r\n\t\t\t\t\t\t\t></app-order-show-table>\r\n\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t</nz-tab>\r\n\t\t\t\t\t<nz-tab nzTitle=\"Đơn Đã Được Lấy Đi\">\r\n\t\t\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t\t\t<app-order-show-table\r\n\t\t\t\t\t\t\t\t[pageResult]=\"pageResult\"\r\n\t\t\t\t\t\t\t\t[listOfData]=\"listOfData\"\r\n\t\t\t\t\t\t\t></app-order-show-table>\r\n\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t</nz-tab>\r\n\t\t\t\t\t<nz-tab nzTitle=\"Đơn Đang Vận Chuyển\">\r\n\t\t\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t\t\t<app-order-show-table\r\n\t\t\t\t\t\t\t\t[pageResult]=\"pageResult\"\r\n\t\t\t\t\t\t\t\t[listOfData]=\"listOfData\"\r\n\t\t\t\t\t\t\t></app-order-show-table>\r\n\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t</nz-tab>\r\n\t\t\t\t\t<nz-tab nzTitle=\"Đơn Giao Thành Công\">\r\n\t\t\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t\t\t<app-order-show-table\r\n\t\t\t\t\t\t\t\t[pageResult]=\"pageResult\"\r\n\t\t\t\t\t\t\t\t[listOfData]=\"listOfData\"\r\n\t\t\t\t\t\t\t></app-order-show-table>\r\n\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t</nz-tab>\r\n\t\t\t\t\t<nz-tab nzTitle=\"Đơn Hủy Bởi Shop\">\r\n\t\t\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t\t\t<app-order-show-table\r\n\t\t\t\t\t\t\t\t[pageResult]=\"pageResult\"\r\n\t\t\t\t\t\t\t\t[listOfData]=\"listOfData\"\r\n\t\t\t\t\t\t\t></app-order-show-table>\r\n\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t</nz-tab>\r\n\t\t\t\t\t<nz-tab nzTitle=\"Đơn Hủy Bởi Khách Hàng\">\r\n\t\t\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t\t\t<app-order-show-table\r\n\t\t\t\t\t\t\t\t[pageResult]=\"pageResult\"\r\n\t\t\t\t\t\t\t\t[listOfData]=\"listOfData\"\r\n\t\t\t\t\t\t\t></app-order-show-table>\r\n\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t</nz-tab>\r\n\t\t\t\t\t<nz-tab nzTitle=\"Đơn Hủy Bởi Booky\">\r\n\t\t\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t\t\t<app-order-show-table\r\n\t\t\t\t\t\t\t\t[pageResult]=\"pageResult\"\r\n\t\t\t\t\t\t\t\t[listOfData]=\"listOfData\"\r\n\t\t\t\t\t\t\t></app-order-show-table>\r\n\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t</nz-tab>\r\n\t\t\t\t\t<nz-tab nzTitle=\"Đơn Đang Hoàn Trả\">\r\n\t\t\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t\t\t<app-order-show-table\r\n\t\t\t\t\t\t\t\t[pageResult]=\"pageResult\"\r\n\t\t\t\t\t\t\t\t[listOfData]=\"listOfData\"\r\n\t\t\t\t\t\t\t></app-order-show-table>\r\n\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t</nz-tab>\r\n\t\t\t\t\t<nz-tab nzTitle=\"Đơn Đã Hoàn Trả\">\r\n\t\t\t\t\t\t<nz-skeleton *ngIf=\"loading;else loaded\" [nzLoading]=\"loading\" [nzActive]=\"true\"> </nz-skeleton>\r\n\t\t\t\t\t\t<ng-template #loaded>\r\n\t\t\t\t\t\t\t<app-order-show-table\r\n\t\t\t\t\t\t\t\t[pageResult]=\"pageResult\"\r\n\t\t\t\t\t\t\t\t[listOfData]=\"listOfData\"\r\n\t\t\t\t\t\t\t></app-order-show-table>\r\n\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t</nz-tab>\r\n\t\t\t\t</nz-tabset>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div\r\n\t\t\tclass=\"search-results\"\r\n\t\t\tinfiniteScroll\r\n\t\t\t[infiniteScrollDistance]=\"2\"\r\n\t\t\t[infiniteScrollThrottle]=\"50\"\r\n\t\t\t(scrolled)=\"onScroll()\"\r\n\t\t></div>\r\n\t</nz-page-header-content>\r\n</nz-page-header>\r\n";
       /***/
     },
 
@@ -1109,14 +1121,22 @@
       var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! rxjs/operators */
       "kU1M");
+      /* harmony import */
+
+
+      var src_app_core_services_seller_seller_statistic_seller_statistic_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      /*! src/app/core/services/seller/seller-statistic/seller-statistic.service */
+      "xUTS");
 
       var OrderTabAllComponent = /*#__PURE__*/function () {
-        function OrderTabAllComponent(destroy$, sellerOrderService, notificationService) {
+        function OrderTabAllComponent(destroy$, sellerOrderService, notificationService, sellerStatisticService) {
           _classCallCheck(this, OrderTabAllComponent);
 
           this.destroy$ = destroy$;
           this.sellerOrderService = sellerOrderService;
           this.notificationService = notificationService;
+          this.sellerStatisticService = sellerStatisticService;
+          this.isStatisticsOrderByOrderStatusLoading = true;
           this.loading = false;
           this.startOfIndex = 1;
           this.tabIndex = 0;
@@ -1125,27 +1145,47 @@
         }
 
         _createClass(OrderTabAllComponent, [{
+          key: "getStatisticsActivatingAndInActivatingProducts",
+          value: function getStatisticsActivatingAndInActivatingProducts() {
+            var _this5 = this;
+
+            this.sellerStatisticService.getStatisticsOrderByOrderStatus().subscribe(function (result) {
+              if (result) {
+                console.log(result);
+
+                if (result.isSuccessed) {
+                  if (result.resultObj) {
+                    _this5.statisticsOrderByOrderStatus = result.resultObj;
+                    console.log(_this5.statisticsOrderByOrderStatus); //console.log(this.statisticsActivatingAndInActivatingProducts);
+
+                    _this5.isStatisticsOrderByOrderStatusLoading = false;
+                  }
+                } else {}
+              } else {}
+            });
+          }
+        }, {
           key: "getOrders",
           value: function getOrders(pageIndex, typeOrder) {
-            var _this5 = this;
+            var _this6 = this;
 
             this.loading = true;
             this.sellerOrderService.getAllProductPaging(pageIndex, typeOrder).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$)).subscribe(function (result) {
               console.log(result);
 
               if (result.resultObj) {
-                _this5.pageResult = result.resultObj;
-                console.log(_this5.listOfData);
-                Array.prototype.push.apply(_this5.listOfData, result.resultObj.items);
-                _this5.loading = false;
-                console.log(_this5.listOfData);
+                _this6.pageResult = result.resultObj;
+                console.log(_this6.listOfData);
+                Array.prototype.push.apply(_this6.listOfData, result.resultObj.items);
+                _this6.loading = false;
+                console.log(_this6.listOfData);
               }
 
-              _this5.loading = false;
+              _this6.loading = false;
             }, function (error) {
-              _this5.loading = false;
+              _this6.loading = false;
 
-              _this5.notificationService.showErrorNotification(error.message);
+              _this6.notificationService.showErrorNotification(error.message);
             });
           }
         }, {
@@ -1169,6 +1209,7 @@
           key: "ngOnInit",
           value: function ngOnInit() {
             this.getOrders(this.startOfIndex, this.tabIndex);
+            this.getStatisticsActivatingAndInActivatingProducts();
           }
         }]);
 
@@ -1182,6 +1223,8 @@
           type: _core_services_seller_seller_order_seller_order_service__WEBPACK_IMPORTED_MODULE_3__["SellerOrderService"]
         }, {
           type: src_app_core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_6__["NotificationService"]
+        }, {
+          type: src_app_core_services_seller_seller_statistic_seller_statistic_service__WEBPACK_IMPORTED_MODULE_8__["SellerStatisticService"]
         }];
       };
 

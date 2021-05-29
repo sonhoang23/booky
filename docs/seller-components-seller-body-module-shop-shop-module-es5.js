@@ -86,7 +86,10 @@
 
       var routes = [{
         path: 'edit',
-        component: _shop_edit_shop_edit_component__WEBPACK_IMPORTED_MODULE_1__["ShopEditComponent"]
+        component: _shop_edit_shop_edit_component__WEBPACK_IMPORTED_MODULE_1__["ShopEditComponent"],
+        data: {
+          title: 'Seller-app.content.body.shop.title'
+        }
       }];
 
       var ShopRoutingModule = function ShopRoutingModule() {

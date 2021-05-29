@@ -102,7 +102,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const routes = [{ path: '', component: _notfound_notfound_component__WEBPACK_IMPORTED_MODULE_1__["NotfoundComponent"] }];
+const routes = [
+    {
+        path: '',
+        component: _notfound_notfound_component__WEBPACK_IMPORTED_MODULE_1__["NotfoundComponent"],
+        data: { title: 'Seller-app.content.not-found' }
+    }
+];
 let SellerNotfoundRoutingModule = class SellerNotfoundRoutingModule {
 };
 SellerNotfoundRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

@@ -171,7 +171,11 @@
 
       var routes = [{
         path: '',
-        component: _customer_change_password_customer_change_password_component__WEBPACK_IMPORTED_MODULE_1__["CustomerChangePasswordComponent"]
+        component: _customer_change_password_customer_change_password_component__WEBPACK_IMPORTED_MODULE_1__["CustomerChangePasswordComponent"],
+        data: {
+          title: 'Customer-app.body.user.change-pass' //breadcrumb: 'Cart'
+
+        }
       }];
 
       var CustomerChangePasswordRoutingModule = function CustomerChangePasswordRoutingModule() {

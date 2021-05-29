@@ -234,7 +234,11 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: ':shopId',
-        component: _component_shop_detail_shop_detail_component__WEBPACK_IMPORTED_MODULE_1__["ShopDetailComponent"]
+        component: _component_shop_detail_shop_detail_component__WEBPACK_IMPORTED_MODULE_1__["ShopDetailComponent"],
+        data: {
+            title: 'Customer-app.body.shop.title',
+            breadcrumb: 'Shop'
+        }
     }
 ];
 // const routes: Routes = [

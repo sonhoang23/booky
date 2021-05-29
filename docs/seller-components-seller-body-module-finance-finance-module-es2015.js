@@ -375,7 +375,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const routes = [{ path: '', component: _components_finance_page_finance_page_component__WEBPACK_IMPORTED_MODULE_3__["FinancePageComponent"] }];
+const routes = [{ path: '', component: _components_finance_page_finance_page_component__WEBPACK_IMPORTED_MODULE_3__["FinancePageComponent"], data: { title: 'Seller-app.content.body.finance' } }];
 let FinanceRoutingModule = class FinanceRoutingModule {
 };
 FinanceRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

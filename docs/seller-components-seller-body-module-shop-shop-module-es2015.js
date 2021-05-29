@@ -31,7 +31,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const routes = [{ path: 'edit', component: _shop_edit_shop_edit_component__WEBPACK_IMPORTED_MODULE_1__["ShopEditComponent"] }];
+const routes = [
+    { path: 'edit', component: _shop_edit_shop_edit_component__WEBPACK_IMPORTED_MODULE_1__["ShopEditComponent"], data: { title: 'Seller-app.content.body.shop.title' } }
+];
 let ShopRoutingModule = class ShopRoutingModule {
 };
 ShopRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

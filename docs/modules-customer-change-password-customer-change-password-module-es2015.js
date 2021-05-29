@@ -92,7 +92,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const routes = [{ path: '', component: _customer_change_password_customer_change_password_component__WEBPACK_IMPORTED_MODULE_1__["CustomerChangePasswordComponent"] }];
+const routes = [
+    {
+        path: '',
+        component: _customer_change_password_customer_change_password_component__WEBPACK_IMPORTED_MODULE_1__["CustomerChangePasswordComponent"],
+        data: {
+            title: 'Customer-app.body.user.change-pass'
+            //breadcrumb: 'Cart'
+        }
+    }
+];
 let CustomerChangePasswordRoutingModule = class CustomerChangePasswordRoutingModule {
 };
 CustomerChangePasswordRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

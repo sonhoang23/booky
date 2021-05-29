@@ -272,7 +272,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nz-card nzTitle=\"Thống Kê\">\n\t<div class=\"row\">\n\t\t<div class=\"col l-3\" *ngFor=\"let statisticItem of statisticItems\">\n\t\t\t<app-statistic-item [statisticItem]=\"statisticItem\"></app-statistic-item>\n\t\t</div>\n\t</div>\n</nz-card>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<nz-card nzTitle=\"Thống Kê\">\n\t<div class=\"row\">\n\t\t<div style=\"margin-bottom: 15px;\" class=\"col l-3\" *ngFor=\"let statisticItem of statisticItems\">\n\t\t\t<app-statistic-item [statisticItem]=\"statisticItem\"></app-statistic-item>\n\t\t</div>\n\t\t\n\t</div>\n</nz-card>\n");
 
 /***/ }),
 

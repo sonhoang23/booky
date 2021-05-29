@@ -678,7 +678,10 @@
 
       var routes = [{
         path: '',
-        component: _components_finance_page_finance_page_component__WEBPACK_IMPORTED_MODULE_3__["FinancePageComponent"]
+        component: _components_finance_page_finance_page_component__WEBPACK_IMPORTED_MODULE_3__["FinancePageComponent"],
+        data: {
+          title: 'Seller-app.content.body.finance'
+        }
       }];
 
       var FinanceRoutingModule = function FinanceRoutingModule() {

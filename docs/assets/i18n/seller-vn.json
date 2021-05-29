@@ -2,6 +2,8 @@
 	"Seller-app": {
 		"header": {},
 		"content": {
+			"login":"Đăng Nhập",
+			"not-found":"Không Tìm Thấy",
 			"side-bar": {},
 			"body": {
 				"home": {
@@ -229,7 +231,16 @@
 							}
 						}
 					}
-				}
+				},
+				"order":{
+					"order":"Đơn Hàng",
+					"inprogress":"Đơn Cần Xử Lý"
+
+				},
+				"shop":{
+					"title":"Gian Hàng"
+				},
+				"finance":"Tài Chính"
 			}
 		}
 	},

@@ -55,7 +55,7 @@ ProductSuggestModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])(
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nz-skeleton *ngIf=\"isLoading; else completedLoading\" [nzLoading]=\"isLoading\" [nzActive]=\"true\"></nz-skeleton>\n<ng-template #completedLoading>\n\t<div class=\"product-cart\">\n\t\t<div class=\"grid wide\">\n\t\t\t<nz-page-header>\n\t\t\t\t<nz-page-header-title></nz-page-header-title>\n\n\t\t\t\t<!--subtitle-->\n\t\t\t\t<nz-page-header-subtitle></nz-page-header-subtitle>\n\t\t\t\t<!--content-->\n\t\t\t\t<nz-page-header-content>\n\t\t\t\t\t<!-- <nz-card nzTitle=\"Card Title\"> -->\n\n\t\t\t\t\t<nz-card\n\t\t\t\t\t\tstyle=\"margin-bottom: 25px;\"\n\t\t\t\t\t\t*ngFor=\"let cartShopResponse of cartShopResponses\"\n\t\t\t\t\t\tnzType=\"inner\"\n\t\t\t\t\t\t[nzTitle]=\"titleTemplate\"\n\t\t\t\t\t\tid=\"shopId_{{cartShopResponse.shopId}}\"\n\t\t\t\t\t>\n\t\t\t\t\t\t<ng-template #titleTemplate>\n\t\t\t\t\t\t\t<div style=\"font-weight: 500; font-size: large;\" class=\"row\">\n\t\t\t\t\t\t\t\t<!-- <div class=\"col l-0-4\"><label nz-checkbox></label></div> -->\n\t\t\t\t\t\t\t\t<div class=\"col l-0.4\"><i nz-icon nzType=\"shop\" nzTheme=\"outline\"></i></div>\n\t\t\t\t\t\t\t\t<div>{{cartShopResponse.shopName}}</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<nz-divider></nz-divider>\n\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t<div class=\"col l-4\">\n\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\" style=\"text-align: center;\">anh</div>\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-8\" style=\"text-align: center;\">Tên Sản Phẩm</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"col l-8\">\n\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-10\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\" style=\"text-align: center;\">Giá</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\" style=\"text-align: center;\">Số Lượng</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\" style=\"text-align: center;\">Thành Tiền</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-2\" style=\"text-align: center;\">Thao Tác</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t\tstyle=\"margin-bottom: 25px;\"\n\t\t\t\t\t\t\tclass=\"row\"\n\t\t\t\t\t\t\t*ngFor=\"let cartProductResponses of cartShopResponse.cartProductResponses\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<!-- <div class=\"col l-0-4\"><label nz-checkbox></label></div> -->\n\t\t\t\t\t\t\t<div class=\"col l-12\">\n\t\t\t\t\t\t\t\t<div class=\"row\" style=\"align-items: center;\">\n\t\t\t\t\t\t\t\t\t<div class=\"col l-4\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"row\" style=\"align-items: center;\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\" style=\"display:flex; justify-content: center;\">\n\t\t\t\t\t\t\t\t\t\t\t\t<img\n\t\t\t\t\t\t\t\t\t\t\t\t\tnz-image\n\t\t\t\t\t\t\t\t\t\t\t\t\theight=\"80px\"\n\t\t\t\t\t\t\t\t\t\t\t\t\tmax-width=\"100%\"\n\t\t\t\t\t\t\t\t\t\t\t\t\tnzSrc=\"{{host}}/{{cartProductResponses.imagePath}}\"\n\t\t\t\t\t\t\t\t\t\t\t\t\talt=\"\"\n\t\t\t\t\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-8\">\n\t\t\t\t\t\t\t\t\t\t\t\t<a\n\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"product-name\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t[routerLink]=\"['/products',cartProductResponses.productId]\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t>{{cartProductResponses.productName}}</a\n\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div class=\"col l-8\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"row\" style=\"align-items: center;\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-10\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"text-align: right;text-decoration: line-through; font-size: 1.3rem;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tcolor: #898989;\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"col l-6\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{cartProductResponses.originalPrice|currency:'VND'}}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"text-align: left; font-size: 1.6rem;\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"col l-6\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{cartProductResponses.price|currency:'VND'}}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"row\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"justify-content: center; align-items: center;\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<!-- <button nz-button nzType=\"primary\" nzSize=\"default\"><i nz-icon nzType=\"minus\" nzTheme=\"outline\"></i></button> -->\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-input-number\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tngModel=\"{{cartProductResponses.quantity}}\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t(ngModelChange)=\"changeQuantity($event, cartProductResponses.productId )\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzMin]=\"1\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzMax]=\"10\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzStep]=\"1\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-input-number>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<!-- <button nz-button nzType=\"primary\" nzSize=\"default\"><i nz-icon nzType=\"plus\" nzTheme=\"outline\"></i></button> -->\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"row\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"align-items: center; text-align: center;color: #db2121;\n\t\t\t\t\t\t\t\t\t\t\t\t\tfont-size: 1.6rem;\n\t\t\t\t\t\t\t\t\t\t\t\t\tline-height: 2rem;\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{cartProductResponses.price * cartProductResponses.quantity |currency:'VND'}}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-2\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\" style=\"align-items: center;\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a (click)=\"deleteCardProduct(cartProductResponses.productId)\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>-Xóa</a\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\" style=\"align-items: center;\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-dropdown\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTrigger=\"click\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzDropdownMenu]=\"relativeproduct\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-Sản Phẩm Liên Quan\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"down\"></i>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-dropdown-menu #relativeproduct=\"nzDropdownMenu\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-card\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"width:1100px;\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"Card title\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzExtra]=\"extraTemplate\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"grid wide\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">san pham lien quan</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-card>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ng-template #extraTemplate>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a>More</a>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-dropdown-menu>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</nz-card>\n\n\t\t\t\t\t<nz-card nzType=\"inner\" style=\"margin-top:16px;\" nzTitle=\"Tổng\">\n\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t<div class=\"col l-6\">\n\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t<div class=\"col l-2\">\n\t\t\t\t\t\t\t\t\t\t<button (click)=\"deleteCart()\"nz-button nzType=\"primary\" nzDanger>\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"delete\" nzTheme=\"outline\"></i>\n\t\t\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col l-6\">\n\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t<div class=\"cl l-9\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\">\n\t\t\t\t\t\t\t\t\t\t\t\t<p>Tổng tiền hàng</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>({{totalProductQuantity}} sản phẩm)</p>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t\t\t\t\t\tclass=\"col l-8\"\n\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"font-size:2.5rem;\n\t\t\t\t\t\t\t\t\t\tline-height: 1.875rem;\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tcolor: #db2121;\"\n\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t{{totalProductPrice|currency:'VND'}}\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div class=\"cl l-3\">\n\t\t\t\t\t\t\t\t\t\t<button (click)=\"order()\" nz-button nzType=\"primary\">Mua Hàng</button>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</nz-card>\n\t\t\t\t\t<!-- </nz-card> -->\n\t\t\t\t</nz-page-header-content>\n\t\t\t</nz-page-header>\n\t\t</div>\n\t</div>\n</ng-template>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<nz-skeleton *ngIf=\"isLoading; else completedLoading\" [nzLoading]=\"isLoading\" [nzActive]=\"true\"></nz-skeleton>\n<ng-template #completedLoading>\n\t<div class=\"product-cart\">\n\t\t<div class=\"grid wide\">\n\t\t\t<nz-page-header>\n\t\t\t\t<nz-page-header-title></nz-page-header-title>\n\n\t\t\t\t<!--subtitle-->\n\t\t\t\t<nz-page-header-subtitle></nz-page-header-subtitle>\n\t\t\t\t<!--content-->\n\t\t\t\t<nz-page-header-content>\n\t\t\t\t\t<!-- <nz-card nzTitle=\"Card Title\"> -->\n\n\t\t\t\t\t<nz-card\n\t\t\t\t\t\tstyle=\"margin-bottom: 25px;\"\n\t\t\t\t\t\t*ngFor=\"let cartShopResponse of cartShopResponses\"\n\t\t\t\t\t\tnzType=\"inner\"\n\t\t\t\t\t\t[nzTitle]=\"titleTemplate\"\n\t\t\t\t\t\tid=\"shopId_{{cartShopResponse.shopId}}\"\n\t\t\t\t\t>\n\t\t\t\t\t\t<ng-template #titleTemplate>\n\t\t\t\t\t\t\t<div style=\"font-weight: 500; font-size: large;\" class=\"row\">\n\t\t\t\t\t\t\t\t<!-- <div class=\"col l-0-4\"><label nz-checkbox></label></div> -->\n\t\t\t\t\t\t\t\t<div class=\"col l-0.4\"><i nz-icon nzType=\"shop\" nzTheme=\"outline\"></i></div>\n\t\t\t\t\t\t\t\t<div>{{cartShopResponse.shopName}}</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<nz-divider></nz-divider>\n\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t<div class=\"col l-4\">\n\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\" style=\"text-align: center;\">Ảnh</div>\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-8\" style=\"text-align: center;\">Tên Sản Phẩm</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t<div class=\"col l-8\">\n\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-10\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\" style=\"text-align: center;\">Giá Tiền</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\" style=\"text-align: center;\">Số Lượng</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\" style=\"text-align: center;\">Thành Tiền</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-2\" style=\"text-align: center;\">Thao Tác</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t<div\n\t\t\t\t\t\t\tstyle=\"margin-bottom: 25px;\"\n\t\t\t\t\t\t\tclass=\"row\"\n\t\t\t\t\t\t\t*ngFor=\"let cartProductResponses of cartShopResponse.cartProductResponses\"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<!-- <div class=\"col l-0-4\"><label nz-checkbox></label></div> -->\n\t\t\t\t\t\t\t<div class=\"col l-12\">\n\t\t\t\t\t\t\t\t<div class=\"row\" style=\"align-items: center;\">\n\t\t\t\t\t\t\t\t\t<div class=\"col l-4\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"row\" style=\"align-items: center;\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\" style=\"display:flex; justify-content: center;\">\n\t\t\t\t\t\t\t\t\t\t\t\t<img\n\t\t\t\t\t\t\t\t\t\t\t\t\tnz-image\n\t\t\t\t\t\t\t\t\t\t\t\t\theight=\"80px\"\n\t\t\t\t\t\t\t\t\t\t\t\t\tmax-width=\"100%\"\n\t\t\t\t\t\t\t\t\t\t\t\t\tnzSrc=\"{{host}}/{{cartProductResponses.imagePath}}\"\n\t\t\t\t\t\t\t\t\t\t\t\t\talt=\"\"\n\t\t\t\t\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-8\">\n\t\t\t\t\t\t\t\t\t\t\t\t<a\n\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"product-name\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t[routerLink]=\"['/products',cartProductResponses.productId]\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t>{{cartProductResponses.productName}}</a\n\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div class=\"col l-8\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"row\" style=\"align-items: center;\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-10\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"text-align: right;text-decoration: line-through; font-size: 1.3rem;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tcolor: #898989;\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"col l-6\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{cartProductResponses.originalPrice|currency:'VND'}}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"text-align: left; font-size: 1.6rem;\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"col l-6\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{cartProductResponses.price|currency:'VND'}}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"row\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"justify-content: center; align-items: center;\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<!-- <button nz-button nzType=\"primary\" nzSize=\"default\"><i nz-icon nzType=\"minus\" nzTheme=\"outline\"></i></button> -->\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-input-number\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tngModel=\"{{cartProductResponses.quantity}}\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t(ngModelChange)=\"changeQuantity($event, cartProductResponses.productId )\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzMin]=\"1\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzMax]=\"10\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzStep]=\"1\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-input-number>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<!-- <button nz-button nzType=\"primary\" nzSize=\"default\"><i nz-icon nzType=\"plus\" nzTheme=\"outline\"></i></button> -->\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"row\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"align-items: center; text-align: center;color: #db2121;\n\t\t\t\t\t\t\t\t\t\t\t\t\tfont-size: 1.6rem;\n\t\t\t\t\t\t\t\t\t\t\t\t\tline-height: 2rem;\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{cartProductResponses.price * cartProductResponses.quantity |currency:'VND'}}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-2\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\" style=\"align-items: center;\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a (click)=\"deleteCardProduct(cartProductResponses.productId)\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>-Xóa</a\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\" style=\"align-items: center;\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-dropdown\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTrigger=\"click\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t(click)=\"similarProduct(cartProductResponses.productId)\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzDropdownMenu]=\"relativeproduct\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t-Sản Phẩm Liên Quan\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"down\"></i>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-dropdown-menu #relativeproduct=\"nzDropdownMenu\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-card\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"width:1100px;\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"Card title\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzExtra]=\"extraTemplate\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"grid wide\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">Sản Phẩm Liên Quan</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-card>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ng-template #extraTemplate>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-skeleton\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"isProductSuggestionProductSimilarLoading; else completedProductSuggestionProductSimilarLoading\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLoading]=\"isProductSuggestionProductSimilarLoading\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzActive]=\"true\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-skeleton>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t#completedProductSuggestionProductSimilarLoading\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<app-product-suggest\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"isLogin\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tproductSuggestTitle=\"Có Thể Bạn Cũng Thích\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[apiResult]=\"apiResultProductShowHomePageResponds\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></app-product-suggest>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-skeleton\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"isProductSuggestionProductCosinLoading; else completedProductSuggestionProductCosinLoading\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLoading]=\"isProductSuggestionProductCosinLoading\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzActive]=\"true\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-skeleton>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<ng-template\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t#completedProductSuggestionProductCosinLoading\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<app-product-suggest\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tproductSuggestTitle=\"Sản Phẩm Tương Tự\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[apiResult]=\"apiResultProductSuggestCosin\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></app-product-suggest>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-dropdown-menu>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</nz-card>\n\t\t\t\t\t<nz-card nzType=\"inner\" style=\"margin-top:16px;\" nzTitle=\"Tổng\">\n\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t<div class=\"col l-6\">\n\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t<div class=\"col l-2\">\n\t\t\t\t\t\t\t\t\t\t<button (click)=\"deleteCart()\" nz-button nzType=\"primary\" nzDanger>\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"delete\" nzTheme=\"outline\"></i>\n\t\t\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col l-6\">\n\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t<div class=\"cl l-9\">\n\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-4\">\n\t\t\t\t\t\t\t\t\t\t\t\t<p>Tổng tiền hàng</p>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>({{totalProductQuantity}} sản phẩm)</p>\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t<div\n\t\t\t\t\t\t\t\t\t\t\t\tclass=\"col l-8\"\n\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"font-size:2.5rem;\n\t\t\t\t\t\t\t\t\t\tline-height: 1.875rem;\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\tcolor: #db2121;\"\n\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t\t{{totalProductPrice|currency:'VND'}}\n\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t<div class=\"cl l-3\">\n\t\t\t\t\t\t\t\t\t\t<button (click)=\"order()\" nz-button nzType=\"primary\">Mua Hàng</button>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</nz-card>\n\t\t\t\t\t<!-- </nz-card> -->\n\t\t\t\t</nz-page-header-content>\n\t\t\t</nz-page-header>\n\t\t</div>\n\t</div>\n</ng-template>\n");
 
 /***/ }),
 
@@ -682,9 +682,6 @@ let CustomerHeaderComponent = class CustomerHeaderComponent {
     }
     logout() {
         this.authService.logout('customer', this.router);
-        // this.store.dispatch(customerLoginResetAction({message: 'logout'}));
-        // this.localStore.removeItem('customer-token');
-        // this.router.navigate(['/login'], {queryParams: {returnUrl: this.router.routerState.snapshot.url}});
     }
     setCustomerInfor() {
         this.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_7__["select"])(src_app_core_store_customer_infor_customer_infor_selector__WEBPACK_IMPORTED_MODULE_15__["customerInforCustomerStateSelector"])).subscribe((result) => {
@@ -1082,6 +1079,7 @@ let ProductDetailComponent = class ProductDetailComponent {
         this.isRating = false;
         this.isFollowShopLoading = false;
         this.userRating = 0;
+        this.isLogin = false;
         this.isProductSuggestionProductSimilarLoading = false;
         this.isProductSuggestionProductSameShopLoading = false;
         this.isProductSuggestionProductCosinLoading = false;
@@ -1097,12 +1095,19 @@ let ProductDetailComponent = class ProductDetailComponent {
             this.productId = +this.route.snapshot.paramMap.get('productId');
             if (this.productId) {
                 const requestBase = { id: this.productId, languageCode: this.languageCode };
+                this.checkLogin();
                 this.getProductById(requestBase);
                 this.getUserRating(this.productId);
-                this.getProductSimilar();
+                this.getProductSameShop(this.productId);
                 this.getProductCosin(this.productId);
                 this.getProductCommentProgresses();
             }
+        }
+    }
+    checkLogin() {
+        if (this.authService.isAuthenticated('customer-token')) {
+            this.isLogin = true;
+            this.getProductSimilar();
         }
     }
     getProductById(requestBase) {
@@ -1238,7 +1243,6 @@ let ProductDetailComponent = class ProductDetailComponent {
     }
     /**suggest product */
     getProductSimilar() {
-        //this.productSuggestProductSimilar = this.suggestService.getProductsBySimilarProduct();
         this.isProductSuggestionProductSimilarLoading = true;
         this.suggestService
             .getProductsBySimilarProduct()
@@ -1253,15 +1257,15 @@ let ProductDetailComponent = class ProductDetailComponent {
             this.appErrorHandler.handleErrorWithNoti(error);
         });
     }
-    getProductSameShop() {
+    getProductSameShop(productById) {
         this.isProductSuggestionProductSameShopLoading = true;
         this.suggestService
-            .getProductsBySimilarProduct()
+            .getProductsSuggestSameShop(productById)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_12__["takeUntil"])(this.destroy$))
             .subscribe((result) => {
             if (result) {
-                this.apiResultProductShowHomePageResponds = result;
-                console.log(this.apiResultProductShowHomePageResponds);
+                this.apiResultProductSuggestSameShop = result;
+                console.log(this.apiResultProductSuggestSameShop);
                 this.isProductSuggestionProductSameShopLoading = false;
             }
         }, (error) => {
@@ -1464,6 +1468,9 @@ let CustomerUrlProductSuggest = class CustomerUrlProductSuggest extends _custome
     getProductsByCosin(productId) {
         return this.customerUrl + '/suggestion/similar-product-cosin/' + productId;
     }
+    getProductsSuggestSameShop(productId) {
+        return this.customerUrl + '/suggestion/same-shop/' + productId;
+    }
 };
 CustomerUrlProductSuggest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1472,6 +1479,19 @@ CustomerUrlProductSuggest = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorat
 ], CustomerUrlProductSuggest);
 
 
+
+/***/ }),
+
+/***/ "Eqme":
+/*!**********************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/modules/chat/chat-content/chat-content.component.html ***!
+  \**********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<!-- <nz-skeleton *ngIf=\"isLoading; else completedLoading\" [nzLoading]=\"isLoading\" [nzActive]=\"true\"></nz-skeleton>\n<ng-template #completedLoading> -->\n\t<div class=\"product-cart\">\n\t\t<div class=\"grid wide\">\n\t\t\t<nz-page-header style=\"padding-left: 0; padding-right: 0;\">\n\t\t\t\t<!--title-->\n\t\t\t\t<nz-page-header-title>tên đối tác</nz-page-header-title>\n\t\t\t\t<!--subtitle-->\n\t\t\t\t<nz-page-header-subtitle></nz-page-header-subtitle>\n\t\t\t\t<!--content-->\n\t\t\t\t<nz-page-header-content>\n\t\t\t\t\t<div style=\"overflow-y: scroll;width: 100%; height: 50%;\" class=\"example-item\">\n\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t<div class=\"col l-6\">\n\t\t\t\t\t\t\t\t<nz-list [nzDataSource]=\"data\" [nzRenderItem]=\"item\" [nzItemLayout]=\"'horizontal'\">\n\t\t\t\t\t\t\t\t\t<ng-template #item let-item>\n\t\t\t\t\t\t\t\t\t\t<nz-comment [nzAuthor]=\"item.author\" [nzDatetime]=\"item.datetime\">\n\t\t\t\t\t\t\t\t\t\t\t<nz-avatar nz-comment-avatar nzIcon=\"user\" [nzSrc]=\"item.avatar\"></nz-avatar>\n\t\t\t\t\t\t\t\t\t\t\t<nz-comment-content>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>{{ item.content }}</p>\n\t\t\t\t\t\t\t\t\t\t\t</nz-comment-content>\n\t\t\t\t\t\t\t\t\t\t\t<nz-comment-action>Reply to</nz-comment-action>\n\t\t\t\t\t\t\t\t\t\t</nz-comment>\n\t\t\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t\t\t</nz-list>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"col l-6\"></div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t\t<div class=\"col l-6\"></div>\n\t\t\t\t\t\t\t<div class=\"col l-6\" style=\"justify-content: flex-end;\">\n\t\t\t\t\t\t\t\t<nz-list [nzDataSource]=\"data\" [nzRenderItem]=\"item\" [nzItemLayout]=\"'horizontal'\">\n\t\t\t\t\t\t\t\t\t<ng-template #item let-item>\n\t\t\t\t\t\t\t\t\t\t<nz-comment [nzAuthor]=\"item.author\" [nzDatetime]=\"item.datetime\">\n\t\t\t\t\t\t\t\t\t\t\t<nz-avatar nz-comment-avatar nzIcon=\"user\" [nzSrc]=\"item.avatar\"></nz-avatar>\n\t\t\t\t\t\t\t\t\t\t\t<nz-comment-content>\n\t\t\t\t\t\t\t\t\t\t\t\t<p>{{ item.content }}</p>\n\t\t\t\t\t\t\t\t\t\t\t</nz-comment-content>\n\t\t\t\t\t\t\t\t\t\t\t<nz-comment-action>Reply to</nz-comment-action>\n\t\t\t\t\t\t\t\t\t\t</nz-comment>\n\t\t\t\t\t\t\t\t\t</ng-template>\n\t\t\t\t\t\t\t\t</nz-list>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<div class=\"col l-11\">\n\t\t\t\t\t\t\t<input nz-input placeholder=\"large size\" nzSize=\"large\" />\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"col l-1\">\n\t\t\t\t\t\t\t<button nz-button nzSize=\"large\" nzType=\"primary\">\n\t\t\t\t\t\t\t\t<i nz-icon nzType=\"send\" nzTheme=\"outline\"></i>\n\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</nz-page-header-content>\n\t\t\t</nz-page-header>\n\t\t</div>\n\t</div>\n\t<!-- </ng-template> -->\n\t");
 
 /***/ }),
 
@@ -1707,6 +1727,43 @@ CustomerAccountService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]
 
 /***/ }),
 
+/***/ "GVy3":
+/*!**************************************************************!*\
+  !*** ./src/app/features/modules/chat/chat/chat.component.ts ***!
+  \**************************************************************/
+/*! exports provided: ChatComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatComponent", function() { return ChatComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _raw_loader_chat_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./chat.component.html */ "PeeK");
+/* harmony import */ var _chat_component_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chat.component.less */ "bHel");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+
+
+
+
+let ChatComponent = class ChatComponent {
+    constructor() {
+        this.isLoading = false;
+    }
+    ngOnInit() { }
+};
+ChatComponent.ctorParameters = () => [];
+ChatComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+        selector: 'app-chat',
+        template: _raw_loader_chat_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        styles: [_chat_component_less__WEBPACK_IMPORTED_MODULE_2__["default"]]
+    })
+], ChatComponent);
+
+
+
+/***/ }),
+
 /***/ "GsMa":
 /*!**************************************************************************************************************************!*\
   !*** ./src/app/features/customer/components/customer-body/components/customer-carousel/customer-carousel.component.less ***!
@@ -1730,6 +1787,57 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (".product-container {\n  padding-top: 5px;\n  padding-bottom: 5px;\n}\n.product-container .product-item {\n  display: block;\n  height: 300px;\n  padding-bottom: 10px;\n}\n.product-container .product-item .product-image {\n  display: flex;\n  height: 215px;\n  justify-content: center;\n}\n.product-container .product-item .product-image .product-sale {\n  position: absolute;\n  padding: 4px 2px 3px;\n  color: #fff;\n  font-size: 12px;\n  width: 38px;\n  text-align: center;\n  background: rgba(255, 212, 36, 0.9);\n  right: 0;\n  display: block;\n  top: 0;\n  line-height: 18px;\n  text-transform: uppercase;\n  z-index: 9;\n}\n.product-container .product-item .product-image .product-sale .sale-lb {\n  color: #ff0000;\n}\n.product-container .product-item .product-image .product-sale .giam {\n  color: #fff !important;\n  margin-bottom: 10px;\n  font-weight: 600 !important;\n}\n.product-container .product-item .product-image .product-sale::after {\n  content: '';\n  width: 0;\n  height: 0;\n  left: 0;\n  bottom: -5px;\n  border-style: solid;\n  position: absolute;\n  border-width: 0 19px 5px;\n  border-color: transparent rgba(255, 212, 36, 0.9);\n}\n.product-container .product-item .product-image .product-item__image {\n  height: 100%;\n  max-width: 100%;\n}\n.product-container .product-item .product-detail {\n  max-height: 75px;\n  text-align: center;\n}\n.product-container .product-item .product-detail .product-name {\n  margin: 5px 0 5px 0;\n}\n.product-container .product-item .product-detail .product-name .product-name__text {\n  max-height: 39px;\n  height: 100%;\n  float: left;\n  width: 100%;\n  overflow: hidden;\n  word-wrap: break-word;\n  line-height: 1.9rem;\n  font-size: 1.4rem;\n  font-weight: 400;\n}\n.product-container .product-item .product-detail .product-price {\n  height: 35px;\n  align-items: center;\n}\n.product-container .product-item .product-detail .product-price .product-price__current {\n  color: #db2121;\n  font-size: 1.6rem;\n  line-height: 2rem;\n  text-align: right;\n}\n.product-container .product-item .product-detail .product-price .product-price__old {\n  font-size: 1.3rem;\n  color: #898989;\n  text-align: left;\n  text-decoration: line-through;\n}\n.product-container .product-item:hover {\n  border-width: 2px;\n  border-style: solid;\n  transform: translate3d(0, -2px, 0);\n  cursor: pointer;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInByb2R1Y3Qtc3VnZ2VzdC5jb21wb25lbnQubGVzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNDLGdCQUFBO0VBQ0EsbUJBQUE7QUFDRDtBQUhBO0VBSUUsY0FBQTtFQUNBLGFBQUE7RUFDQSxvQkFBQTtBQUVGO0FBUkE7RUFTRyxhQUFBO0VBQ0EsYUFBQTtFQUNBLHVCQUFBO0FBRUg7QUFiQTtFQWFJLGtCQUFBO0VBQ0Esb0JBQUE7RUFDQSxXQUFBO0VBQ0EsZUFBQTtFQUNBLFdBQUE7RUFDQSxrQkFBQTtFQUNBLG1DQUFBO0VBQ0EsUUFBQTtFQUNBLGNBQUE7RUFDQSxNQUFBO0VBQ0EsaUJBQUE7RUFDQSx5QkFBQTtFQUNBLFVBQUE7QUFHSjtBQTVCQTtFQTJCSyxjQUFBO0FBSUw7QUEvQkE7RUE4Qkssc0JBQUE7RUFDQSxtQkFBQTtFQUNBLDJCQUFBO0FBSUw7QUFESTtFQUNDLFdBQUE7RUFDQSxRQUFBO0VBQ0EsU0FBQTtFQUNBLE9BQUE7RUFDQSxZQUFBO0VBQ0EsbUJBQUE7RUFDQSxrQkFBQTtFQUNBLHdCQUFBO0VBQ0EsaURBQUE7QUFHTDtBQS9DQTtFQWdESSxZQUFBO0VBQ0EsZUFBQTtBQUVKO0FBbkRBO0VBcURHLGdCQUFBO0VBQ0Esa0JBQUE7QUFDSDtBQXZEQTtFQXdESSxtQkFBQTtBQUVKO0FBMURBO0VBMERLLGdCQUFBO0VBQ0EsWUFBQTtFQUNBLFdBQUE7RUFDQSxXQUFBO0VBQ0EsZ0JBQUE7RUFDQSxxQkFBQTtFQUNBLG1CQUFBO0VBQ0EsaUJBQUE7RUFDQSxnQkFBQTtBQUdMO0FBckVBO0VBc0VJLFlBQUE7RUFDQSxtQkFBQTtBQUVKO0FBekVBO0VBeUVLLGNBQUE7RUFDQSxpQkFBQTtFQUNBLGlCQUFBO0VBQ0EsaUJBQUE7QUFHTDtBQS9FQTtFQStFSyxpQkFBQTtFQUNBLGNBQUE7RUFDQSxnQkFBQTtFQUNBLDZCQUFBO0FBR0w7QUFDRTtFQUNDLGlCQUFBO0VBQ0EsbUJBQUE7RUFFQSxrQ0FBQTtFQUNBLGVBQUE7QUFBSCIsImZpbGUiOiJwcm9kdWN0LXN1Z2dlc3QuY29tcG9uZW50Lmxlc3MiLCJzb3VyY2VzQ29udGVudCI6WyIucHJvZHVjdC1jb250YWluZXIge1xuXHRwYWRkaW5nLXRvcDogNXB4O1xuXHRwYWRkaW5nLWJvdHRvbTogNXB4O1xuXHQucHJvZHVjdC1pdGVtIHtcblx0XHRkaXNwbGF5OiBibG9jaztcblx0XHRoZWlnaHQ6IDMwMHB4O1xuXHRcdHBhZGRpbmctYm90dG9tOiAxMHB4O1xuXG5cdFx0LnByb2R1Y3QtaW1hZ2Uge1xuXHRcdFx0ZGlzcGxheTogZmxleDtcblx0XHRcdGhlaWdodDogMjE1cHg7XG5cdFx0XHRqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcblx0XHRcdC5wcm9kdWN0LXNhbGUge1xuXHRcdFx0XHRwb3NpdGlvbjogYWJzb2x1dGU7XG5cdFx0XHRcdHBhZGRpbmc6IDRweCAycHggM3B4O1xuXHRcdFx0XHRjb2xvcjogI2ZmZjtcblx0XHRcdFx0Zm9udC1zaXplOiAxMnB4O1xuXHRcdFx0XHR3aWR0aDogMzhweDtcblx0XHRcdFx0dGV4dC1hbGlnbjogY2VudGVyO1xuXHRcdFx0XHRiYWNrZ3JvdW5kOiByZ2JhKDI1NSwgMjEyLCAzNiwgMC45KTtcblx0XHRcdFx0cmlnaHQ6IDA7XG5cdFx0XHRcdGRpc3BsYXk6IGJsb2NrO1xuXHRcdFx0XHR0b3A6IDA7XG5cdFx0XHRcdGxpbmUtaGVpZ2h0OiAxOHB4O1xuXHRcdFx0XHR0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xuXHRcdFx0XHR6LWluZGV4OiA5O1xuXHRcdFx0XHQuc2FsZS1sYiB7XG5cdFx0XHRcdFx0Y29sb3I6ICNmZjAwMDA7XG5cdFx0XHRcdH1cblx0XHRcdFx0LmdpYW0ge1xuXHRcdFx0XHRcdGNvbG9yOiAjZmZmICFpbXBvcnRhbnQ7XG5cdFx0XHRcdFx0bWFyZ2luLWJvdHRvbTogMTBweDtcblx0XHRcdFx0XHRmb250LXdlaWdodDogNjAwICFpbXBvcnRhbnQ7XG5cdFx0XHRcdH1cblxuXHRcdFx0XHQmOjphZnRlciB7XG5cdFx0XHRcdFx0Y29udGVudDogJyc7XG5cdFx0XHRcdFx0d2lkdGg6IDA7XG5cdFx0XHRcdFx0aGVpZ2h0OiAwO1xuXHRcdFx0XHRcdGxlZnQ6IDA7XG5cdFx0XHRcdFx0Ym90dG9tOiAtNXB4O1xuXHRcdFx0XHRcdGJvcmRlci1zdHlsZTogc29saWQ7XG5cdFx0XHRcdFx0cG9zaXRpb246IGFic29sdXRlO1xuXHRcdFx0XHRcdGJvcmRlci13aWR0aDogMCAxOXB4IDVweDtcblx0XHRcdFx0XHRib3JkZXItY29sb3I6IHRyYW5zcGFyZW50IHJnYmEoMjU1LCAyMTIsIDM2LCAwLjkpO1xuXHRcdFx0XHR9XG5cdFx0XHR9XG5cdFx0XHQucHJvZHVjdC1pdGVtX19pbWFnZSB7XG5cdFx0XHRcdGhlaWdodDogMTAwJTtcblx0XHRcdFx0bWF4LXdpZHRoOiAxMDAlO1xuXHRcdFx0fVxuXHRcdH1cblx0XHQucHJvZHVjdC1kZXRhaWwge1xuXHRcdFx0bWF4LWhlaWdodDogNzVweDtcblx0XHRcdHRleHQtYWxpZ246IGNlbnRlcjtcblx0XHRcdC5wcm9kdWN0LW5hbWUge1xuXHRcdFx0XHRtYXJnaW46IDVweCAwIDVweCAwO1xuXHRcdFx0XHQucHJvZHVjdC1uYW1lX190ZXh0IHtcblx0XHRcdFx0XHRtYXgtaGVpZ2h0OiAzOXB4O1xuXHRcdFx0XHRcdGhlaWdodDogMTAwJTtcblx0XHRcdFx0XHRmbG9hdDogbGVmdDtcblx0XHRcdFx0XHR3aWR0aDogMTAwJTtcblx0XHRcdFx0XHRvdmVyZmxvdzogaGlkZGVuO1xuXHRcdFx0XHRcdHdvcmQtd3JhcDogYnJlYWstd29yZDtcblx0XHRcdFx0XHRsaW5lLWhlaWdodDogMS45cmVtO1xuXHRcdFx0XHRcdGZvbnQtc2l6ZTogMS40cmVtO1xuXHRcdFx0XHRcdGZvbnQtd2VpZ2h0OiA0MDA7XG5cdFx0XHRcdH1cblx0XHRcdH1cblx0XHRcdC5wcm9kdWN0LXByaWNlIHtcblx0XHRcdFx0aGVpZ2h0OiAzNXB4O1xuXHRcdFx0XHRhbGlnbi1pdGVtczogY2VudGVyO1xuXHRcdFx0XHQucHJvZHVjdC1wcmljZV9fY3VycmVudCB7XG5cdFx0XHRcdFx0Y29sb3I6ICNkYjIxMjE7XG5cdFx0XHRcdFx0Zm9udC1zaXplOiAxLjZyZW07XG5cdFx0XHRcdFx0bGluZS1oZWlnaHQ6IDJyZW07XG5cdFx0XHRcdFx0dGV4dC1hbGlnbjogcmlnaHQ7XG5cdFx0XHRcdH1cblx0XHRcdFx0LnByb2R1Y3QtcHJpY2VfX29sZCB7XG5cdFx0XHRcdFx0Zm9udC1zaXplOiAxLjNyZW07XG5cdFx0XHRcdFx0Y29sb3I6ICM4OTg5ODk7XG5cdFx0XHRcdFx0dGV4dC1hbGlnbjogbGVmdDtcblx0XHRcdFx0XHR0ZXh0LWRlY29yYXRpb246IGxpbmUtdGhyb3VnaDtcblx0XHRcdFx0fVxuXHRcdFx0fVxuXHRcdH1cblx0XHQmOmhvdmVyIHtcblx0XHRcdGJvcmRlci13aWR0aDogMnB4O1xuXHRcdFx0Ym9yZGVyLXN0eWxlOiBzb2xpZDtcblx0XHRcdC8vIGJvcmRlci1jb2xvcjogJHByaW1hcnktY29sb3I7XG5cdFx0XHR0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsIC0ycHgsIDApO1xuXHRcdFx0Y3Vyc29yOiBwb2ludGVyO1xuXHRcdH1cblx0fVxufVxuIl19 */");
+
+/***/ }),
+
+/***/ "HOtH":
+/*!******************************************************************************!*\
+  !*** ./src/app/features/modules/chat/chat-content/chat-content.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: ChatContentComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatContentComponent", function() { return ChatContentComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _raw_loader_chat_content_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./chat-content.component.html */ "Eqme");
+/* harmony import */ var _chat_content_component_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chat-content.component.less */ "Nhnd");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+
+
+
+
+let ChatContentComponent = class ChatContentComponent {
+    constructor() {
+        this.data = [
+            {
+                author: 'Han Solo',
+                avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+                content: 'We supply a series of design principles',
+                datetime: Date.now
+            },
+            {
+                author: 'Han Solo',
+                avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+                content: 'We supply a series of design principles',
+                datetime: Date.now
+            }
+        ];
+    }
+    ngOnInit() {
+    }
+};
+ChatContentComponent.ctorParameters = () => [];
+ChatContentComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+        selector: 'app-chat-content',
+        template: _raw_loader_chat_content_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        styles: [_chat_content_component_less__WEBPACK_IMPORTED_MODULE_2__["default"]]
+    })
+], ChatContentComponent);
+
+
 
 /***/ }),
 
@@ -1865,7 +1973,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nz-carousel nzEffect=\"scrollx\" nzAutoPlay>\n\t<div nz-carousel-content *ngFor=\"let advertisementResponse of advertisementResponses\">\n\t\t<div class=\"div\">\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col l-12 c-12 m-12\">\n\t\t\t\t\t<a [routerLink]=\"['/products',advertisementResponse.url]\">\n\t\t\t\t\t\t<img\n\t\t\t\t\t\t\tstyle=\"max-width: 100%; max-height: 100%;\"\n\t\t\t\t\t\t\tsrc=\"{{host}}/{{advertisementResponse.image}}\"\n\t\t\t\t\t\t\talt=\"{{advertisementResponse.name}}\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t</a>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</nz-carousel>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<nz-skeleton *ngIf=\"isLoading; else completedLoading\" [nzLoading]=\"isLoading\" [nzActive]=\"true\"></nz-skeleton>\n<ng-template #completedLoading>\n\t<nz-carousel nzEffect=\"scrollx\" nzAutoPlay>\n\t\t<div nz-carousel-content *ngFor=\"let advertisementResponse of advertisementResponses\">\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col l-12 c-12 m-12\">\n\t\t\t\t\t<a [routerLink]=\"['/products',advertisementResponse.url]\">\n\t\t\t\t\t\t<img\n\t\t\t\t\t\t\tstyle=\"max-width: 100%; max-height: 100%;\"\n\t\t\t\t\t\t\tsrc=\"{{host}}/{{advertisementResponse.image}}\"\n\t\t\t\t\t\t\talt=\"{{advertisementResponse.name}}\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t</a>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</nz-carousel>\n</ng-template>\n");
 
 /***/ }),
 
@@ -1968,6 +2076,9 @@ let SuggestService = class SuggestService {
     getProductsByCosin(productId) {
         return this.http.get(this.customerUrlProductSuggest.getProductsByCosin(productId));
     }
+    getProductsSuggestSameShop(productId) {
+        return this.http.get(this.customerUrlProductSuggest.getProductsSuggestSameShop(productId));
+    }
 };
 SuggestService.ctorParameters = () => [
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] },
@@ -2029,6 +2140,45 @@ CustomerRegisterModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]
 ], CustomerRegisterModule);
 
 
+
+/***/ }),
+
+/***/ "Nhnd":
+/*!********************************************************************************!*\
+  !*** ./src/app/features/modules/chat/chat-content/chat-content.component.less ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjaGF0LWNvbnRlbnQuY29tcG9uZW50Lmxlc3MifQ== */");
+
+/***/ }),
+
+/***/ "PDL3":
+/*!********************************************************************************!*\
+  !*** ./src/app/features/modules/chat/chat-sidebar/chat-sidebar.component.less ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjaGF0LXNpZGViYXIuY29tcG9uZW50Lmxlc3MifQ== */");
+
+/***/ }),
+
+/***/ "PeeK":
+/*!******************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/modules/chat/chat/chat.component.html ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"row\" style=\"margin-right: 0px;\">\n\t<div class=\"col l-2\"><app-chat-sidebar></app-chat-sidebar></div>\n\t<div class=\"col l-10\">\n\t\t<div class=\"grid wide\">\n\t\t\t<div class=\"row\" style=\"margin-right: 0px;\">\n\t\t\t\t<div class=\"col l-12\">\n\t\t\t\t\t<router-outlet></router-outlet>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<nz-back-top></nz-back-top>\n\t\t</div>\n\t</div>\n</div>");
 
 /***/ }),
 
@@ -2220,31 +2370,23 @@ let ProductSuggestComponent = class ProductSuggestComponent {
         this.host = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].apiUrl;
     }
     ngOnInit() {
-        //console.log(this.apiResult);
-        // if (this.apiResult.resultObj) {
-        // 	this.productShowHomePageResponds = this.apiResult.resultObj;
-        // 	console.log(this.productShowHomePageResponds);
-        // }
-        //this.get();
-        // this.apiResult.subscribe((result) => {
-        // 	if (result.resultObj) {
-        // 		this.productShowHomePageResponds = result.resultObj;
-        // 		console.log(this.productShowHomePageResponds);
-        // 	}
-        // });
-        if (this.apiResult.isSuccessed) {
-            if (this.apiResult.resultObj) {
-                this.productShowHomePageResponds = this.apiResult.resultObj;
+        if (this.apiResult) {
+            console.log(this.apiResult);
+            if (this.apiResult.isSuccessed) {
+                console.log(this.apiResult);
+                if (this.apiResult.resultObj) {
+                    this.productShowHomePageResponds = this.apiResult.resultObj;
+                }
+                else {
+                    if (this.apiResult.message) {
+                        this.noti.showErrorNotification(this.apiResult.message);
+                    }
+                }
             }
             else {
                 if (this.apiResult.message) {
                     this.noti.showErrorNotification(this.apiResult.message);
                 }
-            }
-        }
-        else {
-            if (this.apiResult.message) {
-                this.noti.showErrorNotification(this.apiResult.message);
             }
         }
     }
@@ -2284,7 +2426,7 @@ ProductSuggestComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nz-skeleton *ngIf=\"isLoading; else completedLoading\" [nzLoading]=\"isLoading\" [nzActive]=\"true\"></nz-skeleton>\r\n<ng-template #completedLoading>\r\n\t<div class=\"product-detail\">\r\n\t\t<div class=\"grid wide\">\r\n\t\t\t<nz-page-header style=\"padding-left: 0; padding-right: 0;\">\r\n\t\t\t\t<!--title-->\r\n\t\t\t\t<nz-page-header-title style=\"margin-left: 5px;\">{{productById.productName}}</nz-page-header-title>\r\n\t\t\t\t<!--subtitle-->\r\n\t\t\t\t<nz-page-header-subtitle></nz-page-header-subtitle>\r\n\t\t\t\t<!--content-->\r\n\t\t\t\t<nz-page-header-content>\r\n\t\t\t\t\t<div class=\"row \">\r\n\t\t\t\t\t\t<div class=\"col l-3 m-3 c-0\">\r\n\t\t\t\t\t\t\t<app-customer-side-bar></app-customer-side-bar>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col l-9 m-9 c-12\" style=\"padding-left: 5px;\">\r\n\t\t\t\t\t\t\t<div class=\"row \">\r\n\t\t\t\t\t\t\t\t<div class=\"col l-12 m-12 c-12\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-6 m-6 c-12\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-carousel nzAutoPlay style=\"height: 399px;\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnz-carousel-content\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t*ngFor=\"let productImage of productById.images\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<img\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-image\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"max-width: 100%; max-height: 100%;\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzSrc=\"{{host}}/{{productImage.imagepath}}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\talt=\"{{productImage.caption}}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"product-item__image\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-carousel>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-6 m-6 c-12\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"product-title\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 class=\"product-title__inner\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{productById.productName}}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</h1>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"row product-price\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-3\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 class=\"product-price--price\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{productById.price|currency:'VND'}}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</h1>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-3\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 class=\"product-price--original\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{productById.originalPrice|currency:'VND'}}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</h1>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-3\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"product-price--sell-count\">Lượt Xem: 30</p>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t<hr />\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"select-wrapper\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<label>Số Lượng</label>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-2\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t#quantity\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzSize=\"default\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tmin=\"1\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tvalue=\"1\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\" style=\"margin-top: 20px;\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-6\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLoading]=\"addCartLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzBlock=\"true\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzType=\"nzDanger\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzSize=\"large\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t(click)=\"addToCart(quantity.value)\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"shopping-cart\" nzTheme=\"outline\"></i\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{'Customer-app.body.product-detail.add-cart'| translate }}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-6\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLoading]=\"buyNowLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzBlock=\"true\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzType=\"primary\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzSize=\"large\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t(click)=\"buyNow()\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"check\" nzTheme=\"outline\"></i\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{'Customer-app.body.product-detail.buy-now'| translate }}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<hr style=\"margin-top: 17px\" />\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"select-wrapper\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-rate\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzDisabled]=\"isRating\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t(ngModelChange)=\"putChangeRating($event)\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzCount]=\"5\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[ngModel]=\"userRating\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-rate>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<!--tab-->\r\n\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-12 m-12 c-12\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-tabset>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-tab\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.describe-product'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-6\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-card>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-3\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-avatar\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzSrc=\"{{host}}/{{productById.shopResponse.avatarImagePath}}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzSize]=\"64\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzIcon=\"user\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-avatar>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-9\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h4 nz-typography>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[routerLink]=\"['/shop',productById.shopResponse.shopId]\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{productById.shopResponse.shopName}}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</h4>\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h5 nz-typography>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNguời Theo Dõi:\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{productById.shopResponse.follower}}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</h5>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{productById.productName}}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzColon\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzColumn]=\"{ xxl: 3, xl: 2, lg: 2, md: 1, sm: 1, xs: 1 }\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.author'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t><a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[routerLink]=\"['/author',productById.authorId]\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{productById.authorName}}</a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.publisher'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t><a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[routerLink]=\"['/publisher',productById.publisherId]\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{productById.publisherName}}</a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.country'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t><a>{{productById.countryName}}</a></nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.page'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{productById.page}}</nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.category'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t><a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\thref=\"\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{productById.categoryName}}</a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.category-variation'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t><a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*ngFor=\"let productCategoryVariation of productById.categoryVariations; let i = index\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[routerLink]=\"['/collections',productCategoryVariation.categoryVariationAlias]\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{productCategoryVariation.categoryVariationTranslationName\r\n\r\n\r\n\r\n\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t}}{{i===productById.categoryVariations.length-1?'':',&nbsp;'}}</a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-descriptions-item>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-descriptions>\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div innerHTML=\"{{productById.entireDescription}}\"></div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-tab>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-tabset>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<nz-skeleton\r\n\t\t\t\t\t\t*ngIf=\"isProductSuggestionProductSimilarLoading; else completedProductSuggestionProductSimilarLoading\"\r\n\t\t\t\t\t\t[nzLoading]=\"isProductSuggestionProductSimilarLoading\"\r\n\t\t\t\t\t\t[nzActive]=\"true\"\r\n\t\t\t\t\t></nz-skeleton>\r\n\t\t\t\t\t<ng-template #completedProductSuggestionProductSimilarLoading>\r\n\t\t\t\t\t\t<app-product-suggest\r\n\t\t\t\t\t\t\tproductSuggestTitle=\"Sản Phẩm Tương Tự\"\r\n\t\t\t\t\t\t\t[apiResult]=\"apiResultProductShowHomePageResponds\"\r\n\t\t\t\t\t\t></app-product-suggest>\r\n\t\t\t\t\t</ng-template>\r\n\r\n\t\t\t\t\t<nz-skeleton\r\n\t\t\t\t\t\t*ngIf=\"isProductSuggestionProductSimilarLoading; else completedProductSuggestionProductSimilarLoading\"\r\n\t\t\t\t\t\t[nzLoading]=\"isProductSuggestionProductSimilarLoading\"\r\n\t\t\t\t\t\t[nzActive]=\"true\"\r\n\t\t\t\t\t></nz-skeleton>\r\n\t\t\t\t\t<ng-template #completedProductSuggestionProductSimilarLoading>\r\n\t\t\t\t\t\t<app-product-suggest\r\n\t\t\t\t\t\t\tproductSuggestTitle=\"Sản Phẩm Tương Tự\"\r\n\t\t\t\t\t\t\t[apiResult]=\"apiResultProductShowHomePageResponds\"\r\n\t\t\t\t\t\t></app-product-suggest>\r\n\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t<nz-skeleton\r\n\t\t\t\t\t\t*ngIf=\"isProductSuggestionProductCosinLoading; else completedProductSuggestionProductCosinLoading\"\r\n\t\t\t\t\t\t[nzLoading]=\"isProductSuggestionProductCosinLoading\"\r\n\t\t\t\t\t\t[nzActive]=\"true\"\r\n\t\t\t\t\t></nz-skeleton>\r\n\t\t\t\t\t<ng-template #completedProductSuggestionProductCosinLoading>\r\n\t\t\t\t\t\t<app-product-suggest\r\n\t\t\t\t\t\t\tproductSuggestTitle=\"Sản Phẩm Tương Tự\"\r\n\t\t\t\t\t\t\t[apiResult]=\"apiResultProductSuggestCosin\"\r\n\t\t\t\t\t\t></app-product-suggest>\r\n\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t<nz-skeleton\r\n\t\t\t\t\t\t*ngIf=\"isProductCommentProgressLoading; else completedProductCommentProgressLoading\"\r\n\t\t\t\t\t\t[nzLoading]=\"isProductCommentProgressLoading\"\r\n\t\t\t\t\t\t[nzActive]=\"true\"\r\n\t\t\t\t\t></nz-skeleton>\r\n\t\t\t\t\t<ng-template #completedProductCommentProgressLoading>\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\t*ngFor=\"let item of productCommentProgresses;\"\r\n\t\t\t\t\t\t\t[nzLoading]=\"isProductCommentProgressLoading\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<nz-card-meta\r\n\t\t\t\t\t\t\t\t[nzAvatar]=\"commentProgressAvatarTemplate\"\r\n\t\t\t\t\t\t\t\tnzTitle=\"{{item.name}}\"\r\n\t\t\t\t\t\t\t\t[nzDescription]=\"commentProgressDescriptionTemplate\"\r\n\t\t\t\t\t\t\t></nz-card-meta>\r\n\t\t\t\t\t\t\t<ng-template #commentProgressDescriptionTemplate>\r\n\t\t\t\t\t\t\t\t<div *ngFor=\"let commentProgressDetailResponse of item.commentProgressDetailResponses\">\r\n\t\t\t\t\t\t\t\t\t<nz-card nzTitle=\"{{commentProgressDetailResponse.dateRead |date:'dd-MM-yyyy'}}\">\r\n\t\t\t\t\t\t\t\t\t\t<p>\r\n\t\t\t\t\t\t\t\t\t\t\tCâu Trích Dẫn:\r\n\t\t\t\t\t\t\t\t\t\t\t<q\r\n\t\t\t\t\t\t\t\t\t\t\t\t><cite>{{commentProgressDetailResponse.quote}}</cite></q\r\n\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t</p>\r\n\t\t\t\t\t\t\t\t\t\t<p>Số Trang: {{commentProgressDetailResponse.pageNumber}}</p>\r\n\t\t\t\t\t\t\t\t\t\t<p>Bình Luận: {{commentProgressDetailResponse.comment}}</p>\r\n\t\t\t\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t\t\t<ng-template #commentProgressAvatarTemplate>\r\n\t\t\t\t\t\t\t\t<nz-avatar nzSrc=\"{{host}}/{{item.avatarImagePath}}\"></nz-avatar>\r\n\t\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t</ng-template>\r\n\t\t\t\t</nz-page-header-content>\r\n\t\t\t</nz-page-header>\r\n\t\t</div>\r\n\t</div>\r\n</ng-template>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<nz-skeleton *ngIf=\"isLoading; else completedLoading\" [nzLoading]=\"isLoading\" [nzActive]=\"true\"></nz-skeleton>\r\n<ng-template #completedLoading>\r\n\t<div class=\"product-detail\">\r\n\t\t<div class=\"grid wide\">\r\n\t\t\t<nz-page-header style=\"padding-left: 0; padding-right: 0;\">\r\n\t\t\t\t<!--title-->\r\n\t\t\t\t<nz-page-header-title style=\"margin-left: 5px;\">{{productById.productName}}</nz-page-header-title>\r\n\t\t\t\t<!--subtitle-->\r\n\t\t\t\t<nz-page-header-subtitle></nz-page-header-subtitle>\r\n\t\t\t\t<!--content-->\r\n\t\t\t\t<nz-page-header-content>\r\n\t\t\t\t\t<div class=\"row \">\r\n\t\t\t\t\t\t<div class=\"col l-3 m-3 c-0\">\r\n\t\t\t\t\t\t\t<app-customer-side-bar></app-customer-side-bar>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div class=\"col l-9 m-9 c-12\" style=\"padding-left: 5px;\">\r\n\t\t\t\t\t\t\t<div class=\"row \">\r\n\t\t\t\t\t\t\t\t<div class=\"col l-12 m-12 c-12\">\r\n\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-6 m-6 c-12\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-carousel nzAutoPlay style=\"height: 399px;\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnz-carousel-content\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t*ngFor=\"let productImage of productById.images\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<img\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-image\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tstyle=\"max-width: 100%; max-height: 100%;\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzSrc=\"{{host}}/{{productImage.imagepath}}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\talt=\"{{productImage.caption}}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"product-item__image\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-carousel>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-6 m-6 c-12\">\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-12\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"product-title\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 class=\"product-title__inner\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{productById.productName}}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</h1>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"row product-price\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-3\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 class=\"product-price--price\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{productById.price|currency:'VND'}}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</h1>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-3\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 class=\"product-price--original\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{productById.originalPrice|currency:'VND'}}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</h1>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-3\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<p class=\"product-price--sell-count\">Lượt Xem: 30</p>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t<hr />\r\n\t\t\t\t\t\t\t\t\t\t\t<div class=\"select-wrapper\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<label>Số Lượng</label>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-2\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t#quantity\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzSize=\"default\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tmin=\"1\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tvalue=\"1\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\" style=\"margin-top: 20px;\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-6\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLoading]=\"addCartLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzBlock=\"true\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzType=\"nzDanger\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzSize=\"large\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t(click)=\"addToCart(quantity.value)\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"shopping-cart\" nzTheme=\"outline\"></i\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{'Customer-app.body.product-detail.add-cart'| translate }}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-6\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLoading]=\"buyNowLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzBlock=\"true\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzType=\"primary\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzSize=\"large\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t(click)=\"buyNow()\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"check\" nzTheme=\"outline\"></i\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{'Customer-app.body.product-detail.buy-now'| translate }}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<hr style=\"margin-top: 17px\" />\r\n\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"select-wrapper\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-rate\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzDisabled]=\"isRating\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t(ngModelChange)=\"putChangeRating($event)\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzCount]=\"5\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[ngModel]=\"userRating\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-rate>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t<!--tab-->\r\n\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t<div class=\"col l-12 m-12 c-12\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-tabset>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-tab\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.describe-product'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-6\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-card>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-3\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-avatar\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzSrc=\"{{host}}/{{productById.shopResponse.avatarImagePath}}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzSize]=\"64\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzIcon=\"user\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-avatar>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class=\"col l-9\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h4 nz-typography>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[routerLink]=\"['/shop',productById.shopResponse.shopId]\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{productById.shopResponse.shopName}}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</h4>\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h5 nz-typography>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tNguời Theo Dõi:\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t{{productById.shopResponse.follower}}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</h5>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{productById.productName}}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzColon\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzColumn]=\"{ xxl: 3, xl: 2, lg: 2, md: 1, sm: 1, xs: 1 }\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.author'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t><a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[routerLink]=\"['/author',productById.authorId]\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{productById.authorName}}</a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.publisher'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t><a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[routerLink]=\"['/publisher',productById.publisherId]\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{productById.publisherName}}</a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.country'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t><a>{{productById.countryName}}</a></nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.page'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{productById.page}}</nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.category'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t><a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\thref=\"\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{productById.categoryName}}</a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-descriptions-item\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnzTitle=\"{{'Customer-app.body.product-detail.describe-product.category-variation'| translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t><a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t*ngFor=\"let productCategoryVariation of productById.categoryVariations; let i = index\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t[routerLink]=\"['/collections',productCategoryVariation.categoryVariationAlias]\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>{{productCategoryVariation.categoryVariationTranslationName\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t}}{{i===productById.categoryVariations.length-1?'':',&nbsp;'}}</a\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-descriptions-item>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-descriptions>\r\n\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<div innerHTML=\"{{productById.entireDescription}}\"></div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-tab>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-tabset>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<nz-skeleton\r\n\t\t\t\t\t\t*ngIf=\"isProductSuggestionProductSimilarLoading; else completedProductSuggestionProductSimilarLoading\"\r\n\t\t\t\t\t\t[nzLoading]=\"isProductSuggestionProductSimilarLoading\"\r\n\t\t\t\t\t\t[nzActive]=\"true\"\r\n\t\t\t\t\t></nz-skeleton>\r\n\t\t\t\t\t<ng-template #completedProductSuggestionProductSimilarLoading>\r\n\t\t\t\t\t\t<app-product-suggest\r\n\t\t\t\t\t\t\t*ngIf=\"isLogin\"\r\n\t\t\t\t\t\t\tproductSuggestTitle=\"Có Thể Bạn Cũng Thích\"\r\n\t\t\t\t\t\t\t[apiResult]=\"apiResultProductShowHomePageResponds\"\r\n\t\t\t\t\t\t></app-product-suggest>\r\n\t\t\t\t\t</ng-template>\r\n\r\n\t\t\t\t\t<nz-skeleton\r\n\t\t\t\t\t\t*ngIf=\"isProductSuggestionProductSameShopLoading; else completedProductSuggestionProductSameShopLoading\"\r\n\t\t\t\t\t\t[nzLoading]=\"isProductSuggestionProductSameShopLoading\"\r\n\t\t\t\t\t\t[nzActive]=\"true\"\r\n\t\t\t\t\t></nz-skeleton>\r\n\t\t\t\t\t<ng-template #completedProductSuggestionProductSameShopLoading>\r\n\t\t\t\t\t\t<app-product-suggest\r\n\t\t\t\t\t\t\tproductSuggestTitle=\"Sản Phẩm Khác Của Shop\"\r\n\t\t\t\t\t\t\t[apiResult]=\"apiResultProductSuggestSameShop\"\r\n\t\t\t\t\t\t></app-product-suggest>\r\n\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t<nz-skeleton\r\n\t\t\t\t\t\t*ngIf=\"isProductSuggestionProductCosinLoading; else completedProductSuggestionProductCosinLoading\"\r\n\t\t\t\t\t\t[nzLoading]=\"isProductSuggestionProductCosinLoading\"\r\n\t\t\t\t\t\t[nzActive]=\"true\"\r\n\t\t\t\t\t></nz-skeleton>\r\n\t\t\t\t\t<ng-template #completedProductSuggestionProductCosinLoading>\r\n\t\t\t\t\t\t<app-product-suggest\r\n\t\t\t\t\t\t\tproductSuggestTitle=\"Sản Phẩm Tương Tự\"\r\n\t\t\t\t\t\t\t[apiResult]=\"apiResultProductSuggestCosin\"\r\n\t\t\t\t\t\t></app-product-suggest>\r\n\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t<nz-skeleton\r\n\t\t\t\t\t\t*ngIf=\"isProductCommentProgressLoading; else completedProductCommentProgressLoading\"\r\n\t\t\t\t\t\t[nzLoading]=\"isProductCommentProgressLoading\"\r\n\t\t\t\t\t\t[nzActive]=\"true\"\r\n\t\t\t\t\t></nz-skeleton>\r\n\t\t\t\t\t<ng-template #completedProductCommentProgressLoading>\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\t*ngFor=\"let item of productCommentProgresses;\"\r\n\t\t\t\t\t\t\t[nzLoading]=\"isProductCommentProgressLoading\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<nz-card-meta\r\n\t\t\t\t\t\t\t\t[nzAvatar]=\"commentProgressAvatarTemplate\"\r\n\t\t\t\t\t\t\t\tnzTitle=\"{{item.name}}\"\r\n\t\t\t\t\t\t\t\t[nzDescription]=\"commentProgressDescriptionTemplate\"\r\n\t\t\t\t\t\t\t></nz-card-meta>\r\n\t\t\t\t\t\t\t<ng-template #commentProgressDescriptionTemplate>\r\n\t\t\t\t\t\t\t\t<div *ngFor=\"let commentProgressDetailResponse of item.commentProgressDetailResponses\">\r\n\t\t\t\t\t\t\t\t\t<nz-card nzTitle=\"{{commentProgressDetailResponse.dateRead |date:'dd-MM-yyyy'}}\">\r\n\t\t\t\t\t\t\t\t\t\t<p>\r\n\t\t\t\t\t\t\t\t\t\t\tCâu Trích Dẫn:\r\n\t\t\t\t\t\t\t\t\t\t\t<q\r\n\t\t\t\t\t\t\t\t\t\t\t\t><cite>{{commentProgressDetailResponse.quote}}</cite></q\r\n\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t</p>\r\n\t\t\t\t\t\t\t\t\t\t<p>Số Trang: {{commentProgressDetailResponse.pageNumber}}</p>\r\n\t\t\t\t\t\t\t\t\t\t<p>Bình Luận: {{commentProgressDetailResponse.comment}}</p>\r\n\t\t\t\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t\t\t<ng-template #commentProgressAvatarTemplate>\r\n\t\t\t\t\t\t\t\t<nz-avatar nzSrc=\"{{host}}/{{item.avatarImagePath}}\"></nz-avatar>\r\n\t\t\t\t\t\t\t</ng-template>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t</ng-template>\r\n\t\t\t\t</nz-page-header-content>\r\n\t\t\t</nz-page-header>\r\n\t\t</div>\r\n\t</div>\r\n</ng-template>\r\n");
 
 /***/ }),
 
@@ -2859,6 +3001,19 @@ CustomerLoginEffect = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 ], CustomerLoginEffect);
 
 
+
+/***/ }),
+
+/***/ "bHel":
+/*!****************************************************************!*\
+  !*** ./src/app/features/modules/chat/chat/chat.component.less ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjaGF0LmNvbXBvbmVudC5sZXNzIn0= */");
 
 /***/ }),
 
@@ -3575,7 +3730,8 @@ const routes = [
                 path: 'collections/:alias',
                 component: _components_customer_body_category_variation_category_variation_component__WEBPACK_IMPORTED_MODULE_8__["CategoryVariationComponent"],
                 data: {
-                    title: 'Customer-app.body.home.title'
+                    title: 'Customer-app.body.home.title',
+                    breadcrumb: 'Collection'
                 }
             },
             {
@@ -3603,7 +3759,7 @@ const routes = [
             },
             {
                 path: 'publisher',
-                loadChildren: () => __webpack_require__.e(/*! import() | components-customer-body-modules-publisher-publisher-module */ "components-customer-body-modules-publisher-publisher-module").then(__webpack_require__.bind(null, /*! ./components/customer-body/modules/publisher/publisher.module */ "TuL5")).then((m) => m.PublisherModule)
+                loadChildren: () => Promise.all(/*! import() | components-customer-body-modules-publisher-publisher-module */[__webpack_require__.e("default~components-admin-body-Author-Author-module~components-admin-body-publisher-publisher-module~~0ae09f18"), __webpack_require__.e("components-customer-body-modules-publisher-publisher-module")]).then(__webpack_require__.bind(null, /*! ./components/customer-body/modules/publisher/publisher.module */ "TuL5")).then((m) => m.PublisherModule)
             },
             {
                 //host/shop
@@ -3617,8 +3773,8 @@ const routes = [
             },
             {
                 //host/shop
-                path: 'notification',
-                loadChildren: () => __webpack_require__.e(/*! import() | components-customer-body-modules-chat-chat-module */ "components-customer-body-modules-chat-chat-module").then(__webpack_require__.bind(null, /*! ./components/customer-body/modules/chat/chat.module */ "xCwG")).then((m) => m.ChatModule)
+                path: 'chat',
+                loadChildren: () => __webpack_require__.e(/*! import() | components-customer-body-modules-chat-Customer-chat-module */ "components-customer-body-modules-chat-Customer-chat-module").then(__webpack_require__.bind(null, /*! ./components/customer-body/modules/chat/Customer-chat.module */ "eodd")).then((m) => m.CustomerChatModule)
             },
             {
                 path: 'user',
@@ -3961,6 +4117,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_notification_notification_module__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../modules/notification/notification.module */ "zZ9x");
 /* harmony import */ var _components_customer_header_customer_notification_customer_notification_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./components/customer-header/customer-notification/customer-notification.component */ "FCRS");
 /* harmony import */ var _modules_order_order_detail_select_modal_order_detail_select_modal_module__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../modules/order/order-detail-select-modal/order-detail-select-modal.module */ "N4lr");
+/* harmony import */ var _modules_chat_chat_module__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../modules/chat/chat.module */ "vElg");
 
 
 
@@ -3988,6 +4145,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**NZ-ANT */
+
 
 
 
@@ -4033,6 +4191,7 @@ CustomerModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"],
             _components_customer_body_components_customer_index_customer_index_module__WEBPACK_IMPORTED_MODULE_30__["CustomerIndexModule"],
             _modules_notification_notification_module__WEBPACK_IMPORTED_MODULE_31__["NotificationModule"],
+            _modules_chat_chat_module__WEBPACK_IMPORTED_MODULE_34__["ChatModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"],
             src_app_core_utils_material_module__WEBPACK_IMPORTED_MODULE_10__["MaterialModule"],
             _modules_product_product_suggest_product_suggest_module__WEBPACK_IMPORTED_MODULE_1__["ProductSuggestModule"],
@@ -4111,6 +4270,51 @@ CustomerLoginGuard = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
+/***/ "sQBE":
+/*!**************************************************************!*\
+  !*** ./src/app/features/modules/chat/chat-routing.module.ts ***!
+  \**************************************************************/
+/*! exports provided: ChatRoutingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatRoutingModule", function() { return ChatRoutingModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _chat_content_chat_content_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chat-content/chat-content.component */ "HOtH");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "iInd");
+/* harmony import */ var _chat_chat_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./chat/chat.component */ "GVy3");
+
+
+
+
+
+const routes = [
+    {
+        path: '',
+        component: _chat_chat_component__WEBPACK_IMPORTED_MODULE_4__["ChatComponent"],
+        children: [
+            {
+                path: 't/:messageId',
+                component: _chat_content_chat_content_component__WEBPACK_IMPORTED_MODULE_1__["ChatContentComponent"]
+            }
+        ]
+    }
+];
+let ChatRoutingModule = class ChatRoutingModule {
+};
+ChatRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forChild(routes)],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"]]
+    })
+], ChatRoutingModule);
+
+
+
+/***/ }),
+
 /***/ "sWDA":
 /*!************************************************************************************************!*\
   !*** ./src/app/features/customer/module/customer-register/customer-register-routing.module.ts ***!
@@ -4169,15 +4373,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
 /* harmony import */ var _raw_loader_cart_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./cart.component.html */ "+osD");
 /* harmony import */ var _cart_component_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cart.component.less */ "fsmj");
-/* harmony import */ var _core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../../../../core/notification/notifications/customer/notification.service */ "7IKN");
-/* harmony import */ var src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/core/services/comon-services/spinner/spinner.service */ "LXV+");
-/* harmony import */ var _core_services_customer_cart_cart_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../../../../../core/services/customer/cart/cart.service */ "DYn8");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ "8Y7J");
-/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/environments/environment */ "AytR");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
-/* harmony import */ var src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/core/services/comon-services/destroy-service/destroy.service */ "ekmL");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs */ "qCKp");
-/* harmony import */ var src_app_core_error_handler_app_error_handler_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/core/error-handler/app-error-handler.service */ "Bp2A");
+/* harmony import */ var src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/core/services/comon-services/spinner/spinner.service */ "LXV+");
+/* harmony import */ var _core_services_customer_cart_cart_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../../../../core/services/customer/cart/cart.service */ "DYn8");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/environments/environment */ "AytR");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/core/services/comon-services/destroy-service/destroy.service */ "ekmL");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var src_app_core_error_handler_app_error_handler_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/core/error-handler/app-error-handler.service */ "Bp2A");
+/* harmony import */ var src_app_core_services_customer_suggest_suggest_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/core/services/customer/suggest/suggest.service */ "NAxR");
+/* harmony import */ var src_app_core_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/core/services/auth/auth.service */ "RL7/");
+/* harmony import */ var src_app_core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/core/notification/notifications/customer/notification.service */ "7IKN");
+
+
 
 
 
@@ -4191,28 +4399,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CartComponent = class CartComponent {
-    constructor(cartService, destroy$, spinner, noti, appErrorHandler) {
+    constructor(cartService, destroy$, spinner, noti, appErrorHandler, suggestService, authService) {
         this.cartService = cartService;
         this.destroy$ = destroy$;
         this.spinner = spinner;
         this.noti = noti;
         this.appErrorHandler = appErrorHandler;
+        this.suggestService = suggestService;
+        this.authService = authService;
         this.isLoading = false; //  //skelton
+        this.isLogin = false;
         this.totalProductQuantity = 0;
         this.totalProductPrice = 0;
-        this.cartShopResponses$ = new rxjs__WEBPACK_IMPORTED_MODULE_10__["BehaviorSubject"]([]);
-        this.host = src_environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].apiUrl;
+        this.cartShopResponses$ = new rxjs__WEBPACK_IMPORTED_MODULE_9__["BehaviorSubject"]([]);
+        this.isProductSuggestionProductSimilarLoading = false;
+        this.isProductSuggestionProductCosinLoading = false;
+        this.host = src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].apiUrl;
         this.cartShopResponses = [];
     }
     ngOnInit() {
         this.getCart();
         this.changeTotalProductQuantityAndPrice();
+        this.checkLogin();
     }
     getCart() {
         this.isLoading = true; //turn on skeleton
         this.cartService
             .getCart() //get cart form service
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["takeUntil"])(this.destroy$))
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$))
             .subscribe((result) => {
             if (result) {
                 if (result.isSuccessed) {
@@ -4256,7 +4470,7 @@ let CartComponent = class CartComponent {
         });
     }
     changeTotalProductQuantityAndPrice() {
-        this.cartShopResponses$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["takeUntil"])(this.destroy$)).subscribe((result) => {
+        this.cartShopResponses$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$)).subscribe((result) => {
             if (result) {
                 this.totalProductQuantity = 0; //calculate the quantity again
                 this.totalProductPrice = 0; //calculate the price again
@@ -4286,7 +4500,7 @@ let CartComponent = class CartComponent {
     changeQuantity(changeQuantity, productId) {
         this.cartService
             .changeQuantity(productId, changeQuantity)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["takeUntil"])(this.destroy$))
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$))
             .subscribe((result) => {
             if (result.isSuccessed) {
                 if (result.message) {
@@ -4318,7 +4532,7 @@ let CartComponent = class CartComponent {
         this.spinner.subjectSubmitLoadingHaveData$.next({ isSubmitted: true });
         this.cartService
             .deleteCardProduct(productId)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["takeUntil"])(this.destroy$))
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$))
             .subscribe((result) => {
             if (result.isSuccessed) {
                 if (result.message) {
@@ -4342,7 +4556,7 @@ let CartComponent = class CartComponent {
             this.spinner.subjectSubmitLoadingHaveData$.next({ isSubmitted: true });
             this.cartService
                 .order()
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["takeUntil"])(this.destroy$))
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$))
                 .subscribe((result) => {
                 if (result.isSuccessed) {
                     if (result.message) {
@@ -4389,19 +4603,61 @@ let CartComponent = class CartComponent {
             this.spinner.subjectSubmitLoadingHaveData$.next({ isSubmitted: false });
         });
     }
+    checkLogin() {
+        if (this.authService.isAuthenticated('customer-token')) {
+            this.isLogin = true;
+            //this.getProductSimilar();
+        }
+    }
+    similarProduct(productId) {
+        this.getProductSimilar();
+        this.getProductCosin(productId);
+    }
+    getProductSimilar() {
+        this.isProductSuggestionProductSimilarLoading = true;
+        this.suggestService
+            .getProductsBySimilarProduct()
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$))
+            .subscribe((result) => {
+            if (result) {
+                this.apiResultProductShowHomePageResponds = result;
+                console.log(this.apiResultProductShowHomePageResponds);
+                this.isProductSuggestionProductSimilarLoading = false;
+            }
+        }, (error) => {
+            this.appErrorHandler.handleErrorWithNoti(error);
+        });
+    }
+    getProductCosin(productId) {
+        this.isProductSuggestionProductCosinLoading = true;
+        this.suggestService
+            .getProductsByCosin(productId)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$))
+            .subscribe((result) => {
+            if (result) {
+                this.apiResultProductSuggestCosin = result;
+                console.log(this.apiResultProductSuggestCosin);
+                this.isProductSuggestionProductCosinLoading = false;
+            }
+        }, (error) => {
+            this.appErrorHandler.handleErrorWithNoti(error);
+        });
+    }
 };
 CartComponent.ctorParameters = () => [
-    { type: _core_services_customer_cart_cart_service__WEBPACK_IMPORTED_MODULE_5__["CartService"] },
-    { type: src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_9__["DestroyService"] },
-    { type: src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_4__["SpinnerService"] },
-    { type: _core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_3__["NotificationService"] },
-    { type: src_app_core_error_handler_app_error_handler_service__WEBPACK_IMPORTED_MODULE_11__["AppErrorHandler"] }
+    { type: _core_services_customer_cart_cart_service__WEBPACK_IMPORTED_MODULE_4__["CartService"] },
+    { type: src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_8__["DestroyService"] },
+    { type: src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_3__["SpinnerService"] },
+    { type: src_app_core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_13__["NotificationService"] },
+    { type: src_app_core_error_handler_app_error_handler_service__WEBPACK_IMPORTED_MODULE_10__["AppErrorHandler"] },
+    { type: src_app_core_services_customer_suggest_suggest_service__WEBPACK_IMPORTED_MODULE_11__["SuggestService"] },
+    { type: src_app_core_services_auth_auth_service__WEBPACK_IMPORTED_MODULE_12__["AuthService"] }
 ];
 CartComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["Component"])({
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["Component"])({
         selector: 'app-cart',
         template: _raw_loader_cart_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
-        providers: [src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_9__["DestroyService"]],
+        providers: [src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_8__["DestroyService"]],
         styles: [_cart_component_less__WEBPACK_IMPORTED_MODULE_2__["default"]]
     })
 ], CartComponent);
@@ -4557,6 +4813,58 @@ CustomerSideBarComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate
 
 /***/ }),
 
+/***/ "vElg":
+/*!******************************************************!*\
+  !*** ./src/app/features/modules/chat/chat.module.ts ***!
+  \******************************************************/
+/*! exports provided: ChatModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatModule", function() { return ChatModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "SVse");
+/* harmony import */ var _chat_chat_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chat/chat.component */ "GVy3");
+/* harmony import */ var _chat_sidebar_chat_sidebar_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./chat-sidebar/chat-sidebar.component */ "x2m8");
+/* harmony import */ var _chat_content_chat_content_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./chat-content/chat-content.component */ "HOtH");
+/* harmony import */ var src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/core/module/core.module */ "gfFi");
+/* harmony import */ var _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/cdk/scrolling */ "7KAL");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ "iInd");
+/* harmony import */ var _chat_routing_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./chat-routing.module */ "sQBE");
+
+
+
+
+
+
+
+
+
+
+let ChatModule = class ChatModule {
+};
+ChatModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+        declarations: [_chat_chat_component__WEBPACK_IMPORTED_MODULE_3__["ChatComponent"], _chat_sidebar_chat_sidebar_component__WEBPACK_IMPORTED_MODULE_4__["ChatSidebarComponent"], _chat_content_chat_content_component__WEBPACK_IMPORTED_MODULE_5__["ChatContentComponent"]],
+        exports: [_chat_chat_component__WEBPACK_IMPORTED_MODULE_3__["ChatComponent"], _chat_sidebar_chat_sidebar_component__WEBPACK_IMPORTED_MODULE_4__["ChatSidebarComponent"], _chat_content_chat_content_component__WEBPACK_IMPORTED_MODULE_5__["ChatContentComponent"]],
+        imports: [
+            _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+            _chat_routing_module__WEBPACK_IMPORTED_MODULE_9__["ChatRoutingModule"],
+            src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_6__["NgZorroAntdModule"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_8__["RouterModule"],
+            src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"],
+            src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_6__["MaterialModule"],
+            _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_7__["ScrollingModule"]
+        ]
+    })
+], ChatModule);
+
+
+
+/***/ }),
+
 /***/ "vO5l":
 /*!*****************************************************************************!*\
   !*** ./src/app/core/services/customer/notification/notification.service.ts ***!
@@ -4604,6 +4912,19 @@ NotificationService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 
 /***/ }),
 
+/***/ "wA4I":
+/*!**********************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/modules/chat/chat-sidebar/chat-sidebar.component.html ***!
+  \**********************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<nz-list [nzDataSource]=\"data\" [nzRenderItem]=\"item\" [nzItemLayout]=\"'horizontal'\">\n    <ng-template #item let-item>\n      <nz-comment [nzAuthor]=\"item.author\">\n        <nz-avatar nz-comment-avatar nzIcon=\"user\" [nzSrc]=\"item.avatar\"></nz-avatar>\n        <nz-comment-content>\n          <a [routerLink]=\"['./t/1515121']\">{{ item.content }}</a>\n        </nz-comment-content>\n      </nz-comment>\n    </ng-template>\n  </nz-list>");
+
+/***/ }),
+
 /***/ "wj1h":
 /*!****************************************************************************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/features/customer/components/customer-body/components/customer-side-bar/customer-side-bar.component.html ***!
@@ -4614,6 +4935,57 @@ NotificationService = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<ul nz-menu nzMode=\"inline\">\n\t<li *ngFor=\"let item of categoryVariationSelectList\" nz-menu-item>\n\t\t<a [routerLink]=\"['/collections',item.categoryVariationAlias]\">{{item.categoryVariationName}}</a>\n\t</li>\n</ul>\n");
+
+/***/ }),
+
+/***/ "x2m8":
+/*!******************************************************************************!*\
+  !*** ./src/app/features/modules/chat/chat-sidebar/chat-sidebar.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: ChatSidebarComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChatSidebarComponent", function() { return ChatSidebarComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _raw_loader_chat_sidebar_component_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! raw-loader!./chat-sidebar.component.html */ "wA4I");
+/* harmony import */ var _chat_sidebar_component_less__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chat-sidebar.component.less */ "PDL3");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+
+
+
+
+let ChatSidebarComponent = class ChatSidebarComponent {
+    constructor() {
+        this.data = [
+            {
+                author: 'Han Solo',
+                avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+                content: 'We supply a series of design principles',
+                datetime: Date.now
+            },
+            {
+                author: 'Han Solo',
+                avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+                content: 'We supply a series of design principles',
+                datetime: Date.now
+            }
+        ];
+    }
+    ngOnInit() {
+    }
+};
+ChatSidebarComponent.ctorParameters = () => [];
+ChatSidebarComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+        selector: 'app-chat-sidebar',
+        template: _raw_loader_chat_sidebar_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
+        styles: [_chat_sidebar_component_less__WEBPACK_IMPORTED_MODULE_2__["default"]]
+    })
+], ChatSidebarComponent);
+
+
 
 /***/ }),
 

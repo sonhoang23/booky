@@ -30,6 +30,24 @@
 			"author": {
 				"title": "Tác Giả"
 			},
+			"publisher": {
+				"title": "Nhà Xuất Bản"
+			},
+			"shop": {
+				"title": "Gian Hàng"
+			},
+			"user": {
+				"account": "Tài Khoản",
+				"order": "Đơn Hàng",
+				"order-detail": "Chi Tiết Đơn Hàng",
+				"change-pass":"Đổi Mật Khẩu",
+				"book":{
+					"bought":"Sách Đã Mua",
+					"read-list":"Danh Sách Đọc",
+					"read-list-detail":"Chi Tiết"
+				}
+				
+			},
 			"register": {
 				"title": "Trang Đăng Ký",
 				"header": "Thông Tin Khách Hàng",

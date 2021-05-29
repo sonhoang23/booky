@@ -208,7 +208,10 @@
 
       var routes = [{
         path: '',
-        component: _notfound_notfound_component__WEBPACK_IMPORTED_MODULE_1__["NotfoundComponent"]
+        component: _notfound_notfound_component__WEBPACK_IMPORTED_MODULE_1__["NotfoundComponent"],
+        data: {
+          title: 'Seller-app.content.not-found'
+        }
       }];
 
       var SellerNotfoundRoutingModule = function SellerNotfoundRoutingModule() {

@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nz-skeleton *ngIf=\"isLoading; else completedLoading\" [nzLoading]=\"isLoading\" [nzActive]=\"true\"></nz-skeleton>\r\n<ng-template #completedLoading>\r\n\t<nz-empty style=\"margin-top: 50px;\" *ngIf=\"isNotHaveData; else haveData\">\r\n\t\t<span> Không Tìm Thấy Tác Gỉa </span>\r\n\t</nz-empty>\r\n\t<ng-template #haveData>\r\n\t\t<div class=\"grid wide\">\r\n\t\t\t<nz-page-header>\r\n\t\t\t\t<!--breadcrumb-->\r\n\t\t\t\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\r\n\t\t\t\t<!--title-->\r\n\t\t\t\t<nz-page-header-title>{{publisherResponseVM.publisherName}}</nz-page-header-title>\r\n\t\t\t\t<!--subtitle-->\r\n\t\t\t\t<nz-page-header-subtitle></nz-page-header-subtitle>\r\n\t\t\t\t<!--content-->\r\n\t\t\t\t<nz-page-header-content>\r\n\t\t\t\t\t{{publisherResponseVM.description}}\r\n\t\t\t\t</nz-page-header-content>\r\n\t\t\t</nz-page-header>\r\n\t\t</div>\r\n\t</ng-template>\r\n</ng-template>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<nz-skeleton *ngIf=\"isLoading; else completedLoading\" [nzLoading]=\"isLoading\" [nzActive]=\"true\"></nz-skeleton>\r\n<ng-template #completedLoading>\r\n\t<nz-empty style=\"margin-top: 50px;\" *ngIf=\"isNotHaveData; else haveData\">\r\n\t\t<span> Không Tìm Thấy Tác Gỉa </span>\r\n\t</nz-empty>\r\n\t<ng-template #haveData>\r\n\t\t<div class=\"grid wide\">\r\n\t\t\t<nz-page-header>\r\n\t\t\t\t<!--breadcrumb-->\r\n\t\t\t\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\r\n\t\t\t\t<!--title-->\r\n\t\t\t\t<nz-page-header-title>{{publisherResponseVM.publisherName}}</nz-page-header-title>\r\n\t\t\t\t<!--subtitle-->\r\n\t\t\t\t<nz-page-header-subtitle></nz-page-header-subtitle>\r\n\t\t\t\t<!--content-->\r\n\t\t\t\t<nz-page-header-content>\r\n\t\t\t\t\t<!-- <ckeditor data=\"<p>Hello, world!</p>\"></ckeditor> -->\r\n\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t<div class=\"col l-12\"><div innerHTML=\"{{publisherResponseVM.description}}\"></div></div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</nz-page-header-content>\r\n\t\t\t</nz-page-header>\r\n\t\t</div>\r\n\t</ng-template>\r\n</ng-template>\r\n");
 
 /***/ }),
 
@@ -122,6 +122,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/core/module/core.module */ "gfFi");
 /* harmony import */ var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngx-translate/core */ "TSSN");
 /* harmony import */ var ngx_infinite_scroll__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-infinite-scroll */ "MNke");
+/* harmony import */ var _ckeditor_ckeditor5_angular__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ckeditor/ckeditor5-angular */ "PjcS");
+
 
 
 
@@ -145,6 +147,7 @@ PublisherModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
             src_app_core_module_core_module__WEBPACK_IMPORTED_MODULE_6__["NgZorroAntdModule"],
             _ngx_translate_core__WEBPACK_IMPORTED_MODULE_7__["TranslateModule"],
             ngx_infinite_scroll__WEBPACK_IMPORTED_MODULE_8__["InfiniteScrollModule"],
+            _ckeditor_ckeditor5_angular__WEBPACK_IMPORTED_MODULE_9__["CKEditorModule"]
         ]
     })
 ], PublisherModule);
@@ -231,6 +234,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/core/notification/notifications/customer/notification.service */ "7IKN");
 /* harmony import */ var src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/core/services/comon-services/destroy-service/destroy.service */ "ekmL");
 /* harmony import */ var src_app_core_services_customer_publisher_publisher_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/core/services/customer/publisher/publisher.service */ "E4+Y");
+/* harmony import */ var _ckeditor_ckeditor5_angular__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @ckeditor/ckeditor5-angular */ "PjcS");
+
 
 
 
@@ -248,6 +253,7 @@ let PublisherComponent = class PublisherComponent {
         this.notificationService = notificationService;
         this.destroy$ = destroy$;
         this.appErrorHandler = appErrorHandler;
+        this.Editor = _ckeditor_ckeditor5_angular__WEBPACK_IMPORTED_MODULE_10__;
         this.isLoading = true; //skelton
         this.isNotHaveData = false;
         this.publisherId = 1;
@@ -323,7 +329,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const routes = [{ path: ':publisherId', component: _components_publisher_publisher_component__WEBPACK_IMPORTED_MODULE_3__["PublisherComponent"] }];
+const routes = [
+    {
+        path: ':publisherId',
+        component: _components_publisher_publisher_component__WEBPACK_IMPORTED_MODULE_3__["PublisherComponent"],
+        data: {
+            title: 'Customer-app.body.publisher.title',
+            breadcrumb: 'Publisher'
+        }
+    }
+];
 let PublisherRoutingModule = class PublisherRoutingModule {
 };
 PublisherRoutingModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([

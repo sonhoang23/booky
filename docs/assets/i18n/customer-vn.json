@@ -36,6 +36,9 @@
 			"shop": {
 				"title": "Gian Hàng"
 			},
+			"group-product": {
+				"title": "Nhóm Sản Phẩm"
+			},
 			"user": {
 				"account": "Tài Khoản",
 				"order": "Đơn Hàng",

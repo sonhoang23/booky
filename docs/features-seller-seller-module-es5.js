@@ -13,7 +13,7 @@
 
   function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-  function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+  function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 
   function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
@@ -21,7 +21,7 @@
 
   function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-  function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+  function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
   function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
@@ -37,7 +37,7 @@
 
   function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
   function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
@@ -45,7 +45,7 @@
 
   function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
   function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -1195,7 +1195,7 @@
 
       var ProductUpdateComponent = /*#__PURE__*/function () {
         function ProductUpdateComponent(sellerProductService, sellerCategoryService, sellerAuthorService, sellerPublisherService, formBuilder, destroy$, appErrorHandler, route, notificationService, spinner) {
-          var _this2 = this;
+          var _this = this;
 
           _classCallCheck(this, ProductUpdateComponent);
 
@@ -1213,12 +1213,14 @@
           this.submitted = false;
           this.uploading = false;
           this.readyToDisplayProductImages = false;
+          this.isSearchGroupProductsSelectLoading = false;
           this.isAuthorSelectLoading = false;
           this.isPublisherSelectLoading = false;
           this.isCategoryVariatonsSelectLoading = false;
           this.authorSelectList = [];
           this.publisherSelectList = [];
           this.categoryVariationSelectList = [];
+          this.groupPrductSelectList = [];
           this.fileList = [];
           this.uid = 0; ///định danh cho image
 
@@ -1227,29 +1229,29 @@
           this.thumbshandlePreview = [];
 
           this.beforeUpload = function (file) {
-            _this2.fileList = _this2.fileList.concat(file);
+            _this.fileList = _this.fileList.concat(file);
             var formData = new FormData();
-            formData.append('productId', _this2.productId.toString());
+            formData.append('productId', _this.productId.toString());
             formData.append('productImage', file, file.name);
 
-            _this2.sellerProductService.postProductImagePreview(formData).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(_this2.destroy$)).subscribe(function (result) {
+            _this.sellerProductService.postProductImagePreview(formData).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(_this.destroy$)).subscribe(function (result) {
               var _a;
 
               console.log(result);
 
               if (result.resultObj != null) {
                 if (result.resultObj.imagePath != null) {
-                  _this2.thumbshandlePreview.push({
-                    uid: (_this2.uid++).toString(),
+                  _this.thumbshandlePreview.push({
+                    uid: (_this.uid++).toString(),
                     productImageId: null,
                     imagePath: (_a = result.resultObj) === null || _a === void 0 ? void 0 : _a.imagePath
                   });
                 }
 
-                console.log(_this2.thumbshandlePreview);
+                console.log(_this.thumbshandlePreview);
               }
             }, function () {
-              _this2.notificationService.showErrorNotification('Có Lỗi Xảy Ra, Vui Lòng Thử Lại');
+              _this.notificationService.showErrorNotification('Có Lỗi Xảy Ra, Vui Lòng Thử Lại');
             });
 
             return false;
@@ -1272,7 +1274,12 @@
             mass: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].minLength(3)]],
             length: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].minLength(3)]],
             width: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].minLength(3)]],
-            thickness: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].minLength(3)]]
+            thickness: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].minLength(3)]],
+            dateSell: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].minLength(3)]],
+            dateStartPreOrderProduct: [''],
+            dateEndPreOrderProduct: [''],
+            preOrderProductPrice: [''],
+            groupProduct: [[], [_angular_forms__WEBPACK_IMPORTED_MODULE_7__["Validators"].required]]
           });
         }
 
@@ -1289,7 +1296,6 @@
 
               if (!isNaN(productIdInNumber)) {
                 this.productId = productIdInNumber;
-                this.initFormDataFromServer();
                 this.getProductById(this.productId);
               }
             }
@@ -1301,40 +1307,47 @@
         }, {
           key: "getProductById",
           value: function getProductById(productId) {
-            var _this3 = this;
+            var _this2 = this;
 
             this.sellerProductService.getProductById({
               id: productId
             }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(this.destroy$)).subscribe(function (result) {
               if (result) {
+                console.log(result);
+
                 if (result.isSuccessed) {
                   if (result.message) {
-                    _this3.notificationService.showSuccessNotification(result.message);
+                    _this2.notificationService.showSuccessNotification(result.message);
                   }
 
                   if (result.resultObj) {
-                    _this3.productByIdInit = result.resultObj;
+                    _this2.productByIdInit = result.resultObj; // this.authorSelectList.push({
+                    // 	authorId: result.resultObj.authorId,
+                    // 	authorName: result.resultObj.authorName
+                    // });
+                    // this.publisherSelectList.push({
+                    // 	publisherId: result.resultObj.publisherId,
+                    // 	publisherName: result.resultObj.publisherName
+                    // });
+                    //this.categoryVariationSelectList= result.resultObj.categoryVariations;
+                    //this.groupPrductSelectList= result.resultObj.groupProductViewModels;
+
                     result.resultObj.images.forEach(function (val) {
-                      _this3.thumbshandlePreview.push({
-                        uid: (_this3.uid++).toString(),
+                      _this2.thumbshandlePreview.push({
+                        uid: (_this2.uid++).toString(),
                         productImageId: val.productImageId,
                         imagePath: val.imagepath
                       });
 
-                      _this3.readyToDisplayProductImages = true;
+                      _this2.readyToDisplayProductImages = true;
                     });
 
-                    _this3.spinner.subjectSubmitLoadingHaveData$.next({
-                      isSubmitted: false
-                    });
+                    _this2.initFormDataFromServer(); //
+
                   }
                 } else {
                   if (result.message) {
-                    _this3.notificationService.showErrorNotification(result.message);
-
-                    _this3.spinner.subjectSubmitLoadingHaveData$.next({
-                      isSubmitted: false
-                    });
+                    _this2.notificationService.showErrorNotification(result.message);
                   }
                 }
 
@@ -1342,37 +1355,65 @@
               }
 
               (function () {
-                _this3.notificationService.showErrorNotification('Có Lỗi Xảy Ra, Vui Lòng Thử Lại');
+                _this2.notificationService.showErrorNotification('Có Lỗi Xảy Ra, Vui Lòng Thử Lại');
               });
             });
           }
         }, {
           key: "initFormDataFromServer",
           value: function initFormDataFromServer() {
-            var _this4 = this;
+            var _this3 = this;
 
+            console.log(this.productByIdInit.groupProductViewModel);
             setTimeout(function () {
-              _this4.sellerCreateProductForm.setValue({
-                productName: _this4.productByIdInit.productName,
-                entireDescription: _this4.productByIdInit.entireDescription,
-                author: _this4.productByIdInit.authorId,
-                publisher: _this4.productByIdInit.publisherId,
-                categoryVariaton: _this4.productByIdInit.categoryVariations.map(function (_ref) {
+              _this3.sellerCreateProductForm.setValue({
+                productName: _this3.productByIdInit.productName,
+                entireDescription: _this3.productByIdInit.entireDescription,
+                author: _this3.productByIdInit.authorId,
+                publisher: _this3.productByIdInit.publisherId,
+                categoryVariaton: _this3.productByIdInit.categoryVariations.map(function (_ref) {
                   var categoryVariationId = _ref.categoryVariationId;
                   return categoryVariationId;
                 }),
-                page: _this4.productByIdInit.page,
-                publishingYear: _this4.productByIdInit.datePublisher,
-                country: _this4.productByIdInit.countryId,
-                price: _this4.productByIdInit.price,
-                originalPrice: _this4.productByIdInit.originalPrice,
-                stock: _this4.productByIdInit.stock,
-                mass: _this4.productByIdInit.mass,
-                length: _this4.productByIdInit.length,
-                width: _this4.productByIdInit.width,
-                thickness: _this4.productByIdInit.thickness
+                groupProduct: _this3.productByIdInit.groupProductViewModel.map(function (_ref2) {
+                  var groupProductId = _ref2.groupProductId;
+                  return groupProductId;
+                }),
+                page: _this3.productByIdInit.page,
+                publishingYear: _this3.productByIdInit.datePublisher,
+                country: _this3.productByIdInit.countryId,
+                price: _this3.productByIdInit.price,
+                originalPrice: _this3.productByIdInit.originalPrice,
+                stock: _this3.productByIdInit.stock,
+                mass: _this3.productByIdInit.mass,
+                length: _this3.productByIdInit.length,
+                width: _this3.productByIdInit.width,
+                thickness: _this3.productByIdInit.thickness,
+                dateSell: _this3.productByIdInit.dateSell,
+                dateStartPreOrderProduct: _this3.productByIdInit.thickness,
+                dateEndPreOrderProduct: _this3.productByIdInit.thickness,
+                preOrderProductPrice: _this3.productByIdInit.thickness
               });
             }, 5000);
+            this.spinner.subjectSubmitLoadingHaveData$.next({
+              isSubmitted: false
+            });
+          }
+        }, {
+          key: "initGroupProductList",
+          value: function initGroupProductList(searchKeyWord) {
+            var _this4 = this;
+
+            console.log('GetCategoryVariationByCatgoryId');
+            this.isSearchGroupProductsSelectLoading = true;
+            this.sellerProductService.getSearchGroupProducts({
+              searchKeyWord: searchKeyWord
+            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(this.destroy$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["debounceTime"])(500)).subscribe(function (result) {
+              console.log(result);
+              _this4.groupPrductSelectList = result.resultObj;
+              _this4.isSearchGroupProductsSelectLoading = false;
+              console.log(_this4.groupPrductSelectList);
+            });
           }
         }, {
           key: "initAuthorList",
@@ -1408,6 +1449,12 @@
               _this7.isCategoryVariatonsSelectLoading = false;
               console.log(_this7.categoryVariationSelectList);
             });
+          }
+        }, {
+          key: "onSearchGroupProduct",
+          value: function onSearchGroupProduct(value) {
+            console.log(value);
+            this.initGroupProductList(value);
           }
         }, {
           key: "onSearchAuthor",
@@ -1446,6 +1493,11 @@
               width: val.width,
               thickness: val.thickness,
               categoryVariations: val.categoryVariaton,
+              groupProducts: val.groupProduct,
+              dateSell: val.dateSell,
+              dateStartPreOrderProduct: val.dateStartPreOrderProduct,
+              dateEndPreOrderProduct: val.dateEndPreOrderProduct,
+              preOrderProductPrice: val.preOrderProductPrice,
               productImages: this.thumbshandlePreview
             };
             return productUpdateRequest;
@@ -1460,6 +1512,8 @@
             });
 
             try {
+              console.log(this.getFormData());
+
               if (this.getFormData()) {
                 this.sellerProductService.updateProduct(this.getFormData()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(this.destroy$)).subscribe(function (res) {
                   if (res.isSuccessed) {
@@ -1849,12 +1903,12 @@
       var SellerUrlProduct = /*#__PURE__*/function (_seller_url_base__WEB) {
         _inherits(SellerUrlProduct, _seller_url_base__WEB);
 
-        var _super2 = _createSuper(SellerUrlProduct);
+        var _super = _createSuper(SellerUrlProduct);
 
         function SellerUrlProduct() {
           _classCallCheck(this, SellerUrlProduct);
 
-          return _super2.call(this);
+          return _super.call(this);
         }
 
         _createClass(SellerUrlProduct, [{
@@ -1896,6 +1950,46 @@
           key: "sellerDeleteProduct",
           value: function sellerDeleteProduct(producId) {
             return this.sellerUrl + '/product/delete/' + producId;
+          }
+        }, {
+          key: "sellerCreateGroupProduct",
+          value: function sellerCreateGroupProduct() {
+            return this.sellerUrl + '/product/group-product';
+          }
+        }, {
+          key: "sellerGetGroupProductDetail",
+          value: function sellerGetGroupProductDetail(groupProductId) {
+            return this.sellerUrl + '/product/group-product/' + groupProductId;
+          }
+        }, {
+          key: "sellerEditGroupProductDetail",
+          value: function sellerEditGroupProductDetail() {
+            return this.sellerUrl + '/product/group-product';
+          }
+        }, {
+          key: "sellerGetGroupProducts",
+          value: function sellerGetGroupProducts() {
+            return this.sellerUrl + '/product/group-products';
+          }
+        }, {
+          key: "sellerGetSearchGroupProducts",
+          value: function sellerGetSearchGroupProducts(requestBase) {
+            return this.sellerUrl + "/product/search/group-products?searchKeyWord=".concat(requestBase.searchKeyWord);
+          }
+        }, {
+          key: "sellerDeleteGroupProducts",
+          value: function sellerDeleteGroupProducts(groupProductId) {
+            return this.sellerUrl + '/product/group-products/' + groupProductId;
+          }
+        }, {
+          key: "sellectGetSearchProductsSelect",
+          value: function sellectGetSearchProductsSelect(requestBase) {
+            return this.sellerUrl + "/product/search/product-select?searchKeyWord=".concat(requestBase.searchKeyWord);
+          }
+        }, {
+          key: "sellerGetPreOrderProductDropBoxBySearchKeyWordListAPI",
+          value: function sellerGetPreOrderProductDropBoxBySearchKeyWordListAPI(requestBase) {
+            return this.sellerUrl + "/product/search/Pre-Order-Product?languageCode=".concat(requestBase.languageCode, "&searchKeyWord=").concat(requestBase.searchKeyWord);
           }
         }]);
 
@@ -2495,10 +2589,6 @@
       var _swimlane_ngx_charts__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(
       /*! @swimlane/ngx-charts */
       "Lnru");
-      /* eslint-disable prefer-arrow/prefer-arrow-functions */
-
-      /* eslint-disable @typescript-eslint/naming-convention */
-
 
       var SellerModule = function SellerModule() {
         _classCallCheck(this, SellerModule);
@@ -2506,17 +2596,13 @@
 
       SellerModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["NgModule"])({
         declarations: [_seller_component__WEBPACK_IMPORTED_MODULE_6__["SellerComponent"], _components_seller_body_seller_body_component__WEBPACK_IMPORTED_MODULE_7__["SellerBodyComponent"], _components_seller_header_seller_header_component__WEBPACK_IMPORTED_MODULE_8__["SellerHeaderComponent"], _components_seller_body_home_home_component__WEBPACK_IMPORTED_MODULE_19__["HomeComponent"], _components_seller_body_product_product_component__WEBPACK_IMPORTED_MODULE_22__["ProductComponent"], _components_seller_sidebar_seller_sidebar_component__WEBPACK_IMPORTED_MODULE_23__["SellerSidebarComponent"], _components_seller_body_product_product_create_product_create_component__WEBPACK_IMPORTED_MODULE_24__["ProductCreateComponent"], _components_seller_body_product_product_all_product_all_component__WEBPACK_IMPORTED_MODULE_25__["ProductAllComponent"], _components_seller_body_product_product_update_product_update_component__WEBPACK_IMPORTED_MODULE_29__["ProductUpdateComponent"], _components_seller_header_seller_notificatio_header_seller_notification_header_component__WEBPACK_IMPORTED_MODULE_30__["SellerNotificatioHeaderComponent"], _components_seller_body_product_components_product_show_table_product_show_table_component__WEBPACK_IMPORTED_MODULE_31__["ProductShowTableComponent"], _components_seller_body_home_seller_chart_seller_chart_component__WEBPACK_IMPORTED_MODULE_1__["SellerChartComponent"], _components_seller_body_product_components_product_uncomfirm_table_product_uncomfirm_table_component__WEBPACK_IMPORTED_MODULE_32__["ProductUncomfirmTableComponent"]],
-        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_14__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormsModule"], src_app_core_utils_ng_zorro_antd_ng_zorro_antd_module__WEBPACK_IMPORTED_MODULE_10__["NgZorroAntdModule"], _seller_routing_module__WEBPACK_IMPORTED_MODULE_9__["SellerRoutingModule"], src_app_icons_provider_module__WEBPACK_IMPORTED_MODULE_11__["IconsProviderModule"], ng_zorro_antd_layout__WEBPACK_IMPORTED_MODULE_12__["NzLayoutModule"], ng_zorro_antd_menu__WEBPACK_IMPORTED_MODULE_13__["NzMenuModule"], _module_seller_login_seller_login_module__WEBPACK_IMPORTED_MODULE_20__["SellerLoginModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_15__["HttpClientModule"], src_app_core_utils_material_module__WEBPACK_IMPORTED_MODULE_16__["MaterialModule"], _ckeditor_ckeditor5_angular__WEBPACK_IMPORTED_MODULE_28__["CKEditorModule"], _modules_statistic_statistic_module__WEBPACK_IMPORTED_MODULE_33__["StatisticModule"], _modules_notification_notification_module__WEBPACK_IMPORTED_MODULE_2__["NotificationModule"], _swimlane_ngx_charts__WEBPACK_IMPORTED_MODULE_34__["NgxChartsModule"], // NgxEchartsModule.forRoot({
-        // 	echarts: () => import('echarts')
-        // }),
-        _ngx_translate_core__WEBPACK_IMPORTED_MODULE_17__["TranslateModule"].forRoot({
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_14__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormsModule"], src_app_core_utils_ng_zorro_antd_ng_zorro_antd_module__WEBPACK_IMPORTED_MODULE_10__["NgZorroAntdModule"], _seller_routing_module__WEBPACK_IMPORTED_MODULE_9__["SellerRoutingModule"], src_app_icons_provider_module__WEBPACK_IMPORTED_MODULE_11__["IconsProviderModule"], ng_zorro_antd_layout__WEBPACK_IMPORTED_MODULE_12__["NzLayoutModule"], ng_zorro_antd_menu__WEBPACK_IMPORTED_MODULE_13__["NzMenuModule"], _module_seller_login_seller_login_module__WEBPACK_IMPORTED_MODULE_20__["SellerLoginModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_15__["HttpClientModule"], src_app_core_utils_material_module__WEBPACK_IMPORTED_MODULE_16__["MaterialModule"], _ckeditor_ckeditor5_angular__WEBPACK_IMPORTED_MODULE_28__["CKEditorModule"], _modules_statistic_statistic_module__WEBPACK_IMPORTED_MODULE_33__["StatisticModule"], _modules_notification_notification_module__WEBPACK_IMPORTED_MODULE_2__["NotificationModule"], _swimlane_ngx_charts__WEBPACK_IMPORTED_MODULE_34__["NgxChartsModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_17__["TranslateModule"].forRoot({
           loader: {
             provide: _ngx_translate_core__WEBPACK_IMPORTED_MODULE_17__["TranslateLoader"],
             useFactory: HttpLoaderFactory,
             deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_15__["HttpClient"]]
           }
-        }), //StoreModule.forFeature("feature_core", reducers, {metaReducers}),
-        _ngrx_effects__WEBPACK_IMPORTED_MODULE_3__["EffectsModule"].forFeature([src_app_core_store_seller_login_login_effects__WEBPACK_IMPORTED_MODULE_21__["LoginEffects"]]), _ngrx_effects__WEBPACK_IMPORTED_MODULE_3__["EffectsModule"].forFeature([src_app_core_store_seller_setting_seller_settings_effects__WEBPACK_IMPORTED_MODULE_26__["SellerSettingsEffects"]]), // StoreModule.forFeature('sellersettings', sellerSettingReducer),
+        }), _ngrx_effects__WEBPACK_IMPORTED_MODULE_3__["EffectsModule"].forFeature([src_app_core_store_seller_login_login_effects__WEBPACK_IMPORTED_MODULE_21__["LoginEffects"]]), _ngrx_effects__WEBPACK_IMPORTED_MODULE_3__["EffectsModule"].forFeature([src_app_core_store_seller_setting_seller_settings_effects__WEBPACK_IMPORTED_MODULE_26__["SellerSettingsEffects"]]), // StoreModule.forFeature('sellersettings', sellerSettingReducer),
         // StoreModule.forFeature('sellerLogin', loginReducer),
         ngx_infinite_scroll__WEBPACK_IMPORTED_MODULE_27__["InfiniteScrollModule"] //StoreModule.forFeature("feature_SellerLogin", loginReducer), //ddky để tạo feature mới
         // StoreModule.forFeature("feature_SellerSettingsas", sellerSettingReducer),
@@ -2869,10 +2955,10 @@
 
           try {
             for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-              var _value2 = _step3.value;
+              var _value = _step3.value;
 
-              if (defined ? compare(_value2, max) > 0 : compare(_value2, _value2) === 0) {
-                max = _value2;
+              if (defined ? compare(_value, max) > 0 : compare(_value, _value) === 0) {
+                max = _value;
                 defined = true;
               }
             }
@@ -3461,55 +3547,6 @@
       }
       /***/
 
-    },
-
-    /***/
-    "2qMH":
-    /*!***************************************************************!*\
-      !*** ./node_modules/rxjs/internal/scheduled/scheduleArray.js ***!
-      \***************************************************************/
-
-    /*! no static exports found */
-
-    /***/
-    function qMH(module, exports, __webpack_require__) {
-      "use strict";
-
-      Object.defineProperty(exports, "__esModule", {
-        value: true
-      });
-
-      var Observable_1 = __webpack_require__(
-      /*! ../Observable */
-      "Q1FS");
-
-      var Subscription_1 = __webpack_require__(
-      /*! ../Subscription */
-      "zB/H");
-
-      function scheduleArray(input, scheduler) {
-        return new Observable_1.Observable(function (subscriber) {
-          var sub = new Subscription_1.Subscription();
-          var i = 0;
-          sub.add(scheduler.schedule(function () {
-            if (i === input.length) {
-              subscriber.complete();
-              return;
-            }
-
-            subscriber.next(input[i++]);
-
-            if (!subscriber.closed) {
-              sub.add(this.schedule());
-            }
-          }));
-          return sub;
-        });
-      }
-
-      exports.scheduleArray = scheduleArray; //# sourceMappingURL=scheduleArray.js.map
-
-      /***/
     },
 
     /***/
@@ -6323,106 +6360,6 @@
     },
 
     /***/
-    "7RJT":
-    /*!*******************************************************!*\
-      !*** ./node_modules/rxjs/internal/BehaviorSubject.js ***!
-      \*******************************************************/
-
-    /*! no static exports found */
-
-    /***/
-    function RJT(module, exports, __webpack_require__) {
-      "use strict";
-
-      var __extends = this && this.__extends || function () {
-        var _extendStatics = function extendStatics(d, b) {
-          _extendStatics = Object.setPrototypeOf || {
-            __proto__: []
-          } instanceof Array && function (d, b) {
-            d.__proto__ = b;
-          } || function (d, b) {
-            for (var p in b) {
-              if (b.hasOwnProperty(p)) d[p] = b[p];
-            }
-          };
-
-          return _extendStatics(d, b);
-        };
-
-        return function (d, b) {
-          _extendStatics(d, b);
-
-          function __() {
-            this.constructor = d;
-          }
-
-          d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-        };
-      }();
-
-      Object.defineProperty(exports, "__esModule", {
-        value: true
-      });
-
-      var Subject_1 = __webpack_require__(
-      /*! ./Subject */
-      "ds6q");
-
-      var ObjectUnsubscribedError_1 = __webpack_require__(
-      /*! ./util/ObjectUnsubscribedError */
-      "Mxlh");
-
-      var BehaviorSubject = function (_super) {
-        __extends(BehaviorSubject, _super);
-
-        function BehaviorSubject(_value) {
-          var _this = _super.call(this) || this;
-
-          _this._value = _value;
-          return _this;
-        }
-
-        Object.defineProperty(BehaviorSubject.prototype, "value", {
-          get: function get() {
-            return this.getValue();
-          },
-          enumerable: true,
-          configurable: true
-        });
-
-        BehaviorSubject.prototype._subscribe = function (subscriber) {
-          var subscription = _super.prototype._subscribe.call(this, subscriber);
-
-          if (subscription && !subscription.closed) {
-            subscriber.next(this._value);
-          }
-
-          return subscription;
-        };
-
-        BehaviorSubject.prototype.getValue = function () {
-          if (this.hasError) {
-            throw this.thrownError;
-          } else if (this.closed) {
-            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
-          } else {
-            return this._value;
-          }
-        };
-
-        BehaviorSubject.prototype.next = function (value) {
-          _super.prototype.next.call(this, this._value = value);
-        };
-
-        return BehaviorSubject;
-      }(Subject_1.Subject);
-
-      exports.BehaviorSubject = BehaviorSubject; //# sourceMappingURL=BehaviorSubject.js.map
-
-      /***/
-    },
-
-    /***/
     "7RrW":
     /*!************************************************************************************!*\
       !*** ./src/app/core/utils/URL/seller-url/seller-statistic/seller-url-statistic.ts ***!
@@ -6463,14 +6400,14 @@
       var SellerUrlStatistic = /*#__PURE__*/function (_seller_url_base__WEB2) {
         _inherits(SellerUrlStatistic, _seller_url_base__WEB2);
 
-        var _super3 = _createSuper(SellerUrlStatistic);
+        var _super2 = _createSuper(SellerUrlStatistic);
 
         function SellerUrlStatistic() {
           var _this12;
 
           _classCallCheck(this, SellerUrlStatistic);
 
-          _this12 = _super3.apply(this, arguments);
+          _this12 = _super2.apply(this, arguments);
           _this12.adminUrlStatistic = _this12.sellerUrl + '/statistic';
           return _this12;
         }
@@ -6624,12 +6561,12 @@
 
           try {
             for (_iterator11.s(); !(_step11 = _iterator11.n()).done;) {
-              var _value3 = _step11.value;
+              var _value2 = _step11.value;
 
-              if ((_value3 = valueof(_value3, ++index, values)) != null && (_value3 = +_value3) >= _value3) {
-                delta = _value3 - mean;
+              if ((_value2 = valueof(_value2, ++index, values)) != null && (_value2 = +_value2) >= _value2) {
+                delta = _value2 - mean;
                 mean += delta / ++count;
-                sum += delta * (_value3 - mean);
+                sum += delta * (_value2 - mean);
               }
             }
           } catch (err) {
@@ -6843,10 +6780,28 @@
       var _ngx_translate_core__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
       /*! @ngx-translate/core */
       "TSSN");
+      /* harmony import */
+
+
+      var src_app_core_services_auth_seller_seller_account_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+      /*! src/app/core/services/auth/seller/seller-account.service */
+      "22lS");
+      /* harmony import */
+
+
+      var src_app_core_services_comon_services_local_storage_service_localstorage_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
+      /*! src/app/core/services/comon-services/local-storage-service/localstorage.service */
+      "px64");
+      /* harmony import */
+
+
+      var src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+      /*! src/app/core/services/comon-services/spinner/spinner.service */
+      "LXV+");
 
       var SellerLoginComponent = /*#__PURE__*/function () {
         //observable LoginState
-        function SellerLoginComponent(router, appTranslateService, notificationService, appErrorHandler, destroy$, formBuilder, titleService, store) {
+        function SellerLoginComponent(router, appTranslateService, notificationService, appErrorHandler, destroy$, formBuilder, titleService, store, sellerAccountService, localStorageService, sellerSpinnerService) {
           _classCallCheck(this, SellerLoginComponent);
 
           this.router = router;
@@ -6857,7 +6812,9 @@
           this.formBuilder = formBuilder;
           this.titleService = titleService;
           this.store = store;
-          this.submitted = false;
+          this.sellerAccountService = sellerAccountService;
+          this.localStorageService = localStorageService;
+          this.sellerSpinnerService = sellerSpinnerService;
           this.count = 0;
           this.returnUrl = '';
         }
@@ -6866,6 +6823,7 @@
           key: "ngOnInit",
           value: function ngOnInit() {
             try {
+              this.controlSpinner();
               this.initForm();
               this.sub();
             } catch (error) {
@@ -6907,12 +6865,10 @@
 
                   _this13.notificationService.showErrorNotification(_this13.appTranslateService.instant(result.message));
                 }
-              }
+              } //this.isSubmitted = false;
 
-              _this13.submitted = false;
             }, function (error) {
-              _this13.submitted = false;
-
+              //this.isSubmitted = false;
               _this13.appErrorHandler.handleErrorWithNoti(error);
             }, function () {});
           }
@@ -6923,14 +6879,20 @@
               if (this.sellerLoginForm.invalid) {
                 return;
               } else {
-                this.submitted = true;
+                //console.log('aaaaaaaaaaaaaaallllllllllllll');
+                this.sellerSpinnerService.subjectSubmitLoadingHaveData$.next({
+                  isSubmitted: true
+                }); //this.isSubmitted = true;
+
                 var val = this.sellerLoginForm.value;
                 var userLogin = {
                   email: val.email,
                   passWord: val.password,
                   remember: val.remember,
                   urlReturn: ''
-                };
+                }; // this.sellerAccountService
+                // .login(userLogin.email, userLogin.passWord, userLogin.remember, userLogin.urlReturn)
+
                 this.store.dispatch(Object(src_app_core_store_seller_login_login_actions__WEBPACK_IMPORTED_MODULE_9__["login"])({
                   userLogin: userLogin
                 }));
@@ -6938,6 +6900,18 @@
             } catch (error) {
               this.appErrorHandler.handleError(error);
             }
+          }
+        }, {
+          key: "controlSpinner",
+          value: function controlSpinner() {
+            var _this14 = this;
+
+            this.sellerSpinnerService.subjectSubmitLoadingHaveData$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["takeUntil"])(this.destroy$)).subscribe(function (result) {
+              _this14.isSubmitted = result.isSubmitted;
+              console.log(_this14.isSubmitted); //this.isNotHaveData = result.isNotHaveData;
+            }, function (error) {
+              _this14.appErrorHandler.handleErrorWithNoti(error);
+            });
           }
         }]);
 
@@ -6961,6 +6935,12 @@
           type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__["Title"]
         }, {
           type: _ngrx_store__WEBPACK_IMPORTED_MODULE_7__["Store"]
+        }, {
+          type: src_app_core_services_auth_seller_seller_account_service__WEBPACK_IMPORTED_MODULE_15__["SellerAccountService"]
+        }, {
+          type: src_app_core_services_comon_services_local_storage_service_localstorage_service__WEBPACK_IMPORTED_MODULE_16__["LocalStorageService"]
+        }, {
+          type: src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_17__["SpinnerService"]
         }];
       };
 
@@ -7867,12 +7847,12 @@
       var SellerUrlPublisher = /*#__PURE__*/function (_seller_url_base__WEB3) {
         _inherits(SellerUrlPublisher, _seller_url_base__WEB3);
 
-        var _super4 = _createSuper(SellerUrlPublisher);
+        var _super3 = _createSuper(SellerUrlPublisher);
 
         function SellerUrlPublisher() {
           _classCallCheck(this, SellerUrlPublisher);
 
-          return _super4.call(this);
+          return _super3.call(this);
         }
 
         _createClass(SellerUrlPublisher, [{
@@ -8888,29 +8868,29 @@
       "Exv/");
 
       function groupSort(values, reduce, key) {
-        return (reduce.length === 1 ? Object(_sort_js__WEBPACK_IMPORTED_MODULE_2__["default"])(Object(_group_js__WEBPACK_IMPORTED_MODULE_1__["rollup"])(values, reduce, key), function (_ref2, _ref3) {
-          var _ref4 = _slicedToArray(_ref2, 2),
-              ak = _ref4[0],
-              av = _ref4[1];
-
+        return (reduce.length === 1 ? Object(_sort_js__WEBPACK_IMPORTED_MODULE_2__["default"])(Object(_group_js__WEBPACK_IMPORTED_MODULE_1__["rollup"])(values, reduce, key), function (_ref3, _ref4) {
           var _ref5 = _slicedToArray(_ref3, 2),
-              bk = _ref5[0],
-              bv = _ref5[1];
+              ak = _ref5[0],
+              av = _ref5[1];
+
+          var _ref6 = _slicedToArray(_ref4, 2),
+              bk = _ref6[0],
+              bv = _ref6[1];
 
           return Object(_ascending_js__WEBPACK_IMPORTED_MODULE_0__["default"])(av, bv) || Object(_ascending_js__WEBPACK_IMPORTED_MODULE_0__["default"])(ak, bk);
-        }) : Object(_sort_js__WEBPACK_IMPORTED_MODULE_2__["default"])(Object(_group_js__WEBPACK_IMPORTED_MODULE_1__["default"])(values, key), function (_ref6, _ref7) {
-          var _ref8 = _slicedToArray(_ref6, 2),
-              ak = _ref8[0],
-              av = _ref8[1];
-
+        }) : Object(_sort_js__WEBPACK_IMPORTED_MODULE_2__["default"])(Object(_group_js__WEBPACK_IMPORTED_MODULE_1__["default"])(values, key), function (_ref7, _ref8) {
           var _ref9 = _slicedToArray(_ref7, 2),
-              bk = _ref9[0],
-              bv = _ref9[1];
+              ak = _ref9[0],
+              av = _ref9[1];
+
+          var _ref10 = _slicedToArray(_ref8, 2),
+              bk = _ref10[0],
+              bv = _ref10[1];
 
           return reduce(av, bv) || Object(_ascending_js__WEBPACK_IMPORTED_MODULE_0__["default"])(ak, bk);
-        })).map(function (_ref10) {
-          var _ref11 = _slicedToArray(_ref10, 1),
-              key = _ref11[0];
+        })).map(function (_ref11) {
+          var _ref12 = _slicedToArray(_ref11, 1),
+              key = _ref12[0];
 
           return key;
         });
@@ -9165,7 +9145,7 @@
       };
 
       function numbers(values, valueof) {
-        var _iterator14, _step14, value, index, _iterator15, _step15, _value4;
+        var _iterator14, _step14, value, index, _iterator15, _step15, _value3;
 
         return regeneratorRuntime.wrap(function numbers$(_context) {
           while (1) {
@@ -9235,15 +9215,15 @@
                   break;
                 }
 
-                _value4 = _step15.value;
+                _value3 = _step15.value;
 
-                if (!((_value4 = valueof(_value4, ++index, values)) != null && (_value4 = +_value4) >= _value4)) {
+                if (!((_value3 = valueof(_value3, ++index, values)) != null && (_value3 = +_value3) >= _value3)) {
                   _context.next = 30;
                   break;
                 }
 
                 _context.next = 30;
-                return _value4;
+                return _value3;
 
               case 30:
                 _context.next = 25;
@@ -9379,9 +9359,6 @@
           this.isStatisticsMonthsCancelOrderLoading = true;
           this.isStatisticsMonthsOrderLoading = true;
           this.isStatisticsActivatingAndInActivatingProductsLoading = true;
-          this.colorScheme = {
-            domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
-          };
         }
 
         _createClass(SellerChartComponent, [{
@@ -9394,7 +9371,7 @@
         }, {
           key: "getStatisticsActivatingAndInActivatingProducts",
           value: function getStatisticsActivatingAndInActivatingProducts() {
-            var _this14 = this;
+            var _this15 = this;
 
             this.sellerStatisticService.getStatisticsActivatingAndInActivatingProducts().subscribe(function (result) {
               if (result) {
@@ -9402,9 +9379,9 @@
 
                 if (result.isSuccessed) {
                   if (result.resultObj) {
-                    _this14.statisticsActivatingAndInActivatingProducts = result.resultObj; //console.log(this.statisticsActivatingAndInActivatingProducts);
+                    _this15.statisticsActivatingAndInActivatingProducts = result.resultObj; //console.log(this.statisticsActivatingAndInActivatingProducts);
 
-                    _this14.isStatisticsActivatingAndInActivatingProductsLoading = false;
+                    _this15.isStatisticsActivatingAndInActivatingProductsLoading = false;
                   }
                 } else {}
               } else {}
@@ -9413,7 +9390,7 @@
         }, {
           key: "getStatisticsMonthsCancelOrder",
           value: function getStatisticsMonthsCancelOrder() {
-            var _this15 = this;
+            var _this16 = this;
 
             this.sellerStatisticService.getStatisticsMonthsCancelOrder().subscribe(function (result) {
               if (result) {
@@ -9421,8 +9398,8 @@
 
                 if (result.isSuccessed) {
                   if (result.resultObj) {
-                    _this15.statisticsMonthsCancelOrder = result.resultObj;
-                    _this15.isStatisticsMonthsCancelOrderLoading = false;
+                    _this16.statisticsMonthsCancelOrder = result.resultObj;
+                    _this16.isStatisticsMonthsCancelOrderLoading = false;
                   }
                 } else {}
               } else {}
@@ -9431,7 +9408,7 @@
         }, {
           key: "getStatisticsMonthsOrder",
           value: function getStatisticsMonthsOrder() {
-            var _this16 = this;
+            var _this17 = this;
 
             this.sellerStatisticService.getStatisticsMonthsOrder().subscribe(function (result) {
               if (result) {
@@ -9439,8 +9416,8 @@
 
                 if (result.isSuccessed) {
                   if (result.resultObj) {
-                    _this16.statisticsMonthsOrder = result.resultObj;
-                    _this16.isStatisticsMonthsOrderLoading = false;
+                    _this17.statisticsMonthsOrder = result.resultObj;
+                    _this17.isStatisticsMonthsOrderLoading = false;
                   }
                 } else {}
               } else {}
@@ -12275,10 +12252,10 @@
 
           try {
             for (_iterator19.s(); !(_step19 = _iterator19.n()).done;) {
-              var _value5 = _step19.value;
+              var _value4 = _step19.value;
 
-              if ((_value5 = valueof(_value5, ++index, values)) != null && (min > _value5 || min === undefined && _value5 >= _value5)) {
-                min = _value5, minIndex = index;
+              if ((_value4 = valueof(_value4, ++index, values)) != null && (min > _value4 || min === undefined && _value4 >= _value4)) {
+                min = _value4, minIndex = index;
               }
             }
           } catch (err) {
@@ -12916,7 +12893,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<nz-page-header style=\"padding-left: 0; padding-right: 0;\">\r\n\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\r\n\t<!--title-->\r\n\t<nz-page-header-title\r\n\t\t>{{ 'Seller-app.content.body.product.product-create.main-title' | translate }}</nz-page-header-title\r\n\t>\r\n\t<!--subtitle-->\r\n\t<nz-page-header-subtitle\r\n\t\t>{{ 'Seller-app.content.body.product.product-create.sub-title' | translate }}</nz-page-header-subtitle\r\n\t>\r\n\t<!--content-->\r\n\t<nz-page-header-content>\r\n\t\t<div class=\"product-create\">\r\n\t\t\t<form\r\n\t\t\t\tnz-form\r\n\t\t\t\t[formGroup]=\"sellerCreateProductForm\"\r\n\t\t\t\tclass=\"create-form\"\r\n\t\t\t\t(ngSubmit)=\"submitForm()\"\r\n\t\t\t\t#createProductForm=\"ngForm\"\r\n\t\t\t>\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<div class=\"col l-10\">\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.title' | translate }}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"productName\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"text\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"productName\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\tnzSize=\"large\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"entireDescription\">\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.description.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.description.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<ckeditor\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"entireDescription\"\r\n\t\t\t\t\t\t\t\t\t\ttagName=\"textarea\"\r\n\t\t\t\t\t\t\t\t\t\t[editor]=\"editor\"\r\n\t\t\t\t\t\t\t\t\t></ckeditor>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"author\">\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\tnzShowSearch\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"author\"\r\n\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchAuthor($event)\"\r\n\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let author of authorSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isAuthorSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"author.authorId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"author.authorName\"\r\n\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isAuthorSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading Data...\r\n\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"publisher\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\tnzShowSearch\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"publisher\"\r\n\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchPublisher($event)\"\r\n\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let publisher of publisherSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isPublisherSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"publisher.publisherId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"publisher.publisherName\"\r\n\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isPublisherSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading Data...\r\n\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"category Variaton\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.category-variation.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.category-variation.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\tnzMode=\"multiple\"\r\n\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.category-variation.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"categoryVariaton\"\r\n\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchCategoryVariatons($event)\"\r\n\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let categoryVariation of categoryVariationSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isCategoryVariatonsSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"categoryVariation.categoryVariationId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"categoryVariation.categoryVariationName\"\r\n\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isCategoryVariatonsSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading Data...\r\n\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"page\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"page\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"publishingYear\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"date\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"publishingYear\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"country\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"country\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\" \r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.title' | translate }}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t<nz-upload [nzBeforeUpload]=\"beforeUpload\">\r\n\t\t\t\t\t\t\t\t\t<button type=\"button\" nz-button>\r\n\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"upload\"></i\r\n\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.product-image.select-file.title' | translate }}\r\n\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t</nz-upload>\r\n\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\tnzPopoverPlacement=\"top\"\r\n\t\t\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\t\t\tnz-popover\r\n\t\t\t\t\t\t\t\t\tnzPopoverTitle=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.help.title' | translate }}\"\r\n\t\t\t\t\t\t\t\t\tnzPopoverContent=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.help.description' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"question\" nzTheme=\"outline\"></i>\r\n\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t<div\r\n\t\t\t\t\t\t\t\t\t*ngIf=\"readyToDisplayProductImages\"\r\n\t\t\t\t\t\t\t\t\tcdkDropList\r\n\t\t\t\t\t\t\t\t\t(cdkDropListDropped)=\"drop($event)\"\r\n\t\t\t\t\t\t\t\t\tclass=\"example-list\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<div style=\"position: relative;\" *ngFor=\"let thumb of thumbshandlePreview\">\r\n\t\t\t\t\t\t\t\t\t\t<img src=\"{{host}}/{{thumb.imagePath}}\" alt=\"\" class=\"example-box\" cdkDrag />\r\n\r\n\t\t\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\t\t\tstyle=\"position: absolute; top:0; right: 0;\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\t\t\t\t\tnzType=\"primary\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzSize=\"small\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzShape=\"circle\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzDanger\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"button\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-popconfirm\r\n\t\t\t\t\t\t\t\t\t\t\tnzPopconfirmTitle=\"Are you sure delete this task?\"\r\n\t\t\t\t\t\t\t\t\t\t\t(nzOnConfirm)=\"confirm(thumb.uid)\"\r\n\t\t\t\t\t\t\t\t\t\t\t(nzOnCancel)=\"cancel()\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzPopconfirmPlacement=\"right\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"close\" nzTheme=\"outline\"></i>\r\n\t\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.title' | translate }}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"price\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.sell-information.price.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.price.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"price\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.price.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"originalPrice\">\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.sell-information.original-price.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.original-price.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"originalPrice\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"\r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.sell-information.original-price.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"stock\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"text\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"stock\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.title' | translate }}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"mass\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-input-group nzAddOnAfter=\"Kg\">\r\n\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\tformControlName=\"mass\"\r\n\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t</nz-input-group>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"length\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\tformControlName=\"length\"\r\n\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t</nz-input-group>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"width\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\tformControlName=\"width\"\r\n\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t</nz-input-group>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"thickness\">\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\tformControlName=\"thickness\"\r\n\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t</nz-input-group>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"col l-2\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<button nz-button type=\"submit\" [disabled]=\"!createProductForm.form.valid\" [nzType]=\"'primary'\">\r\n\t\t\t\t\t{{ 'Seller-app.content.body.product.product-update.product.button.title' | translate }}\r\n\t\t\t\t</button>\r\n\t\t\t</form>\r\n\r\n\t\t\t<!-- <pre>{{sellerCreateProductForm.value|json}}</pre>\r\n\t\t\t\r\n\t\t\t\t<pre>{{sellerCreateProductForm.errors|json}}</pre>\r\n\t\t\t\t<pre>{{thumbshandlePreview.values}}</pre> -->\r\n\t\t</div>\r\n\t</nz-page-header-content>\r\n</nz-page-header>\r\n";
+      __webpack_exports__["default"] = "<nz-page-header style=\"padding-left: 0; padding-right: 0;\">\r\n\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\r\n\t<!--title-->\r\n\t<nz-page-header-title\r\n\t\t>{{ 'Seller-app.content.body.product.product-create.main-title' | translate }}</nz-page-header-title\r\n\t>\r\n\t<!--subtitle-->\r\n\t<nz-page-header-subtitle\r\n\t\t>{{ 'Seller-app.content.body.product.product-create.sub-title' | translate }}</nz-page-header-subtitle\r\n\t>\r\n\t<!--content-->\r\n\t<nz-page-header-content>\r\n\t\t<div class=\"product-create\">\r\n\t\t\t<form\r\n\t\t\t\tnz-form\r\n\t\t\t\t[formGroup]=\"sellerCreateProductForm\"\r\n\t\t\t\tclass=\"create-form\"\r\n\t\t\t\t(ngSubmit)=\"submitForm()\"\r\n\t\t\t\t#createProductForm=\"ngForm\"\r\n\t\t\t>\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<div class=\"col l-10\">\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.title' | translate }}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"productName\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"text\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"productName\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\tnzSize=\"large\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"entireDescription\">\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.description.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.description.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<ckeditor\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"entireDescription\"\r\n\t\t\t\t\t\t\t\t\t\ttagName=\"textarea\"\r\n\t\t\t\t\t\t\t\t\t\t[editor]=\"editor\"\r\n\t\t\t\t\t\t\t\t\t></ckeditor>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"author\">\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\tnzShowSearch\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"author\"\r\n\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchAuthor($event)\"\r\n\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let author of authorSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isAuthorSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"author.authorId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"author.authorName\"\r\n\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isAuthorSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading Data...\r\n\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"publisher\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\tnzShowSearch\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"publisher\"\r\n\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchPublisher($event)\"\r\n\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let publisher of publisherSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isPublisherSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"publisher.publisherId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"publisher.publisherName\"\r\n\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isPublisherSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading Data...\r\n\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"category Variaton\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.category-variation.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.category-variation.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\tnzMode=\"multiple\"\r\n\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.category-variation.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"categoryVariaton\"\r\n\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchCategoryVariatons($event)\"\r\n\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let categoryVariation of categoryVariationSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isCategoryVariatonsSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"categoryVariation.categoryVariationId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"categoryVariation.categoryVariationName\"\r\n\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isCategoryVariatonsSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading Data...\r\n\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"groupProduct\"\r\n\t\t\t\t\t\t\t\t\t>Nhóm Sản Phẩm</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control>\r\n\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\tnzMode=\"multiple\"\r\n\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"Nhóm Sản Phẩm\"\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"groupProduct\"\r\n\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchGroupProduct($event)\"\r\n\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let groupPrduct of groupPrductSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isSearchGroupProductsSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"groupPrduct.groupProductId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"groupPrduct.groupProductName\"\r\n\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"isSearchGroupProductsSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzDisabled\r\n\t\t\t\t\t\t\t\t\t\t\tnzCustomContent\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading Data...\r\n\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"page\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"page\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"publishingYear\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"date\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"publishingYear\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"country\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"country\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\" \r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"dateSell\"\r\n\t\t\t\t\t\t\t\t\t>Ngày Mở Bán</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Phải Nhập\">\r\n\t\t\t\t\t\t\t\t\t<input type=\"date\" nz-input formControlName=\"dateSell\" placeholder=\"Ngày mở bán\" />\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t<nz-card style=\"margin-top: 16px\" [nzBordered]=\"true\" nzTitle=\"Đặt Trước\">\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"dateStartPreOrderProduct\"\r\n\t\t\t\t\t\t\t\t\t>Ngày Bắt Đầu</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Phải Nhập\">\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"date\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"dateStartPreOrderProduct\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"Ngày bắt đầu\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"dateEndPreOrderProduct\"\r\n\t\t\t\t\t\t\t\t\t>Ngày Kết Thúc</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Phải Nhập\">\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"date\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"dateEndPreOrderProduct\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"Ngày kết thúc\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"preOrderProductPrice\"\r\n\t\t\t\t\t\t\t\t\t>Giá Đặt Trước</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Phải Nhập\">\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"preOrderProductPrice\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"Giá đặt trước\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.title' | translate }}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t<nz-upload [nzBeforeUpload]=\"beforeUpload\">\r\n\t\t\t\t\t\t\t\t\t<button type=\"button\" nz-button>\r\n\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"upload\"></i\r\n\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.product-image.select-file.title' | translate }}\r\n\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t</nz-upload>\r\n\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\tnzPopoverPlacement=\"top\"\r\n\t\t\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\t\t\tnz-popover\r\n\t\t\t\t\t\t\t\t\tnzPopoverTitle=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.help.title' | translate }}\"\r\n\t\t\t\t\t\t\t\t\tnzPopoverContent=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.help.description' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"question\" nzTheme=\"outline\"></i>\r\n\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t<div\r\n\t\t\t\t\t\t\t\t\t*ngIf=\"readyToDisplayProductImages\"\r\n\t\t\t\t\t\t\t\t\tcdkDropList\r\n\t\t\t\t\t\t\t\t\t(cdkDropListDropped)=\"drop($event)\"\r\n\t\t\t\t\t\t\t\t\tclass=\"example-list\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<div style=\"position: relative;\" *ngFor=\"let thumb of thumbshandlePreview\">\r\n\t\t\t\t\t\t\t\t\t\t<img src=\"{{host}}/{{thumb.imagePath}}\" alt=\"\" class=\"example-box\" cdkDrag />\r\n\r\n\t\t\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\t\t\tstyle=\"position: absolute; top:0; right: 0;\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\t\t\t\t\tnzType=\"primary\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzSize=\"small\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzShape=\"circle\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzDanger\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"button\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-popconfirm\r\n\t\t\t\t\t\t\t\t\t\t\tnzPopconfirmTitle=\"Are you sure delete this task?\"\r\n\t\t\t\t\t\t\t\t\t\t\t(nzOnConfirm)=\"confirm(thumb.uid)\"\r\n\t\t\t\t\t\t\t\t\t\t\t(nzOnCancel)=\"cancel()\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzPopconfirmPlacement=\"right\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"close\" nzTheme=\"outline\"></i>\r\n\t\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.title' | translate }}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"price\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.sell-information.price.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.price.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"price\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.price.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"originalPrice\">\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.sell-information.original-price.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.original-price.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"originalPrice\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"\r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.sell-information.original-price.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"stock\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"text\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"stock\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.title' | translate }}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"mass\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-input-group nzAddOnAfter=\"Kg\">\r\n\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\tformControlName=\"mass\"\r\n\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t</nz-input-group>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"length\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\tformControlName=\"length\"\r\n\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t</nz-input-group>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"width\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\tformControlName=\"width\"\r\n\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t</nz-input-group>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"thickness\">\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\tformControlName=\"thickness\"\r\n\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t</nz-input-group>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"col l-2\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<button nz-button type=\"submit\" [disabled]=\"!createProductForm.form.valid\" [nzType]=\"'primary'\">\r\n\t\t\t\t\t{{ 'Seller-app.content.body.product.product-update.product.button.title' | translate }}\r\n\t\t\t\t</button>\r\n\t\t\t</form>\r\n\r\n\t\t\t<!-- <pre>{{sellerCreateProductForm.value|json}}</pre>\r\n\t\t\t\r\n\t\t\t\t<pre>{{sellerCreateProductForm.errors|json}}</pre>\r\n\t\t\t\t<pre>{{thumbshandlePreview.values}}</pre> -->\r\n\t\t</div>\r\n\t</nz-page-header-content>\r\n</nz-page-header>\r\n";
       /***/
     },
 
@@ -13873,13 +13850,13 @@
 
         _createClass(InjectionService, [{
           key: "getRootViewContainer",
-
+          value:
           /**
            * Gets the root view container to inject the component to.
            *
            * @memberOf InjectionService
            */
-          value: function getRootViewContainer() {
+          function getRootViewContainer() {
             if (this._container) return this._container;
             if (InjectionService.globalRootViewContainer) return InjectionService.globalRootViewContainer;
             if (this.applicationRef.components.length) return this.applicationRef.components[0];
@@ -14158,13 +14135,13 @@
 
         _createClass(PositionHelper, null, [{
           key: "calculateVerticalAlignment",
-
+          value:
           /**
            * Calculate vertical alignment position
            *
            * @memberOf PositionHelper
            */
-          value: function calculateVerticalAlignment(elDimensions, popoverDimensions, alignment) {
+          function calculateVerticalAlignment(elDimensions, popoverDimensions, alignment) {
             var result = verticalPosition(elDimensions, popoverDimensions, alignment);
 
             if (result + popoverDimensions.height > window.innerHeight) {
@@ -14391,6 +14368,15 @@
         }
 
         _createClass(TooltipContentComponent, [{
+          key: "cssClasses",
+          get: function get() {
+            var clz = 'ngx-charts-tooltip-content';
+            clz += " position-".concat(this.placement);
+            clz += " type-".concat(this.type);
+            clz += " ".concat(this.cssClass);
+            return clz;
+          }
+        }, {
           key: "ngAfterViewInit",
           value: function ngAfterViewInit() {
             setTimeout(this.position.bind(this));
@@ -14398,7 +14384,7 @@
         }, {
           key: "position",
           value: function position() {
-            var _this17 = this;
+            var _this18 = this;
 
             if (!Object(_angular_common__WEBPACK_IMPORTED_MODULE_1__["isPlatformBrowser"])(this.platformId)) {
               return;
@@ -14418,7 +14404,7 @@
 
 
             setTimeout(function () {
-              return _this17.renderer.addClass(nativeElm, 'animate');
+              return _this18.renderer.addClass(nativeElm, 'animate');
             }, 1);
           }
         }, {
@@ -14453,15 +14439,6 @@
           key: "onWindowResize",
           value: function onWindowResize() {
             this.position();
-          }
-        }, {
-          key: "cssClasses",
-          get: function get() {
-            var clz = 'ngx-charts-tooltip-content';
-            clz += " position-".concat(this.placement);
-            clz += " type-".concat(this.type);
-            clz += " ".concat(this.cssClass);
-            return clz;
           }
         }]);
 
@@ -14644,16 +14621,16 @@
       var TooltipService = /*#__PURE__*/function (_InjectionRegisterySe) {
         _inherits(TooltipService, _InjectionRegisterySe);
 
-        var _super5 = _createSuper(TooltipService);
+        var _super4 = _createSuper(TooltipService);
 
         function TooltipService(injectionService) {
-          var _this18;
+          var _this19;
 
           _classCallCheck(this, TooltipService);
 
-          _this18 = _super5.call(this, injectionService);
-          _this18.type = TooltipContentComponent;
-          return _this18;
+          _this19 = _super4.call(this, injectionService);
+          _this19.type = TooltipContentComponent;
+          return _this19;
         }
 
         return TooltipService;
@@ -14824,39 +14801,39 @@
         }, {
           key: "onVisibilityChange",
           value: function onVisibilityChange() {
-            var _this19 = this;
+            var _this20 = this;
 
             // trigger zone recalc for columns
             this.zone.run(function () {
-              _this19.isVisible = true;
+              _this20.isVisible = true;
 
-              _this19.visible.emit(true);
+              _this20.visible.emit(true);
             });
           }
         }, {
           key: "runCheck",
           value: function runCheck() {
-            var _this20 = this;
+            var _this21 = this;
 
             var check = function check() {
-              if (!_this20.element) {
+              if (!_this21.element) {
                 return;
               } // https://davidwalsh.name/offsetheight-visibility
 
 
-              var _this20$element$nativ = _this20.element.nativeElement,
-                  offsetHeight = _this20$element$nativ.offsetHeight,
-                  offsetWidth = _this20$element$nativ.offsetWidth;
+              var _this21$element$nativ = _this21.element.nativeElement,
+                  offsetHeight = _this21$element$nativ.offsetHeight,
+                  offsetWidth = _this21$element$nativ.offsetWidth;
 
               if (offsetHeight && offsetWidth) {
-                clearTimeout(_this20.timeout);
+                clearTimeout(_this21.timeout);
 
-                _this20.onVisibilityChange();
+                _this21.onVisibilityChange();
               } else {
-                clearTimeout(_this20.timeout);
+                clearTimeout(_this21.timeout);
 
-                _this20.zone.runOutsideAngular(function () {
-                  _this20.timeout = setTimeout(function () {
+                _this21.zone.runOutsideAngular(function () {
+                  _this21.timeout = setTimeout(function () {
                     return check();
                   }, 100);
                 });
@@ -14864,7 +14841,7 @@
             };
 
             this.zone.runOutsideAngular(function () {
-              _this20.timeout = setTimeout(function () {
+              _this21.timeout = setTimeout(function () {
                 return check();
               });
             });
@@ -15045,7 +15022,7 @@
         }, {
           key: "bindWindowResizeEvent",
           value: function bindWindowResizeEvent() {
-            var _this21 = this;
+            var _this22 = this;
 
             if (!Object(_angular_common__WEBPACK_IMPORTED_MODULE_1__["isPlatformBrowser"])(this.platformId)) {
               return;
@@ -15053,10 +15030,10 @@
 
             var source = Object(rxjs__WEBPACK_IMPORTED_MODULE_5__["fromEvent"])(window, 'resize');
             var subscription = source.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["debounceTime"])(200)).subscribe(function (e) {
-              _this21.update();
+              _this22.update();
 
-              if (_this21.cd) {
-                _this21.cd.markForCheck();
+              if (_this22.cd) {
+                _this22.cd.markForCheck();
               }
             });
             this.resizeSubscription = subscription;
@@ -15326,16 +15303,16 @@
         }, {
           key: "ngAfterViewInit",
           value: function ngAfterViewInit() {
-            var _this22 = this;
+            var _this23 = this;
 
             setTimeout(function () {
-              return _this22.updateDims();
+              return _this23.updateDims();
             });
           }
         }, {
           key: "updateDims",
           value: function updateDims() {
-            var _this23 = this;
+            var _this24 = this;
 
             if (!Object(_angular_common__WEBPACK_IMPORTED_MODULE_1__["isPlatformBrowser"])(this.platformId)) {
               // for SSR, use approximate value instead of measured
@@ -15353,14 +15330,14 @@
                 height: this.height
               });
               setTimeout(function () {
-                return _this23.updateDims();
+                return _this24.updateDims();
               });
             }
           }
         }, {
           key: "update",
           value: function update() {
-            var _this24 = this;
+            var _this25 = this;
 
             var scale = this.scale;
             this.ticks = this.getTicks();
@@ -15394,7 +15371,7 @@
             }
 
             setTimeout(function () {
-              return _this24.updateDims();
+              return _this25.updateDims();
             });
           }
         }, {
@@ -15574,16 +15551,16 @@
           }
         }, {
           key: "emitTicksHeight",
-          value: function emitTicksHeight(_ref12) {
-            var _this25 = this;
+          value: function emitTicksHeight(_ref13) {
+            var _this26 = this;
 
-            var height = _ref12.height;
+            var height = _ref13.height;
             var newLabelOffset = height + 25 + 5;
 
             if (newLabelOffset !== this.labelOffset) {
               this.labelOffset = newLabelOffset;
               setTimeout(function () {
-                _this25.dimensionsChanged.emit({
+                _this26.dimensionsChanged.emit({
                   height: height
                 });
               }, 0);
@@ -15657,12 +15634,12 @@
        * @param x, y, w, h, r, tl, tr, bl, br
        */
 
-      function roundedRect(x, y, w, h, r, _ref13) {
-        var _ref14 = _slicedToArray(_ref13, 4),
-            tl = _ref14[0],
-            tr = _ref14[1],
-            bl = _ref14[2],
-            br = _ref14[3];
+      function roundedRect(x, y, w, h, r, _ref14) {
+        var _ref15 = _slicedToArray(_ref14, 4),
+            tl = _ref15[0],
+            tr = _ref15[1],
+            bl = _ref15[2],
+            br = _ref15[3];
 
         var retval = '';
         w = Math.floor(w);
@@ -15738,16 +15715,16 @@
         }, {
           key: "ngAfterViewInit",
           value: function ngAfterViewInit() {
-            var _this26 = this;
+            var _this27 = this;
 
             setTimeout(function () {
-              return _this26.updateDims();
+              return _this27.updateDims();
             });
           }
         }, {
           key: "updateDims",
           value: function updateDims() {
-            var _this27 = this;
+            var _this28 = this;
 
             if (!Object(_angular_common__WEBPACK_IMPORTED_MODULE_1__["isPlatformBrowser"])(this.platformId)) {
               // for SSR, use approximate value instead of measured
@@ -15766,14 +15743,14 @@
                 width: width
               });
               setTimeout(function () {
-                return _this27.updateDims();
+                return _this28.updateDims();
               });
             }
           }
         }, {
           key: "update",
           value: function update() {
-            var _this28 = this;
+            var _this29 = this;
 
             var scale;
             var sign = this.orient === Orientation.Top || this.orient === Orientation.Right ? -1 : 1;
@@ -15852,7 +15829,7 @@
             }
 
             setTimeout(function () {
-              return _this28.updateDims();
+              return _this29.updateDims();
             });
           }
         }, {
@@ -15908,10 +15885,10 @@
         }, {
           key: "getApproximateAxisWidth",
           value: function getApproximateAxisWidth() {
-            var _this29 = this;
+            var _this30 = this;
 
             var maxChars = Math.max.apply(Math, _toConsumableArray(this.ticks.map(function (t) {
-              return _this29.tickTrim(_this29.tickFormat(t)).length;
+              return _this30.tickTrim(_this30.tickFormat(t)).length;
             })));
             var charWidth = 7;
             return maxChars * charWidth;
@@ -16033,22 +16010,22 @@
           }
         }, {
           key: "emitTicksWidth",
-          value: function emitTicksWidth(_ref15) {
-            var _this30 = this;
+          value: function emitTicksWidth(_ref16) {
+            var _this31 = this;
 
-            var width = _ref15.width;
+            var width = _ref16.width;
 
             if (width !== this.labelOffset && this.yOrient === Orientation.Right) {
               this.labelOffset = width + this.labelOffset;
               setTimeout(function () {
-                _this30.dimensionsChanged.emit({
+                _this31.dimensionsChanged.emit({
                   width: width
                 });
               }, 0);
             } else if (width !== this.labelOffset) {
               this.labelOffset = width;
               setTimeout(function () {
-                _this30.dimensionsChanged.emit({
+                _this31.dimensionsChanged.emit({
                   width: width
                 });
               }, 0);
@@ -16176,6 +16153,16 @@
         }
 
         _createClass(TooltipDirective, [{
+          key: "listensForFocus",
+          get: function get() {
+            return this.tooltipShowEvent === ShowTypes.all || this.tooltipShowEvent === ShowTypes.focus;
+          }
+        }, {
+          key: "listensForHover",
+          get: function get() {
+            return this.tooltipShowEvent === ShowTypes.all || this.tooltipShowEvent === ShowTypes.mouseover;
+          }
+        }, {
           key: "ngOnDestroy",
           value: function ngOnDestroy() {
             this.hideTooltip(true);
@@ -16226,40 +16213,40 @@
         }, {
           key: "showTooltip",
           value: function showTooltip(immediate) {
-            var _this31 = this;
+            var _this32 = this;
 
             if (this.component || this.tooltipDisabled) return;
             var time = immediate ? 0 : this.tooltipShowTimeout + (navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) ? 300 : 0);
             clearTimeout(this.timeout);
             this.timeout = setTimeout(function () {
-              _this31.tooltipService.destroyAll();
+              _this32.tooltipService.destroyAll();
 
-              var options = _this31.createBoundOptions();
+              var options = _this32.createBoundOptions();
 
-              _this31.component = _this31.tooltipService.create(options); // add a tiny timeout to avoid event re-triggers
+              _this32.component = _this32.tooltipService.create(options); // add a tiny timeout to avoid event re-triggers
 
               setTimeout(function () {
-                if (_this31.component) {
-                  _this31.addHideListeners(_this31.component.instance.element.nativeElement);
+                if (_this32.component) {
+                  _this32.addHideListeners(_this32.component.instance.element.nativeElement);
                 }
               }, 10);
 
-              _this31.show.emit(true);
+              _this32.show.emit(true);
             }, time);
           }
         }, {
           key: "addHideListeners",
           value: function addHideListeners(tooltip) {
-            var _this32 = this;
+            var _this33 = this;
 
             // on mouse enter, cancel the hide triggered by the leave
             this.mouseEnterContentEvent = this.renderer.listen(tooltip, 'mouseenter', function () {
-              clearTimeout(_this32.timeout);
+              clearTimeout(_this33.timeout);
             }); // content mouse leave listener
 
             if (this.tooltipCloseOnMouseLeave) {
               this.mouseLeaveContentEvent = this.renderer.listen(tooltip, 'mouseleave', function () {
-                _this32.hideTooltip(_this32.tooltipImmediateExit);
+                _this33.hideTooltip(_this33.tooltipImmediateExit);
               });
             } // content close on click outside
 
@@ -16267,30 +16254,30 @@
             if (this.tooltipCloseOnClickOutside) {
               this.documentClickEvent = this.renderer.listen('window', 'click', function (event) {
                 var contains = tooltip.contains(event.target);
-                if (!contains) _this32.hideTooltip();
+                if (!contains) _this33.hideTooltip();
               });
             }
           }
         }, {
           key: "hideTooltip",
           value: function hideTooltip() {
-            var _this33 = this;
+            var _this34 = this;
 
             var immediate = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
             if (!this.component) return;
 
             var destroyFn = function destroyFn() {
               // remove events
-              if (_this33.mouseLeaveContentEvent) _this33.mouseLeaveContentEvent();
-              if (_this33.mouseEnterContentEvent) _this33.mouseEnterContentEvent();
-              if (_this33.documentClickEvent) _this33.documentClickEvent(); // emit events
+              if (_this34.mouseLeaveContentEvent) _this34.mouseLeaveContentEvent();
+              if (_this34.mouseEnterContentEvent) _this34.mouseEnterContentEvent();
+              if (_this34.documentClickEvent) _this34.documentClickEvent(); // emit events
 
-              _this33.hide.emit(true); // destroy component
+              _this34.hide.emit(true); // destroy component
 
 
-              _this33.tooltipService.destroy(_this33.component);
+              _this34.tooltipService.destroy(_this34.component);
 
-              _this33.component = undefined;
+              _this34.component = undefined;
             };
 
             clearTimeout(this.timeout);
@@ -16316,16 +16303,6 @@
               spacing: this.tooltipSpacing,
               context: this.tooltipContext
             };
-          }
-        }, {
-          key: "listensForFocus",
-          get: function get() {
-            return this.tooltipShowEvent === ShowTypes.all || this.tooltipShowEvent === ShowTypes.focus;
-          }
-        }, {
-          key: "listensForHover",
-          get: function get() {
-            return this.tooltipShowEvent === ShowTypes.all || this.tooltipShowEvent === ShowTypes.mouseover;
           }
         }]);
 
@@ -16542,11 +16519,11 @@
         }, {
           key: "getActiveCircle",
           value: function getActiveCircle() {
-            var _this34 = this;
+            var _this35 = this;
 
             var indexActiveDataPoint = this.data.series.findIndex(function (d) {
               var label = d.name;
-              return label && _this34.visibleValue && label.toString() === _this34.visibleValue.toString() && d.value !== undefined;
+              return label && _this35.visibleValue && label.toString() === _this35.visibleValue.toString() && d.value !== undefined;
             });
 
             if (indexActiveDataPoint === -1) {
@@ -16614,12 +16591,12 @@
           }
         }, {
           key: "getTooltipText",
-          value: function getTooltipText(_ref16) {
-            var tooltipLabel = _ref16.tooltipLabel,
-                value = _ref16.value,
-                seriesName = _ref16.seriesName,
-                min = _ref16.min,
-                max = _ref16.max;
+          value: function getTooltipText(_ref17) {
+            var tooltipLabel = _ref17.tooltipLabel,
+                value = _ref17.value,
+                seriesName = _ref17.seriesName,
+                min = _ref17.min,
+                max = _ref17.max;
             return "\n      <span class=\"tooltip-label\">".concat(escapeLabel(seriesName), " \u2022 ").concat(escapeLabel(tooltipLabel), "</span>\n      <span class=\"tooltip-val\">").concat(value.toLocaleString()).concat(this.getTooltipMinMaxText(min, max), "</span>\n    ");
           }
         }, {
@@ -16908,7 +16885,7 @@
         }, {
           key: "getGridPanels",
           value: function getGridPanels() {
-            var _this35 = this;
+            var _this36 = this;
 
             return this.data.map(function (d) {
               var offset;
@@ -16918,34 +16895,34 @@
               var y;
               var className = ClassEnum.Odd;
 
-              if (_this35.orient === GridOrientation.Vertical) {
-                var position = _this35.xScale(d.name);
+              if (_this36.orient === GridOrientation.Vertical) {
+                var position = _this36.xScale(d.name);
 
-                var positionIndex = Number.parseInt((position / _this35.xScale.step()).toString(), 10);
+                var positionIndex = Number.parseInt((position / _this36.xScale.step()).toString(), 10);
 
                 if (positionIndex % 2 === 1) {
                   className = ClassEnum.Even;
                 }
 
-                offset = _this35.xScale.bandwidth() * _this35.xScale.paddingInner();
-                width = _this35.xScale.bandwidth() + offset;
-                height = _this35.dims.height;
-                x = _this35.xScale(d.name) - offset / 2;
+                offset = _this36.xScale.bandwidth() * _this36.xScale.paddingInner();
+                width = _this36.xScale.bandwidth() + offset;
+                height = _this36.dims.height;
+                x = _this36.xScale(d.name) - offset / 2;
                 y = 0;
-              } else if (_this35.orient === GridOrientation.Horizontal) {
-                var _position = _this35.yScale(d.name);
+              } else if (_this36.orient === GridOrientation.Horizontal) {
+                var _position = _this36.yScale(d.name);
 
-                var _positionIndex = Number.parseInt((_position / _this35.yScale.step()).toString(), 10);
+                var _positionIndex = Number.parseInt((_position / _this36.yScale.step()).toString(), 10);
 
                 if (_positionIndex % 2 === 1) {
                   className = ClassEnum.Even;
                 }
 
-                offset = _this35.yScale.bandwidth() * _this35.yScale.paddingInner();
-                width = _this35.dims.width;
-                height = _this35.yScale.bandwidth() + offset;
+                offset = _this36.yScale.bandwidth() * _this36.yScale.paddingInner();
+                width = _this36.dims.width;
+                height = _this36.yScale.bandwidth() + offset;
                 x = 0;
-                y = _this35.yScale(d.name) - offset / 2;
+                y = _this36.yScale(d.name) - offset / 2;
               }
 
               return {
@@ -17051,6 +17028,14 @@
         }
 
         _createClass(SvgRadialGradientComponent, [{
+          key: "stops",
+          get: function get() {
+            return this.stopsInput || this.stopsDefault;
+          },
+          set: function set(value) {
+            this.stopsInput = value;
+          }
+        }, {
           key: "ngOnChanges",
           value: function ngOnChanges(changes) {
             this.r = '30%';
@@ -17066,14 +17051,6 @@
                 opacity: this.endOpacity
               }];
             }
-          }
-        }, {
-          key: "stops",
-          get: function get() {
-            return this.stopsInput || this.stopsDefault;
-          },
-          set: function set(value) {
-            this.stopsInput = value;
           }
         }]);
 
@@ -17341,6 +17318,33 @@
         }
 
         _createClass(CountUpDirective, [{
+          key: "countDecimals",
+          get: function get() {
+            if (this._countDecimals) return this._countDecimals;
+            return decimalChecker(this.countTo);
+          },
+          set: function set(val) {
+            this._countDecimals = val;
+          }
+        }, {
+          key: "countTo",
+          get: function get() {
+            return this._countTo;
+          },
+          set: function set(val) {
+            this._countTo = parseFloat(val);
+            this.start();
+          }
+        }, {
+          key: "countFrom",
+          get: function get() {
+            return this._countFrom;
+          },
+          set: function set(val) {
+            this._countFrom = parseFloat(val);
+            this.start();
+          }
+        }, {
           key: "ngOnDestroy",
           value: function ngOnDestroy() {
             cancelAnimationFrame(this.animationReq);
@@ -17348,60 +17352,33 @@
         }, {
           key: "start",
           value: function start() {
-            var _this36 = this;
+            var _this37 = this;
 
             cancelAnimationFrame(this.animationReq);
 
             var valueFormatting = this.valueFormatting || function (value) {
-              return "".concat(_this36.countPrefix).concat(value.toLocaleString()).concat(_this36.countSuffix);
+              return "".concat(_this37.countPrefix).concat(value.toLocaleString()).concat(_this37.countSuffix);
             };
 
-            var callback = function callback(_ref17) {
-              var value = _ref17.value,
-                  progress = _ref17.progress,
-                  finished = _ref17.finished;
-              _this36.value = valueFormatting(value);
+            var callback = function callback(_ref18) {
+              var value = _ref18.value,
+                  progress = _ref18.progress,
+                  finished = _ref18.finished;
+              _this37.value = valueFormatting(value);
 
-              _this36.cd.markForCheck();
+              _this37.cd.markForCheck();
 
-              if (!finished) _this36.countChange.emit({
-                value: _this36.value,
+              if (!finished) _this37.countChange.emit({
+                value: _this37.value,
                 progress: progress
               });
-              if (finished) _this36.countFinish.emit({
-                value: _this36.value,
+              if (finished) _this37.countFinish.emit({
+                value: _this37.value,
                 progress: progress
               });
             };
 
             this.animationReq = count(this.countFrom, this.countTo, this.countDecimals, this.countDuration, callback);
-          }
-        }, {
-          key: "countDecimals",
-          set: function set(val) {
-            this._countDecimals = val;
-          },
-          get: function get() {
-            if (this._countDecimals) return this._countDecimals;
-            return decimalChecker(this.countTo);
-          }
-        }, {
-          key: "countTo",
-          set: function set(val) {
-            this._countTo = parseFloat(val);
-            this.start();
-          },
-          get: function get() {
-            return this._countTo;
-          }
-        }, {
-          key: "countFrom",
-          set: function set(val) {
-            this._countFrom = parseFloat(val);
-            this.start();
-          },
-          get: function get() {
-            return this._countFrom;
           }
         }]);
 
@@ -17868,21 +17845,21 @@
         }, {
           key: "addBrush",
           value: function addBrush() {
-            var _this37 = this;
+            var _this38 = this;
 
             if (this.brush) return;
             var height = this.height;
             var width = this.view[0];
-            this.brush = Object(d3_brush__WEBPACK_IMPORTED_MODULE_8__["brushX"])().extent([[0, 0], [width, height]]).on('brush end', function (_ref18) {
-              var selection = _ref18.selection;
+            this.brush = Object(d3_brush__WEBPACK_IMPORTED_MODULE_8__["brushX"])().extent([[0, 0], [width, height]]).on('brush end', function (_ref19) {
+              var selection = _ref19.selection;
 
-              var newSelection = selection || _this37.xScale.range();
+              var newSelection = selection || _this38.xScale.range();
 
-              var newDomain = newSelection.map(_this37.xScale.invert);
+              var newDomain = newSelection.map(_this38.xScale.invert);
 
-              _this37.onDomainChange.emit(newDomain);
+              _this38.onDomainChange.emit(newDomain);
 
-              _this37.cd.markForCheck();
+              _this38.cd.markForCheck();
             });
             Object(d3_selection__WEBPACK_IMPORTED_MODULE_7__["select"])(this.element).select('.brush').call(this.brush);
           }
@@ -17991,7 +17968,7 @@
         }, {
           key: "getLegendEntries",
           value: function getLegendEntries() {
-            var _this38 = this;
+            var _this39 = this;
 
             var items = [];
 
@@ -18010,7 +17987,7 @@
                   items.push({
                     label: label,
                     formattedLabel: formattedLabel,
-                    color: _this38.colors.getColor(label)
+                    color: _this39.colors.getColor(label)
                   });
                 }
               };
@@ -18117,6 +18094,11 @@
         }
 
         _createClass(LegendEntryComponent, [{
+          key: "trimmedLabel",
+          get: function get() {
+            return this.formattedLabel || '(empty)';
+          }
+        }, {
           key: "onMouseEnter",
           value: function onMouseEnter() {
             this.activate.emit({
@@ -18129,11 +18111,6 @@
             this.deactivate.emit({
               name: this.label
             });
-          }
-        }, {
-          key: "trimmedLabel",
-          get: function get() {
-            return this.formattedLabel || '(empty)';
           }
         }]);
 
@@ -18295,16 +18272,16 @@
         }, {
           key: "getLegendItems",
           value: function getLegendItems() {
-            var _this39 = this;
+            var _this40 = this;
 
             return this.data.map(function (d) {
               var label = formatLabel(d.name);
               var value = d.value;
 
-              var color = _this39.colors.getColor(label);
+              var color = _this40.colors.getColor(label);
 
-              var percentage = _this39.total > 0 ? value / _this39.total * 100 : 0;
-              var formattedLabel = typeof _this39.labelFormatting === 'function' ? _this39.labelFormatting(label) : label;
+              var percentage = _this40.total > 0 ? value / _this40.total * 100 : 0;
+              var formattedLabel = typeof _this40.labelFormatting === 'function' ? _this40.labelFormatting(label) : label;
               return {
                 _value: value,
                 data: d,
@@ -18313,7 +18290,7 @@
                 label: formattedLabel,
                 displayLabel: trimLabel(formattedLabel, 20),
                 origialLabel: d.name,
-                percentage: _this39.percentageFormatting ? _this39.percentageFormatting(percentage) : percentage.toLocaleString()
+                percentage: _this40.percentageFormatting ? _this40.percentageFormatting(percentage) : percentage.toLocaleString()
               };
             });
           }
@@ -18387,30 +18364,30 @@
         }]
       }];
 
-      function calculateViewDimensions(_ref19) {
-        var width = _ref19.width,
-            height = _ref19.height,
-            margins = _ref19.margins,
-            _ref19$showXAxis = _ref19.showXAxis,
-            showXAxis = _ref19$showXAxis === void 0 ? false : _ref19$showXAxis,
-            _ref19$showYAxis = _ref19.showYAxis,
-            showYAxis = _ref19$showYAxis === void 0 ? false : _ref19$showYAxis,
-            _ref19$xAxisHeight = _ref19.xAxisHeight,
-            xAxisHeight = _ref19$xAxisHeight === void 0 ? 0 : _ref19$xAxisHeight,
-            _ref19$yAxisWidth = _ref19.yAxisWidth,
-            yAxisWidth = _ref19$yAxisWidth === void 0 ? 0 : _ref19$yAxisWidth,
-            _ref19$showXLabel = _ref19.showXLabel,
-            showXLabel = _ref19$showXLabel === void 0 ? false : _ref19$showXLabel,
-            _ref19$showYLabel = _ref19.showYLabel,
-            showYLabel = _ref19$showYLabel === void 0 ? false : _ref19$showYLabel,
-            _ref19$showLegend = _ref19.showLegend,
-            showLegend = _ref19$showLegend === void 0 ? false : _ref19$showLegend,
-            _ref19$legendType = _ref19.legendType,
-            legendType = _ref19$legendType === void 0 ? ScaleType.Ordinal : _ref19$legendType,
-            _ref19$legendPosition = _ref19.legendPosition,
-            legendPosition = _ref19$legendPosition === void 0 ? LegendPosition.Right : _ref19$legendPosition,
-            _ref19$columns = _ref19.columns,
-            columns = _ref19$columns === void 0 ? 12 : _ref19$columns;
+      function calculateViewDimensions(_ref20) {
+        var width = _ref20.width,
+            height = _ref20.height,
+            margins = _ref20.margins,
+            _ref20$showXAxis = _ref20.showXAxis,
+            showXAxis = _ref20$showXAxis === void 0 ? false : _ref20$showXAxis,
+            _ref20$showYAxis = _ref20.showYAxis,
+            showYAxis = _ref20$showYAxis === void 0 ? false : _ref20$showYAxis,
+            _ref20$xAxisHeight = _ref20.xAxisHeight,
+            xAxisHeight = _ref20$xAxisHeight === void 0 ? 0 : _ref20$xAxisHeight,
+            _ref20$yAxisWidth = _ref20.yAxisWidth,
+            yAxisWidth = _ref20$yAxisWidth === void 0 ? 0 : _ref20$yAxisWidth,
+            _ref20$showXLabel = _ref20.showXLabel,
+            showXLabel = _ref20$showXLabel === void 0 ? false : _ref20$showXLabel,
+            _ref20$showYLabel = _ref20.showYLabel,
+            showYLabel = _ref20$showYLabel === void 0 ? false : _ref20$showYLabel,
+            _ref20$showLegend = _ref20.showLegend,
+            showLegend = _ref20$showLegend === void 0 ? false : _ref20$showLegend,
+            _ref20$legendType = _ref20.legendType,
+            legendType = _ref20$legendType === void 0 ? ScaleType.Ordinal : _ref20$legendType,
+            _ref20$legendPosition = _ref20.legendPosition,
+            legendPosition = _ref20$legendPosition === void 0 ? LegendPosition.Right : _ref20$legendPosition,
+            _ref20$columns = _ref20.columns,
+            columns = _ref20$columns === void 0 ? 12 : _ref20$columns;
         var xOffset = margins[3];
         var chartWidth = width;
         var chartHeight = height - margins[0] - margins[2];
@@ -18771,40 +18748,40 @@
       var AreaChartComponent = /*#__PURE__*/function (_BaseChartComponent) {
         _inherits(AreaChartComponent, _BaseChartComponent);
 
-        var _super6 = _createSuper(AreaChartComponent);
+        var _super5 = _createSuper(AreaChartComponent);
 
         function AreaChartComponent() {
-          var _this40;
+          var _this41;
 
           _classCallCheck(this, AreaChartComponent);
 
-          _this40 = _super6.apply(this, arguments);
-          _this40.legend = false;
-          _this40.legendTitle = 'Legend';
-          _this40.legendPosition = LegendPosition.Right;
-          _this40.xAxis = false;
-          _this40.yAxis = false;
-          _this40.baseValue = 'auto';
-          _this40.autoScale = false;
-          _this40.timeline = false;
-          _this40.showGridLines = true;
-          _this40.curve = d3_shape__WEBPACK_IMPORTED_MODULE_10__["curveLinear"];
-          _this40.activeEntries = [];
-          _this40.trimXAxisTicks = true;
-          _this40.trimYAxisTicks = true;
-          _this40.rotateXAxisTicks = true;
-          _this40.maxXAxisTickLength = 16;
-          _this40.maxYAxisTickLength = 16;
-          _this40.roundDomains = false;
-          _this40.tooltipDisabled = false;
-          _this40.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this40.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this40.margin = [10, 20, 10, 20];
-          _this40.xAxisHeight = 0;
-          _this40.yAxisWidth = 0;
-          _this40.timelineHeight = 50;
-          _this40.timelinePadding = 10;
-          return _this40;
+          _this41 = _super5.apply(this, arguments);
+          _this41.legend = false;
+          _this41.legendTitle = 'Legend';
+          _this41.legendPosition = LegendPosition.Right;
+          _this41.xAxis = false;
+          _this41.yAxis = false;
+          _this41.baseValue = 'auto';
+          _this41.autoScale = false;
+          _this41.timeline = false;
+          _this41.showGridLines = true;
+          _this41.curve = d3_shape__WEBPACK_IMPORTED_MODULE_10__["curveLinear"];
+          _this41.activeEntries = [];
+          _this41.trimXAxisTicks = true;
+          _this41.trimYAxisTicks = true;
+          _this41.rotateXAxisTicks = true;
+          _this41.maxXAxisTickLength = 16;
+          _this41.maxYAxisTickLength = 16;
+          _this41.roundDomains = false;
+          _this41.tooltipDisabled = false;
+          _this41.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this41.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this41.margin = [10, 20, 10, 20];
+          _this41.xAxisHeight = 0;
+          _this41.yAxisWidth = 0;
+          _this41.timelineHeight = 50;
+          _this41.timelinePadding = 10;
+          return _this41;
         }
 
         _createClass(AreaChartComponent, [{
@@ -19087,15 +19064,15 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref20) {
-            var width = _ref20.width;
+          value: function updateYAxisWidth(_ref21) {
+            var width = _ref21.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref21) {
-            var height = _ref21.height;
+          value: function updateXAxisHeight(_ref22) {
+            var height = _ref22.height;
             this.xAxisHeight = height;
             this.update();
           }
@@ -19288,44 +19265,44 @@
       var AreaChartNormalizedComponent = /*#__PURE__*/function (_BaseChartComponent2) {
         _inherits(AreaChartNormalizedComponent, _BaseChartComponent2);
 
-        var _super7 = _createSuper(AreaChartNormalizedComponent);
+        var _super6 = _createSuper(AreaChartNormalizedComponent);
 
         function AreaChartNormalizedComponent() {
-          var _this41;
+          var _this42;
 
           _classCallCheck(this, AreaChartNormalizedComponent);
 
-          _this41 = _super7.apply(this, arguments);
-          _this41.legend = false;
-          _this41.legendTitle = 'Legend';
-          _this41.legendPosition = LegendPosition.Right;
-          _this41.showXAxisLabel = false;
-          _this41.showYAxisLabel = false;
-          _this41.showGridLines = true;
-          _this41.curve = d3_shape__WEBPACK_IMPORTED_MODULE_10__["curveLinear"];
-          _this41.activeEntries = [];
-          _this41.trimXAxisTicks = true;
-          _this41.trimYAxisTicks = true;
-          _this41.rotateXAxisTicks = true;
-          _this41.maxXAxisTickLength = 16;
-          _this41.maxYAxisTickLength = 16;
-          _this41.roundDomains = false;
-          _this41.tooltipDisabled = false;
-          _this41.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this41.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this41.yDomain = [0, 100];
-          _this41.margin = [10, 20, 10, 20];
-          _this41.xAxisHeight = 0;
-          _this41.yAxisWidth = 0;
-          _this41.timelineHeight = 50;
-          _this41.timelinePadding = 10;
-          return _this41;
+          _this42 = _super6.apply(this, arguments);
+          _this42.legend = false;
+          _this42.legendTitle = 'Legend';
+          _this42.legendPosition = LegendPosition.Right;
+          _this42.showXAxisLabel = false;
+          _this42.showYAxisLabel = false;
+          _this42.showGridLines = true;
+          _this42.curve = d3_shape__WEBPACK_IMPORTED_MODULE_10__["curveLinear"];
+          _this42.activeEntries = [];
+          _this42.trimXAxisTicks = true;
+          _this42.trimYAxisTicks = true;
+          _this42.rotateXAxisTicks = true;
+          _this42.maxXAxisTickLength = 16;
+          _this42.maxYAxisTickLength = 16;
+          _this42.roundDomains = false;
+          _this42.tooltipDisabled = false;
+          _this42.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this42.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this42.yDomain = [0, 100];
+          _this42.margin = [10, 20, 10, 20];
+          _this42.xAxisHeight = 0;
+          _this42.yAxisWidth = 0;
+          _this42.timelineHeight = 50;
+          _this42.timelinePadding = 10;
+          return _this42;
         }
 
         _createClass(AreaChartNormalizedComponent, [{
           key: "update",
           value: function update() {
-            var _this42 = this;
+            var _this43 = this;
 
             _get(_getPrototypeOf(AreaChartNormalizedComponent.prototype), "update", this).call(this);
 
@@ -19359,11 +19336,11 @@
             this.yScale = this.getYScale(this.yDomain, this.dims.height);
 
             var _loop2 = function _loop2(i) {
-              var val = _this42.xSet[i];
+              var val = _this43.xSet[i];
               var d0 = 0;
               var total = 0;
 
-              var _iterator36 = _createForOfIteratorHelper(_this42.results),
+              var _iterator36 = _createForOfIteratorHelper(_this43.results),
                   _step36;
 
               try {
@@ -19373,7 +19350,7 @@
                     var a = item.name;
                     var b = val;
 
-                    if (_this42.scaleType === ScaleType.Time) {
+                    if (_this43.scaleType === ScaleType.Time) {
                       a = a.valueOf();
                       b = b.valueOf();
                     }
@@ -19391,7 +19368,7 @@
                 _iterator36.f();
               }
 
-              var _iterator37 = _createForOfIteratorHelper(_this42.results),
+              var _iterator37 = _createForOfIteratorHelper(_this43.results),
                   _step37;
 
               try {
@@ -19402,7 +19379,7 @@
                     var a = item.name;
                     var b = val;
 
-                    if (_this42.scaleType === ScaleType.Time) {
+                    if (_this43.scaleType === ScaleType.Time) {
                       a = a.valueOf();
                       b = b.valueOf();
                     }
@@ -19600,15 +19577,15 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref22) {
-            var width = _ref22.width;
+          value: function updateYAxisWidth(_ref23) {
+            var width = _ref23.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref23) {
-            var height = _ref23.height;
+          value: function updateXAxisHeight(_ref24) {
+            var height = _ref24.height;
             this.xAxisHeight = height;
             this.update();
           }
@@ -19783,44 +19760,44 @@
       var AreaChartStackedComponent = /*#__PURE__*/function (_BaseChartComponent3) {
         _inherits(AreaChartStackedComponent, _BaseChartComponent3);
 
-        var _super8 = _createSuper(AreaChartStackedComponent);
+        var _super7 = _createSuper(AreaChartStackedComponent);
 
         function AreaChartStackedComponent() {
-          var _this43;
+          var _this44;
 
           _classCallCheck(this, AreaChartStackedComponent);
 
-          _this43 = _super8.apply(this, arguments);
-          _this43.legend = false;
-          _this43.legendTitle = 'Legend';
-          _this43.legendPosition = LegendPosition.Right;
-          _this43.xAxis = false;
-          _this43.yAxis = false;
-          _this43.timeline = false;
-          _this43.showGridLines = true;
-          _this43.curve = d3_shape__WEBPACK_IMPORTED_MODULE_10__["curveLinear"];
-          _this43.activeEntries = [];
-          _this43.trimXAxisTicks = true;
-          _this43.trimYAxisTicks = true;
-          _this43.rotateXAxisTicks = true;
-          _this43.maxXAxisTickLength = 16;
-          _this43.maxYAxisTickLength = 16;
-          _this43.roundDomains = false;
-          _this43.tooltipDisabled = false;
-          _this43.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this43.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this43.margin = [10, 20, 10, 20];
-          _this43.xAxisHeight = 0;
-          _this43.yAxisWidth = 0;
-          _this43.timelineHeight = 50;
-          _this43.timelinePadding = 10;
-          return _this43;
+          _this44 = _super7.apply(this, arguments);
+          _this44.legend = false;
+          _this44.legendTitle = 'Legend';
+          _this44.legendPosition = LegendPosition.Right;
+          _this44.xAxis = false;
+          _this44.yAxis = false;
+          _this44.timeline = false;
+          _this44.showGridLines = true;
+          _this44.curve = d3_shape__WEBPACK_IMPORTED_MODULE_10__["curveLinear"];
+          _this44.activeEntries = [];
+          _this44.trimXAxisTicks = true;
+          _this44.trimYAxisTicks = true;
+          _this44.rotateXAxisTicks = true;
+          _this44.maxXAxisTickLength = 16;
+          _this44.maxYAxisTickLength = 16;
+          _this44.roundDomains = false;
+          _this44.tooltipDisabled = false;
+          _this44.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this44.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this44.margin = [10, 20, 10, 20];
+          _this44.xAxisHeight = 0;
+          _this44.yAxisWidth = 0;
+          _this44.timelineHeight = 50;
+          _this44.timelinePadding = 10;
+          return _this44;
         }
 
         _createClass(AreaChartStackedComponent, [{
           key: "update",
           value: function update() {
-            var _this44 = this;
+            var _this45 = this;
 
             _get(_getPrototypeOf(AreaChartStackedComponent.prototype), "update", this).call(this);
 
@@ -19855,10 +19832,10 @@
             this.yScale = this.getYScale(this.yDomain, this.dims.height);
 
             var _loop3 = function _loop3(i) {
-              var val = _this44.xSet[i];
+              var val = _this45.xSet[i];
               var d0 = 0;
 
-              var _iterator39 = _createForOfIteratorHelper(_this44.results),
+              var _iterator39 = _createForOfIteratorHelper(_this45.results),
                   _step39;
 
               try {
@@ -19868,7 +19845,7 @@
                     var a = item.name;
                     var b = val;
 
-                    if (_this44.scaleType === ScaleType.Time) {
+                    if (_this45.scaleType === ScaleType.Time) {
                       a = a.valueOf();
                       b = b.valueOf();
                     }
@@ -19965,15 +19942,15 @@
         }, {
           key: "getYDomain",
           value: function getYDomain() {
-            var _this45 = this;
+            var _this46 = this;
 
             var domain = [];
 
             var _loop4 = function _loop4(i) {
-              var val = _this45.xSet[i];
+              var val = _this46.xSet[i];
               var sum = 0;
 
-              var _iterator40 = _createForOfIteratorHelper(_this45.results),
+              var _iterator40 = _createForOfIteratorHelper(_this46.results),
                   _step40;
 
               try {
@@ -19983,7 +19960,7 @@
                     var a = item.name;
                     var b = val;
 
-                    if (_this45.scaleType === ScaleType.Time) {
+                    if (_this46.scaleType === ScaleType.Time) {
                       a = a.valueOf();
                       b = b.valueOf();
                     }
@@ -20111,15 +20088,15 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref24) {
-            var width = _ref24.width;
+          value: function updateYAxisWidth(_ref25) {
+            var width = _ref25.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref25) {
-            var height = _ref25.height;
+          value: function updateXAxisHeight(_ref26) {
+            var height = _ref26.height;
             this.xAxisHeight = height;
             this.update();
           }
@@ -20368,7 +20345,7 @@
         }, {
           key: "update",
           value: function update() {
-            var _this46 = this;
+            var _this47 = this;
 
             this.updateGradient();
             var currentArea;
@@ -20376,30 +20353,30 @@
 
             var xProperty = function xProperty(d) {
               var label = d.name;
-              return _this46.xScale(label);
+              return _this47.xScale(label);
             };
 
             if (this.stacked || this.normalized) {
               currentArea = Object(d3_shape__WEBPACK_IMPORTED_MODULE_10__["area"])().x(xProperty).y0(function (d, i) {
-                return _this46.yScale(d.d0);
+                return _this47.yScale(d.d0);
               }).y1(function (d, i) {
-                return _this46.yScale(d.d1);
+                return _this47.yScale(d.d1);
               });
               startingArea = Object(d3_shape__WEBPACK_IMPORTED_MODULE_10__["area"])().x(xProperty).y0(function (d) {
-                return _this46.yScale.range()[0];
+                return _this47.yScale.range()[0];
               }).y1(function (d) {
-                return _this46.yScale.range()[0];
+                return _this47.yScale.range()[0];
               });
             } else {
               currentArea = Object(d3_shape__WEBPACK_IMPORTED_MODULE_10__["area"])().x(xProperty).y0(function () {
-                return _this46.baseValue === 'auto' ? _this46.yScale.range()[0] : _this46.yScale(_this46.baseValue);
+                return _this47.baseValue === 'auto' ? _this47.yScale.range()[0] : _this47.yScale(_this47.baseValue);
               }).y1(function (d) {
-                return _this46.yScale(d.value);
+                return _this47.yScale(d.value);
               });
               startingArea = Object(d3_shape__WEBPACK_IMPORTED_MODULE_10__["area"])().x(xProperty).y0(function (d) {
-                return _this46.baseValue === 'auto' ? _this46.yScale.range()[0] : _this46.yScale(_this46.baseValue);
+                return _this47.baseValue === 'auto' ? _this47.yScale.range()[0] : _this47.yScale(_this47.baseValue);
               }).y1(function (d) {
-                return _this46.baseValue === 'auto' ? _this46.yScale.range()[0] : _this46.yScale(_this46.baseValue);
+                return _this47.baseValue === 'auto' ? _this47.yScale.range()[0] : _this47.yScale(_this47.baseValue);
               });
             }
 
@@ -20688,21 +20665,6 @@
             }
           }
         }, {
-          key: "onMouseEnter",
-          value: function onMouseEnter() {
-            this.activate.emit(this.data);
-          }
-        }, {
-          key: "onMouseLeave",
-          value: function onMouseLeave() {
-            this.deactivate.emit(this.data);
-          }
-        }, {
-          key: "checkToHideBar",
-          value: function checkToHideBar() {
-            this.hideBar = this.noBarWhenZero && (this.orientation === BarOrientation.Vertical && this.height === 0 || this.orientation === BarOrientation.Horizontal && this.width === 0);
-          }
-        }, {
           key: "edges",
           get: function get() {
             var edges = [false, false, false, false];
@@ -20724,6 +20686,21 @@
             }
 
             return edges;
+          }
+        }, {
+          key: "onMouseEnter",
+          value: function onMouseEnter() {
+            this.activate.emit(this.data);
+          }
+        }, {
+          key: "onMouseLeave",
+          value: function onMouseLeave() {
+            this.deactivate.emit(this.data);
+          }
+        }, {
+          key: "checkToHideBar",
+          value: function checkToHideBar() {
+            this.hideBar = this.noBarWhenZero && (this.orientation === BarOrientation.Vertical && this.height === 0 || this.orientation === BarOrientation.Horizontal && this.width === 0);
           }
         }]);
 
@@ -20813,40 +20790,40 @@
       var BarHorizontalComponent = /*#__PURE__*/function (_BaseChartComponent4) {
         _inherits(BarHorizontalComponent, _BaseChartComponent4);
 
-        var _super9 = _createSuper(BarHorizontalComponent);
+        var _super8 = _createSuper(BarHorizontalComponent);
 
         function BarHorizontalComponent() {
-          var _this47;
+          var _this48;
 
           _classCallCheck(this, BarHorizontalComponent);
 
-          _this47 = _super9.apply(this, arguments);
-          _this47.legend = false;
-          _this47.legendTitle = 'Legend';
-          _this47.legendPosition = LegendPosition.Right;
-          _this47.tooltipDisabled = false;
-          _this47.showGridLines = true;
-          _this47.activeEntries = [];
-          _this47.trimXAxisTicks = true;
-          _this47.trimYAxisTicks = true;
-          _this47.rotateXAxisTicks = true;
-          _this47.maxXAxisTickLength = 16;
-          _this47.maxYAxisTickLength = 16;
-          _this47.barPadding = 8;
-          _this47.roundDomains = false;
-          _this47.roundEdges = true;
-          _this47.showDataLabel = false;
-          _this47.noBarWhenZero = true;
-          _this47.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this47.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this47.margin = [10, 20, 10, 20];
-          _this47.xAxisHeight = 0;
-          _this47.yAxisWidth = 0;
-          _this47.dataLabelMaxWidth = {
+          _this48 = _super8.apply(this, arguments);
+          _this48.legend = false;
+          _this48.legendTitle = 'Legend';
+          _this48.legendPosition = LegendPosition.Right;
+          _this48.tooltipDisabled = false;
+          _this48.showGridLines = true;
+          _this48.activeEntries = [];
+          _this48.trimXAxisTicks = true;
+          _this48.trimYAxisTicks = true;
+          _this48.rotateXAxisTicks = true;
+          _this48.maxXAxisTickLength = 16;
+          _this48.maxYAxisTickLength = 16;
+          _this48.barPadding = 8;
+          _this48.roundDomains = false;
+          _this48.roundEdges = true;
+          _this48.showDataLabel = false;
+          _this48.noBarWhenZero = true;
+          _this48.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this48.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this48.margin = [10, 20, 10, 20];
+          _this48.xAxisHeight = 0;
+          _this48.yAxisWidth = 0;
+          _this48.dataLabelMaxWidth = {
             negative: 0,
             positive: 0
           };
-          return _this47;
+          return _this48;
         }
 
         _createClass(BarHorizontalComponent, [{
@@ -20956,22 +20933,22 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref26) {
-            var width = _ref26.width;
+          value: function updateYAxisWidth(_ref27) {
+            var width = _ref27.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref27) {
-            var height = _ref27.height;
+          value: function updateXAxisHeight(_ref28) {
+            var height = _ref28.height;
             this.xAxisHeight = height;
             this.update();
           }
         }, {
           key: "onDataLabelMaxWidthChanged",
           value: function onDataLabelMaxWidthChanged(event) {
-            var _this48 = this;
+            var _this49 = this;
 
             if (event.size.negative) {
               this.dataLabelMaxWidth.negative = Math.max(this.dataLabelMaxWidth.negative, event.size.width);
@@ -20981,7 +20958,7 @@
 
             if (event.index === this.results.length - 1) {
               setTimeout(function () {
-                return _this48.update();
+                return _this49.update();
               });
             }
           }
@@ -21155,41 +21132,41 @@
       var BarHorizontal2DComponent = /*#__PURE__*/function (_BaseChartComponent5) {
         _inherits(BarHorizontal2DComponent, _BaseChartComponent5);
 
-        var _super10 = _createSuper(BarHorizontal2DComponent);
+        var _super9 = _createSuper(BarHorizontal2DComponent);
 
         function BarHorizontal2DComponent() {
-          var _this49;
+          var _this50;
 
           _classCallCheck(this, BarHorizontal2DComponent);
 
-          _this49 = _super10.apply(this, arguments);
-          _this49.legend = false;
-          _this49.legendTitle = 'Legend';
-          _this49.legendPosition = LegendPosition.Right;
-          _this49.tooltipDisabled = false;
-          _this49.showGridLines = true;
-          _this49.activeEntries = [];
-          _this49.trimXAxisTicks = true;
-          _this49.trimYAxisTicks = true;
-          _this49.rotateXAxisTicks = true;
-          _this49.maxXAxisTickLength = 16;
-          _this49.maxYAxisTickLength = 16;
-          _this49.groupPadding = 16;
-          _this49.barPadding = 8;
-          _this49.roundDomains = false;
-          _this49.roundEdges = true;
-          _this49.showDataLabel = false;
-          _this49.noBarWhenZero = true;
-          _this49.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this49.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this49.margin = [10, 20, 10, 20];
-          _this49.xAxisHeight = 0;
-          _this49.yAxisWidth = 0;
-          _this49.dataLabelMaxWidth = {
+          _this50 = _super9.apply(this, arguments);
+          _this50.legend = false;
+          _this50.legendTitle = 'Legend';
+          _this50.legendPosition = LegendPosition.Right;
+          _this50.tooltipDisabled = false;
+          _this50.showGridLines = true;
+          _this50.activeEntries = [];
+          _this50.trimXAxisTicks = true;
+          _this50.trimYAxisTicks = true;
+          _this50.rotateXAxisTicks = true;
+          _this50.maxXAxisTickLength = 16;
+          _this50.maxYAxisTickLength = 16;
+          _this50.groupPadding = 16;
+          _this50.barPadding = 8;
+          _this50.roundDomains = false;
+          _this50.roundEdges = true;
+          _this50.showDataLabel = false;
+          _this50.noBarWhenZero = true;
+          _this50.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this50.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this50.margin = [10, 20, 10, 20];
+          _this50.xAxisHeight = 0;
+          _this50.yAxisWidth = 0;
+          _this50.dataLabelMaxWidth = {
             negative: 0,
             positive: 0
           };
-          return _this49;
+          return _this50;
         }
 
         _createClass(BarHorizontal2DComponent, [{
@@ -21405,22 +21382,22 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref28) {
-            var width = _ref28.width;
+          value: function updateYAxisWidth(_ref29) {
+            var width = _ref29.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref29) {
-            var height = _ref29.height;
+          value: function updateXAxisHeight(_ref30) {
+            var height = _ref30.height;
             this.xAxisHeight = height;
             this.update();
           }
         }, {
           key: "onDataLabelMaxWidthChanged",
           value: function onDataLabelMaxWidthChanged(event, groupIndex) {
-            var _this50 = this;
+            var _this51 = this;
 
             if (event.size.negative) {
               this.dataLabelMaxWidth.negative = Math.max(this.dataLabelMaxWidth.negative, event.size.width);
@@ -21430,7 +21407,7 @@
 
             if (groupIndex === this.results.length - 1) {
               setTimeout(function () {
-                return _this50.update();
+                return _this51.update();
               });
             }
           }
@@ -21612,35 +21589,35 @@
       var BarHorizontalNormalizedComponent = /*#__PURE__*/function (_BaseChartComponent6) {
         _inherits(BarHorizontalNormalizedComponent, _BaseChartComponent6);
 
-        var _super11 = _createSuper(BarHorizontalNormalizedComponent);
+        var _super10 = _createSuper(BarHorizontalNormalizedComponent);
 
         function BarHorizontalNormalizedComponent() {
-          var _this51;
+          var _this52;
 
           _classCallCheck(this, BarHorizontalNormalizedComponent);
 
-          _this51 = _super11.apply(this, arguments);
-          _this51.legend = false;
-          _this51.legendTitle = 'Legend';
-          _this51.legendPosition = LegendPosition.Right;
-          _this51.tooltipDisabled = false;
-          _this51.showGridLines = true;
-          _this51.activeEntries = [];
-          _this51.trimXAxisTicks = true;
-          _this51.trimYAxisTicks = true;
-          _this51.rotateXAxisTicks = true;
-          _this51.maxXAxisTickLength = 16;
-          _this51.maxYAxisTickLength = 16;
-          _this51.barPadding = 8;
-          _this51.roundDomains = false;
-          _this51.noBarWhenZero = true;
-          _this51.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this51.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this51.valueDomain = [0, 100];
-          _this51.margin = [10, 20, 10, 20];
-          _this51.xAxisHeight = 0;
-          _this51.yAxisWidth = 0;
-          return _this51;
+          _this52 = _super10.apply(this, arguments);
+          _this52.legend = false;
+          _this52.legendTitle = 'Legend';
+          _this52.legendPosition = LegendPosition.Right;
+          _this52.tooltipDisabled = false;
+          _this52.showGridLines = true;
+          _this52.activeEntries = [];
+          _this52.trimXAxisTicks = true;
+          _this52.trimYAxisTicks = true;
+          _this52.rotateXAxisTicks = true;
+          _this52.maxXAxisTickLength = 16;
+          _this52.maxYAxisTickLength = 16;
+          _this52.barPadding = 8;
+          _this52.roundDomains = false;
+          _this52.noBarWhenZero = true;
+          _this52.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this52.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this52.valueDomain = [0, 100];
+          _this52.margin = [10, 20, 10, 20];
+          _this52.xAxisHeight = 0;
+          _this52.yAxisWidth = 0;
+          return _this52;
         }
 
         _createClass(BarHorizontalNormalizedComponent, [{
@@ -21800,15 +21777,15 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref30) {
-            var width = _ref30.width;
+          value: function updateYAxisWidth(_ref31) {
+            var width = _ref31.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref31) {
-            var height = _ref31.height;
+          value: function updateXAxisHeight(_ref32) {
+            var height = _ref32.height;
             this.xAxisHeight = height;
             this.update();
           }
@@ -21975,39 +21952,39 @@
       var BarHorizontalStackedComponent = /*#__PURE__*/function (_BaseChartComponent7) {
         _inherits(BarHorizontalStackedComponent, _BaseChartComponent7);
 
-        var _super12 = _createSuper(BarHorizontalStackedComponent);
+        var _super11 = _createSuper(BarHorizontalStackedComponent);
 
         function BarHorizontalStackedComponent() {
-          var _this52;
+          var _this53;
 
           _classCallCheck(this, BarHorizontalStackedComponent);
 
-          _this52 = _super12.apply(this, arguments);
-          _this52.legend = false;
-          _this52.legendTitle = 'Legend';
-          _this52.legendPosition = LegendPosition.Right;
-          _this52.tooltipDisabled = false;
-          _this52.showGridLines = true;
-          _this52.activeEntries = [];
-          _this52.trimXAxisTicks = true;
-          _this52.trimYAxisTicks = true;
-          _this52.rotateXAxisTicks = true;
-          _this52.maxXAxisTickLength = 16;
-          _this52.maxYAxisTickLength = 16;
-          _this52.barPadding = 8;
-          _this52.roundDomains = false;
-          _this52.showDataLabel = false;
-          _this52.noBarWhenZero = true;
-          _this52.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this52.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this52.margin = [10, 20, 10, 20];
-          _this52.xAxisHeight = 0;
-          _this52.yAxisWidth = 0;
-          _this52.dataLabelMaxWidth = {
+          _this53 = _super11.apply(this, arguments);
+          _this53.legend = false;
+          _this53.legendTitle = 'Legend';
+          _this53.legendPosition = LegendPosition.Right;
+          _this53.tooltipDisabled = false;
+          _this53.showGridLines = true;
+          _this53.activeEntries = [];
+          _this53.trimXAxisTicks = true;
+          _this53.trimYAxisTicks = true;
+          _this53.rotateXAxisTicks = true;
+          _this53.maxXAxisTickLength = 16;
+          _this53.maxYAxisTickLength = 16;
+          _this53.barPadding = 8;
+          _this53.roundDomains = false;
+          _this53.showDataLabel = false;
+          _this53.noBarWhenZero = true;
+          _this53.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this53.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this53.margin = [10, 20, 10, 20];
+          _this53.xAxisHeight = 0;
+          _this53.yAxisWidth = 0;
+          _this53.dataLabelMaxWidth = {
             negative: 0,
             positive: 0
           };
-          return _this52;
+          return _this53;
         }
 
         _createClass(BarHorizontalStackedComponent, [{
@@ -22229,22 +22206,22 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref32) {
-            var width = _ref32.width;
+          value: function updateYAxisWidth(_ref33) {
+            var width = _ref33.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref33) {
-            var height = _ref33.height;
+          value: function updateXAxisHeight(_ref34) {
+            var height = _ref34.height;
             this.xAxisHeight = height;
             this.update();
           }
         }, {
           key: "onDataLabelMaxWidthChanged",
           value: function onDataLabelMaxWidthChanged(event, groupIndex) {
-            var _this53 = this;
+            var _this54 = this;
 
             if (event.size.negative) {
               this.dataLabelMaxWidth.negative = Math.max(this.dataLabelMaxWidth.negative, event.size.width);
@@ -22254,7 +22231,7 @@
 
             if (groupIndex === this.results.length - 1) {
               setTimeout(function () {
-                return _this53.update();
+                return _this54.update();
               });
             }
           }
@@ -22430,40 +22407,40 @@
       var BarVerticalComponent = /*#__PURE__*/function (_BaseChartComponent8) {
         _inherits(BarVerticalComponent, _BaseChartComponent8);
 
-        var _super13 = _createSuper(BarVerticalComponent);
+        var _super12 = _createSuper(BarVerticalComponent);
 
         function BarVerticalComponent() {
-          var _this54;
+          var _this55;
 
           _classCallCheck(this, BarVerticalComponent);
 
-          _this54 = _super13.apply(this, arguments);
-          _this54.legend = false;
-          _this54.legendTitle = 'Legend';
-          _this54.legendPosition = LegendPosition.Right;
-          _this54.tooltipDisabled = false;
-          _this54.showGridLines = true;
-          _this54.activeEntries = [];
-          _this54.trimXAxisTicks = true;
-          _this54.trimYAxisTicks = true;
-          _this54.rotateXAxisTicks = true;
-          _this54.maxXAxisTickLength = 16;
-          _this54.maxYAxisTickLength = 16;
-          _this54.barPadding = 8;
-          _this54.roundDomains = false;
-          _this54.roundEdges = true;
-          _this54.showDataLabel = false;
-          _this54.noBarWhenZero = true;
-          _this54.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this54.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this54.margin = [10, 20, 10, 20];
-          _this54.xAxisHeight = 0;
-          _this54.yAxisWidth = 0;
-          _this54.dataLabelMaxHeight = {
+          _this55 = _super12.apply(this, arguments);
+          _this55.legend = false;
+          _this55.legendTitle = 'Legend';
+          _this55.legendPosition = LegendPosition.Right;
+          _this55.tooltipDisabled = false;
+          _this55.showGridLines = true;
+          _this55.activeEntries = [];
+          _this55.trimXAxisTicks = true;
+          _this55.trimYAxisTicks = true;
+          _this55.rotateXAxisTicks = true;
+          _this55.maxXAxisTickLength = 16;
+          _this55.maxYAxisTickLength = 16;
+          _this55.barPadding = 8;
+          _this55.roundDomains = false;
+          _this55.roundEdges = true;
+          _this55.showDataLabel = false;
+          _this55.noBarWhenZero = true;
+          _this55.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this55.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this55.margin = [10, 20, 10, 20];
+          _this55.xAxisHeight = 0;
+          _this55.yAxisWidth = 0;
+          _this55.dataLabelMaxHeight = {
             negative: 0,
             positive: 0
           };
-          return _this54;
+          return _this55;
         }
 
         _createClass(BarVerticalComponent, [{
@@ -22588,22 +22565,22 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref34) {
-            var width = _ref34.width;
+          value: function updateYAxisWidth(_ref35) {
+            var width = _ref35.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref35) {
-            var height = _ref35.height;
+          value: function updateXAxisHeight(_ref36) {
+            var height = _ref36.height;
             this.xAxisHeight = height;
             this.update();
           }
         }, {
           key: "onDataLabelMaxHeightChanged",
           value: function onDataLabelMaxHeightChanged(event) {
-            var _this55 = this;
+            var _this56 = this;
 
             if (event.size.negative) {
               this.dataLabelMaxHeight.negative = Math.max(this.dataLabelMaxHeight.negative, event.size.height);
@@ -22613,7 +22590,7 @@
 
             if (event.index === this.results.length - 1) {
               setTimeout(function () {
-                return _this55.update();
+                return _this56.update();
               });
             }
           }
@@ -22787,42 +22764,42 @@
       var BarVertical2DComponent = /*#__PURE__*/function (_BaseChartComponent9) {
         _inherits(BarVertical2DComponent, _BaseChartComponent9);
 
-        var _super14 = _createSuper(BarVertical2DComponent);
+        var _super13 = _createSuper(BarVertical2DComponent);
 
         function BarVertical2DComponent() {
-          var _this56;
+          var _this57;
 
           _classCallCheck(this, BarVertical2DComponent);
 
-          _this56 = _super14.apply(this, arguments);
-          _this56.legend = false;
-          _this56.legendTitle = 'Legend';
-          _this56.legendPosition = LegendPosition.Right;
-          _this56.tooltipDisabled = false;
-          _this56.scaleType = ScaleType.Ordinal;
-          _this56.showGridLines = true;
-          _this56.activeEntries = [];
-          _this56.trimXAxisTicks = true;
-          _this56.trimYAxisTicks = true;
-          _this56.rotateXAxisTicks = true;
-          _this56.maxXAxisTickLength = 16;
-          _this56.maxYAxisTickLength = 16;
-          _this56.groupPadding = 16;
-          _this56.barPadding = 8;
-          _this56.roundDomains = false;
-          _this56.roundEdges = true;
-          _this56.showDataLabel = false;
-          _this56.noBarWhenZero = true;
-          _this56.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this56.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this56.margin = [10, 20, 10, 20];
-          _this56.xAxisHeight = 0;
-          _this56.yAxisWidth = 0;
-          _this56.dataLabelMaxHeight = {
+          _this57 = _super13.apply(this, arguments);
+          _this57.legend = false;
+          _this57.legendTitle = 'Legend';
+          _this57.legendPosition = LegendPosition.Right;
+          _this57.tooltipDisabled = false;
+          _this57.scaleType = ScaleType.Ordinal;
+          _this57.showGridLines = true;
+          _this57.activeEntries = [];
+          _this57.trimXAxisTicks = true;
+          _this57.trimYAxisTicks = true;
+          _this57.rotateXAxisTicks = true;
+          _this57.maxXAxisTickLength = 16;
+          _this57.maxYAxisTickLength = 16;
+          _this57.groupPadding = 16;
+          _this57.barPadding = 8;
+          _this57.roundDomains = false;
+          _this57.roundEdges = true;
+          _this57.showDataLabel = false;
+          _this57.noBarWhenZero = true;
+          _this57.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this57.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this57.margin = [10, 20, 10, 20];
+          _this57.xAxisHeight = 0;
+          _this57.yAxisWidth = 0;
+          _this57.dataLabelMaxHeight = {
             negative: 0,
             positive: 0
           };
-          return _this56;
+          return _this57;
         }
 
         _createClass(BarVertical2DComponent, [{
@@ -22871,7 +22848,7 @@
         }, {
           key: "onDataLabelMaxHeightChanged",
           value: function onDataLabelMaxHeightChanged(event, groupIndex) {
-            var _this57 = this;
+            var _this58 = this;
 
             if (event.size.negative) {
               this.dataLabelMaxHeight.negative = Math.max(this.dataLabelMaxHeight.negative, event.size.height);
@@ -22881,7 +22858,7 @@
 
             if (groupIndex === this.results.length - 1) {
               setTimeout(function () {
-                return _this57.update();
+                return _this58.update();
               });
             }
           }
@@ -23060,15 +23037,15 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref36) {
-            var width = _ref36.width;
+          value: function updateYAxisWidth(_ref37) {
+            var width = _ref37.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref37) {
-            var height = _ref37.height;
+          value: function updateXAxisHeight(_ref38) {
+            var height = _ref38.height;
             this.xAxisHeight = height;
             this.update();
           }
@@ -23253,35 +23230,35 @@
       var BarVerticalNormalizedComponent = /*#__PURE__*/function (_BaseChartComponent10) {
         _inherits(BarVerticalNormalizedComponent, _BaseChartComponent10);
 
-        var _super15 = _createSuper(BarVerticalNormalizedComponent);
+        var _super14 = _createSuper(BarVerticalNormalizedComponent);
 
         function BarVerticalNormalizedComponent() {
-          var _this58;
+          var _this59;
 
           _classCallCheck(this, BarVerticalNormalizedComponent);
 
-          _this58 = _super15.apply(this, arguments);
-          _this58.legend = false;
-          _this58.legendTitle = 'Legend';
-          _this58.legendPosition = LegendPosition.Right;
-          _this58.tooltipDisabled = false;
-          _this58.showGridLines = true;
-          _this58.activeEntries = [];
-          _this58.trimXAxisTicks = true;
-          _this58.trimYAxisTicks = true;
-          _this58.rotateXAxisTicks = true;
-          _this58.maxXAxisTickLength = 16;
-          _this58.maxYAxisTickLength = 16;
-          _this58.barPadding = 8;
-          _this58.roundDomains = false;
-          _this58.noBarWhenZero = true;
-          _this58.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this58.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this58.valueDomain = [0, 100];
-          _this58.margin = [10, 20, 10, 20];
-          _this58.xAxisHeight = 0;
-          _this58.yAxisWidth = 0;
-          return _this58;
+          _this59 = _super14.apply(this, arguments);
+          _this59.legend = false;
+          _this59.legendTitle = 'Legend';
+          _this59.legendPosition = LegendPosition.Right;
+          _this59.tooltipDisabled = false;
+          _this59.showGridLines = true;
+          _this59.activeEntries = [];
+          _this59.trimXAxisTicks = true;
+          _this59.trimYAxisTicks = true;
+          _this59.rotateXAxisTicks = true;
+          _this59.maxXAxisTickLength = 16;
+          _this59.maxYAxisTickLength = 16;
+          _this59.barPadding = 8;
+          _this59.roundDomains = false;
+          _this59.noBarWhenZero = true;
+          _this59.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this59.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this59.valueDomain = [0, 100];
+          _this59.margin = [10, 20, 10, 20];
+          _this59.xAxisHeight = 0;
+          _this59.yAxisWidth = 0;
+          return _this59;
         }
 
         _createClass(BarVerticalNormalizedComponent, [{
@@ -23441,15 +23418,15 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref38) {
-            var width = _ref38.width;
+          value: function updateYAxisWidth(_ref39) {
+            var width = _ref39.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref39) {
-            var height = _ref39.height;
+          value: function updateXAxisHeight(_ref40) {
+            var height = _ref40.height;
             this.xAxisHeight = height;
             this.update();
           }
@@ -23616,39 +23593,39 @@
       var BarVerticalStackedComponent = /*#__PURE__*/function (_BaseChartComponent11) {
         _inherits(BarVerticalStackedComponent, _BaseChartComponent11);
 
-        var _super16 = _createSuper(BarVerticalStackedComponent);
+        var _super15 = _createSuper(BarVerticalStackedComponent);
 
         function BarVerticalStackedComponent() {
-          var _this59;
+          var _this60;
 
           _classCallCheck(this, BarVerticalStackedComponent);
 
-          _this59 = _super16.apply(this, arguments);
-          _this59.legend = false;
-          _this59.legendTitle = 'Legend';
-          _this59.legendPosition = LegendPosition.Right;
-          _this59.tooltipDisabled = false;
-          _this59.showGridLines = true;
-          _this59.activeEntries = [];
-          _this59.trimXAxisTicks = true;
-          _this59.trimYAxisTicks = true;
-          _this59.rotateXAxisTicks = true;
-          _this59.maxXAxisTickLength = 16;
-          _this59.maxYAxisTickLength = 16;
-          _this59.barPadding = 8;
-          _this59.roundDomains = false;
-          _this59.showDataLabel = false;
-          _this59.noBarWhenZero = true;
-          _this59.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this59.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this59.margin = [10, 20, 10, 20];
-          _this59.xAxisHeight = 0;
-          _this59.yAxisWidth = 0;
-          _this59.dataLabelMaxHeight = {
+          _this60 = _super15.apply(this, arguments);
+          _this60.legend = false;
+          _this60.legendTitle = 'Legend';
+          _this60.legendPosition = LegendPosition.Right;
+          _this60.tooltipDisabled = false;
+          _this60.showGridLines = true;
+          _this60.activeEntries = [];
+          _this60.trimXAxisTicks = true;
+          _this60.trimYAxisTicks = true;
+          _this60.rotateXAxisTicks = true;
+          _this60.maxXAxisTickLength = 16;
+          _this60.maxYAxisTickLength = 16;
+          _this60.barPadding = 8;
+          _this60.roundDomains = false;
+          _this60.showDataLabel = false;
+          _this60.noBarWhenZero = true;
+          _this60.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this60.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this60.margin = [10, 20, 10, 20];
+          _this60.xAxisHeight = 0;
+          _this60.yAxisWidth = 0;
+          _this60.dataLabelMaxHeight = {
             negative: 0,
             positive: 0
           };
-          return _this59;
+          return _this60;
         }
 
         _createClass(BarVerticalStackedComponent, [{
@@ -23822,7 +23799,7 @@
         }, {
           key: "onDataLabelMaxHeightChanged",
           value: function onDataLabelMaxHeightChanged(event, groupIndex) {
-            var _this60 = this;
+            var _this61 = this;
 
             if (event.size.negative) {
               this.dataLabelMaxHeight.negative = Math.max(this.dataLabelMaxHeight.negative, event.size.height);
@@ -23832,7 +23809,7 @@
 
             if (groupIndex === this.results.length - 1) {
               setTimeout(function () {
-                return _this60.update();
+                return _this61.update();
               });
             }
           }
@@ -23892,15 +23869,15 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref40) {
-            var width = _ref40.width;
+          value: function updateYAxisWidth(_ref41) {
+            var width = _ref41.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref41) {
-            var height = _ref41.height;
+          value: function updateXAxisHeight(_ref42) {
+            var height = _ref42.height;
             this.xAxisHeight = height;
             this.update();
           }
@@ -24112,7 +24089,7 @@
           key: "update",
           value: function update() {
             var _d3,
-                _this61 = this;
+                _this62 = this;
 
             this.updateTooltipSettings();
             var d0 = (_d3 = {}, _defineProperty(_d3, D0Types.positive, 0), _defineProperty(_d3, D0Types.negative, 0), _d3);
@@ -24132,10 +24109,10 @@
             this.bars = this.series.map(function (d) {
               var value = d.value;
 
-              var label = _this61.getLabel(d);
+              var label = _this62.getLabel(d);
 
               var formattedLabel = formatLabel(label);
-              var roundEdges = _this61.roundEdges;
+              var roundEdges = _this62.roundEdges;
               d0Type = value > 0 ? D0Types.positive : D0Types.negative;
               var bar = {
                 value: value,
@@ -24144,28 +24121,28 @@
                 data: d,
                 formattedLabel: formattedLabel
               };
-              bar.height = _this61.yScale.bandwidth();
+              bar.height = _this62.yScale.bandwidth();
 
-              if (_this61.type === BarChartType.Standard) {
-                bar.width = Math.abs(_this61.xScale(value) - _this61.xScale(xScaleMin));
+              if (_this62.type === BarChartType.Standard) {
+                bar.width = Math.abs(_this62.xScale(value) - _this62.xScale(xScaleMin));
 
                 if (value < 0) {
-                  bar.x = _this61.xScale(value);
+                  bar.x = _this62.xScale(value);
                 } else {
-                  bar.x = _this61.xScale(xScaleMin);
+                  bar.x = _this62.xScale(xScaleMin);
                 }
 
-                bar.y = _this61.yScale(label);
-              } else if (_this61.type === BarChartType.Stacked) {
+                bar.y = _this62.yScale(label);
+              } else if (_this62.type === BarChartType.Stacked) {
                 var offset0 = d0[d0Type];
                 var offset1 = offset0 + value;
                 d0[d0Type] += value;
-                bar.width = _this61.xScale(offset1) - _this61.xScale(offset0);
-                bar.x = _this61.xScale(offset0);
+                bar.width = _this62.xScale(offset1) - _this62.xScale(offset0);
+                bar.x = _this62.xScale(offset0);
                 bar.y = 0;
                 bar.offset0 = offset0;
                 bar.offset1 = offset1;
-              } else if (_this61.type === BarChartType.Normalized) {
+              } else if (_this62.type === BarChartType.Normalized) {
                 var _offset2 = d0[d0Type];
 
                 var _offset3 = _offset2 + value;
@@ -24180,36 +24157,36 @@
                   _offset3 = 0;
                 }
 
-                bar.width = _this61.xScale(_offset3) - _this61.xScale(_offset2);
-                bar.x = _this61.xScale(_offset2);
+                bar.width = _this62.xScale(_offset3) - _this62.xScale(_offset2);
+                bar.x = _this62.xScale(_offset2);
                 bar.y = 0;
                 bar.offset0 = _offset2;
                 bar.offset1 = _offset3;
                 value = (_offset3 - _offset2).toFixed(2) + '%';
               }
 
-              if (_this61.colors.scaleType === ScaleType.Ordinal) {
-                bar.color = _this61.colors.getColor(label);
+              if (_this62.colors.scaleType === ScaleType.Ordinal) {
+                bar.color = _this62.colors.getColor(label);
               } else {
-                if (_this61.type === BarChartType.Standard) {
-                  bar.color = _this61.colors.getColor(value);
-                  bar.gradientStops = _this61.colors.getLinearGradientStops(value);
+                if (_this62.type === BarChartType.Standard) {
+                  bar.color = _this62.colors.getColor(value);
+                  bar.gradientStops = _this62.colors.getLinearGradientStops(value);
                 } else {
-                  bar.color = _this61.colors.getColor(bar.offset1);
-                  bar.gradientStops = _this61.colors.getLinearGradientStops(bar.offset1, bar.offset0);
+                  bar.color = _this62.colors.getColor(bar.offset1);
+                  bar.gradientStops = _this62.colors.getLinearGradientStops(bar.offset1, bar.offset0);
                 }
               }
 
               var tooltipLabel = formattedLabel;
               bar.ariaLabel = formattedLabel + ' ' + value.toLocaleString();
 
-              if (_this61.seriesName) {
-                tooltipLabel = "".concat(_this61.seriesName, " \u2022 ").concat(formattedLabel);
-                bar.data.series = _this61.seriesName;
-                bar.ariaLabel = _this61.seriesName + ' ' + bar.ariaLabel;
+              if (_this62.seriesName) {
+                tooltipLabel = "".concat(_this62.seriesName, " \u2022 ").concat(formattedLabel);
+                bar.data.series = _this62.seriesName;
+                bar.ariaLabel = _this62.seriesName + ' ' + bar.ariaLabel;
               }
 
-              bar.tooltipText = _this61.tooltipDisabled ? undefined : "\n        <span class=\"tooltip-label\">".concat(escapeLabel(tooltipLabel), "</span>\n        <span class=\"tooltip-val\">").concat(_this61.dataLabelFormatting ? _this61.dataLabelFormatting(value) : value.toLocaleString(), "</span>\n      ");
+              bar.tooltipText = _this62.tooltipDisabled ? undefined : "\n        <span class=\"tooltip-label\">".concat(escapeLabel(tooltipLabel), "</span>\n        <span class=\"tooltip-val\">").concat(_this62.dataLabelFormatting ? _this62.dataLabelFormatting(value) : value.toLocaleString(), "</span>\n      ");
               return bar;
             });
             this.updateDataLabels();
@@ -24217,7 +24194,7 @@
         }, {
           key: "updateDataLabels",
           value: function updateDataLabels() {
-            var _this62 = this;
+            var _this63 = this;
 
             if (this.type === BarChartType.Stacked) {
               this.barsForDataLabels = [];
@@ -24248,12 +24225,12 @@
             } else {
               this.barsForDataLabels = this.series.map(function (d) {
                 var section = {};
-                section.series = _this62.seriesName ? _this62.seriesName : d.label;
+                section.series = _this63.seriesName ? _this63.seriesName : d.label;
                 section.total = d.value;
-                section.x = _this62.xScale(0);
-                section.y = _this62.yScale(d.label);
-                section.width = _this62.xScale(section.total) - _this62.xScale(0);
-                section.height = _this62.yScale.bandwidth();
+                section.x = _this63.xScale(0);
+                section.y = _this63.yScale(d.label);
+                section.width = _this63.xScale(section.total) - _this63.xScale(0);
+                section.height = _this63.yScale.bandwidth();
                 return section;
               });
             }
@@ -24403,7 +24380,7 @@
           key: "update",
           value: function update() {
             var _d4,
-                _this63 = this;
+                _this64 = this;
 
             this.updateTooltipSettings();
             var width;
@@ -24429,10 +24406,10 @@
             this.bars = this.series.map(function (d, index) {
               var value = d.value;
 
-              var label = _this63.getLabel(d);
+              var label = _this64.getLabel(d);
 
               var formattedLabel = formatLabel(label);
-              var roundEdges = _this63.roundEdges;
+              var roundEdges = _this64.roundEdges;
               d0Type = value > 0 ? D0Types.positive : D0Types.negative;
               var bar = {
                 value: value,
@@ -24446,25 +24423,25 @@
                 y: 0
               };
 
-              if (_this63.type === BarChartType.Standard) {
-                bar.height = Math.abs(_this63.yScale(value) - _this63.yScale(yScaleMin));
-                bar.x = _this63.xScale(label);
+              if (_this64.type === BarChartType.Standard) {
+                bar.height = Math.abs(_this64.yScale(value) - _this64.yScale(yScaleMin));
+                bar.x = _this64.xScale(label);
 
                 if (value < 0) {
-                  bar.y = _this63.yScale(0);
+                  bar.y = _this64.yScale(0);
                 } else {
-                  bar.y = _this63.yScale(value);
+                  bar.y = _this64.yScale(value);
                 }
-              } else if (_this63.type === BarChartType.Stacked) {
+              } else if (_this64.type === BarChartType.Stacked) {
                 var offset0 = d0[d0Type];
                 var offset1 = offset0 + value;
                 d0[d0Type] += value;
-                bar.height = _this63.yScale(offset0) - _this63.yScale(offset1);
+                bar.height = _this64.yScale(offset0) - _this64.yScale(offset1);
                 bar.x = 0;
-                bar.y = _this63.yScale(offset1);
+                bar.y = _this64.yScale(offset1);
                 bar.offset0 = offset0;
                 bar.offset1 = offset1;
-              } else if (_this63.type === BarChartType.Normalized) {
+              } else if (_this64.type === BarChartType.Normalized) {
                 var _offset4 = d0[d0Type];
 
                 var _offset5 = _offset4 + value;
@@ -24479,36 +24456,36 @@
                   _offset5 = 0;
                 }
 
-                bar.height = _this63.yScale(_offset4) - _this63.yScale(_offset5);
+                bar.height = _this64.yScale(_offset4) - _this64.yScale(_offset5);
                 bar.x = 0;
-                bar.y = _this63.yScale(_offset5);
+                bar.y = _this64.yScale(_offset5);
                 bar.offset0 = _offset4;
                 bar.offset1 = _offset5;
                 value = (_offset5 - _offset4).toFixed(2) + '%';
               }
 
-              if (_this63.colors.scaleType === ScaleType.Ordinal) {
-                bar.color = _this63.colors.getColor(label);
+              if (_this64.colors.scaleType === ScaleType.Ordinal) {
+                bar.color = _this64.colors.getColor(label);
               } else {
-                if (_this63.type === BarChartType.Standard) {
-                  bar.color = _this63.colors.getColor(value);
-                  bar.gradientStops = _this63.colors.getLinearGradientStops(value);
+                if (_this64.type === BarChartType.Standard) {
+                  bar.color = _this64.colors.getColor(value);
+                  bar.gradientStops = _this64.colors.getLinearGradientStops(value);
                 } else {
-                  bar.color = _this63.colors.getColor(bar.offset1);
-                  bar.gradientStops = _this63.colors.getLinearGradientStops(bar.offset1, bar.offset0);
+                  bar.color = _this64.colors.getColor(bar.offset1);
+                  bar.gradientStops = _this64.colors.getLinearGradientStops(bar.offset1, bar.offset0);
                 }
               }
 
               var tooltipLabel = formattedLabel;
               bar.ariaLabel = formattedLabel + ' ' + value.toLocaleString();
 
-              if (_this63.seriesName) {
-                tooltipLabel = "".concat(_this63.seriesName, " \u2022 ").concat(formattedLabel);
-                bar.data.series = _this63.seriesName;
-                bar.ariaLabel = _this63.seriesName + ' ' + bar.ariaLabel;
+              if (_this64.seriesName) {
+                tooltipLabel = "".concat(_this64.seriesName, " \u2022 ").concat(formattedLabel);
+                bar.data.series = _this64.seriesName;
+                bar.ariaLabel = _this64.seriesName + ' ' + bar.ariaLabel;
               }
 
-              bar.tooltipText = _this63.tooltipDisabled ? undefined : "\n        <span class=\"tooltip-label\">".concat(escapeLabel(tooltipLabel), "</span>\n        <span class=\"tooltip-val\">").concat(_this63.dataLabelFormatting ? _this63.dataLabelFormatting(value) : value.toLocaleString(), "</span>\n      ");
+              bar.tooltipText = _this64.tooltipDisabled ? undefined : "\n        <span class=\"tooltip-label\">".concat(escapeLabel(tooltipLabel), "</span>\n        <span class=\"tooltip-val\">").concat(_this64.dataLabelFormatting ? _this64.dataLabelFormatting(value) : value.toLocaleString(), "</span>\n      ");
               return bar;
             });
             this.updateDataLabels();
@@ -24516,7 +24493,7 @@
         }, {
           key: "updateDataLabels",
           value: function updateDataLabels() {
-            var _this64 = this;
+            var _this65 = this;
 
             if (this.type === BarChartType.Stacked) {
               this.barsForDataLabels = [];
@@ -24547,12 +24524,12 @@
             } else {
               this.barsForDataLabels = this.series.map(function (d) {
                 var section = {};
-                section.series = _this64.seriesName ? _this64.seriesName : d.label;
+                section.series = _this65.seriesName ? _this65.seriesName : d.label;
                 section.total = d.value;
-                section.x = _this64.xScale(d.label);
-                section.y = _this64.yScale(0);
-                section.height = _this64.yScale(section.total) - _this64.yScale(0);
-                section.width = _this64.xScale.bandwidth();
+                section.x = _this65.xScale(d.label);
+                section.y = _this65.yScale(0);
+                section.height = _this65.yScale(section.total) - _this65.yScale(0);
+                section.width = _this65.xScale.bandwidth();
                 return section;
               });
             }
@@ -24852,39 +24829,39 @@
       var BubbleChartComponent = /*#__PURE__*/function (_BaseChartComponent12) {
         _inherits(BubbleChartComponent, _BaseChartComponent12);
 
-        var _super17 = _createSuper(BubbleChartComponent);
+        var _super16 = _createSuper(BubbleChartComponent);
 
         function BubbleChartComponent() {
-          var _this65;
+          var _this66;
 
           _classCallCheck(this, BubbleChartComponent);
 
-          _this65 = _super17.apply(this, arguments);
-          _this65.showGridLines = true;
-          _this65.legend = false;
-          _this65.legendTitle = 'Legend';
-          _this65.legendPosition = LegendPosition.Right;
-          _this65.xAxis = true;
-          _this65.yAxis = true;
-          _this65.trimXAxisTicks = true;
-          _this65.trimYAxisTicks = true;
-          _this65.rotateXAxisTicks = true;
-          _this65.maxXAxisTickLength = 16;
-          _this65.maxYAxisTickLength = 16;
-          _this65.roundDomains = false;
-          _this65.maxRadius = 10;
-          _this65.minRadius = 3;
-          _this65.schemeType = ScaleType.Ordinal;
-          _this65.tooltipDisabled = false;
-          _this65.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this65.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this65.scaleType = ScaleType.Linear;
-          _this65.margin = [10, 20, 10, 20];
-          _this65.bubblePadding = [0, 0, 0, 0];
-          _this65.xAxisHeight = 0;
-          _this65.yAxisWidth = 0;
-          _this65.activeEntries = [];
-          return _this65;
+          _this66 = _super16.apply(this, arguments);
+          _this66.showGridLines = true;
+          _this66.legend = false;
+          _this66.legendTitle = 'Legend';
+          _this66.legendPosition = LegendPosition.Right;
+          _this66.xAxis = true;
+          _this66.yAxis = true;
+          _this66.trimXAxisTicks = true;
+          _this66.trimYAxisTicks = true;
+          _this66.rotateXAxisTicks = true;
+          _this66.maxXAxisTickLength = 16;
+          _this66.maxYAxisTickLength = 16;
+          _this66.roundDomains = false;
+          _this66.maxRadius = 10;
+          _this66.minRadius = 3;
+          _this66.schemeType = ScaleType.Ordinal;
+          _this66.tooltipDisabled = false;
+          _this66.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this66.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this66.scaleType = ScaleType.Linear;
+          _this66.margin = [10, 20, 10, 20];
+          _this66.bubblePadding = [0, 0, 0, 0];
+          _this66.xAxisHeight = 0;
+          _this66.yAxisWidth = 0;
+          _this66.activeEntries = [];
+          return _this66;
         }
 
         _createClass(BubbleChartComponent, [{
@@ -25157,15 +25134,15 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref42) {
-            var width = _ref42.width;
+          value: function updateYAxisWidth(_ref43) {
+            var width = _ref43.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref43) {
-            var height = _ref43.height;
+          value: function updateXAxisHeight(_ref44) {
+            var height = _ref44.height;
             this.xAxisHeight = height;
             this.update();
           }
@@ -25375,7 +25352,7 @@
         }, {
           key: "getCircles",
           value: function getCircles() {
-            var _this66 = this;
+            var _this67 = this;
 
             var seriesName = this.data.name;
             return this.data.series.map(function (d, i) {
@@ -25384,13 +25361,13 @@
                 var x = d.x;
                 var r = d.r;
 
-                var radius = _this66.rScale(r || 1);
+                var radius = _this67.rScale(r || 1);
 
                 var tooltipLabel = formatLabel(d.name);
-                var cx = _this66.xScaleType === ScaleType.Linear ? _this66.xScale(Number(x)) : _this66.xScale(x);
-                var cy = _this66.yScaleType === ScaleType.Linear ? _this66.yScale(Number(y)) : _this66.yScale(y);
-                var color = _this66.colors.scaleType === ScaleType.Linear ? _this66.colors.getColor(r) : _this66.colors.getColor(seriesName);
-                var isActive = !_this66.activeEntries.length ? true : _this66.isActive({
+                var cx = _this67.xScaleType === ScaleType.Linear ? _this67.xScale(Number(x)) : _this67.xScale(x);
+                var cy = _this67.yScaleType === ScaleType.Linear ? _this67.yScale(Number(y)) : _this67.yScale(y);
+                var color = _this67.colors.scaleType === ScaleType.Linear ? _this67.colors.getColor(r) : _this67.colors.getColor(seriesName);
+                var isActive = !_this67.activeEntries.length ? true : _this67.isActive({
                   name: seriesName
                 });
                 var opacity = isActive ? 1 : 0.3;
@@ -25730,7 +25707,7 @@
         }, {
           key: "getCells",
           value: function getCells() {
-            var _this67 = this;
+            var _this68 = this;
 
             var cells = [];
             this.data.map(function (row) {
@@ -25740,11 +25717,11 @@
                 cells.push({
                   row: row,
                   cell: cell,
-                  x: _this67.xScale(row.name),
-                  y: _this67.yScale(cell.name),
-                  width: _this67.xScale.bandwidth(),
-                  height: _this67.yScale.bandwidth(),
-                  fill: _this67.colors.getColor(value),
+                  x: _this68.xScale(row.name),
+                  y: _this68.yScale(cell.name),
+                  width: _this68.xScale.bandwidth(),
+                  height: _this68.yScale.bandwidth(),
+                  fill: _this68.colors.getColor(value),
                   data: value,
                   label: formatLabel(cell.name),
                   series: row.name
@@ -25755,10 +25732,10 @@
           }
         }, {
           key: "getTooltipText",
-          value: function getTooltipText(_ref44) {
-            var label = _ref44.label,
-                data = _ref44.data,
-                series = _ref44.series;
+          value: function getTooltipText(_ref45) {
+            var label = _ref45.label,
+                data = _ref45.data,
+                series = _ref45.series;
             return "\n      <span class=\"tooltip-label\">".concat(escapeLabel(series), " \u2022 ").concat(escapeLabel(label), "</span>\n      <span class=\"tooltip-val\">").concat(data.toLocaleString(), "</span>\n    ");
           }
         }, {
@@ -25826,31 +25803,31 @@
       var HeatMapComponent = /*#__PURE__*/function (_BaseChartComponent13) {
         _inherits(HeatMapComponent, _BaseChartComponent13);
 
-        var _super18 = _createSuper(HeatMapComponent);
+        var _super17 = _createSuper(HeatMapComponent);
 
         function HeatMapComponent() {
-          var _this68;
+          var _this69;
 
           _classCallCheck(this, HeatMapComponent);
 
-          _this68 = _super18.apply(this, arguments);
-          _this68.legendTitle = 'Legend';
-          _this68.legendPosition = LegendPosition.Right;
-          _this68.innerPadding = 8;
-          _this68.trimXAxisTicks = true;
-          _this68.trimYAxisTicks = true;
-          _this68.rotateXAxisTicks = true;
-          _this68.maxXAxisTickLength = 16;
-          _this68.maxYAxisTickLength = 16;
-          _this68.tooltipDisabled = false;
-          _this68.activeEntries = [];
-          _this68.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this68.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this68.margin = [10, 20, 10, 20];
-          _this68.xAxisHeight = 0;
-          _this68.yAxisWidth = 0;
-          _this68.scaleType = ScaleType.Linear;
-          return _this68;
+          _this69 = _super17.apply(this, arguments);
+          _this69.legendTitle = 'Legend';
+          _this69.legendPosition = LegendPosition.Right;
+          _this69.innerPadding = 8;
+          _this69.trimXAxisTicks = true;
+          _this69.trimYAxisTicks = true;
+          _this69.rotateXAxisTicks = true;
+          _this69.maxXAxisTickLength = 16;
+          _this69.maxYAxisTickLength = 16;
+          _this69.tooltipDisabled = false;
+          _this69.activeEntries = [];
+          _this69.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this69.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this69.margin = [10, 20, 10, 20];
+          _this69.xAxisHeight = 0;
+          _this69.yAxisWidth = 0;
+          _this69.scaleType = ScaleType.Linear;
+          return _this69;
         }
 
         _createClass(HeatMapComponent, [{
@@ -26050,17 +26027,17 @@
         }, {
           key: "getRects",
           value: function getRects() {
-            var _this69 = this;
+            var _this70 = this;
 
             var rects = [];
             this.xDomain.map(function (xVal) {
-              _this69.yDomain.map(function (yVal) {
+              _this70.yDomain.map(function (yVal) {
                 rects.push({
-                  x: _this69.xScale(xVal),
-                  y: _this69.yScale(yVal),
+                  x: _this70.xScale(xVal),
+                  y: _this70.yScale(yVal),
                   rx: 3,
-                  width: _this69.xScale.bandwidth(),
-                  height: _this69.yScale.bandwidth(),
+                  width: _this70.xScale.bandwidth(),
+                  height: _this70.yScale.bandwidth(),
                   fill: 'rgba(200,200,200,0.03)'
                 });
               });
@@ -26090,15 +26067,15 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref45) {
-            var width = _ref45.width;
+          value: function updateYAxisWidth(_ref46) {
+            var width = _ref46.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref46) {
-            var height = _ref46.height;
+          value: function updateXAxisHeight(_ref47) {
+            var height = _ref47.height;
             this.xAxisHeight = height;
             this.update();
           }
@@ -26344,36 +26321,36 @@
       var LineChartComponent = /*#__PURE__*/function (_BaseChartComponent14) {
         _inherits(LineChartComponent, _BaseChartComponent14);
 
-        var _super19 = _createSuper(LineChartComponent);
+        var _super18 = _createSuper(LineChartComponent);
 
         function LineChartComponent() {
-          var _this70;
+          var _this71;
 
           _classCallCheck(this, LineChartComponent);
 
-          _this70 = _super19.apply(this, arguments);
-          _this70.legendTitle = 'Legend';
-          _this70.legendPosition = LegendPosition.Right;
-          _this70.showGridLines = true;
-          _this70.curve = d3_shape__WEBPACK_IMPORTED_MODULE_10__["curveLinear"];
-          _this70.activeEntries = [];
-          _this70.trimXAxisTicks = true;
-          _this70.trimYAxisTicks = true;
-          _this70.rotateXAxisTicks = true;
-          _this70.maxXAxisTickLength = 16;
-          _this70.maxYAxisTickLength = 16;
-          _this70.roundDomains = false;
-          _this70.tooltipDisabled = false;
-          _this70.showRefLines = false;
-          _this70.showRefLabels = true;
-          _this70.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this70.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this70.margin = [10, 20, 10, 20];
-          _this70.xAxisHeight = 0;
-          _this70.yAxisWidth = 0;
-          _this70.timelineHeight = 50;
-          _this70.timelinePadding = 10;
-          return _this70;
+          _this71 = _super18.apply(this, arguments);
+          _this71.legendTitle = 'Legend';
+          _this71.legendPosition = LegendPosition.Right;
+          _this71.showGridLines = true;
+          _this71.curve = d3_shape__WEBPACK_IMPORTED_MODULE_10__["curveLinear"];
+          _this71.activeEntries = [];
+          _this71.trimXAxisTicks = true;
+          _this71.trimYAxisTicks = true;
+          _this71.rotateXAxisTicks = true;
+          _this71.maxXAxisTickLength = 16;
+          _this71.maxYAxisTickLength = 16;
+          _this71.roundDomains = false;
+          _this71.tooltipDisabled = false;
+          _this71.showRefLines = false;
+          _this71.showRefLabels = true;
+          _this71.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this71.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this71.margin = [10, 20, 10, 20];
+          _this71.xAxisHeight = 0;
+          _this71.yAxisWidth = 0;
+          _this71.timelineHeight = 50;
+          _this71.timelinePadding = 10;
+          return _this71;
         }
 
         _createClass(LineChartComponent, [{
@@ -26630,15 +26607,15 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref47) {
-            var width = _ref47.width;
+          value: function updateYAxisWidth(_ref48) {
+            var width = _ref48.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref48) {
-            var height = _ref48.height;
+          value: function updateXAxisHeight(_ref49) {
+            var height = _ref49.height;
             this.xAxisHeight = height;
             this.update();
           }
@@ -26888,31 +26865,9 @@
         }, {
           key: "getLineGenerator",
           value: function getLineGenerator() {
-            var _this71 = this;
-
-            return Object(d3_shape__WEBPACK_IMPORTED_MODULE_10__["line"])().x(function (d) {
-              var label = d.name;
-              var value;
-
-              if (_this71.scaleType === ScaleType.Time) {
-                value = _this71.xScale(label);
-              } else if (_this71.scaleType === ScaleType.Linear) {
-                value = _this71.xScale(Number(label));
-              } else {
-                value = _this71.xScale(label);
-              }
-
-              return value;
-            }).y(function (d) {
-              return _this71.yScale(d.value);
-            }).curve(this.curve);
-          }
-        }, {
-          key: "getRangeGenerator",
-          value: function getRangeGenerator() {
             var _this72 = this;
 
-            return Object(d3_shape__WEBPACK_IMPORTED_MODULE_10__["area"])().x(function (d) {
+            return Object(d3_shape__WEBPACK_IMPORTED_MODULE_10__["line"])().x(function (d) {
               var label = d.name;
               var value;
 
@@ -26925,26 +26880,48 @@
               }
 
               return value;
+            }).y(function (d) {
+              return _this72.yScale(d.value);
+            }).curve(this.curve);
+          }
+        }, {
+          key: "getRangeGenerator",
+          value: function getRangeGenerator() {
+            var _this73 = this;
+
+            return Object(d3_shape__WEBPACK_IMPORTED_MODULE_10__["area"])().x(function (d) {
+              var label = d.name;
+              var value;
+
+              if (_this73.scaleType === ScaleType.Time) {
+                value = _this73.xScale(label);
+              } else if (_this73.scaleType === ScaleType.Linear) {
+                value = _this73.xScale(Number(label));
+              } else {
+                value = _this73.xScale(label);
+              }
+
+              return value;
             }).y0(function (d) {
-              return _this72.yScale(typeof d.min === 'number' ? d.min : d.value);
+              return _this73.yScale(typeof d.min === 'number' ? d.min : d.value);
             }).y1(function (d) {
-              return _this72.yScale(typeof d.max === 'number' ? d.max : d.value);
+              return _this73.yScale(typeof d.max === 'number' ? d.max : d.value);
             }).curve(this.curve);
           }
         }, {
           key: "getAreaGenerator",
           value: function getAreaGenerator() {
-            var _this73 = this;
+            var _this74 = this;
 
             var xProperty = function xProperty(d) {
               var label = d.name;
-              return _this73.xScale(label);
+              return _this74.xScale(label);
             };
 
             return Object(d3_shape__WEBPACK_IMPORTED_MODULE_10__["area"])().x(xProperty).y0(function () {
-              return _this73.yScale.range()[0];
+              return _this74.yScale.range()[0];
             }).y1(function (d) {
-              return _this73.yScale(d.value);
+              return _this74.yScale(d.value);
             }).curve(this.curve);
           }
         }, {
@@ -27061,36 +27038,36 @@
       var PolarChartComponent = /*#__PURE__*/function (_BaseChartComponent15) {
         _inherits(PolarChartComponent, _BaseChartComponent15);
 
-        var _super20 = _createSuper(PolarChartComponent);
+        var _super19 = _createSuper(PolarChartComponent);
 
         function PolarChartComponent() {
-          var _this74;
+          var _this75;
 
           _classCallCheck(this, PolarChartComponent);
 
-          _this74 = _super20.apply(this, arguments);
-          _this74.legendTitle = 'Legend';
-          _this74.legendPosition = LegendPosition.Right;
-          _this74.showGridLines = true;
-          _this74.curve = d3_shape__WEBPACK_IMPORTED_MODULE_10__["curveCardinalClosed"];
-          _this74.activeEntries = [];
-          _this74.rangeFillOpacity = 0.15;
-          _this74.trimYAxisTicks = true;
-          _this74.maxYAxisTickLength = 16;
-          _this74.roundDomains = false;
-          _this74.tooltipDisabled = false;
-          _this74.showSeriesOnHover = true;
-          _this74.gradient = false;
-          _this74.yAxisMinScale = 0;
-          _this74.labelTrim = true;
-          _this74.labelTrimSize = 10;
-          _this74.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this74.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"](); // series: any; // ???
+          _this75 = _super19.apply(this, arguments);
+          _this75.legendTitle = 'Legend';
+          _this75.legendPosition = LegendPosition.Right;
+          _this75.showGridLines = true;
+          _this75.curve = d3_shape__WEBPACK_IMPORTED_MODULE_10__["curveCardinalClosed"];
+          _this75.activeEntries = [];
+          _this75.rangeFillOpacity = 0.15;
+          _this75.trimYAxisTicks = true;
+          _this75.maxYAxisTickLength = 16;
+          _this75.roundDomains = false;
+          _this75.tooltipDisabled = false;
+          _this75.showSeriesOnHover = true;
+          _this75.gradient = false;
+          _this75.yAxisMinScale = 0;
+          _this75.labelTrim = true;
+          _this75.labelTrimSize = 10;
+          _this75.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this75.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"](); // series: any; // ???
 
-          _this74.margin = [10, 20, 10, 20];
-          _this74.xAxisHeight = 0;
-          _this74.yAxisWidth = 0;
-          return _this74;
+          _this75.margin = [10, 20, 10, 20];
+          _this75.xAxisHeight = 0;
+          _this75.yAxisWidth = 0;
+          return _this75;
         }
 
         _createClass(PolarChartComponent, [{
@@ -27148,7 +27125,7 @@
         }, {
           key: "setTicks",
           value: function setTicks() {
-            var _this75 = this;
+            var _this76 = this;
 
             var tickFormat;
 
@@ -27169,7 +27146,7 @@
             var outerRadius = this.outerRadius;
             var s = 1.1;
             this.thetaTicks = this.xDomain.map(function (d) {
-              var startAngle = _this75.xScale(d);
+              var startAngle = _this76.xScale(d);
 
               var dd = s * outerRadius * (startAngle > Math.PI ? -1 : 1);
               var label = tickFormat(d);
@@ -27208,7 +27185,7 @@
             }
 
             this.radiusTicks = this.yAxisScale.ticks(Math.floor(this.dims.height / 50)).map(function (d) {
-              return _this75.yScale(d);
+              return _this76.yScale(d);
             });
           }
         }, {
@@ -27400,15 +27377,15 @@
           }
         }, {
           key: "updateYAxisWidth",
-          value: function updateYAxisWidth(_ref49) {
-            var width = _ref49.width;
+          value: function updateYAxisWidth(_ref50) {
+            var width = _ref50.width;
             this.yAxisWidth = width;
             this.update();
           }
         }, {
           key: "updateXAxisHeight",
-          value: function updateXAxisHeight(_ref50) {
-            var height = _ref50.height;
+          value: function updateXAxisHeight(_ref51) {
+            var height = _ref51.height;
             this.xAxisHeight = height;
             this.update();
           }
@@ -27603,7 +27580,7 @@
         }, {
           key: "update",
           value: function update() {
-            var _this76 = this;
+            var _this77 = this;
 
             this.updateGradients();
             var line = this.getLineGenerator();
@@ -27614,13 +27591,13 @@
             this.seriesColor = this.colors.getColor(linearScaleType ? min : seriesName);
             this.path = line(data) || '';
             this.circles = data.map(function (d) {
-              var a = _this76.getAngle(d);
+              var a = _this77.getAngle(d);
 
-              var r = _this76.getRadius(d);
+              var r = _this77.getRadius(d);
 
               var value = d.value;
 
-              var color = _this76.colors.getColor(linearScaleType ? Math.abs(value) : seriesName);
+              var color = _this77.colors.getColor(linearScaleType ? Math.abs(value) : seriesName);
 
               var cData = Object.assign({}, d, {
                 series: seriesName,
@@ -27640,7 +27617,7 @@
             this.inactive = this.isInactive(this.data);
 
             this.tooltipText = this.tooltipText || function (c) {
-              return _this76.defaultTooltipText(c);
+              return _this77.defaultTooltipText(c);
             };
           }
         }, {
@@ -27664,12 +27641,12 @@
         }, {
           key: "getLineGenerator",
           value: function getLineGenerator() {
-            var _this77 = this;
+            var _this78 = this;
 
             return Object(d3_shape__WEBPACK_IMPORTED_MODULE_10__["lineRadial"])().angle(function (d) {
-              return _this77.getAngle(d);
+              return _this78.getAngle(d);
             }).radius(function (d) {
-              return _this77.getRadius(d);
+              return _this78.getRadius(d);
             }).curve(this.curve);
           }
         }, {
@@ -27703,9 +27680,9 @@
           }
         }, {
           key: "defaultTooltipText",
-          value: function defaultTooltipText(_ref51) {
-            var label = _ref51.label,
-                value = _ref51.value;
+          value: function defaultTooltipText(_ref52) {
+            var label = _ref52.label,
+                value = _ref52.value;
             return "\n      <span class=\"tooltip-label\">".concat(escapeLabel(this.data.name), " \u2022 ").concat(escapeLabel(label), "</span>\n      <span class=\"tooltip-val\">").concat(value.toLocaleString(), "</span>\n    ");
           }
         }, {
@@ -27801,21 +27778,21 @@
       var AdvancedPieChartComponent = /*#__PURE__*/function (_BaseChartComponent16) {
         _inherits(AdvancedPieChartComponent, _BaseChartComponent16);
 
-        var _super21 = _createSuper(AdvancedPieChartComponent);
+        var _super20 = _createSuper(AdvancedPieChartComponent);
 
         function AdvancedPieChartComponent() {
-          var _this78;
+          var _this79;
 
           _classCallCheck(this, AdvancedPieChartComponent);
 
-          _this78 = _super21.apply(this, arguments);
-          _this78.activeEntries = [];
-          _this78.tooltipDisabled = false;
-          _this78.label = 'Total';
-          _this78.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this78.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this78.margin = [20, 20, 20, 20];
-          return _this78;
+          _this79 = _super20.apply(this, arguments);
+          _this79.activeEntries = [];
+          _this79.tooltipDisabled = false;
+          _this79.label = 'Total';
+          _this79.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this79.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this79.margin = [20, 20, 20, 20];
+          return _this79;
         }
 
         _createClass(AdvancedPieChartComponent, [{
@@ -28006,16 +27983,6 @@
             this.line = "M".concat(innerPos, "L").concat(outerPos, "L").concat(this.data.pos);
           }
         }, {
-          key: "textAnchor",
-          value: function textAnchor() {
-            return this.midAngle(this.data) < Math.PI ? TextAnchor.Start : TextAnchor.End;
-          }
-        }, {
-          key: "midAngle",
-          value: function midAngle(d) {
-            return d.startAngle + (d.endAngle - d.startAngle) / 2;
-          }
-        }, {
           key: "textX",
           get: function get() {
             return this.data.pos[0];
@@ -28024,6 +27991,16 @@
           key: "textY",
           get: function get() {
             return this.data.pos[1];
+          }
+        }, {
+          key: "textAnchor",
+          value: function textAnchor() {
+            return this.midAngle(this.data) < Math.PI ? TextAnchor.Start : TextAnchor.End;
+          }
+        }, {
+          key: "midAngle",
+          value: function midAngle(d) {
+            return d.startAngle + (d.endAngle - d.startAngle) / 2;
           }
         }]);
 
@@ -28193,11 +28170,11 @@
         }, {
           key: "onClick",
           value: function onClick() {
-            var _this79 = this;
+            var _this80 = this;
 
             clearTimeout(this._timeout);
             this._timeout = setTimeout(function () {
-              return _this79.select.emit(_this79.data);
+              return _this80.select.emit(_this80.data);
             }, 200);
           }
         }, {
@@ -28291,36 +28268,36 @@
       var PieChartComponent = /*#__PURE__*/function (_BaseChartComponent17) {
         _inherits(PieChartComponent, _BaseChartComponent17);
 
-        var _super22 = _createSuper(PieChartComponent);
+        var _super21 = _createSuper(PieChartComponent);
 
         function PieChartComponent() {
-          var _this80;
+          var _this81;
 
           _classCallCheck(this, PieChartComponent);
 
-          _this80 = _super22.apply(this, arguments);
-          _this80.labels = false;
-          _this80.legend = false;
-          _this80.legendTitle = 'Legend';
-          _this80.legendPosition = LegendPosition.Right;
-          _this80.explodeSlices = false;
-          _this80.doughnut = false;
-          _this80.arcWidth = 0.25;
-          _this80.activeEntries = [];
-          _this80.tooltipDisabled = false;
-          _this80.trimLabels = true;
-          _this80.maxLabelLength = 10;
-          _this80.dblclick = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this80.select = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this80.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this80.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          return _this80;
+          _this81 = _super21.apply(this, arguments);
+          _this81.labels = false;
+          _this81.legend = false;
+          _this81.legendTitle = 'Legend';
+          _this81.legendPosition = LegendPosition.Right;
+          _this81.explodeSlices = false;
+          _this81.doughnut = false;
+          _this81.arcWidth = 0.25;
+          _this81.activeEntries = [];
+          _this81.tooltipDisabled = false;
+          _this81.trimLabels = true;
+          _this81.maxLabelLength = 10;
+          _this81.dblclick = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this81.select = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this81.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this81.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          return _this81;
         }
 
         _createClass(PieChartComponent, [{
           key: "update",
           value: function update() {
-            var _this81 = this;
+            var _this82 = this;
 
             _get(_getPrototypeOf(PieChartComponent.prototype), "update", this).call(this);
 
@@ -28360,7 +28337,7 @@
             this.domain = this.getDomain(); // sort data according to domain
 
             this.data = this.results.sort(function (a, b) {
-              return _this81.domain.indexOf(a.name) - _this81.domain.indexOf(b.name);
+              return _this82.domain.indexOf(a.name) - _this82.domain.indexOf(b.name);
             });
             this.setColors();
             this.legendOptions = this.getLegendOptions();
@@ -28599,22 +28576,22 @@
       var PieGridComponent = /*#__PURE__*/function (_BaseChartComponent18) {
         _inherits(PieGridComponent, _BaseChartComponent18);
 
-        var _super23 = _createSuper(PieGridComponent);
+        var _super22 = _createSuper(PieGridComponent);
 
         function PieGridComponent() {
-          var _this82;
+          var _this83;
 
           _classCallCheck(this, PieGridComponent);
 
-          _this82 = _super23.apply(this, arguments);
-          _this82.tooltipDisabled = false;
-          _this82.label = 'Total';
-          _this82.minWidth = 150;
-          _this82.activeEntries = [];
-          _this82.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this82.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this82.margin = [20, 20, 20, 20];
-          return _this82;
+          _this83 = _super22.apply(this, arguments);
+          _this83.tooltipDisabled = false;
+          _this83.label = 'Total';
+          _this83.minWidth = 150;
+          _this83.activeEntries = [];
+          _this83.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this83.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this83.margin = [20, 20, 20, 20];
+          return _this83;
         }
 
         _createClass(PieGridComponent, [{
@@ -28637,8 +28614,8 @@
           }
         }, {
           key: "defaultTooltipText",
-          value: function defaultTooltipText(_ref52) {
-            var data = _ref52.data;
+          value: function defaultTooltipText(_ref53) {
+            var data = _ref53.data;
             var label = trimLabel(formatLabel(data.name));
             var val = data.value.toLocaleString();
             return "\n      <span class=\"tooltip-label\">".concat(label, "</span>\n      <span class=\"tooltip-val\">").concat(val, "</span>\n    ");
@@ -28653,7 +28630,7 @@
         }, {
           key: "getSeries",
           value: function getSeries() {
-            var _this83 = this;
+            var _this84 = this;
 
             var total = this.designatedTotal ? this.designatedTotal : this.getTotal();
             return this.data.map(function (d) {
@@ -28672,7 +28649,7 @@
                 if (count === 1) {
                   return 'rgba(100,100,100,0.3)';
                 } else {
-                  return _this83.colorScale.getColor(label);
+                  return _this84.colorScale.getColor(label);
                 }
               };
 
@@ -28838,7 +28815,7 @@
         }, {
           key: "getArcs",
           value: function getArcs() {
-            var _this84 = this;
+            var _this85 = this;
 
             return this.layout(this.data).map(function (arc, index) {
               var label = arc.data.data.name;
@@ -28848,7 +28825,7 @@
                 arc.startAngle = 0;
               }
 
-              var color = _this84.colors(label);
+              var color = _this85.colors(label);
 
               return {
                 data: arc.data.data,
@@ -28856,7 +28833,7 @@
                 fill: color,
                 startAngle: other ? 0 : arc.startAngle,
                 endAngle: arc.endAngle,
-                animate: _this84.animations && !other,
+                animate: _this85.animations && !other,
                 pointerEvents: !other
               };
             });
@@ -28977,14 +28954,14 @@
         }, {
           key: "calculateLabelPositions",
           value: function calculateLabelPositions(pieData) {
-            var _this85 = this;
+            var _this86 = this;
 
             var factor = 1.5;
             var minDistance = 10;
             var labelPositions = pieData;
             labelPositions.forEach(function (d) {
-              d.pos = _this85.outerArc().centroid(d);
-              d.pos[0] = factor * _this85.outerRadius * (_this85.midAngle(d) < Math.PI ? 1 : -1);
+              d.pos = _this86.outerArc().centroid(d);
+              d.pos[0] = factor * _this86.outerRadius * (_this86.midAngle(d) < Math.PI ? 1 : -1);
             });
 
             for (var i = 0; i < labelPositions.length - 1; i++) {
@@ -29311,47 +29288,47 @@
         }, {
           key: "update",
           value: function update() {
-            var _this86 = this;
+            var _this87 = this;
 
             this.zone.run(function () {
-              var hasValue = _this86.data && typeof _this86.data.value !== 'undefined';
+              var hasValue = _this87.data && typeof _this87.data.value !== 'undefined';
 
-              var valueFormatting = _this86.valueFormatting || function (card) {
+              var valueFormatting = _this87.valueFormatting || function (card) {
                 return card.value.toLocaleString();
               };
 
-              var labelFormatting = _this86.labelFormatting || function (card) {
+              var labelFormatting = _this87.labelFormatting || function (card) {
                 return escapeLabel(trimLabel(card.label, 55));
               };
 
-              _this86.transform = "translate(".concat(_this86.x, " , ").concat(_this86.y, ")");
-              _this86.textWidth = Math.max(0, _this86.width) - _this86.textPadding[1] - _this86.textPadding[3];
-              _this86.cardWidth = Math.max(0, _this86.width);
-              _this86.cardHeight = Math.max(0, _this86.height);
-              _this86.label = _this86.label ? _this86.label : _this86.data.name;
+              _this87.transform = "translate(".concat(_this87.x, " , ").concat(_this87.y, ")");
+              _this87.textWidth = Math.max(0, _this87.width) - _this87.textPadding[1] - _this87.textPadding[3];
+              _this87.cardWidth = Math.max(0, _this87.width);
+              _this87.cardHeight = Math.max(0, _this87.height);
+              _this87.label = _this87.label ? _this87.label : _this87.data.name;
               var cardData = {
-                label: _this86.label,
-                data: _this86.data,
-                value: _this86.data.value
+                label: _this87.label,
+                data: _this87.data,
+                value: _this87.data.value
               };
-              _this86.formattedLabel = labelFormatting(cardData);
-              _this86.transformBand = "translate(0 , ".concat(_this86.cardHeight - _this86.bandHeight, ")");
+              _this87.formattedLabel = labelFormatting(cardData);
+              _this87.transformBand = "translate(0 , ".concat(_this87.cardHeight - _this87.bandHeight, ")");
               var value = hasValue ? valueFormatting(cardData) : '';
-              _this86.value = _this86.paddedValue(value);
+              _this87.value = _this87.paddedValue(value);
 
-              _this86.setPadding();
+              _this87.setPadding();
 
-              _this86.bandPath = roundedRect(0, 0, _this86.cardWidth, _this86.bandHeight, 3, [false, false, true, true]);
+              _this87.bandPath = roundedRect(0, 0, _this87.cardWidth, _this87.bandHeight, 3, [false, false, true, true]);
               setTimeout(function () {
-                if (Object(_angular_common__WEBPACK_IMPORTED_MODULE_1__["isPlatformBrowser"])(_this86.platformId)) {
-                  _this86.scaleText();
+                if (Object(_angular_common__WEBPACK_IMPORTED_MODULE_1__["isPlatformBrowser"])(_this87.platformId)) {
+                  _this87.scaleText();
                 }
 
-                _this86.value = value;
+                _this87.value = value;
 
-                if (hasValue && !_this86.initialized) {
+                if (hasValue && !_this87.initialized) {
                   setTimeout(function () {
-                    return _this86.startCount();
+                    return _this87.startCount();
                   }, 20);
                 }
               }, 8);
@@ -29369,7 +29346,7 @@
         }, {
           key: "startCount",
           value: function startCount() {
-            var _this87 = this;
+            var _this88 = this;
 
             if (!this.initialized && this.animations) {
               cancelAnimationFrame(this.animationReq);
@@ -29380,23 +29357,23 @@
                 return card.value.toLocaleString();
               };
 
-              var callback = function callback(_ref53) {
-                var value = _ref53.value,
-                    finished = _ref53.finished;
+              var callback = function callback(_ref54) {
+                var value = _ref54.value,
+                    finished = _ref54.finished;
 
-                _this87.zone.run(function () {
+                _this88.zone.run(function () {
                   value = finished ? val : value;
-                  _this87.value = valueFormatting({
-                    label: _this87.label,
-                    data: _this87.data,
+                  _this88.value = valueFormatting({
+                    label: _this88.label,
+                    data: _this88.data,
                     value: value
                   });
 
                   if (!finished) {
-                    _this87.value = _this87.paddedValue(_this87.value);
+                    _this88.value = _this88.paddedValue(_this88.value);
                   }
 
-                  _this87.cd.markForCheck();
+                  _this88.cd.markForCheck();
                 });
               };
 
@@ -29407,27 +29384,27 @@
         }, {
           key: "scaleText",
           value: function scaleText() {
-            var _this88 = this;
+            var _this89 = this;
 
             this.zone.run(function () {
-              var _this88$textEl$native = _this88.textEl.nativeElement.getBoundingClientRect(),
-                  width = _this88$textEl$native.width,
-                  height = _this88$textEl$native.height;
+              var _this89$textEl$native = _this89.textEl.nativeElement.getBoundingClientRect(),
+                  width = _this89$textEl$native.width,
+                  height = _this89$textEl$native.height;
 
               if (width === 0 || height === 0) {
                 return;
               }
 
-              var textPadding = _this88.textPadding[1] = _this88.textPadding[3] = _this88.cardWidth / 8;
-              var availableWidth = _this88.cardWidth - 2 * textPadding;
-              var availableHeight = _this88.cardHeight / 3;
+              var textPadding = _this89.textPadding[1] = _this89.textPadding[3] = _this89.cardWidth / 8;
+              var availableWidth = _this89.cardWidth - 2 * textPadding;
+              var availableHeight = _this89.cardHeight / 3;
               var resizeScale = Math.min(availableWidth / width, availableHeight / height);
-              _this88.textFontSize = Math.floor(_this88.textFontSize * resizeScale);
-              _this88.labelFontSize = Math.min(_this88.textFontSize, 15);
+              _this89.textFontSize = Math.floor(_this89.textFontSize * resizeScale);
+              _this89.labelFontSize = Math.min(_this89.textFontSize, 15);
 
-              _this88.setPadding();
+              _this89.setPadding();
 
-              _this88.cd.markForCheck();
+              _this89.cd.markForCheck();
             });
           }
         }, {
@@ -29578,10 +29555,10 @@
        */
 
 
-      function shadeRGBColor(_ref54, percent) {
-        var r = _ref54.r,
-            g = _ref54.g,
-            b = _ref54.b;
+      function shadeRGBColor(_ref55, percent) {
+        var r = _ref55.r,
+            g = _ref55.g,
+            b = _ref55.b;
         var t = percent < 0 ? 0 : 255;
         var p = percent < 0 ? percent * -1 : percent;
         r = Math.round((t - r) * p) + r;
@@ -29638,7 +29615,7 @@
         }, {
           key: "getCards",
           value: function getCards() {
-            var _this89 = this;
+            var _this90 = this;
 
             var yPadding = typeof this.innerPadding === 'number' ? this.innerPadding : this.innerPadding[0] + this.innerPadding[2];
             var xPadding = typeof this.innerPadding === 'number' ? this.innerPadding : this.innerPadding[1] + this.innerPadding[3];
@@ -29652,16 +29629,16 @@
               }
 
               var value = d.data.value;
-              var valueColor = label ? _this89.colors.getColor(label) : _this89.emptyColor;
-              var color = _this89.cardColor || valueColor || '#000';
+              var valueColor = label ? _this90.colors.getColor(label) : _this90.emptyColor;
+              var color = _this90.cardColor || valueColor || '#000';
               return {
                 x: d.x,
                 y: d.y,
                 width: d.width - xPadding,
                 height: d.height - yPadding,
                 color: color,
-                bandColor: _this89.bandColor || valueColor,
-                textColor: _this89.textColor || invertColor(color),
+                bandColor: _this90.bandColor || valueColor,
+                textColor: _this90.textColor || invertColor(color),
                 label: label,
                 data: d.data,
                 tooltipText: "".concat(label, ": ").concat(value)
@@ -29733,21 +29710,26 @@
       var NumberCardComponent = /*#__PURE__*/function (_BaseChartComponent19) {
         _inherits(NumberCardComponent, _BaseChartComponent19);
 
-        var _super24 = _createSuper(NumberCardComponent);
+        var _super23 = _createSuper(NumberCardComponent);
 
         function NumberCardComponent() {
-          var _this90;
+          var _this91;
 
           _classCallCheck(this, NumberCardComponent);
 
-          _this90 = _super24.apply(this, arguments);
-          _this90.emptyColor = 'rgba(0, 0, 0, 0)';
-          _this90.innerPadding = 15;
-          _this90.margin = [10, 10, 10, 10];
-          return _this90;
+          _this91 = _super23.apply(this, arguments);
+          _this91.emptyColor = 'rgba(0, 0, 0, 0)';
+          _this91.innerPadding = 15;
+          _this91.margin = [10, 10, 10, 10];
+          return _this91;
         }
 
         _createClass(NumberCardComponent, [{
+          key: "clickable",
+          get: function get() {
+            return !!this.select.observers.length;
+          }
+        }, {
           key: "update",
           value: function update() {
             _get(_getPrototypeOf(NumberCardComponent.prototype), "update", this).call(this);
@@ -29789,11 +29771,6 @@
           key: "setColors",
           value: function setColors() {
             this.colors = new ColorHelper(this.scheme, ScaleType.Ordinal, this.domain, this.customColors);
-          }
-        }, {
-          key: "clickable",
-          get: function get() {
-            return !!this.select.observers.length;
           }
         }]);
 
@@ -30019,7 +29996,7 @@
         }, {
           key: "getCells",
           value: function getCells() {
-            var _this91 = this;
+            var _this92 = this;
 
             return this.data.children.filter(function (d) {
               return d.depth === 1;
@@ -30031,7 +30008,7 @@
                 y: d.y0,
                 width: d.x1 - d.x0,
                 height: d.y1 - d.y0,
-                fill: _this91.colors.getColor(label),
+                fill: _this92.colors.getColor(label),
                 label: label,
                 value: d.value
               };
@@ -30039,9 +30016,9 @@
           }
         }, {
           key: "getTooltipText",
-          value: function getTooltipText(_ref55) {
-            var label = _ref55.label,
-                value = _ref55.value;
+          value: function getTooltipText(_ref56) {
+            var label = _ref56.label,
+                value = _ref56.value;
             return "\n      <span class=\"tooltip-label\">".concat(escapeLabel(label), "</span>\n      <span class=\"tooltip-val\">").concat(value.toLocaleString(), "</span>\n    ");
           }
         }, {
@@ -30103,19 +30080,19 @@
       var TreeMapComponent = /*#__PURE__*/function (_BaseChartComponent20) {
         _inherits(TreeMapComponent, _BaseChartComponent20);
 
-        var _super25 = _createSuper(TreeMapComponent);
+        var _super24 = _createSuper(TreeMapComponent);
 
         function TreeMapComponent() {
-          var _this92;
+          var _this93;
 
           _classCallCheck(this, TreeMapComponent);
 
-          _this92 = _super25.apply(this, arguments);
-          _this92.tooltipDisabled = false;
-          _this92.gradient = false;
-          _this92.select = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this92.margin = [10, 10, 10, 10];
-          return _this92;
+          _this93 = _super24.apply(this, arguments);
+          _this93.tooltipDisabled = false;
+          _this93.gradient = false;
+          _this93.select = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this93.margin = [10, 10, 10, 10];
+          return _this93;
         }
 
         _createClass(TreeMapComponent, [{
@@ -30233,44 +30210,44 @@
       var LinearGaugeComponent = /*#__PURE__*/function (_BaseChartComponent21) {
         _inherits(LinearGaugeComponent, _BaseChartComponent21);
 
-        var _super26 = _createSuper(LinearGaugeComponent);
+        var _super25 = _createSuper(LinearGaugeComponent);
 
         function LinearGaugeComponent() {
-          var _this93;
+          var _this94;
 
           _classCallCheck(this, LinearGaugeComponent);
 
-          _this93 = _super26.apply(this, arguments);
-          _this93.min = 0;
-          _this93.max = 100;
-          _this93.value = 0;
-          _this93.margin = [10, 20, 10, 20];
-          _this93.valueResizeScale = 1;
-          _this93.unitsResizeScale = 1;
-          _this93.valueTextTransform = '';
-          _this93.valueTranslate = '';
-          _this93.unitsTextTransform = '';
-          _this93.unitsTranslate = '';
-          return _this93;
+          _this94 = _super25.apply(this, arguments);
+          _this94.min = 0;
+          _this94.max = 100;
+          _this94.value = 0;
+          _this94.margin = [10, 20, 10, 20];
+          _this94.valueResizeScale = 1;
+          _this94.unitsResizeScale = 1;
+          _this94.valueTextTransform = '';
+          _this94.valueTranslate = '';
+          _this94.unitsTextTransform = '';
+          _this94.unitsTranslate = '';
+          return _this94;
         }
 
         _createClass(LinearGaugeComponent, [{
           key: "ngAfterViewInit",
           value: function ngAfterViewInit() {
-            var _this94 = this;
+            var _this95 = this;
 
             _get(_getPrototypeOf(LinearGaugeComponent.prototype), "ngAfterViewInit", this).call(this);
 
             setTimeout(function () {
-              _this94.scaleText(ElementType.Value);
+              _this95.scaleText(ElementType.Value);
 
-              _this94.scaleText(ElementType.Units);
+              _this95.scaleText(ElementType.Units);
             });
           }
         }, {
           key: "update",
           value: function update() {
-            var _this95 = this;
+            var _this96 = this;
 
             _get(_getPrototypeOf(LinearGaugeComponent.prototype), "update", this).call(this);
 
@@ -30304,10 +30281,10 @@
               this.scaleTextSSR('units');
             } else {
               setTimeout(function () {
-                return _this95.scaleText(ElementType.Value);
+                return _this96.scaleText(ElementType.Value);
               }, 50);
               setTimeout(function () {
-                return _this95.scaleText(ElementType.Units);
+                return _this96.scaleText(ElementType.Units);
               }, 50);
             }
           }
@@ -30333,7 +30310,7 @@
         }, {
           key: "scaleText",
           value: function scaleText(element) {
-            var _this96 = this;
+            var _this97 = this;
 
             var repeat = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
             var el;
@@ -30372,7 +30349,7 @@
 
               if (repeat && Object(_angular_common__WEBPACK_IMPORTED_MODULE_1__["isPlatformBrowser"])(this.platformId)) {
                 setTimeout(function () {
-                  _this96.scaleText(element, false);
+                  _this97.scaleText(element, false);
                 }, 50);
               }
             }
@@ -30460,51 +30437,51 @@
       var GaugeComponent = /*#__PURE__*/function (_BaseChartComponent22) {
         _inherits(GaugeComponent, _BaseChartComponent22);
 
-        var _super27 = _createSuper(GaugeComponent);
+        var _super26 = _createSuper(GaugeComponent);
 
         function GaugeComponent() {
-          var _this97;
+          var _this98;
 
           _classCallCheck(this, GaugeComponent);
 
-          _this97 = _super27.apply(this, arguments);
-          _this97.legend = false;
-          _this97.legendTitle = 'Legend';
-          _this97.legendPosition = LegendPosition.Right;
-          _this97.min = 0;
-          _this97.max = 100;
-          _this97.bigSegments = 10;
-          _this97.smallSegments = 5;
-          _this97.showAxis = true;
-          _this97.startAngle = -120;
-          _this97.angleSpan = 240;
-          _this97.activeEntries = [];
-          _this97.tooltipDisabled = false;
-          _this97.showText = true;
-          _this97.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this97.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-          _this97.resizeScale = 1;
-          _this97.rotation = '';
-          _this97.textTransform = 'scale(1, 1)';
-          _this97.cornerRadius = 10;
-          return _this97;
+          _this98 = _super26.apply(this, arguments);
+          _this98.legend = false;
+          _this98.legendTitle = 'Legend';
+          _this98.legendPosition = LegendPosition.Right;
+          _this98.min = 0;
+          _this98.max = 100;
+          _this98.bigSegments = 10;
+          _this98.smallSegments = 5;
+          _this98.showAxis = true;
+          _this98.startAngle = -120;
+          _this98.angleSpan = 240;
+          _this98.activeEntries = [];
+          _this98.tooltipDisabled = false;
+          _this98.showText = true;
+          _this98.activate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this98.deactivate = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+          _this98.resizeScale = 1;
+          _this98.rotation = '';
+          _this98.textTransform = 'scale(1, 1)';
+          _this98.cornerRadius = 10;
+          return _this98;
         }
 
         _createClass(GaugeComponent, [{
           key: "ngAfterViewInit",
           value: function ngAfterViewInit() {
-            var _this98 = this;
+            var _this99 = this;
 
             _get(_getPrototypeOf(GaugeComponent.prototype), "ngAfterViewInit", this).call(this);
 
             setTimeout(function () {
-              return _this98.scaleText();
+              return _this99.scaleText();
             });
           }
         }, {
           key: "update",
           value: function update() {
-            var _this99 = this;
+            var _this100 = this;
 
             _get(_getPrototypeOf(GaugeComponent.prototype), "update", this).call(this);
 
@@ -30544,7 +30521,7 @@
             this.transform = "translate(".concat(xOffset, ", ").concat(yOffset, ")");
             this.rotation = "rotate(".concat(this.startAngle, ")");
             setTimeout(function () {
-              return _this99.scaleText();
+              return _this100.scaleText();
             }, 50);
           }
         }, {
@@ -30656,7 +30633,7 @@
         }, {
           key: "scaleText",
           value: function scaleText() {
-            var _this100 = this;
+            var _this101 = this;
 
             var repeat = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
@@ -30682,7 +30659,7 @@
 
               if (repeat) {
                 setTimeout(function () {
-                  return _this100.scaleText(false);
+                  return _this101.scaleText(false);
                 }, 50);
               }
             }
@@ -31771,6 +31748,44 @@
           value: function deleteProduct(productId) {
             return this.http["delete"](this.sellerUrlProductString.sellerDeleteProduct(productId));
           }
+        }, {
+          key: "createGroupProduct",
+          value: function createGroupProduct(createProductViewModel) {
+            return this.http.post(this.sellerUrlProductString.sellerCreateGroupProduct(), createProductViewModel);
+          }
+        }, {
+          key: "getGroupProductDetail",
+          value: function getGroupProductDetail(groupProductId) {
+            return this.http.get(this.sellerUrlProductString.sellerGetGroupProductDetail(groupProductId));
+          }
+        }, {
+          key: "editGroupProductDetail",
+          value: function editGroupProductDetail(editGroupProductViewModel) {
+            return this.http.put(this.sellerUrlProductString.sellerEditGroupProductDetail(), editGroupProductViewModel);
+          }
+        }, {
+          key: "getSearchGroupProducts",
+          value: function getSearchGroupProducts(requestBase) {
+            return this.http.get(this.sellerUrlProductString.sellerGetSearchGroupProducts(requestBase));
+          }
+        }, {
+          key: "getSearchProductsSelect",
+          value: function getSearchProductsSelect(requestBase) {
+            return this.http.get(this.sellerUrlProductString.sellectGetSearchProductsSelect(requestBase));
+          }
+        }, {
+          key: "deleteGroupProducts",
+          value: function deleteGroupProducts(groupProductId) {
+            return this.http["delete"](this.sellerUrlProductString.sellerDeleteGroupProducts(groupProductId));
+          }
+        }, {
+          key: "initPreOrderProductList",
+          value: function initPreOrderProductList(searchKeyWord) {
+            return this.http.get(this.sellerUrlProductString.sellerGetPreOrderProductDropBoxBySearchKeyWordListAPI({
+              languageCode: this.languageCode,
+              searchKeyWord: searchKeyWord
+            }));
+          }
         }]);
 
         return SellerProductService;
@@ -32016,7 +32031,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<nz-page-header style=\"padding-left: 0; padding-right: 0;\">\r\n\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\r\n\t<!--title-->\r\n\t<nz-page-header-title\r\n\t\t>{{ 'Seller-app.content.body.product.product-create.main-title' | translate }}</nz-page-header-title\r\n\t>\r\n\t<!--subtitle-->\r\n\t<nz-page-header-subtitle\r\n\t\t>{{ 'Seller-app.content.body.product.product-create.sub-title' | translate }}</nz-page-header-subtitle\r\n\t>\r\n\t<!--content-->\r\n\t<nz-page-header-content>\r\n\t\t<div class=\"product-create\">\r\n\t\t\t<form\r\n\t\t\t\tnz-form\r\n\t\t\t\t[formGroup]=\"sellerCreateProductForm\"\r\n\t\t\t\tclass=\"create-form\"\r\n\t\t\t\t(ngSubmit)=\"submitForm()\"\r\n\t\t\t\t#createProductForm=\"ngForm\"\r\n\t\t\t>\r\n\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t<div class=\"col l-10\">\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.title' | translate }}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"productName\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"text\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"productName\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\tnzSize=\"large\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"entireDescription\">\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.description.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.description.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<ckeditor\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"entireDescription\"\r\n\t\t\t\t\t\t\t\t\t\ttagName=\"textarea\"\r\n\t\t\t\t\t\t\t\t\t\t[editor]=\"editor\"\r\n\t\t\t\t\t\t\t\t\t></ckeditor>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"author\">\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\tnzShowSearch\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"author\"\r\n\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchAuthor($event)\"\r\n\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let author of authorSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isAuthorSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"author.authorId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"author.authorName\"\r\n\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isAuthorSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading Data...\r\n\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"publisher\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\tnzShowSearch\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"publisher\"\r\n\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchPublisher($event)\"\r\n\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let publisher of publisherSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isPublisherSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"publisher.publisherId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"publisher.publisherName\"\r\n\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isPublisherSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading Data...\r\n\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"category Variaton\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.category-variation.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.category-variation.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\tnzMode=\"multiple\"\r\n\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.category-variation.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"categoryVariaton\"\r\n\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchCategoryVariatons($event)\"\r\n\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let categoryVariation of categoryVariationSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isCategoryVariatonsSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"categoryVariation.categoryVariationId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"categoryVariation.categoryVariationName\"\r\n\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isCategoryVariatonsSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading Data...\r\n\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"page\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"page\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"publishingYear\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"date\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"publishingYear\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"country\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"country\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\" \r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.title' | translate }}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t<nz-upload\r\n\t\t\t\t\t\t\t\t\t[(nzFileList)]=\"fileList\"\r\n\t\t\t\t\t\t\t\t\t[nzBeforeUpload]=\"beforeUpload\"\r\n\t\t\t\t\t\t\t\t\t[nzRemove]=\"removeImageFile\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<button type=\"button\" nz-button>\r\n\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"upload\"></i\r\n\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.product-image.select-file.title' | translate }}\r\n\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t</nz-upload>\r\n\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\tnzPopoverPlacement=\"top\"\r\n\t\t\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\t\t\tnz-popover\r\n\t\t\t\t\t\t\t\t\tnzPopoverTitle=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.help.title' | translate }}\"\r\n\t\t\t\t\t\t\t\t\tnzPopoverContent=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.help.description' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"question\" nzTheme=\"outline\"></i>\r\n\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t<div *ngIf=\"ready\" cdkDropList (cdkDropListDropped)=\"drop($event)\" class=\"example-list\">\r\n\t\t\t\t\t\t\t\t\t<!-- <div class=\"row\"> -->\r\n\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t<img\r\n\t\t\t\t\t\t\t\t\t\t\t[src]=\"thumb.url\"\r\n\t\t\t\t\t\t\t\t\t\t\talt=\"\"\r\n\t\t\t\t\t\t\t\t\t\t\tclass=\"example-box\"\r\n\t\t\t\t\t\t\t\t\t\t\t*ngFor=\"let thumb of thumbshandlePreview\"\r\n\t\t\t\t\t\t\t\t\t\t\tcdkDrag\r\n\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t<!-- </div> -->\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.title' | translate }}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"price\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.sell-information.price.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.price.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"price\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.price.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"originalPrice\">\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.sell-information.original-price.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.original-price.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"originalPrice\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"\r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.sell-information.original-price.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"stock\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\ttype=\"text\"\r\n\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\tformControlName=\"stock\"\r\n\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.title' | translate }}\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"mass\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Kg\">\r\n\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\tformControlName=\"mass\"\r\n\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/></nz-input-group>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"length\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\tformControlName=\"length\"\r\n\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/></nz-input-group>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\tnzFor=\"width\"\r\n\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\tformControlName=\"width\"\r\n\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t/></nz-input-group>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"thickness\">\r\n\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\tformControlName=\"thickness\"\r\n\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t</nz-input-group>\r\n\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"col l-2\"></div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<button nz-button type=\"submit\" [disabled]=\"!createProductForm.form.valid\" [nzType]=\"'primary'\">\r\n\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.button.title' | translate }}\r\n\t\t\t\t</button>\r\n\t\t\t</form>\r\n\r\n\t\t\t<!-- <pre>{{sellerCreateProductForm.value|json}}</pre>\r\n\t\t\t\r\n\t\t\t\t<pre>{{sellerCreateProductForm.errors|json}}</pre> -->\r\n\t\t</div>\r\n\t</nz-page-header-content>\r\n</nz-page-header>\r\n";
+      __webpack_exports__["default"] = "<nz-page-header style=\"padding-left: 0; padding-right: 0;\">\r\n\t<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]=\"true\"></nz-breadcrumb>\r\n\t<!--title-->\r\n\t<nz-page-header-title\r\n\t\t>{{ 'Seller-app.content.body.product.product-create.main-title' | translate }}</nz-page-header-title\r\n\t>\r\n\t<!--subtitle-->\r\n\t<nz-page-header-subtitle\r\n\t\t>{{ 'Seller-app.content.body.product.product-create.sub-title' | translate }}</nz-page-header-subtitle\r\n\t>\r\n\t<!--content-->\r\n\t<nz-page-header-content>\r\n\t\t<nz-tabset (nzSelectedIndexChange)=\"ChangeTab($event)\">\r\n\t\t\t<nz-tab nzTitle=\"Tạo Sản Phẩm\">\r\n\t\t\t\t<div class=\"product-create\">\r\n\t\t\t\t\t<form\r\n\t\t\t\t\t\tnz-form\r\n\t\t\t\t\t\t[formGroup]=\"sellerCreateProductForm\"\r\n\t\t\t\t\t\tclass=\"create-form\"\r\n\t\t\t\t\t\t(ngSubmit)=\"submitForm()\"\r\n\t\t\t\t\t\t#createProductForm=\"ngForm\"\r\n\t\t\t\t\t>\r\n\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t<div class=\"col l-10\">\r\n\t\t\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.title' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"productName\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"text\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"productName\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzSize=\"large\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"entireDescription\">\r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.description.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.description.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<ckeditor\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"entireDescription\"\r\n\t\t\t\t\t\t\t\t\t\t\t\ttagName=\"textarea\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[editor]=\"editor\"\r\n\t\t\t\t\t\t\t\t\t\t\t></ckeditor>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"author\">\r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"\r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzShowSearch\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"author\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchAuthor($event)\"\r\n\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let author of authorSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isAuthorSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"author.authorId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"author.authorName\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isAuthorSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tData...\r\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"publisher\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzShowSearch\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"publisher\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchPublisher($event)\"\r\n\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let publisher of publisherSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isPublisherSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"publisher.publisherId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"publisher.publisherName\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isPublisherSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tData...\r\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"category Variaton\"\r\n\t\t\t\t\t\t\t\t\t\t\t>Danh Mục</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.category-variation.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzMode=\"multiple\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"Danh Mục\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"categoryVariaton\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchCategoryVariatons($event)\"\r\n\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<ng-container\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t*ngFor=\"let categoryVariation of categoryVariationSelectList\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isCategoryVariatonsSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"categoryVariation.categoryVariationId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"categoryVariation.categoryVariationName\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"isCategoryVariatonsSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnzDisabled\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnzCustomContent\r\n\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tData...\r\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"groupProduct\"\r\n\t\t\t\t\t\t\t\t\t\t\t>Nhóm Sản Phẩm</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control>\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzMode=\"multiple\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"Nhóm Sản Phẩm\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"groupProduct\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchGroupProduct($event)\"\r\n\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let groupPrduct of groupPrductSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isSearchGroupProductsSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"groupPrduct.groupProductId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"groupPrduct.groupProductName\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"isSearchGroupProductsSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnzDisabled\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnzCustomContent\r\n\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tData...\r\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"page\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"page\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"publishingYear\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"date\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"publishingYear\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"country\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"country\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\" \r\n\t\t\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"dateSell\"\r\n\t\t\t\t\t\t\t\t\t\t\t>Ngày Mở Bán</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Phải Nhập\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"date\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"dateSell\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Ngày mở bán\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.title' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t<nz-upload\r\n\t\t\t\t\t\t\t\t\t\t\t[(nzFileList)]=\"fileList\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzBeforeUpload]=\"beforeUpload\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzRemove]=\"removeImageFile\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" nz-button>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"upload\"></i\r\n\t\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.product-image.select-file.title' | translate }}\r\n\t\t\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t\t\t</nz-upload>\r\n\t\t\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\t\t\tnzPopoverPlacement=\"top\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\t\t\t\t\tnz-popover\r\n\t\t\t\t\t\t\t\t\t\t\tnzPopoverTitle=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.help.title' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzPopoverContent=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.help.description' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"question\" nzTheme=\"outline\"></i>\r\n\t\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t\t\t<div\r\n\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"ready\"\r\n\t\t\t\t\t\t\t\t\t\t\tcdkDropList\r\n\t\t\t\t\t\t\t\t\t\t\t(cdkDropListDropped)=\"drop($event)\"\r\n\t\t\t\t\t\t\t\t\t\t\tclass=\"example-list\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<!-- <div class=\"row\"> -->\r\n\t\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<img\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t[src]=\"thumb.url\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\talt=\"\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"example-box\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t*ngFor=\"let thumb of thumbshandlePreview\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tcdkDrag\r\n\t\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t\t\t<!-- </div> -->\r\n\t\t\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.title' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"price\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.sell-information.price.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.price.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"price\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Giá Bán\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"originalPrice\">\r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.sell-information.original-price.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.original-price.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"originalPrice\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Giá Gốc\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"stock\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"text\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"stock\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.title' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"mass\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Kg\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"mass\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/></nz-input-group>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"length\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"length\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/></nz-input-group>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"width\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"width\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/></nz-input-group>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"thickness\">\r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"thickness\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-input-group>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"col l-2\"></div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<button nz-button type=\"submit\" [disabled]=\"!createProductForm.form.valid\" [nzType]=\"'primary'\">\r\n\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.button.title' | translate }}\r\n\t\t\t\t\t\t</button>\r\n\t\t\t\t\t</form>\r\n\r\n\t\t\t\t\t<!-- <pre>{{sellerCreateProductForm.value|json}}</pre>\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t<pre>{{sellerCreateProductForm.errors|json}}</pre> -->\r\n\t\t\t\t</div>\r\n\t\t\t</nz-tab>\r\n\t\t\t<nz-tab nzTitle=\"Tạo Sản Phẩm Đặt Trước\">\r\n\t\t\t\t<div class=\"product-create\">\r\n\t\t\t\t\t<form\r\n\t\t\t\t\t\tnz-form\r\n\t\t\t\t\t\t[formGroup]=\"sellerCreatePreOrderProductForm\"\r\n\t\t\t\t\t\tclass=\"create-form\"\r\n\t\t\t\t\t\t(ngSubmit)=\"submitForm()\"\r\n\t\t\t\t\t\t#createPreOrderProductForm=\"ngForm\"\r\n\t\t\t\t\t>\r\n\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t<div class=\"col l-10\">\r\n\t\t\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.title' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"productName\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"text\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"productName\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.product-name.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzSize=\"large\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"entireDescription\">\r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.description.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.description.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<ckeditor\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"entireDescription\"\r\n\t\t\t\t\t\t\t\t\t\t\t\ttagName=\"textarea\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t[editor]=\"editor\"\r\n\t\t\t\t\t\t\t\t\t\t\t></ckeditor>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"author\">\r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"\r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.author.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzShowSearch\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"author\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchAuthor($event)\"\r\n\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let author of authorSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isAuthorSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"author.authorId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"author.authorName\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isAuthorSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tData...\r\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"publisher\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publisher.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzShowSearch\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"publisher\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchPublisher($event)\"\r\n\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let publisher of publisherSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isPublisherSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"publisher.publisherId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"publisher.publisherName\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isPublisherSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tData...\r\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"category Variaton\"\r\n\t\t\t\t\t\t\t\t\t\t\t>Danh Mục</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.category-variation.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzMode=\"multiple\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"Danh Mục\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"categoryVariaton\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchCategoryVariatons($event)\"\r\n\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<ng-container\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t*ngFor=\"let categoryVariation of categoryVariationSelectList\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isCategoryVariatonsSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"categoryVariation.categoryVariationId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"categoryVariation.categoryVariationName\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"isCategoryVariatonsSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnzDisabled\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnzCustomContent\r\n\t\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tData...\r\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<!-- <nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"groupProduct\"\r\n\t\t\t\t\t\t\t\t\t\t\t>Nhóm Sản Phẩm</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control>\r\n\t\t\t\t\t\t\t\t\t\t\t<nz-select\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzMode=\"multiple\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzPlaceHolder=\"Nhóm Sản Phẩm\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzAllowClear\r\n\t\t\t\t\t\t\t\t\t\t\t\tnzServerSearch\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"groupProduct\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t(nzOnSearch)=\"onSearchGroupProduct($event)\"\r\n\t\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<ng-container *ngFor=\"let groupPrduct of groupPrductSelectList\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-option\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"!isSearchGroupProductsSelectLoading\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t[nzValue]=\"groupPrduct.groupProductId\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t[nzLabel]=\"groupPrduct.groupProductName\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t></nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t</ng-container>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-option *ngIf=\"isSearchGroupProductsSelectLoading\" nzDisabled nzCustomContent>\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"loading\" class=\"loading-icon\"></i> Loading Data...\r\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-option>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-select>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item> -->\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"page\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"page\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.page.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"publishingYear\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"date\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"publishingYear\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.publishing-year.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"country\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"country\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\" \r\n\t\t\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.basic-infomation.country.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"dateSell\"\r\n\t\t\t\t\t\t\t\t\t\t\t>Ngày Mở Bán</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Phải Nhập\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"date\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"dateSell\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Ngày mở bán\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t\t\t<nz-card style=\"margin-top: 16px\" [nzBordered]=\"true\" nzTitle=\"Đặt Trước\">\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"dateStartPreOrderProduct\"\r\n\t\t\t\t\t\t\t\t\t\t\t>Ngày Bắt Đầu</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Phải Nhập\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"date\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"dateStartPreOrderProduct\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Ngày bắt đầu\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"dateEndPreOrderProduct\"\r\n\t\t\t\t\t\t\t\t\t\t\t>Ngày Kết Thúc</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Phải Nhập\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"date\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"dateEndPreOrderProduct\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Ngày kết thúc\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"preOrderProductPrice\"\r\n\t\t\t\t\t\t\t\t\t\t\t>Giá Đặt Trước</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Phải Nhập\">\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"preOrderProductPrice\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Giá đặt trước\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.title' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<div class=\"row\">\r\n\t\t\t\t\t\t\t\t\t\t<nz-upload\r\n\t\t\t\t\t\t\t\t\t\t\t[(nzFileList)]=\"fileList\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzBeforeUpload]=\"beforeUpload\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzRemove]=\"removeImageFile\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<button type=\"button\" nz-button>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"upload\"></i\r\n\t\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.product-image.select-file.title' | translate }}\r\n\t\t\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t\t\t</nz-upload>\r\n\t\t\t\t\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\t\t\t\t\tnzPopoverPlacement=\"top\"\r\n\t\t\t\t\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\t\t\t\t\tnz-popover\r\n\t\t\t\t\t\t\t\t\t\t\tnzPopoverTitle=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.help.title' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzPopoverContent=\"{{ 'Seller-app.content.body.product.product-create.product.product-image.help.description' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<i nz-icon nzType=\"question\" nzTheme=\"outline\"></i>\r\n\t\t\t\t\t\t\t\t\t\t</button>\r\n\t\t\t\t\t\t\t\t\t\t<div\r\n\t\t\t\t\t\t\t\t\t\t\t*ngIf=\"ready\"\r\n\t\t\t\t\t\t\t\t\t\t\tcdkDropList\r\n\t\t\t\t\t\t\t\t\t\t\t(cdkDropListDropped)=\"drop($event)\"\r\n\t\t\t\t\t\t\t\t\t\t\tclass=\"example-list\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<!-- <div class=\"row\"> -->\r\n\t\t\t\t\t\t\t\t\t\t\t<div>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<img\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t[src]=\"thumb.url\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\talt=\"\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tclass=\"example-box\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t*ngFor=\"let thumb of thumbshandlePreview\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tcdkDrag\r\n\t\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t\t\t</div>\r\n\r\n\t\t\t\t\t\t\t\t\t<!-- </div> -->\r\n\t\t\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.title' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"price\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.sell-information.price.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.price.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"price\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Giá Bán\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"originalPrice\">\r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.sell-information.original-price.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.original-price.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"originalPrice\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Giá Gốc\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"stock\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"text\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"stock\"\r\n\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.sell-information.stock.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t\t\t<nz-card\r\n\t\t\t\t\t\t\t\t\tstyle=\"margin-top: 16px\"\r\n\t\t\t\t\t\t\t\t\t[nzBordered]=\"true\"\r\n\t\t\t\t\t\t\t\t\tnzTitle=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.title' | translate }}\"\r\n\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"mass\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Kg\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"mass\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.mass.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/></nz-input-group>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"length\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"length\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.length.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/></nz-input-group>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t\t[nzSm]=\"4\"\r\n\t\t\t\t\t\t\t\t\t\t\t[nzXs]=\"24\"\r\n\t\t\t\t\t\t\t\t\t\t\tnzRequired\r\n\t\t\t\t\t\t\t\t\t\t\tnzFor=\"width\"\r\n\t\t\t\t\t\t\t\t\t\t\t>{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"width\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.width.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t/></nz-input-group>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t\t<nz-form-item>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-label [nzSm]=\"4\" [nzXs]=\"24\" nzRequired nzFor=\"thickness\">\r\n\t\t\t\t\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.title' | translate }}</nz-form-label\r\n\t\t\t\t\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t\t\t\t<nz-form-control\r\n\t\t\t\t\t\t\t\t\t\t\tnzErrorTip=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.error' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t><nz-input-group nzAddOnAfter=\"Cm\">\r\n\t\t\t\t\t\t\t\t\t\t\t\t<input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"number\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"thickness\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"{{ 'Seller-app.content.body.product.product-create.product.delivery-information.thickness.placeholder' | translate }}\"\r\n\t\t\t\t\t\t\t\t\t\t\t\t/>\r\n\t\t\t\t\t\t\t\t\t\t\t</nz-input-group>\r\n\t\t\t\t\t\t\t\t\t\t</nz-form-control>\r\n\t\t\t\t\t\t\t\t\t</nz-form-item>\r\n\t\t\t\t\t\t\t\t</nz-card>\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t\t<div class=\"col l-2\"></div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<button\r\n\t\t\t\t\t\t\tnz-button\r\n\t\t\t\t\t\t\ttype=\"submit\"\r\n\t\t\t\t\t\t\t[disabled]=\"!createPreOrderProductForm.form.valid\"\r\n\t\t\t\t\t\t\t[nzType]=\"'primary'\"\r\n\t\t\t\t\t\t>\r\n\t\t\t\t\t\t\t{{ 'Seller-app.content.body.product.product-create.product.button.title' | translate }}\r\n\t\t\t\t\t\t</button>\r\n\t\t\t\t\t</form>\r\n\t\t\t\t\t<!-- <pre>{{sellerCreateProductForm.value|json}}</pre>\r\n\t\t\t\t\t\r\n\t\t\t\t\t\t<pre>{{sellerCreateProductForm.errors|json}}</pre> -->\r\n\t\t\t\t</div>\r\n\t\t\t</nz-tab>\r\n\t\t</nz-tabset>\r\n\t</nz-page-header-content>\r\n</nz-page-header>\r\n";
       /***/
     },
 
@@ -32194,9 +32209,9 @@
         }
 
         scale.domain = function (_) {
-          var _ref56, _ref57;
+          var _ref57, _ref58;
 
-          return arguments.length ? ((_ref56 = _, _ref57 = _slicedToArray(_ref56, 3), x0 = _ref57[0], x1 = _ref57[1], x2 = _ref57[2], _ref56), t0 = transform(x0 = +x0), t1 = transform(x1 = +x1), t2 = transform(x2 = +x2), k10 = t0 === t1 ? 0 : 0.5 / (t1 - t0), k21 = t1 === t2 ? 0 : 0.5 / (t2 - t1), s = t1 < t0 ? -1 : 1, scale) : [x0, x1, x2];
+          return arguments.length ? ((_ref57 = _, _ref58 = _slicedToArray(_ref57, 3), x0 = _ref58[0], x1 = _ref58[1], x2 = _ref58[2], _ref57), t0 = transform(x0 = +x0), t1 = transform(x1 = +x1), t2 = transform(x2 = +x2), k10 = t0 === t1 ? 0 : 0.5 / (t1 - t0), k21 = t1 === t2 ? 0 : 0.5 / (t2 - t1), s = t1 < t0 ? -1 : 1, scale) : [x0, x1, x2];
         };
 
         scale.clamp = function (_) {
@@ -32209,10 +32224,10 @@
 
         function range(interpolate) {
           return function (_) {
-            var _ref58, _ref59;
+            var _ref59, _ref60;
 
             var r0, r1, r2;
-            return arguments.length ? ((_ref58 = _, _ref59 = _slicedToArray(_ref58, 3), r0 = _ref59[0], r1 = _ref59[1], r2 = _ref59[2], _ref58), interpolator = Object(d3_interpolate__WEBPACK_IMPORTED_MODULE_0__["piecewise"])(interpolate, [r0, r1, r2]), scale) : [interpolator(0), interpolator(0.5), interpolator(1)];
+            return arguments.length ? ((_ref59 = _, _ref60 = _slicedToArray(_ref59, 3), r0 = _ref60[0], r1 = _ref60[1], r2 = _ref60[2], _ref59), interpolator = Object(d3_interpolate__WEBPACK_IMPORTED_MODULE_0__["piecewise"])(interpolate, [r0, r1, r2]), scale) : [interpolator(0), interpolator(0.5), interpolator(1)];
           };
         }
 
@@ -32324,10 +32339,10 @@
 
           try {
             for (_iterator92.s(); !(_step92 = _iterator92.n()).done;) {
-              var _value6 = _step92.value;
+              var _value5 = _step92.value;
 
-              if (_value6 = +valueof(_value6, ++index, values)) {
-                sum += _value6;
+              if (_value5 = +valueof(_value5, ++index, values)) {
+                sum += _value5;
               }
             }
           } catch (err) {
@@ -32359,7 +32374,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"wrapper\">\r\n\t<ul nz-menu nzMode=\"inline\">\r\n\t\t<li nz-menu-group>\r\n\t\t\t<span title><i nz-icon nzType=\"appstore\"></i><span> Sản Phẩm</span></span>\r\n\t\t\t<ul>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['product']\">Tất Cả Sản Phẩm</li>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['product/create']\">Tạo Sản Phẩm</li>\r\n\t\t\t</ul>\r\n\t\t</li>\r\n\t\t<li nz-menu-group>\r\n\t\t\t<span title><i nz-icon nzType=\"ordered-list\"></i><span> Đơn Hàng</span></span>\r\n\t\t\t<ul>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['order/orders']\">Tất Cả Đơn Hàng</li>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['order/inprogress']\">Cần Duyệt</li>\r\n\t\t\t</ul>\r\n\t\t</li>\r\n\t\t<li nz-menu-group>\r\n\t\t\t<span title><i nz-icon nzType=\"ordered-list\"></i><span> Tài Chính</span></span>\r\n\t\t\t<ul>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['finance']\">Thống Kê</li>\r\n\t\t\t</ul>\r\n\t\t</li>\r\n\t\t<li nz-menu-group>\r\n\t\t\t<span title><i nz-icon nzType=\"ordered-list\"></i><span> Cửa Hàng</span></span>\r\n\t\t\t<ul>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['shop/edit']\">Chỉnh Sửa</li>\r\n\t\t\t</ul>\r\n\t\t</li>\r\n\t</ul>\r\n</div>\r\n";
+      __webpack_exports__["default"] = "<div class=\"wrapper\">\r\n\t<ul nz-menu nzMode=\"inline\">\r\n\t\t<li nz-menu-group>\r\n\t\t\t<span title><i nz-icon nzType=\"appstore\"></i><span> Sản Phẩm</span></span>\r\n\t\t\t<ul>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['product']\">Tất Cả Sản Phẩm</li>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['product/create']\">Tạo Sản Phẩm</li>\r\n\t\t\t</ul>\r\n\t\t</li>\r\n\t\t<li nz-menu-group>\r\n\t\t\t<span title><i nz-icon nzType=\"ordered-list\"></i><span> Đơn Hàng</span></span>\r\n\t\t\t<ul>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['order/orders']\">Tất Cả Đơn Hàng</li>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['order/inprogress']\">Cần Duyệt</li>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['order/inprogress-preorder']\">Cần Duyệt Đặt Trước</li>\r\n\t\t\t</ul>\r\n\t\t</li>\r\n\t\t<li nz-menu-group>\r\n\t\t\t<span title><i nz-icon nzType=\"ordered-list\"></i><span> Đặt Trước</span></span>\r\n\t\t\t<ul>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['pre-order-products']\">Sản Phẩm Đặt Trước</li>\r\n\t\t\t\t<!-- <li nz-menu-item [routerLink]=\"['order/inprogress']\">Cần Duyệt</li>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['order/inprogress-preorder']\">Cần Duyệt Đặt Trước</li> -->\r\n\t\t\t</ul>\r\n\t\t</li>\r\n\t\t<li nz-menu-group>\r\n\t\t\t<span title><i nz-icon nzType=\"ordered-list\"></i><span> Tài Chính</span></span>\r\n\t\t\t<ul>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['finance']\">Thống Kê</li>\r\n\t\t\t</ul>\r\n\t\t</li>\r\n\t\t<li nz-menu-group>\r\n\t\t\t<span title><i nz-icon nzType=\"ordered-list\"></i><span> Nhóm Sản Phẩm</span></span>\r\n\t\t\t<ul>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['group-product']\">Nhóm Sản Phẩm</li>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['group-product/create']\">Tạo Nhóm Sản Phẩm</li>\r\n\t\t\t</ul>\r\n\t\t</li>\r\n\t\t<li nz-menu-group>\r\n\t\t\t<span title><i nz-icon nzType=\"ordered-list\"></i><span> Cửa Hàng</span></span>\r\n\t\t\t<ul>\r\n\t\t\t\t<li nz-menu-item [routerLink]=\"['shop/edit']\">Chỉnh Sửa</li>\r\n\t\t\t</ul>\r\n\t\t</li>\r\n\t</ul>\r\n</div>\r\n";
       /***/
     },
 
@@ -33353,22 +33368,22 @@
         }, {
           key: "getProducts",
           value: function getProducts(pageIndex, typeProduct) {
-            var _this101 = this;
+            var _this102 = this;
 
             this.loading = true;
             this.sellerProductService.getAllProductPaging(pageIndex, typeProduct).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["takeUntil"])(this.destroy$)).subscribe(function (result) {
               if (result.resultObj) {
-                _this101.pageResult = result.resultObj;
-                Array.prototype.push.apply(_this101.listOfData, result.resultObj.items);
-                _this101.loading = false;
-                console.log(_this101.listOfData);
+                _this102.pageResult = result.resultObj;
+                Array.prototype.push.apply(_this102.listOfData, result.resultObj.items);
+                _this102.loading = false;
+                console.log(_this102.listOfData);
               }
 
-              _this101.loading = false;
+              _this102.loading = false;
             }, function (error) {
-              _this101.loading = false;
+              _this102.loading = false;
 
-              _this101.notificationService.showErrorNotification(error.message);
+              _this102.notificationService.showErrorNotification(error.message);
             });
           }
         }, {
@@ -33391,46 +33406,13 @@
         }, {
           key: "confirmDeleteProduct",
           value: function confirmDeleteProduct(productId) {
-            var _this102 = this;
-
-            this.spinner.subjectSubmitLoadingHaveData$.next({
-              isSubmitted: true
-            });
-            console.log(productId);
-            this.sellerProductService.deleteProduct(productId).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["takeUntil"])(this.destroy$)).subscribe(function (result) {
-              if (result) {
-                if (result.isSuccessed) {
-                  _this102.listOfData = [];
-
-                  _this102.getProducts(1, _this102.tabIndex);
-
-                  if (result.message) {
-                    _this102.notificationService.showSuccessNotification(result.message);
-                  }
-                } else {
-                  if (result.message) {
-                    _this102.notificationService.showSuccessNotification(result.message);
-                  }
-                }
-              }
-
-              _this102.spinner.subjectSubmitLoadingHaveData$.next({
-                isSubmitted: false
-              });
-            }, function (error) {
-              _this102.appErrorHandler.handleErrorWithNoti(error);
-            });
-          }
-        }, {
-          key: "confirmLockProduct",
-          value: function confirmLockProduct(productId) {
             var _this103 = this;
 
             this.spinner.subjectSubmitLoadingHaveData$.next({
               isSubmitted: true
             });
             console.log(productId);
-            this.sellerProductService.lockProduct(productId).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["takeUntil"])(this.destroy$)).subscribe(function (result) {
+            this.sellerProductService.deleteProduct(productId).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["takeUntil"])(this.destroy$)).subscribe(function (result) {
               if (result) {
                 if (result.isSuccessed) {
                   _this103.listOfData = [];
@@ -33442,7 +33424,7 @@
                   }
                 } else {
                   if (result.message) {
-                    _this103.notificationService.showErrorNotification(result.message);
+                    _this103.notificationService.showSuccessNotification(result.message);
                   }
                 }
               }
@@ -33452,6 +33434,39 @@
               });
             }, function (error) {
               _this103.appErrorHandler.handleErrorWithNoti(error);
+            });
+          }
+        }, {
+          key: "confirmLockProduct",
+          value: function confirmLockProduct(productId) {
+            var _this104 = this;
+
+            this.spinner.subjectSubmitLoadingHaveData$.next({
+              isSubmitted: true
+            });
+            console.log(productId);
+            this.sellerProductService.lockProduct(productId).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["takeUntil"])(this.destroy$)).subscribe(function (result) {
+              if (result) {
+                if (result.isSuccessed) {
+                  _this104.listOfData = [];
+
+                  _this104.getProducts(1, _this104.tabIndex);
+
+                  if (result.message) {
+                    _this104.notificationService.showSuccessNotification(result.message);
+                  }
+                } else {
+                  if (result.message) {
+                    _this104.notificationService.showErrorNotification(result.message);
+                  }
+                }
+              }
+
+              _this104.spinner.subjectSubmitLoadingHaveData$.next({
+                isSubmitted: false
+              });
+            }, function (error) {
+              _this104.appErrorHandler.handleErrorWithNoti(error);
             });
           }
         }]);
@@ -34308,17 +34323,17 @@
         return DragEvent;
       });
 
-      function DragEvent(type, _ref60) {
-        var sourceEvent = _ref60.sourceEvent,
-            subject = _ref60.subject,
-            target = _ref60.target,
-            identifier = _ref60.identifier,
-            active = _ref60.active,
-            x = _ref60.x,
-            y = _ref60.y,
-            dx = _ref60.dx,
-            dy = _ref60.dy,
-            dispatch = _ref60.dispatch;
+      function DragEvent(type, _ref61) {
+        var sourceEvent = _ref61.sourceEvent,
+            subject = _ref61.subject,
+            target = _ref61.target,
+            identifier = _ref61.identifier,
+            active = _ref61.active,
+            x = _ref61.x,
+            y = _ref61.y,
+            dx = _ref61.dx,
+            dy = _ref61.dy,
+            dispatch = _ref61.dispatch;
         Object.defineProperties(this, {
           type: {
             value: type,
@@ -34944,12 +34959,12 @@
       var SellerUrlNotification = /*#__PURE__*/function (_seller_url_base__WEB4) {
         _inherits(SellerUrlNotification, _seller_url_base__WEB4);
 
-        var _super28 = _createSuper(SellerUrlNotification);
+        var _super27 = _createSuper(SellerUrlNotification);
 
         function SellerUrlNotification() {
           _classCallCheck(this, SellerUrlNotification);
 
-          return _super28.call(this);
+          return _super27.call(this);
         }
 
         _createClass(SellerUrlNotification, [{
@@ -35306,10 +35321,10 @@
 
           try {
             for (_iterator96.s(); !(_step96 = _iterator96.n()).done;) {
-              var _value7 = _step96.value;
+              var _value6 = _step96.value;
 
-              if ((_value7 = valueof(_value7, ++index, values)) != null && (_value7 = +_value7) >= _value7) {
-                ++count, sum += _value7;
+              if ((_value6 = valueof(_value6, ++index, values)) != null && (_value6 = +_value6) >= _value6) {
+                ++count, sum += _value6;
               }
             }
           } catch (err) {
@@ -35922,7 +35937,7 @@
       "px64");
 
       var SellerSignalService = function SellerSignalService(sellerUrlSignal, localStorage) {
-        var _this104 = this;
+        var _this105 = this;
 
         _classCallCheck(this, SellerSignalService);
 
@@ -35933,29 +35948,29 @@
         this.signalNotificationCount = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
 
         this.buiConnection = function () {
-          _this104.hubConnection = new _microsoft_signalr__WEBPACK_IMPORTED_MODULE_2__["HubConnectionBuilder"]().withUrl(_this104.sellerUrlSignal.getNotificationConnection(), {
+          _this105.hubConnection = new _microsoft_signalr__WEBPACK_IMPORTED_MODULE_2__["HubConnectionBuilder"]().withUrl(_this105.sellerUrlSignal.getNotificationConnection(), {
             accessTokenFactory: function accessTokenFactory() {
-              return _this104.localStorage.getItem('seller-token');
+              return _this105.localStorage.getItem('seller-token');
             }
           }).withAutomaticReconnect().build();
         };
 
         this.startConnection = function () {
-          _this104.hubConnection.start().then(function () {
+          _this105.hubConnection.start().then(function () {
             console.log('connection starting seller ...: ');
           }) //.then(() => this.getConnectionId())
           .then(function () {
-            return _this104.getNotificationCount();
+            return _this105.getNotificationCount();
           })["catch"](function (err) {
             console.log('errroororooror: ' + err);
           });
         };
 
         this.getNotificationCount = function () {
-          _this104.hubConnection.on('SendNotificationCount', function (data) {
+          _this105.hubConnection.on('SendNotificationCount', function (data) {
             console.log(data);
 
-            _this104.signalNotificationCount.emit(data);
+            _this105.signalNotificationCount.emit(data);
           });
         };
 
@@ -36375,12 +36390,12 @@
         return BrushEvent;
       });
 
-      function BrushEvent(type, _ref61) {
-        var sourceEvent = _ref61.sourceEvent,
-            target = _ref61.target,
-            selection = _ref61.selection,
-            mode = _ref61.mode,
-            dispatch = _ref61.dispatch;
+      function BrushEvent(type, _ref62) {
+        var sourceEvent = _ref62.sourceEvent,
+            target = _ref62.target,
+            selection = _ref62.selection,
+            mode = _ref62.mode,
+            dispatch = _ref62.dispatch;
         Object.defineProperties(this, {
           type: {
             value: type,
@@ -36557,9 +36572,9 @@
           var reverse = stop < start;
 
           if (reverse) {
-            var _ref62 = [stop, start];
-            start = _ref62[0];
-            stop = _ref62[1];
+            var _ref63 = [stop, start];
+            start = _ref63[0];
+            stop = _ref63[1];
           }
 
           var interval = count && typeof count.range === "function" ? count : tickInterval(start, stop, count);
@@ -36570,9 +36585,9 @@
 
         function tickInterval(start, stop, count) {
           var target = Math.abs(stop - start) / count;
-          var i = Object(d3_array__WEBPACK_IMPORTED_MODULE_0__["bisector"])(function (_ref63) {
-            var _ref64 = _slicedToArray(_ref63, 3),
-                step = _ref64[2];
+          var i = Object(d3_array__WEBPACK_IMPORTED_MODULE_0__["bisector"])(function (_ref64) {
+            var _ref65 = _slicedToArray(_ref64, 3),
+                step = _ref65[2];
 
             return step;
           }).right(tickIntervals, target);
@@ -38357,7 +38372,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<div class=\"row\">\n\t<div class=\"col l-6\">\n\t\t<nz-skeleton\n\t\t\t*ngIf=\"isStatisticsMonthsOrderLoading; else completedStatisticsMonthsOrderLoading\"\n\t\t\t[nzLoading]=\"true\"\n\t\t\t[nzActive]=\"true\"\n\t\t></nz-skeleton>\n\t\t<ng-template #completedStatisticsMonthsOrderLoading>\n\t\t\t<ngx-charts-advanced-pie-chart\n\t\t\t\t[results]=\"statisticsMonthsOrder.results\"\n\t\t\t\t[label]=\"statisticsMonthsOrder.legendTitle\"\n\t\t\t\t[gradient]=\"false\"\n\t\t\t>\n\t\t\t</ngx-charts-advanced-pie-chart>\n\t\t\t<!-- <ngx-charts-line-chart\n\t\t\t\t[showXAxisLabel]=\"statisticsMonthsOrder.showXAxisLabel\"\n\t\t\t\t[showYAxisLabel]=\"statisticsMonthsOrder.showYAxisLabel\"\n\t\t\t\t[xAxis]=\"true\"\n\t\t\t\t[yAxis]=\"true\"\n\t\t\t\t[timeline]=\"true\"\n\t\t\t\t[results]=\"statisticsMonthsOrder.results\"\n\t\t\t>\n\t\t\t</ngx-charts-line-chart> -->\n\n\t\t\t<!-- <ngx-charts-bar-vertical\n\t\t\t\t[view]=\"[900,400]\"\n\t\t\t\t[results]=\"statisticsMonthsOrder.results\"\n\t\t\t\t[xAxisLabel]=\"statisticsMonthsOrder.xAxisLabel\"\n\t\t\t\t[legendTitle]=\"statisticsMonthsOrder.legendTitle\"\n\t\t\t\t[yAxisLabel]=\"statisticsMonthsOrder.yAxisLabe\"\n\t\t\t\t[legend]=\"statisticsMonthsOrder.legend\"\n\t\t\t\t[showXAxisLabel]=\"statisticsMonthsOrder.showXAxisLabel\"\n\t\t\t\t[showYAxisLabel]=\"statisticsMonthsOrder.showYAxisLabel\"\n\t\t\t\t[xAxis]=\"statisticsMonthsOrder.xAxis\"\n\t\t\t\t[yAxis]=\"statisticsMonthsOrder.yAxis\"\n\t\t\t\t[gradient]=\"false\"\n\t\t\t>\n\t\t\t</ngx-charts-bar-vertical> -->\n\t\t</ng-template>\n\t</div>\n\t<div class=\"col l-6\">\n\t\t<nz-skeleton\n\t\t\t*ngIf=\"isStatisticsActivatingAndInActivatingProductsLoading; else completedStatisticsActivatingAndInActivatingProductsLoading\"\n\t\t\t[nzLoading]=\"true\"\n\t\t\t[nzActive]=\"true\"\n\t\t></nz-skeleton>\n\t\t<ng-template #completedStatisticsActivatingAndInActivatingProductsLoading>\n\t\t\t<ngx-charts-advanced-pie-chart\n\t\t\t\t[results]=\"statisticsActivatingAndInActivatingProducts.results\"\n\t\t\t\t[label]=\"statisticsActivatingAndInActivatingProducts.legendTitle\"\n\t\t\t\t[gradient]=\"false\"\n\t\t\t>\n\t\t\t</ngx-charts-advanced-pie-chart>\n\t\t</ng-template>\n\t</div>\n</div>\n<!-- <div class=\"row\">\n\t<nz-skeleton\n\t\t*ngIf=\"isStatisticsMonthsCancelOrderLoading; else completedStatisticsMonthsCancelOrderLoading\"\n\t\t[nzLoading]=\"isLoading\"\n\t\t[nzActive]=\"true\"\n\t></nz-skeleton>\n\t<ng-template #completedStatisticsMonthsCancelOrderLoading>\n\t\t<ngx-charts-bar-vertical\n\t\t\t[view]=\"[800,400]\"\n\t\t\t[results]=\"statisticsMonthsCancelOrder.results\"\n\t\t\t[xAxisLabel]=\"statisticsMonthsCancelOrder.xAxisLabel\"\n\t\t\t[legendTitle]=\"statisticsMonthsCancelOrder.legendTitle\"\n\t\t\t[yAxisLabel]=\"statisticsMonthsCancelOrder.yAxisLabe\"\n\t\t\t[legend]=\"statisticsMonthsCancelOrder.legend\"\n\t\t\t[showXAxisLabel]=\"statisticsMonthsCancelOrder.showXAxisLabel\"\n\t\t\t[showYAxisLabel]=\"statisticsMonthsCancelOrder.showYAxisLabel\"\n\t\t\t[xAxis]=\"statisticsMonthsCancelOrder.xAxis\"\n\t\t\t[yAxis]=\"statisticsMonthsCancelOrder.yAxis\"\n\t\t\t[gradient]=\"false\"\n\t\t>\n\t\t</ngx-charts-bar-vertical>\n\t</ng-template>\n</div> -->\n";
+      __webpack_exports__["default"] = "<div class=\"row\">\n\t<div class=\"col l-6\">\n\t\t<nz-skeleton\n\t\t\t*ngIf=\"isStatisticsMonthsOrderLoading; else completedStatisticsMonthsOrderLoading\"\n\t\t\t[nzLoading]=\"true\"\n\t\t\t[nzActive]=\"true\"\n\t\t></nz-skeleton>\n\t\t<ng-template #completedStatisticsMonthsOrderLoading>\n\t\t\t<ngx-charts-advanced-pie-chart\n\t\t\t\t[results]=\"statisticsMonthsOrder.results\"\n\t\t\t\t[label]=\"statisticsMonthsOrder.legendTitle\"\n\t\t\t\t[gradient]=\"false\"\n\t\t\t>\n\t\t\t</ngx-charts-advanced-pie-chart>\n\n\t\t</ng-template>\n\t</div>\n\t<div class=\"col l-6\">\n\t\t<nz-skeleton\n\t\t\t*ngIf=\"isStatisticsActivatingAndInActivatingProductsLoading; else completedStatisticsActivatingAndInActivatingProductsLoading\"\n\t\t\t[nzLoading]=\"true\"\n\t\t\t[nzActive]=\"true\"\n\t\t></nz-skeleton>\n\t\t<ng-template #completedStatisticsActivatingAndInActivatingProductsLoading>\n\t\t\t<ngx-charts-advanced-pie-chart\n\t\t\t\t[results]=\"statisticsActivatingAndInActivatingProducts.results\"\n\t\t\t\t[label]=\"statisticsActivatingAndInActivatingProducts.legendTitle\"\n\t\t\t\t[gradient]=\"false\"\n\t\t\t>\n\t\t\t</ngx-charts-advanced-pie-chart>\n\t\t</ng-template>\n\t</div>\n</div>\n";
       /***/
     },
 
@@ -38770,10 +38785,10 @@
 
           try {
             for (_iterator101.s(); !(_step101 = _iterator101.n()).done;) {
-              var _value8 = _step101.value;
+              var _value7 = _step101.value;
 
-              if ((_value8 = valueof(_value8, ++index, values)) != null && (max < _value8 || max === undefined && _value8 >= _value8)) {
-                max = _value8, maxIndex = index;
+              if ((_value7 = valueof(_value7, ++index, values)) != null && (max < _value7 || max === undefined && _value7 >= _value7)) {
+                max = _value7, maxIndex = index;
               }
             }
           } catch (err) {
@@ -39551,7 +39566,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<nz-spin [nzSpinning]=\"submitted\">\n\t<div class=\"seller-login-app\">\n\t\t<div class=\"grid wide\">\n\t\t\t<div class=\"login__container\">\n\t\t\t\t<div class=\"row auth-form__header\">\n\t\t\t\t\t<div class=\"col l-2 m-0 c-0  auth-form__image\">\n\t\t\t\t\t\t<img\n\t\t\t\t\t\t\tstyle=\"max-width:100%;\"\n\t\t\t\t\t\t\tsrc=\"../../../../../assets/img/avatar/avatar-login-page.png\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"col l-3 m-0 c-0 auth-form__heading\">Trang Đăng Nhập Người Bán</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"row auth-form__body\" style=\"min-height: 100vh;\">\n\t\t\t\t\t<div class=\"auth-form__body-container\">\n\t\t\t\t\t\t<div class=\"login_body\">\n\t\t\t\t\t\t\t<div class=\"row col l-o-4 l-4 m-o-3 m-6 c-12\">\n\t\t\t\t\t\t\t\t<nz-card\n\t\t\t\t\t\t\t\t\tnzTitle=\"Trang Đăng Nhập\"\n\t\t\t\t\t\t\t\t\tstyle=\"width: 500px; max-width: 100%;\"\n\t\t\t\t\t\t\t\t\t[nzBordered]=\"true\"\n\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t<div class=\"seller-app-login\">\n\t\t\t\t\t\t\t\t\t\t<form\n\t\t\t\t\t\t\t\t\t\t\tnz-form\n\t\t\t\t\t\t\t\t\t\t\t[formGroup]=\"sellerLoginForm\"\n\t\t\t\t\t\t\t\t\t\t\tclass=\"login-form\"\n\t\t\t\t\t\t\t\t\t\t\t(ngSubmit)=\"submitForm()\"\n\t\t\t\t\t\t\t\t\t\t\t#loginForm=\"ngForm\"\n\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t<nz-form-item>\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Please input your username!\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-input-group nzPrefixIcon=\"user\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"email\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"email\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Email\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-input-group>\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-form-control>\n\t\t\t\t\t\t\t\t\t\t\t</nz-form-item>\n\t\t\t\t\t\t\t\t\t\t\t<nz-form-item>\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Please input your Password!\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-input-group nzPrefixIcon=\"lock\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"password\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"password\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Password\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-input-group>\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-form-control>\n\t\t\t\t\t\t\t\t\t\t\t</nz-form-item>\n\t\t\t\t\t\t\t\t\t\t\t<!-- <div nz-row class=\"login-form-margin\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div nz-col [nzSpan]=\"12\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<label nz-checkbox formControlName=\"remember\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>Remember me</span>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div nz-col [nzSpan]=\"12\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<a class=\"login-form-forgot\">Forgot password</a>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div> -->\n\t\t\t\t\t\t\t\t\t\t\t<button\n\t\t\t\t\t\t\t\t\t\t\t\tnz-button\n\t\t\t\t\t\t\t\t\t\t\t\tclass=\"login-form-button login-form-margin\"\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"submit\"\n\t\t\t\t\t\t\t\t\t\t\t\t[disabled]=\"!loginForm.form.valid\"\n\t\t\t\t\t\t\t\t\t\t\t\t[nzType]=\"'primary'\"\n\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\tĐăng Nhập\n\t\t\t\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</nz-card>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</nz-spin>\n";
+      __webpack_exports__["default"] = "<nz-spin [nzSpinning]=\"isSubmitted\">\n\t<div class=\"seller-login-app\">\n\t\t<div class=\"grid wide\">\n\t\t\t<div class=\"login__container\">\n\t\t\t\t<div class=\"row auth-form__header\">\n\t\t\t\t\t<div class=\"col l-2 m-0 c-0  auth-form__image\">\n\t\t\t\t\t\t<img\n\t\t\t\t\t\t\tstyle=\"max-width:100%;\"\n\t\t\t\t\t\t\tsrc=\"../../../../../assets/img/avatar/avatar-login-page.png\"\n\t\t\t\t\t\t/>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"col l-3 m-0 c-0 auth-form__heading\">Trang Đăng Nhập Người Bán</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"row auth-form__body\" style=\"min-height: 100vh;\">\n\t\t\t\t\t<div class=\"auth-form__body-container\">\n\t\t\t\t\t\t<div class=\"login_body\">\n\t\t\t\t\t\t\t<div class=\"row col l-o-4 l-4 m-o-3 m-6 c-12\">\n\t\t\t\t\t\t\t\t<nz-card\n\t\t\t\t\t\t\t\t\tnzTitle=\"Trang Đăng Nhập\"\n\t\t\t\t\t\t\t\t\tstyle=\"width: 500px; max-width: 100%;\"\n\t\t\t\t\t\t\t\t\t[nzBordered]=\"true\"\n\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t<div class=\"seller-app-login\">\n\t\t\t\t\t\t\t\t\t\t<form\n\t\t\t\t\t\t\t\t\t\t\tnz-form\n\t\t\t\t\t\t\t\t\t\t\t[formGroup]=\"sellerLoginForm\"\n\t\t\t\t\t\t\t\t\t\t\tclass=\"login-form\"\n\t\t\t\t\t\t\t\t\t\t\t(ngSubmit)=\"submitForm()\"\n\t\t\t\t\t\t\t\t\t\t\t#loginForm=\"ngForm\"\n\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\t<nz-form-item>\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Please input your username!\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-input-group nzPrefixIcon=\"user\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"email\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"email\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Email\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-input-group>\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-form-control>\n\t\t\t\t\t\t\t\t\t\t\t</nz-form-item>\n\t\t\t\t\t\t\t\t\t\t\t<nz-form-item>\n\t\t\t\t\t\t\t\t\t\t\t\t<nz-form-control nzErrorTip=\"Please input your Password!\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<nz-input-group nzPrefixIcon=\"lock\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<input\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\ttype=\"password\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tnz-input\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tformControlName=\"password\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tplaceholder=\"Password\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t/>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</nz-input-group>\n\t\t\t\t\t\t\t\t\t\t\t\t</nz-form-control>\n\t\t\t\t\t\t\t\t\t\t\t</nz-form-item>\n\t\t\t\t\t\t\t\t\t\t\t<!-- <div nz-row class=\"login-form-margin\">\n\t\t\t\t\t\t\t\t\t\t\t\t<div nz-col [nzSpan]=\"12\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<label nz-checkbox formControlName=\"remember\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t<span>Remember me</span>\n\t\t\t\t\t\t\t\t\t\t\t\t\t</label>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t\t<div nz-col [nzSpan]=\"12\">\n\t\t\t\t\t\t\t\t\t\t\t\t\t<a class=\"login-form-forgot\">Forgot password</a>\n\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t\t</div> -->\n\t\t\t\t\t\t\t\t\t\t\t<button\n\t\t\t\t\t\t\t\t\t\t\t\tnz-button\n\t\t\t\t\t\t\t\t\t\t\t\tclass=\"login-form-button login-form-margin\"\n\t\t\t\t\t\t\t\t\t\t\t\ttype=\"submit\"\n\t\t\t\t\t\t\t\t\t\t\t\t[disabled]=\"!loginForm.form.valid\"\n\t\t\t\t\t\t\t\t\t\t\t\t[nzType]=\"'primary'\"\n\t\t\t\t\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t\t\t\tĐăng Nhập\n\t\t\t\t\t\t\t\t\t\t\t</button>\n\t\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t</nz-card>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</nz-spin>\n";
       /***/
     },
 
@@ -39617,9 +39632,9 @@
         }
 
         scale.domain = function (_) {
-          var _ref65, _ref66;
+          var _ref66, _ref67;
 
-          return arguments.length ? ((_ref65 = _, _ref66 = _slicedToArray(_ref65, 2), x0 = _ref66[0], x1 = _ref66[1], _ref65), x0 = +x0, x1 = +x1, rescale()) : [x0, x1];
+          return arguments.length ? ((_ref66 = _, _ref67 = _slicedToArray(_ref66, 2), x0 = _ref67[0], x1 = _ref67[1], _ref66), x0 = +x0, x1 = +x1, rescale()) : [x0, x1];
         };
 
         scale.range = function (_) {
@@ -39849,10 +39864,10 @@
 
           try {
             for (_iterator104.s(); !(_step104 = _iterator104.n()).done;) {
-              var _value9 = _step104.value;
+              var _value8 = _step104.value;
 
-              if ((_value9 = valueof(_value9, ++index, values)) != null && (max < _value9 || max === undefined && _value9 >= _value9)) {
-                max = _value9;
+              if ((_value8 = valueof(_value8, ++index, values)) != null && (max < _value8 || max === undefined && _value8 >= _value8)) {
+                max = _value8;
               }
             }
           } catch (err) {
@@ -40736,9 +40751,9 @@
 
           try {
             for (_iterator109.s(); !(_step109 = _iterator109.n()).done;) {
-              var _value10 = _step109.value;
+              var _value9 = _step109.value;
 
-              if ((_value10 = valueof(_value10, ++index, values)) != null && (_value10 = +_value10) >= _value10) {
+              if ((_value9 = valueof(_value9, ++index, values)) != null && (_value9 = +_value9) >= _value9) {
                 ++count;
               }
             }
@@ -41920,41 +41935,31 @@
       /* harmony import */
 
 
-      var rxjs_internal_BehaviorSubject__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
-      /*! rxjs/internal/BehaviorSubject */
-      "7RJT");
-      /* harmony import */
-
-
-      var rxjs_internal_BehaviorSubject__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_BehaviorSubject__WEBPACK_IMPORTED_MODULE_13__);
-      /* harmony import */
-
-
-      var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
+      var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
       /*! @angular/cdk/drag-drop */
       "ltgo");
       /* harmony import */
 
 
-      var src_app_core_services_seller_seller_product_seller_product_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
+      var src_app_core_services_seller_seller_product_seller_product_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(
       /*! src/app/core/services/seller/seller-product/seller-product.service */
       "Nsak");
       /* harmony import */
 
 
-      var src_app_core_services_seller_seller_category_seller_category_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
+      var src_app_core_services_seller_seller_category_seller_category_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
       /*! src/app/core/services/seller/seller-category/seller-category.service */
       "RyY9");
       /* harmony import */
 
 
-      var src_app_core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+      var src_app_core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
       /*! src/app/core/notification/notifications/customer/notification.service */
       "7IKN");
 
       var ProductCreateComponent = /*#__PURE__*/function () {
         function ProductCreateComponent(sellerProductService, sellerCategoryService, sellerAuthorService, sellerPublisherService, formBuilder, destroy$, appErrorHandler, spinner, notificationService) {
-          var _this105 = this;
+          var _this106 = this;
 
           _classCallCheck(this, ProductCreateComponent);
 
@@ -41971,23 +41976,28 @@
           this.isAuthorSelectLoading = false;
           this.isPublisherSelectLoading = false;
           this.isCategoryVariatonsSelectLoading = false;
+          this.isSearchGroupProductsSelectLoading = false;
+          this.isSearchPreOrderProductSelectLoading = false;
           this.uploading = false;
+          this.tabIndexOpening = 0;
           this.authorSelectList = [];
           this.publisherSelectList = [];
           this.categoryVariationSelectList = [];
-          this.fileList = [];
-          this.searchAuthorChange$ = new rxjs_internal_BehaviorSubject__WEBPACK_IMPORTED_MODULE_13__["BehaviorSubject"]('');
-          this.searchPublisherChange$ = new rxjs_internal_BehaviorSubject__WEBPACK_IMPORTED_MODULE_13__["BehaviorSubject"]('');
-          this.searchCategoryVariationChange$ = new rxjs_internal_BehaviorSubject__WEBPACK_IMPORTED_MODULE_13__["BehaviorSubject"]('');
+          this.groupPrductSelectList = [];
+          this.preOrderProductSelectList = [];
+          this.fileList = []; // searchAuthorChange$ = new BehaviorSubject('');
+          // searchPublisherChange$ = new BehaviorSubject('');
+          // searchCategoryVariationChange$ = new BehaviorSubject('');
+
           this.ready = false;
           this.thumbshandlePreview = []; //removeImageFile from thumbshandlePreview
 
           this.removeImageFile = function (file) {
-            _this105.thumbshandlePreview.splice(_this105.thumbshandlePreview.findIndex(function (x) {
+            _this106.thumbshandlePreview.splice(_this106.thumbshandlePreview.findIndex(function (x) {
               return x.uid === file.uid.toString();
             }), 1);
 
-            _this105.thumbshandlePreview.find(function (x) {
+            _this106.thumbshandlePreview.find(function (x) {
               return x.uid === file.uid;
             });
 
@@ -41995,15 +42005,15 @@
           };
 
           this.beforeUpload = function (file) {
-            _this105.fileList = _this105.fileList.concat(file);
+            _this106.fileList = _this106.fileList.concat(file);
             console.log('beforeUpload');
-            console.log(_this105.fileList);
+            console.log(_this106.fileList);
             console.log(file);
             console.log(file.uid);
 
-            _this105.handlePreview(file.uid.toString(), file);
+            _this106.handlePreview(file.uid.toString(), file);
 
-            _this105.ready = true;
+            _this106.ready = true;
             return false;
           };
         } //process change index in image file
@@ -42012,7 +42022,7 @@
         _createClass(ProductCreateComponent, [{
           key: "drop",
           value: function drop(event) {
-            Object(_angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_14__["moveItemInArray"])(this.thumbshandlePreview, event.previousIndex, event.currentIndex);
+            Object(_angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_13__["moveItemInArray"])(this.thumbshandlePreview, event.previousIndex, event.currentIndex);
             console.log(this.fileList);
             var temp = this.fileList[event.previousIndex];
             this.fileList[event.previousIndex] = this.fileList[event.currentIndex];
@@ -42094,43 +42104,107 @@
               mass: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
               length: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
               width: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
-              thickness: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]]
+              thickness: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              dateSell: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              groupProduct: [[], [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required]]
+            });
+            this.sellerCreatePreOrderProductForm = this.formBuilder.group({
+              productName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              entireDescription: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              author: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              publisher: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              categoryVariaton: [[], [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required]],
+              page: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              publishingYear: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              country: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              price: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              originalPrice: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              stock: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              mass: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              length: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              width: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              thickness: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              dateSell: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].minLength(3)]],
+              //PreOrder
+              //preOrderProduct: [[], [Validators.required]],
+              dateStartPreOrderProduct: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required]],
+              dateEndPreOrderProduct: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required]],
+              preOrderProductPrice: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_9__["Validators"].required]]
+            });
+          }
+        }, {
+          key: "initPreOrderProductList",
+          value: function initPreOrderProductList(searchKeyWord) {
+            var _this107 = this;
+
+            this.isAuthorSelectLoading = true;
+            this.sellerProductService.initPreOrderProductList(searchKeyWord).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$)).subscribe(function (result) {
+              _this107.preOrderProductSelectList = result.resultObj;
+              _this107.isSearchPreOrderProductSelectLoading = false;
             });
           }
         }, {
           key: "initAuthorList",
           value: function initAuthorList(searchKeyWord) {
-            var _this106 = this;
+            var _this108 = this;
 
             this.isAuthorSelectLoading = true;
             this.sellerAuthorService.getAuthorList(searchKeyWord).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$)).subscribe(function (result) {
-              _this106.authorSelectList = result.resultObj;
-              _this106.isAuthorSelectLoading = false;
+              _this108.authorSelectList = result.resultObj;
+              _this108.isAuthorSelectLoading = false;
             });
           }
         }, {
           key: "initPublisherList",
           value: function initPublisherList(searchKeyWord) {
-            var _this107 = this;
+            var _this109 = this;
 
             this.isPublisherSelectLoading = true;
             this.sellerPublisherService.getPublisherList(searchKeyWord).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["debounceTime"])(500)).subscribe(function (result) {
-              _this107.publisherSelectList = result.resultObj;
-              _this107.isPublisherSelectLoading = false;
+              _this109.publisherSelectList = result.resultObj;
+              _this109.isPublisherSelectLoading = false;
             });
           }
         }, {
           key: "initCategoryVariatonsList",
           value: function initCategoryVariatonsList(searchKeyWord) {
-            var _this108 = this;
+            var _this110 = this;
 
             console.log('GetCategoryVariationByCatgoryId');
             this.isCategoryVariatonsSelectLoading = true;
             this.sellerCategoryService.getCategoryVariationByCatgoryIdBySearchKeyWord(searchKeyWord).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["debounceTime"])(500)).subscribe(function (result) {
-              _this108.categoryVariationSelectList = result.resultObj;
-              _this108.isCategoryVariatonsSelectLoading = false;
-              console.log(_this108.categoryVariationSelectList);
+              _this110.categoryVariationSelectList = result.resultObj;
+              _this110.isCategoryVariatonsSelectLoading = false;
+              console.log(_this110.categoryVariationSelectList);
             });
+          }
+        }, {
+          key: "initGroupProductList",
+          value: function initGroupProductList(searchKeyWord) {
+            var _this111 = this;
+
+            console.log('GetCategoryVariationByCatgoryId');
+            this.isSearchGroupProductsSelectLoading = true;
+            this.sellerProductService.getSearchGroupProducts({
+              searchKeyWord: searchKeyWord
+            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["takeUntil"])(this.destroy$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["debounceTime"])(500)).subscribe(function (result) {
+              console.log(result);
+              _this111.groupPrductSelectList = result.resultObj;
+              _this111.isSearchGroupProductsSelectLoading = false;
+              console.log(_this111.groupPrductSelectList);
+            });
+          }
+        }, {
+          key: "onSearchPreOrderProduct",
+          value: function onSearchPreOrderProduct(value) {
+            console.log(value);
+            this.initPreOrderProductList(value);
+          }
+        }, {
+          key: "onSearchGroupProduct",
+          value: function onSearchGroupProduct(value) {
+            console.log(value);
+            this.initGroupProductList(value);
           }
         }, {
           key: "onSearchAuthor",
@@ -42159,36 +42233,109 @@
         }, {
           key: "initFormData",
           value: function initFormData() {
-            var val = this.sellerCreateProductForm.value;
-            console.log(val.entireDescription);
-            var formData = new FormData();
-            formData.append('productName', val.productName);
-            formData.append('description', val.entireDescription);
-            formData.append('authorId', val.author);
-            formData.append('publisherId', val.publisher);
-            console.log(val.categoryVariaton);
-            val.categoryVariaton.forEach(function (file) {
-              formData.append('categoryVariationList', file);
-            });
-            formData.append('publishingYear', val.publishingYear);
-            formData.append('country', val.country);
-            formData.append('page', val.page);
-            formData.append('price', val.price);
-            formData.append('originalPrice', val.originalPrice);
-            formData.append('stock', val.stock);
-            formData.append('mass', val.mass);
-            formData.append('length', val.length);
-            formData.append('width', val.width);
-            formData.append('thickness', val.thickness);
-            this.fileList.forEach(function (file) {
-              formData.append('productImages', file, file.name);
-            });
-            return formData;
+            var _a, _b, _c;
+
+            if (this.tabIndexOpening == 0) {
+              var val = this.sellerCreateProductForm.value;
+              console.log(val.entireDescription);
+              var formData = new FormData();
+              formData.append('productName', val.productName);
+              formData.append('description', val.entireDescription);
+              formData.append('authorId', val.author);
+              formData.append('publisherId', val.publisher);
+              console.log(val.categoryVariaton);
+              val.categoryVariaton.forEach(function (file) {
+                formData.append('categoryVariationList', file);
+              });
+              val.groupProduct.forEach(function (file) {
+                formData.append('groupProductList', file);
+              });
+              formData.append('publishingYear', val.publishingYear);
+              formData.append('country', val.country);
+              formData.append('dateSell', val.dateSell);
+              formData.append('page', val.page);
+              formData.append('price', val.price);
+              formData.append('originalPrice', val.originalPrice);
+              formData.append('stock', val.stock);
+              formData.append('mass', val.mass);
+              formData.append('length', val.length);
+              formData.append('width', val.width);
+              formData.append('thickness', val.thickness);
+              this.fileList.forEach(function (file) {
+                formData.append('productImages', file, file.name);
+              });
+              formData.append('isPreOrderProduct', 'false');
+              return formData;
+            } else {
+              var _val = this.sellerCreatePreOrderProductForm.value;
+              console.log(_val.entireDescription);
+
+              var _formData = new FormData();
+
+              _formData.append('productName', _val.productName);
+
+              _formData.append('description', _val.entireDescription);
+
+              _formData.append('authorId', _val.author);
+
+              _formData.append('publisherId', _val.publisher);
+
+              console.log(_val.categoryVariaton);
+
+              _val.categoryVariaton.forEach(function (file) {
+                _formData.append('categoryVariationList', file);
+              }); // val.groupProduct.forEach((file: File) => {
+              // 	formData.append('groupProductList', file);
+              // });
+
+
+              _formData.append('publishingYear', _val.publishingYear);
+
+              _formData.append('country', _val.country);
+
+              _formData.append('dateSell', _val.dateSell);
+
+              _formData.append('page', _val.page);
+
+              _formData.append('price', _val.price);
+
+              _formData.append('originalPrice', _val.originalPrice);
+
+              _formData.append('stock', _val.stock);
+
+              _formData.append('mass', _val.mass);
+
+              _formData.append('length', _val.length);
+
+              _formData.append('width', _val.width);
+
+              _formData.append('thickness', _val.thickness);
+
+              this.fileList.forEach(function (file) {
+                _formData.append('productImages', file, file.name);
+              });
+
+              _formData.append('isPreOrderProduct', 'true');
+
+              _formData.append('dateStartPreOrderProduct', (_a = _val.dateStartPreOrderProduct) !== null && _a !== void 0 ? _a : Date.now);
+
+              _formData.append('dateEndPreOrderProduct', (_b = _val.dateEndPreOrderProduct) !== null && _b !== void 0 ? _b : Date.now);
+
+              _formData.append('preOrderProductPrice', (_c = _val.preOrderProductPrice) !== null && _c !== void 0 ? _c : 0);
+
+              return _formData;
+            }
+          }
+        }, {
+          key: "ChangeTab",
+          value: function ChangeTab(tabIndex) {
+            this.tabIndexOpening = tabIndex;
+            console.log(this.tabIndexOpening);
           }
         }, {
           key: "submitForm",
           value: function submitForm() {
-            var _this109 = this;
+            var _this112 = this;
 
             this.spinner.subjectSubmitLoadingHaveData$.next({
               isSubmitted: true
@@ -42200,21 +42347,21 @@
 
                 if (res.isSuccessed) {
                   if (res.message) {
-                    _this109.notificationService.showSuccessNotification(res.message);
+                    _this112.notificationService.showSuccessNotification(res.message);
                   }
                 } else {
                   if (res.message) {
-                    _this109.notificationService.showErrorNotification(res.message);
+                    _this112.notificationService.showErrorNotification(res.message);
                   }
                 }
 
-                _this109.spinner.subjectSubmitLoadingHaveData$.next({
+                _this112.spinner.subjectSubmitLoadingHaveData$.next({
                   isSubmitted: false
                 });
               }, function () {
-                _this109.notificationService.showErrorNotification('Có Lỗi Xảy Ra, Vui Lòng Thử Lại');
+                _this112.notificationService.showErrorNotification('Có Lỗi Xảy Ra, Vui Lòng Thử Lại');
 
-                _this109.spinner.subjectSubmitLoadingHaveData$.next({
+                _this112.spinner.subjectSubmitLoadingHaveData$.next({
                   isSubmitted: false
                 });
               });
@@ -42229,9 +42376,9 @@
 
       ProductCreateComponent.ctorParameters = function () {
         return [{
-          type: src_app_core_services_seller_seller_product_seller_product_service__WEBPACK_IMPORTED_MODULE_15__["SellerProductService"]
+          type: src_app_core_services_seller_seller_product_seller_product_service__WEBPACK_IMPORTED_MODULE_14__["SellerProductService"]
         }, {
-          type: src_app_core_services_seller_seller_category_seller_category_service__WEBPACK_IMPORTED_MODULE_16__["SellerCategoryService"]
+          type: src_app_core_services_seller_seller_category_seller_category_service__WEBPACK_IMPORTED_MODULE_15__["SellerCategoryService"]
         }, {
           type: _core_services_seller_seller_author_seller_author_service__WEBPACK_IMPORTED_MODULE_6__["SellerAuthorService"]
         }, {
@@ -42245,7 +42392,7 @@
         }, {
           type: src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_4__["SpinnerService"]
         }, {
-          type: src_app_core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_17__["NotificationService"]
+          type: src_app_core_notification_notifications_customer_notification_service__WEBPACK_IMPORTED_MODULE_16__["NotificationService"]
         }];
       };
 
@@ -42254,19 +42401,7 @@
         template: _raw_loader_product_create_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
         providers: [src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_11__["DestroyService"]],
         styles: [_product_create_component_less__WEBPACK_IMPORTED_MODULE_2__["default"], _product_create_component_css__WEBPACK_IMPORTED_MODULE_3__["default"]]
-      })], ProductCreateComponent); //import {SignIrService} from "src/app/core/services/auth/seller/sign-ir.service";
-      // constructor(public signalRService: SignIrService, private http: HttpClient) {}
-      // ngOnInit() {
-      // 	this.signalRService.startConnection();
-      // 	this.signalRService.addTransferChartDataListener();
-      // 	this.startHttpRequest();
-      //   }
-      // private startHttpRequest() {
-      // 	this.http.get("https://localhost:5005/api/seller/chat").subscribe((res) => {
-      // 		console.log(res);
-      // 	});
-      // }
-
+      })], ProductCreateComponent);
       /***/
     },
 
@@ -42418,10 +42553,10 @@
 
           try {
             for (_iterator113.s(); !(_step113 = _iterator113.n()).done;) {
-              var _value11 = _step113.value;
+              var _value10 = _step113.value;
 
-              if ((_value11 = valueof(_value11, ++index, values)) != null && (min > _value11 || min === undefined && _value11 >= _value11)) {
-                min = _value11;
+              if ((_value10 = valueof(_value10, ++index, values)) != null && (min > _value10 || min === undefined && _value10 >= _value10)) {
+                min = _value10;
               }
             }
           } catch (err) {
@@ -42940,14 +43075,14 @@
         _createClass(SellerHeaderComponent, [{
           key: "ngOnInit",
           value: function ngOnInit() {
-            var _this110 = this;
+            var _this113 = this;
 
             this.checkLogin();
             this.store.select(src_app_core_store_seller_setting_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_6__["selectTheme"]).pipe(Object(rxjs_internal_operators_takeUntil__WEBPACK_IMPORTED_MODULE_8__["takeUntil"])(this.destroy$)).subscribe(function (result) {
-              _this110.themeDefault = result;
+              _this113.themeDefault = result;
             });
             this.store.select(src_app_core_store_seller_setting_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_6__["selectSettingsLanguage"]).pipe(Object(rxjs_internal_operators_takeUntil__WEBPACK_IMPORTED_MODULE_8__["takeUntil"])(this.destroy$)).subscribe(function (result) {
-              _this110.languageDefault = result != null ? result : 'seller-vn';
+              _this113.languageDefault = result != null ? result : 'seller-vn';
             });
           }
         }, {
@@ -43375,7 +43510,7 @@
       var INIT = Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["of"])('anms-init-effect-trigger');
 
       var SellerSettingsEffects = function SellerSettingsEffects(actions$, store, router, localStorageService, titleService, translateService, themeService) {
-        var _this111 = this;
+        var _this114 = this;
 
         _classCallCheck(this, SellerSettingsEffects);
 
@@ -43388,43 +43523,43 @@
         this.themeService = themeService;
         this.count = 1;
         this.setTitle = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-          return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["merge"])(_this111.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeLanguage"])), _this111.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["filter"])(function (event) {
+          return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["merge"])(_this114.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeLanguage"])), _this114.router.events.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["filter"])(function (event) {
             return event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivationEnd"];
           }))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function () {
             // console.log('effect');
             // console.log('lan: '+ this.count);
-            _this111.count++;
+            _this114.count++;
 
-            _this111.titleService.setTitle(_this111.router.routerState.snapshot.root, _this111.translateService);
+            _this114.titleService.setTitle(_this114.router.routerState.snapshot.root, _this114.translateService);
           }));
         }, {
           dispatch: false
         });
         this.updateTheme = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-          return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["merge"])(INIT, _this111.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeTheme"]))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["withLatestFrom"])(_this111.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["select"])(_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_11__["selectTheme"]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function (_ref67) {
-            var _ref68 = _slicedToArray(_ref67, 2),
-                effectiveTheme = _ref68[1];
+          return Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["merge"])(INIT, _this114.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeTheme"]))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["withLatestFrom"])(_this114.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["select"])(_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_11__["selectTheme"]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function (_ref68) {
+            var _ref69 = _slicedToArray(_ref68, 2),
+                effectiveTheme = _ref69[1];
 
-            return _this111.themeService.loadTheme(false, effectiveTheme);
+            return _this114.themeService.loadTheme(false, effectiveTheme);
           }));
         }, {
           dispatch: false
         });
         this.setTranslateServiceLanguage = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-          return _this111.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["select"])(_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_11__["selectSettingsLanguage"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function (language) {
+          return _this114.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["select"])(_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_11__["selectSettingsLanguage"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function (language) {
             console.log('trong seller efff');
             console.log(language);
-            return _this111.translateService.use(language);
+            return _this114.translateService.use(language);
           }));
         }, {
           dispatch: false
         });
         this.persistSettings = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["createEffect"])(function () {
-          return _this111.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeLanguage"], _seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeTheme"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["withLatestFrom"])(_this111.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["select"])(_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_11__["selectSettingsState"]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function (_ref69) {
-            var _ref70 = _slicedToArray(_ref69, 2),
-                settings = _ref70[1];
+          return _this114.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_4__["ofType"])(_seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeLanguage"], _seller_setting_actions__WEBPACK_IMPORTED_MODULE_10__["actionSettingsChangeTheme"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["withLatestFrom"])(_this114.store.pipe(Object(_ngrx_store__WEBPACK_IMPORTED_MODULE_3__["select"])(_seller_settings_selectors__WEBPACK_IMPORTED_MODULE_11__["selectSettingsState"]))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function (_ref70) {
+            var _ref71 = _slicedToArray(_ref70, 2),
+                settings = _ref71[1];
 
-            _this111.localStorageService.setItem(SELLER_SETTINGS_KEY, settings);
+            _this114.localStorageService.setItem(SELLER_SETTINGS_KEY, settings);
           }));
         }, {
           dispatch: false
@@ -45199,12 +45334,12 @@
       var SellerUrlAuthor = /*#__PURE__*/function (_seller_url_base__WEB5) {
         _inherits(SellerUrlAuthor, _seller_url_base__WEB5);
 
-        var _super29 = _createSuper(SellerUrlAuthor);
+        var _super28 = _createSuper(SellerUrlAuthor);
 
         function SellerUrlAuthor() {
           _classCallCheck(this, SellerUrlAuthor);
 
-          return _super29.call(this);
+          return _super28.call(this);
         }
 
         _createClass(SellerUrlAuthor, [{
@@ -45361,69 +45496,82 @@
       /* harmony import */
 
 
-      var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      var _services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! ./../../../services/comon-services/spinner/spinner.service */
+      "LXV+");
+      /* harmony import */
+
+
+      var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
       /*! rxjs/operators */
       "kU1M");
       /* harmony import */
 
 
-      var _ngrx_effects__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      var _ngrx_effects__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
       /*! @ngrx/effects */
       "7bNT");
       /* harmony import */
 
 
-      var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
       /*! @angular/core */
       "8Y7J");
       /* harmony import */
 
 
-      var _login_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+      var _login_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
       /*! ./login.actions */
       "1Eiw");
       /* harmony import */
 
 
-      var src_app_core_services_auth_seller_seller_account_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      var src_app_core_services_auth_seller_seller_account_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! src/app/core/services/auth/seller/seller-account.service */
       "22lS");
       /* harmony import */
 
 
-      var rxjs_internal_observable_of__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      var rxjs_internal_observable_of__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! rxjs/internal/observable/of */
       "I65S");
       /* harmony import */
 
 
-      var rxjs_internal_observable_of__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_observable_of__WEBPACK_IMPORTED_MODULE_6__);
+      var rxjs_internal_observable_of__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_observable_of__WEBPACK_IMPORTED_MODULE_7__);
       /* harmony import */
 
 
-      var src_app_core_services_comon_services_local_storage_service_localstorage_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      var src_app_core_services_comon_services_local_storage_service_localstorage_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! src/app/core/services/comon-services/local-storage-service/localstorage.service */
       "px64");
 
-      var LoginEffects = function LoginEffects(actions$, sellerAccountService, localStorageService) {
-        var _this112 = this;
+      var LoginEffects = function LoginEffects(actions$, sellerAccountService, localStorageService, spinner) {
+        var _this115 = this;
 
         _classCallCheck(this, LoginEffects);
 
         this.actions$ = actions$;
         this.sellerAccountService = sellerAccountService;
         this.localStorageService = localStorageService;
-        this.loadSellerLogin$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["createEffect"])(function () {
-          return _this112.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["ofType"])(_login_actions__WEBPACK_IMPORTED_MODULE_4__["login"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (action) {
+        this.spinner = spinner;
+        this.loadSellerLogin$ = Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_3__["createEffect"])(function () {
+          return _this115.actions$.pipe(Object(_ngrx_effects__WEBPACK_IMPORTED_MODULE_3__["ofType"])(_login_actions__WEBPACK_IMPORTED_MODULE_5__["login"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (action) {
             return action.userLogin;
-          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["exhaustMap"])(function (userLogin) {
-            return _this112.sellerAccountService.login(userLogin.email, userLogin.passWord, userLogin.remember, userLogin.urlReturn).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (result) {
+          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["exhaustMap"])(function (userLogin) {
+            return _this115.sellerAccountService.login(userLogin.email, userLogin.passWord, userLogin.remember, userLogin.urlReturn).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (result) {
+              _this115.spinner.subjectSubmitLoadingHaveData$.next({
+                isSubmitted: false
+              });
+
+              console.log(result);
+
               if (result.isSuccessed && result.resultObj) {
                 if (result.resultObj.tokenValue) {
                   if (result.resultObj.remember) {
-                    _this112.localStorageService.removeItem('seller-token');
+                    _this115.localStorageService.removeItem('seller-token');
 
-                    _this112.localStorageService.setItem('seller-token', result.resultObj.tokenValue); // this.appCookieService.remove('seller-token');
+                    _this115.localStorageService.setItem('seller-token', result.resultObj.tokenValue); // this.appCookieService.remove('seller-token');
                     // this.appCookieService.remove('seller-infor');
                     // this.appCookieService.set(
                     // 	'seller-token',
@@ -45449,26 +45597,27 @@
 
                   }
 
-                  return _login_actions__WEBPACK_IMPORTED_MODULE_4__["loginSuccess"]({
+                  return _login_actions__WEBPACK_IMPORTED_MODULE_5__["loginSuccess"]({
                     user: result.resultObj,
                     message: result.message
                   });
                 } else {
-                  return _login_actions__WEBPACK_IMPORTED_MODULE_4__["loginFailed"]({
+                  return _login_actions__WEBPACK_IMPORTED_MODULE_5__["loginFailed"]({
                     message: result.message
                   });
                 }
               } else {
-                return _login_actions__WEBPACK_IMPORTED_MODULE_4__["loginFailed"]({
+                console.log(result.message);
+                return _login_actions__WEBPACK_IMPORTED_MODULE_5__["loginFailed"]({
                   message: result.message
                 });
               }
             }, function (error) {
-              return _login_actions__WEBPACK_IMPORTED_MODULE_4__["loginFailed"]({
+              return _login_actions__WEBPACK_IMPORTED_MODULE_5__["loginFailed"]({
                 message: error.message
               });
-            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(function (error) {
-              return Object(rxjs_internal_observable_of__WEBPACK_IMPORTED_MODULE_6__["of"])(_login_actions__WEBPACK_IMPORTED_MODULE_4__["loginFailed"]({
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(function (error) {
+              return Object(rxjs_internal_observable_of__WEBPACK_IMPORTED_MODULE_7__["of"])(_login_actions__WEBPACK_IMPORTED_MODULE_5__["loginFailed"]({
                 message: error.message
               }));
             }));
@@ -45478,15 +45627,17 @@
 
       LoginEffects.ctorParameters = function () {
         return [{
-          type: _ngrx_effects__WEBPACK_IMPORTED_MODULE_2__["Actions"]
+          type: _ngrx_effects__WEBPACK_IMPORTED_MODULE_3__["Actions"]
         }, {
-          type: src_app_core_services_auth_seller_seller_account_service__WEBPACK_IMPORTED_MODULE_5__["SellerAccountService"]
+          type: src_app_core_services_auth_seller_seller_account_service__WEBPACK_IMPORTED_MODULE_6__["SellerAccountService"]
         }, {
-          type: src_app_core_services_comon_services_local_storage_service_localstorage_service__WEBPACK_IMPORTED_MODULE_7__["LocalStorageService"]
+          type: src_app_core_services_comon_services_local_storage_service_localstorage_service__WEBPACK_IMPORTED_MODULE_8__["LocalStorageService"]
+        }, {
+          type: _services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_1__["SpinnerService"]
         }];
       };
 
-      LoginEffects = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])()], LoginEffects);
+      LoginEffects = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_4__["Injectable"])()], LoginEffects);
       /***/
     },
 
@@ -45658,12 +45809,12 @@
       var SellerUrlCategory = /*#__PURE__*/function (_seller_url_base__WEB6) {
         _inherits(SellerUrlCategory, _seller_url_base__WEB6);
 
-        var _super30 = _createSuper(SellerUrlCategory);
+        var _super29 = _createSuper(SellerUrlCategory);
 
         function SellerUrlCategory() {
           _classCallCheck(this, SellerUrlCategory);
 
-          return _super30.call(this);
+          return _super29.call(this);
         }
 
         _createClass(SellerUrlCategory, [{
@@ -46087,15 +46238,15 @@
         };
 
         scale.range = function (_) {
-          var _ref71, _ref72;
+          var _ref72, _ref73;
 
-          return arguments.length ? ((_ref71 = _, _ref72 = _slicedToArray(_ref71, 2), r0 = _ref72[0], r1 = _ref72[1], _ref71), r0 = +r0, r1 = +r1, rescale()) : [r0, r1];
+          return arguments.length ? ((_ref72 = _, _ref73 = _slicedToArray(_ref72, 2), r0 = _ref73[0], r1 = _ref73[1], _ref72), r0 = +r0, r1 = +r1, rescale()) : [r0, r1];
         };
 
         scale.rangeRound = function (_) {
-          var _ref73, _ref74;
+          var _ref74, _ref75;
 
-          return (_ref73 = _, _ref74 = _slicedToArray(_ref73, 2), r0 = _ref74[0], r1 = _ref74[1], _ref73), r0 = +r0, r1 = +r1, round = true, rescale();
+          return (_ref74 = _, _ref75 = _slicedToArray(_ref74, 2), r0 = _ref75[0], r1 = _ref75[1], _ref74), r0 = +r0, r1 = +r1, round = true, rescale();
         };
 
         scale.bandwidth = function () {
@@ -46410,7 +46561,7 @@
           loadChildren: function loadChildren() {
             return Promise.all(
             /*! import() | seller-components-seller-body-module-seller-order-seller-order-module */
-            [__webpack_require__.e("common"), __webpack_require__.e("seller-components-seller-body-module-seller-order-seller-order-module")]).then(__webpack_require__.bind(null,
+            [__webpack_require__.e("default~components-admin-body-admin-order-admin-order-module~features-customer-customer-module~selle~e1b3973e"), __webpack_require__.e("common"), __webpack_require__.e("seller-components-seller-body-module-seller-order-seller-order-module")]).then(__webpack_require__.bind(null,
             /*! ../seller/components/seller-body/module/seller-order/seller-order.module */
             "MVxQ")).then(function (m) {
               return m.SellerOrderModule;
@@ -46418,6 +46569,28 @@
           }
         }, {
           path: 'shop',
+          loadChildren: function loadChildren() {
+            return __webpack_require__.e(
+            /*! import() | seller-components-seller-body-module-shop-shop-module */
+            "seller-components-seller-body-module-shop-shop-module").then(__webpack_require__.bind(null,
+            /*! ../seller/components/seller-body/module/shop/shop.module */
+            "mgIP")).then(function (m) {
+              return m.ShopModule;
+            });
+          }
+        }, {
+          path: 'group-product',
+          loadChildren: function loadChildren() {
+            return __webpack_require__.e(
+            /*! import() | seller-components-seller-body-module-seller-group-product-seller-group-product-module */
+            "seller-components-seller-body-module-seller-group-product-seller-group-product-module").then(__webpack_require__.bind(null,
+            /*! ../seller/components/seller-body/module/seller-group-product/seller-group-product.module */
+            "Y0Nk")).then(function (m) {
+              return m.SellerGroupProductModule;
+            });
+          }
+        }, {
+          path: 'pre-order',
           loadChildren: function loadChildren() {
             return __webpack_require__.e(
             /*! import() | seller-components-seller-body-module-shop-shop-module */
@@ -47124,10 +47297,10 @@
 
           try {
             for (_iterator115.s(); !(_step115 = _iterator115.n()).done;) {
-              var _value12 = _step115.value;
+              var _value11 = _step115.value;
 
-              if (defined ? compare(_value12, min) < 0 : compare(_value12, _value12) === 0) {
-                min = _value12;
+              if (defined ? compare(_value11, min) < 0 : compare(_value11, _value11) === 0) {
+                min = _value11;
                 defined = true;
               }
             }
@@ -48088,22 +48261,29 @@
       /* harmony import */
 
 
-      var src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      var src_app_core_error_handler_app_error_handler_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+      /*! src/app/core/error-handler/app-error-handler.service */
+      "Bp2A");
+      /* harmony import */
+
+
+      var src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! src/app/core/services/comon-services/destroy-service/destroy.service */
       "ekmL");
       /* harmony import */
 
 
-      var src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+      var src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
       /*! src/app/core/services/comon-services/spinner/spinner.service */
       "LXV+");
 
       var SellerComponent = /*#__PURE__*/function () {
-        function SellerComponent(sellerSpinnerService, destroy$) {
+        function SellerComponent(sellerSpinnerService, destroy$, appErrorHandler) {
           _classCallCheck(this, SellerComponent);
 
           this.sellerSpinnerService = sellerSpinnerService;
           this.destroy$ = destroy$;
+          this.appErrorHandler = appErrorHandler;
           this.isSubmited = false;
         }
 
@@ -48115,11 +48295,13 @@
         }, {
           key: "controlSpinner",
           value: function controlSpinner() {
-            var _this113 = this;
+            var _this116 = this;
 
             this.sellerSpinnerService.subjectSubmitLoadingHaveData$.pipe(Object(rxjs_internal_operators_takeUntil__WEBPACK_IMPORTED_MODULE_4__["takeUntil"])(this.destroy$)).subscribe(function (result) {
-              _this113.isSubmited = result.isSubmitted;
-              console.log(_this113.isSubmited);
+              console.log(result);
+              _this116.isSubmited = result.isSubmitted; //this.isNotHaveData = result.isNotHaveData;
+            }, function (error) {
+              _this116.appErrorHandler.handleErrorWithNoti(error);
             });
           }
         }]);
@@ -48129,9 +48311,11 @@
 
       SellerComponent.ctorParameters = function () {
         return [{
-          type: src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_6__["SpinnerService"]
+          type: src_app_core_services_comon_services_spinner_spinner_service__WEBPACK_IMPORTED_MODULE_7__["SpinnerService"]
         }, {
-          type: src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_5__["DestroyService"]
+          type: src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_6__["DestroyService"]
+        }, {
+          type: src_app_core_error_handler_app_error_handler_service__WEBPACK_IMPORTED_MODULE_5__["AppErrorHandler"]
         }];
       };
 
@@ -48139,7 +48323,7 @@
         selector: 'app-seller',
         template: _raw_loader_seller_component_html__WEBPACK_IMPORTED_MODULE_1__["default"],
         encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_3__["ViewEncapsulation"].None,
-        providers: [src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_5__["DestroyService"]],
+        providers: [src_app_core_services_comon_services_destroy_service_destroy_service__WEBPACK_IMPORTED_MODULE_6__["DestroyService"]],
         styles: [_seller_component_less__WEBPACK_IMPORTED_MODULE_2__["default"]]
       })], SellerComponent);
       /***/
@@ -48310,14 +48494,14 @@
         }, {
           key: "getStatistics",
           value: function getStatistics() {
-            var _this114 = this;
+            var _this117 = this;
 
             this.sellerStatisticService.getStatistics().subscribe(function (result) {
               if (result) {
                 if (result.isSuccessed) {
                   if (result.resultObj) {
-                    _this114.statisticItems = result.resultObj;
-                    console.log(_this114.statisticItems);
+                    _this117.statisticItems = result.resultObj;
+                    console.log(_this117.statisticItems);
                   }
                 } else {}
               } else {}
@@ -49275,17 +49459,17 @@
       var InternMap = /*#__PURE__*/function (_Map) {
         _inherits(InternMap, _Map);
 
-        var _super31 = _createSuper(InternMap);
+        var _super30 = _createSuper(InternMap);
 
         function InternMap(entries) {
-          var _this115;
+          var _this118;
 
           var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : keyof;
 
           _classCallCheck(this, InternMap);
 
-          _this115 = _super31.call(this);
-          Object.defineProperties(_assertThisInitialized(_this115), {
+          _this118 = _super30.call(this);
+          Object.defineProperties(_assertThisInitialized(_this118), {
             _intern: {
               value: new Map()
             },
@@ -49304,7 +49488,7 @@
                     _key14 = _step116$value[0],
                     value = _step116$value[1];
 
-                _this115.set(_key14, value);
+                _this118.set(_key14, value);
               }
             } catch (err) {
               _iterator116.e(err);
@@ -49313,7 +49497,7 @@
             }
           }
 
-          return _this115;
+          return _this118;
         }
 
         _createClass(InternMap, [{
@@ -49344,17 +49528,17 @@
       var InternSet = /*#__PURE__*/function (_Set) {
         _inherits(InternSet, _Set);
 
-        var _super32 = _createSuper(InternSet);
+        var _super31 = _createSuper(InternSet);
 
         function InternSet(values) {
-          var _this116;
+          var _this119;
 
           var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : keyof;
 
           _classCallCheck(this, InternSet);
 
-          _this116 = _super32.call(this);
-          Object.defineProperties(_assertThisInitialized(_this116), {
+          _this119 = _super31.call(this);
+          Object.defineProperties(_assertThisInitialized(_this119), {
             _intern: {
               value: new Map()
             },
@@ -49371,7 +49555,7 @@
               for (_iterator117.s(); !(_step117 = _iterator117.n()).done;) {
                 var value = _step117.value;
 
-                _this116.add(value);
+                _this119.add(value);
               }
             } catch (err) {
               _iterator117.e(err);
@@ -49380,7 +49564,7 @@
             }
           }
 
-          return _this116;
+          return _this119;
         }
 
         _createClass(InternSet, [{
@@ -49403,18 +49587,18 @@
         return InternSet;
       }( /*#__PURE__*/_wrapNativeSuper(Set));
 
-      function intern_get(_ref75, value) {
-        var _intern = _ref75._intern,
-            _key = _ref75._key;
+      function intern_get(_ref76, value) {
+        var _intern = _ref76._intern,
+            _key = _ref76._key;
 
         var key = _key(value);
 
         return _intern.has(key) ? _intern.get(key) : value;
       }
 
-      function intern_set(_ref76, value) {
-        var _intern = _ref76._intern,
-            _key = _ref76._key;
+      function intern_set(_ref77, value) {
+        var _intern = _ref77._intern,
+            _key = _ref77._key;
 
         var key = _key(value);
 
@@ -49425,9 +49609,9 @@
         return value;
       }
 
-      function intern_delete(_ref77, value) {
-        var _intern = _ref77._intern,
-            _key = _ref77._key;
+      function intern_delete(_ref78, value) {
+        var _intern = _ref78._intern,
+            _key = _ref78._key;
 
         var key = _key(value);
 
@@ -49807,14 +49991,14 @@
 
           try {
             for (_iterator120.s(); !(_step120 = _iterator120.n()).done;) {
-              var _value13 = _step120.value;
+              var _value12 = _step120.value;
 
-              if ((_value13 = valueof(_value13, ++index, values)) != null) {
+              if ((_value12 = valueof(_value12, ++index, values)) != null) {
                 if (min === undefined) {
-                  if (_value13 >= _value13) min = max = _value13;
+                  if (_value12 >= _value12) min = max = _value12;
                 } else {
-                  if (min > _value13) min = _value13;
-                  if (max < _value13) max = _value13;
+                  if (min > _value12) min = _value12;
+                  if (max < _value12) max = _value12;
                 }
               }
             }
@@ -49997,10 +50181,10 @@
 
           try {
             for (_iterator122.s(); !(_step122 = _iterator122.n()).done;) {
-              var _value14 = _step122.value;
+              var _value13 = _step122.value;
 
-              if (_value14 = +valueof(_value14, ++index, values)) {
-                adder.add(_value14);
+              if (_value13 = +valueof(_value13, ++index, values)) {
+                adder.add(_value13);
               }
             }
           } catch (err) {
@@ -51359,9 +51543,9 @@
         }
 
         scale.domain = function (_) {
-          var _ref78, _ref79;
+          var _ref79, _ref80;
 
-          return arguments.length ? ((_ref78 = _, _ref79 = _slicedToArray(_ref78, 2), x0 = _ref79[0], x1 = _ref79[1], _ref78), t0 = transform(x0 = +x0), t1 = transform(x1 = +x1), k10 = t0 === t1 ? 0 : 1 / (t1 - t0), scale) : [x0, x1];
+          return arguments.length ? ((_ref79 = _, _ref80 = _slicedToArray(_ref79, 2), x0 = _ref80[0], x1 = _ref80[1], _ref79), t0 = transform(x0 = +x0), t1 = transform(x1 = +x1), k10 = t0 === t1 ? 0 : 1 / (t1 - t0), scale) : [x0, x1];
         };
 
         scale.clamp = function (_) {
@@ -51374,10 +51558,10 @@
 
         function range(interpolate) {
           return function (_) {
-            var _ref80, _ref81;
+            var _ref81, _ref82;
 
             var r0, r1;
-            return arguments.length ? ((_ref80 = _, _ref81 = _slicedToArray(_ref80, 2), r0 = _ref81[0], r1 = _ref81[1], _ref80), interpolator = interpolate(r0, r1), scale) : [interpolator(0), interpolator(1)];
+            return arguments.length ? ((_ref81 = _, _ref82 = _slicedToArray(_ref81, 2), r0 = _ref82[0], r1 = _ref82[1], _ref81), interpolator = interpolate(r0, r1), scale) : [interpolator(0), interpolator(1)];
           };
         }
 

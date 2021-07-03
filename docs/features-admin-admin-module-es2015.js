@@ -702,7 +702,7 @@ const routes = [
             },
             {
                 path: 'order',
-                loadChildren: () => Promise.all(/*! import() | components-admin-body-admin-order-admin-order-module */[__webpack_require__.e("common"), __webpack_require__.e("components-admin-body-admin-order-admin-order-module")]).then(__webpack_require__.bind(null, /*! ./components/admin-body/admin-order/admin-order.module */ "zHAb")).then((m) => m.AdminOrderModule)
+                loadChildren: () => Promise.all(/*! import() | components-admin-body-admin-order-admin-order-module */[__webpack_require__.e("default~components-admin-body-admin-order-admin-order-module~features-customer-customer-module~selle~e1b3973e"), __webpack_require__.e("common"), __webpack_require__.e("components-admin-body-admin-order-admin-order-module")]).then(__webpack_require__.bind(null, /*! ./components/admin-body/admin-order/admin-order.module */ "zHAb")).then((m) => m.AdminOrderModule)
             },
             {
                 path: 'author',

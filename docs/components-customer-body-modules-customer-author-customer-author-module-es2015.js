@@ -116,7 +116,7 @@ const routes = [
         component: _components_customer_author_customer_author_component__WEBPACK_IMPORTED_MODULE_3__["CustomerAuthorComponent"],
         data: {
             title: 'Customer-app.body.author.title',
-            breadcrumb: 'Cart'
+            breadcrumb: 'Author'
         }
     }
 ];

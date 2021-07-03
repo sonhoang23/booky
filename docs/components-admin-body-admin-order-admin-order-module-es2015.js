@@ -314,6 +314,7 @@ let OrderComfirmedComponent = class OrderComfirmedComponent {
         order.isOrderDetailVisible = true;
         //console.log(order);
         this.orderDetails$ = this.adminOrderService.getOrderDetail(order.orderId);
+        console.log(this.orderDetails$);
     }
     handleCancel(order) {
         order.isOrderDetailVisible = false;

@@ -9,11 +9,11 @@
 
   function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-  function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+  function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
   function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e330) { throw _e330; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e331) { didErr = true; err = _e331; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e330) { throw _e330; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e331) { didErr = true; err = _e331; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
   function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -21,7 +21,7 @@
 
   function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-  function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+  function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 
   function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
@@ -45,7 +45,7 @@
 
   function _construct(Parent, args, Class) { if (_isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
 
-  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
   function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
 
@@ -2413,6 +2413,21 @@
             }
 
             _createClass(An, [{
+              key: "length",
+              get: function get() {
+                return this._items.length;
+              }
+            }, {
+              key: "first",
+              get: function get() {
+                return this._items[0] || null;
+              }
+            }, {
+              key: "last",
+              get: function get() {
+                return this._items[this.length - 1] || null;
+              }
+            }, {
               key: "add",
               value: function add(t, e) {
                 return this.addMany([t], e);
@@ -2633,21 +2648,6 @@
               key: Symbol.iterator,
               value: function value() {
                 return this._items[Symbol.iterator]();
-              }
-            }, {
-              key: "length",
-              get: function get() {
-                return this._items.length;
-              }
-            }, {
-              key: "first",
-              get: function get() {
-                return this._items[0] || null;
-              }
-            }, {
-              key: "last",
-              get: function get() {
-                return this._items[this.length - 1] || null;
               }
             }]);
 
@@ -2956,6 +2956,11 @@
             }
 
             _createClass(Sn, [{
+              key: "language",
+              get: function get() {
+                return console.warn("locale-deprecated-language-property: The Locale#language property has been deprecated and will be removed in the near future. Please use #uiLanguage and #contentLanguage properties instead."), this.uiLanguage;
+              }
+            }, {
               key: "_t",
               value: function _t(t) {
                 var e = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
@@ -2968,11 +2973,6 @@
                     return n < e.length ? e[n] : t;
                   });
                 }(Pn(this.uiLanguage, t, n), e);
-              }
-            }, {
-              key: "language",
-              get: function get() {
-                return console.warn("locale-deprecated-language-property: The Locale#language property has been deprecated and will be removed in the near future. Please use #uiLanguage and #contentLanguage properties instead."), this.uiLanguage;
               }
             }]);
 
@@ -3105,6 +3105,37 @@
             }
 
             _createClass(Rn, [{
+              key: "index",
+              get: function get() {
+                var t;
+                if (!this.parent) return null;
+                if (-1 == (t = this.parent.getChildIndex(this))) throw new hn.a("view-node-not-found-in-parent", this);
+                return t;
+              }
+            }, {
+              key: "nextSibling",
+              get: function get() {
+                var t = this.index;
+                return null !== t && this.parent.getChild(t + 1) || null;
+              }
+            }, {
+              key: "previousSibling",
+              get: function get() {
+                var t = this.index;
+                return null !== t && this.parent.getChild(t - 1) || null;
+              }
+            }, {
+              key: "root",
+              get: function get() {
+                var t = this;
+
+                for (; t.parent;) {
+                  t = t.parent;
+                }
+
+                return t;
+              }
+            }, {
               key: "isAttached",
               value: function isAttached() {
                 return this.root.is("rootElement");
@@ -3197,37 +3228,6 @@
               value: function is(t) {
                 return "node" === t || "view:node" === t;
               }
-            }, {
-              key: "index",
-              get: function get() {
-                var t;
-                if (!this.parent) return null;
-                if (-1 == (t = this.parent.getChildIndex(this))) throw new hn.a("view-node-not-found-in-parent", this);
-                return t;
-              }
-            }, {
-              key: "nextSibling",
-              get: function get() {
-                var t = this.index;
-                return null !== t && this.parent.getChild(t + 1) || null;
-              }
-            }, {
-              key: "previousSibling",
-              get: function get() {
-                var t = this.index;
-                return null !== t && this.parent.getChild(t - 1) || null;
-              }
-            }, {
-              key: "root",
-              get: function get() {
-                var t = this;
-
-                for (; t.parent;) {
-                  t = t.parent;
-                }
-
-                return t;
-              }
             }]);
 
             return Rn;
@@ -3255,16 +3255,6 @@
                 return "$text" === t || "view:$text" === t || "text" === t || "view:text" === t || "node" === t || "view:node" === t;
               }
             }, {
-              key: "isSimilar",
-              value: function isSimilar(t) {
-                return t instanceof Dn && (this === t || this.data === t.data);
-              }
-            }, {
-              key: "_clone",
-              value: function _clone() {
-                return new Dn(this.document, this.data);
-              }
-            }, {
               key: "data",
               get: function get() {
                 return this._textData;
@@ -3276,6 +3266,16 @@
               },
               set: function set(t) {
                 this._fireChange("text", this), this._textData = t;
+              }
+            }, {
+              key: "isSimilar",
+              value: function isSimilar(t) {
+                return t instanceof Dn && (this === t || this.data === t.data);
+              }
+            }, {
+              key: "_clone",
+              value: function _clone() {
+                return new Dn(this.document, this.data);
               }
             }]);
 
@@ -3292,27 +3292,6 @@
             }
 
             _createClass(Ln, [{
-              key: "is",
-              value: function is(t) {
-                return "$textProxy" === t || "view:$textProxy" === t || "textProxy" === t || "view:textProxy" === t;
-              }
-            }, {
-              key: "getAncestors",
-              value: function getAncestors() {
-                var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-                  includeSelf: !1,
-                  parentFirst: !1
-                };
-                var e = [];
-                var n = t.includeSelf ? this.textNode : this.parent;
-
-                for (; null !== n;) {
-                  e[t.parentFirst ? "push" : "unshift"](n), n = n.parent;
-                }
-
-                return e;
-              }
-            }, {
               key: "offsetSize",
               get: function get() {
                 return this.data.length;
@@ -3336,6 +3315,27 @@
               key: "document",
               get: function get() {
                 return this.textNode.document;
+              }
+            }, {
+              key: "is",
+              value: function is(t) {
+                return "$textProxy" === t || "view:$textProxy" === t || "textProxy" === t || "view:textProxy" === t;
+              }
+            }, {
+              key: "getAncestors",
+              value: function getAncestors() {
+                var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+                  includeSelf: !1,
+                  parentFirst: !1
+                };
+                var e = [];
+                var n = t.includeSelf ? this.textNode : this.parent;
+
+                for (; null !== n;) {
+                  e[t.parentFirst ? "push" : "unshift"](n), n = n.parent;
+                }
+
+                return e;
               }
             }]);
 
@@ -3850,6 +3850,17 @@
             }
 
             _createClass(Mi, [{
+              key: "isEmpty",
+              get: function get() {
+                var t = Object.entries(this._styles);
+                return !Array.from(t).length;
+              }
+            }, {
+              key: "size",
+              get: function get() {
+                return this.isEmpty ? 0 : this.getStyleNames().length;
+              }
+            }, {
               key: "setTo",
               value: function setTo(t) {
                 this.clear();
@@ -3992,17 +4003,6 @@
                     i = ci(this._styles, n);
                 if (!i) return;
                 !Array.from(Object.keys(i)).length && this.remove(n);
-              }
-            }, {
-              key: "isEmpty",
-              get: function get() {
-                var t = Object.entries(this._styles);
-                return !Array.from(t).length;
-              }
-            }, {
-              key: "size",
-              get: function get() {
-                return this.isEmpty ? 0 : this.getStyleNames().length;
               }
             }]);
 
@@ -4161,6 +4161,16 @@
             }
 
             _createClass(Ri, [{
+              key: "childCount",
+              get: function get() {
+                return this._children.length;
+              }
+            }, {
+              key: "isEmpty",
+              get: function get() {
+                return 0 === this._children.length;
+              }
+            }, {
               key: "is",
               value: function is(t) {
                 var e = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -4586,16 +4596,6 @@
               key: "_removeCustomProperty",
               value: function _removeCustomProperty(t) {
                 return this._customProperties["delete"](t);
-              }
-            }, {
-              key: "childCount",
-              get: function get() {
-                return this._children.length;
-              }
-            }, {
-              key: "isEmpty",
-              get: function get() {
-                return 0 === this._children.length;
               }
             }]);
 
@@ -5093,6 +5093,44 @@
             }
 
             _createClass(Xi, [{
+              key: "nodeAfter",
+              get: function get() {
+                return this.parent.is("$text") ? null : this.parent.getChild(this.offset) || null;
+              }
+            }, {
+              key: "nodeBefore",
+              get: function get() {
+                return this.parent.is("$text") ? null : this.parent.getChild(this.offset - 1) || null;
+              }
+            }, {
+              key: "isAtStart",
+              get: function get() {
+                return 0 === this.offset;
+              }
+            }, {
+              key: "isAtEnd",
+              get: function get() {
+                var t = this.parent.is("$text") ? this.parent.data.length : this.parent.childCount;
+                return this.offset === t;
+              }
+            }, {
+              key: "root",
+              get: function get() {
+                return this.parent.root;
+              }
+            }, {
+              key: "editableElement",
+              get: function get() {
+                var t = this.parent;
+
+                for (; !(t instanceof Ki);) {
+                  if (!t.parent) return null;
+                  t = t.parent;
+                }
+
+                return t;
+              }
+            }, {
               key: "getShiftedBy",
               value: function getShiftedBy(t) {
                 var e = Xi._createAt(this),
@@ -5180,44 +5218,6 @@
               value: function clone() {
                 return new Xi(this.parent, this.offset);
               }
-            }, {
-              key: "nodeAfter",
-              get: function get() {
-                return this.parent.is("$text") ? null : this.parent.getChild(this.offset) || null;
-              }
-            }, {
-              key: "nodeBefore",
-              get: function get() {
-                return this.parent.is("$text") ? null : this.parent.getChild(this.offset - 1) || null;
-              }
-            }, {
-              key: "isAtStart",
-              get: function get() {
-                return 0 === this.offset;
-              }
-            }, {
-              key: "isAtEnd",
-              get: function get() {
-                var t = this.parent.is("$text") ? this.parent.data.length : this.parent.childCount;
-                return this.offset === t;
-              }
-            }, {
-              key: "root",
-              get: function get() {
-                return this.parent.root;
-              }
-            }, {
-              key: "editableElement",
-              get: function get() {
-                var t = this.parent;
-
-                for (; !(t instanceof Ki);) {
-                  if (!t.parent) return null;
-                  t = t.parent;
-                }
-
-                return t;
-              }
             }], [{
               key: "_createAt",
               value: function _createAt(t, e) {
@@ -5283,6 +5283,21 @@
                   }
                 }, value, this);
               })
+            }, {
+              key: "isCollapsed",
+              get: function get() {
+                return this.start.isEqual(this.end);
+              }
+            }, {
+              key: "isFlat",
+              get: function get() {
+                return this.start.parent === this.end.parent;
+              }
+            }, {
+              key: "root",
+              get: function get() {
+                return this.start.root;
+              }
             }, {
               key: "getEnlarged",
               value: function getEnlarged() {
@@ -5498,21 +5513,6 @@
               value: function isIntersecting(t) {
                 return this.start.isBefore(t.end) && this.end.isAfter(t.start);
               }
-            }, {
-              key: "isCollapsed",
-              get: function get() {
-                return this.start.isEqual(this.end);
-              }
-            }, {
-              key: "isFlat",
-              get: function get() {
-                return this.start.parent === this.end.parent;
-              }
-            }, {
-              key: "root",
-              get: function get() {
-                return this.start.root;
-              }
             }], [{
               key: "_createFromParentsAndOffsets",
               value: function _createFromParentsAndOffsets(t, e, n, i) {
@@ -5577,6 +5577,50 @@
             }
 
             _createClass(io, [{
+              key: "isFake",
+              get: function get() {
+                return this._isFake;
+              }
+            }, {
+              key: "fakeSelectionLabel",
+              get: function get() {
+                return this._fakeSelectionLabel;
+              }
+            }, {
+              key: "anchor",
+              get: function get() {
+                if (!this._ranges.length) return null;
+                var t = this._ranges[this._ranges.length - 1];
+                return (this._lastRangeBackward ? t.end : t.start).clone();
+              }
+            }, {
+              key: "focus",
+              get: function get() {
+                if (!this._ranges.length) return null;
+                var t = this._ranges[this._ranges.length - 1];
+                return (this._lastRangeBackward ? t.start : t.end).clone();
+              }
+            }, {
+              key: "isCollapsed",
+              get: function get() {
+                return 1 === this.rangeCount && this._ranges[0].isCollapsed;
+              }
+            }, {
+              key: "rangeCount",
+              get: function get() {
+                return this._ranges.length;
+              }
+            }, {
+              key: "isBackward",
+              get: function get() {
+                return !this.isCollapsed && this._lastRangeBackward;
+              }
+            }, {
+              key: "editableElement",
+              get: function get() {
+                return this.anchor ? this.anchor.editableElement : null;
+              }
+            }, {
               key: "getRanges",
               value: /*#__PURE__*/regeneratorRuntime.mark(function getRanges() {
                 var _iterator36, _step36, _t32;
@@ -5872,50 +5916,6 @@
 
                 this._ranges.push(new to(t.start, t.end));
               }
-            }, {
-              key: "isFake",
-              get: function get() {
-                return this._isFake;
-              }
-            }, {
-              key: "fakeSelectionLabel",
-              get: function get() {
-                return this._fakeSelectionLabel;
-              }
-            }, {
-              key: "anchor",
-              get: function get() {
-                if (!this._ranges.length) return null;
-                var t = this._ranges[this._ranges.length - 1];
-                return (this._lastRangeBackward ? t.end : t.start).clone();
-              }
-            }, {
-              key: "focus",
-              get: function get() {
-                if (!this._ranges.length) return null;
-                var t = this._ranges[this._ranges.length - 1];
-                return (this._lastRangeBackward ? t.start : t.end).clone();
-              }
-            }, {
-              key: "isCollapsed",
-              get: function get() {
-                return 1 === this.rangeCount && this._ranges[0].isCollapsed;
-              }
-            }, {
-              key: "rangeCount",
-              get: function get() {
-                return this._ranges.length;
-              }
-            }, {
-              key: "isBackward",
-              get: function get() {
-                return !this.isCollapsed && this._lastRangeBackward;
-              }
-            }, {
-              key: "editableElement",
-              get: function get() {
-                return this.anchor ? this.anchor.editableElement : null;
-              }
             }]);
 
             return io;
@@ -5935,6 +5935,51 @@
             }
 
             _createClass(oo, [{
+              key: "isFake",
+              get: function get() {
+                return this._selection.isFake;
+              }
+            }, {
+              key: "fakeSelectionLabel",
+              get: function get() {
+                return this._selection.fakeSelectionLabel;
+              }
+            }, {
+              key: "anchor",
+              get: function get() {
+                return this._selection.anchor;
+              }
+            }, {
+              key: "focus",
+              get: function get() {
+                return this._selection.focus;
+              }
+            }, {
+              key: "isCollapsed",
+              get: function get() {
+                return this._selection.isCollapsed;
+              }
+            }, {
+              key: "rangeCount",
+              get: function get() {
+                return this._selection.rangeCount;
+              }
+            }, {
+              key: "isBackward",
+              get: function get() {
+                return this._selection.isBackward;
+              }
+            }, {
+              key: "editableElement",
+              get: function get() {
+                return this._selection.editableElement;
+              }
+            }, {
+              key: "_ranges",
+              get: function get() {
+                return this._selection._ranges;
+              }
+            }, {
               key: "getRanges",
               value: /*#__PURE__*/regeneratorRuntime.mark(function getRanges() {
                 return regeneratorRuntime.wrap(function getRanges$(_context10) {
@@ -5999,51 +6044,6 @@
               key: "_setFocus",
               value: function _setFocus(t, e) {
                 this._selection.setFocus(t, e);
-              }
-            }, {
-              key: "isFake",
-              get: function get() {
-                return this._selection.isFake;
-              }
-            }, {
-              key: "fakeSelectionLabel",
-              get: function get() {
-                return this._selection.fakeSelectionLabel;
-              }
-            }, {
-              key: "anchor",
-              get: function get() {
-                return this._selection.anchor;
-              }
-            }, {
-              key: "focus",
-              get: function get() {
-                return this._selection.focus;
-              }
-            }, {
-              key: "isCollapsed",
-              get: function get() {
-                return this._selection.isCollapsed;
-              }
-            }, {
-              key: "rangeCount",
-              get: function get() {
-                return this._selection.rangeCount;
-              }
-            }, {
-              key: "isBackward",
-              get: function get() {
-                return this._selection.isBackward;
-              }
-            }, {
-              key: "editableElement",
-              get: function get() {
-                return this._selection.editableElement;
-              }
-            }, {
-              key: "_ranges",
-              get: function get() {
-                return this._selection._ranges;
               }
             }]);
 
@@ -6122,6 +6122,16 @@
             }
 
             _createClass(so, [{
+              key: "priority",
+              get: function get() {
+                return this._priority;
+              }
+            }, {
+              key: "id",
+              get: function get() {
+                return this._id;
+              }
+            }, {
               key: "getElementsWithSameId",
               value: function getElementsWithSameId() {
                 if (null === this.id) throw new hn.a("attribute-element-get-elements-with-same-id-no-id", this);
@@ -6144,16 +6154,6 @@
                 var e = _get(_getPrototypeOf(so.prototype), "_clone", this).call(this, t);
 
                 return e._priority = this._priority, e._id = this._id, e;
-              }
-            }, {
-              key: "priority",
-              get: function get() {
-                return this._priority;
-              }
-            }, {
-              key: "id",
-              get: function get() {
-                return this._id;
               }
             }]);
 
@@ -6486,6 +6486,26 @@
                 return this._children[Symbol.iterator]();
               }
             }, {
+              key: "childCount",
+              get: function get() {
+                return this._children.length;
+              }
+            }, {
+              key: "isEmpty",
+              get: function get() {
+                return 0 === this.childCount;
+              }
+            }, {
+              key: "root",
+              get: function get() {
+                return this;
+              }
+            }, {
+              key: "parent",
+              get: function get() {
+                return null;
+              }
+            }, {
               key: "is",
               value: function is(t) {
                 return "documentFragment" === t || "view:documentFragment" === t;
@@ -6558,26 +6578,6 @@
               key: "_fireChange",
               value: function _fireChange(t, e) {
                 this.fire("change:" + t, e);
-              }
-            }, {
-              key: "childCount",
-              get: function get() {
-                return this._children.length;
-              }
-            }, {
-              key: "isEmpty",
-              get: function get() {
-                return 0 === this.childCount;
-              }
-            }, {
-              key: "root",
-              get: function get() {
-                return this;
-              }
-            }, {
-              key: "parent",
-              get: function get() {
-                return null;
               }
             }]);
 
@@ -9255,6 +9255,11 @@
             }
 
             _createClass(Vr, [{
+              key: "target",
+              get: function get() {
+                return this.view.domConverter.mapDomToView(this.domTarget);
+              }
+            }, {
               key: "preventDefault",
               value: function preventDefault() {
                 this.domEvent.preventDefault();
@@ -9263,11 +9268,6 @@
               key: "stopPropagation",
               value: function stopPropagation() {
                 this.domEvent.stopPropagation();
-              }
-            }, {
-              key: "target",
-              get: function get() {
-                return this.view.domConverter.mapDomToView(this.domTarget);
               }
             }]);
 
@@ -10235,6 +10235,55 @@
             }
 
             _createClass(ws, [{
+              key: "index",
+              get: function get() {
+                var t;
+                if (!this.parent) return null;
+                if (null === (t = this.parent.getChildIndex(this))) throw new hn.a("model-node-not-found-in-parent", this);
+                return t;
+              }
+            }, {
+              key: "startOffset",
+              get: function get() {
+                var t;
+                if (!this.parent) return null;
+                if (null === (t = this.parent.getChildStartOffset(this))) throw new hn.a("model-node-not-found-in-parent", this);
+                return t;
+              }
+            }, {
+              key: "offsetSize",
+              get: function get() {
+                return 1;
+              }
+            }, {
+              key: "endOffset",
+              get: function get() {
+                return this.parent ? this.startOffset + this.offsetSize : null;
+              }
+            }, {
+              key: "nextSibling",
+              get: function get() {
+                var t = this.index;
+                return null !== t && this.parent.getChild(t + 1) || null;
+              }
+            }, {
+              key: "previousSibling",
+              get: function get() {
+                var t = this.index;
+                return null !== t && this.parent.getChild(t - 1) || null;
+              }
+            }, {
+              key: "root",
+              get: function get() {
+                var t = this;
+
+                for (; t.parent;) {
+                  t = t.parent;
+                }
+
+                return t;
+              }
+            }, {
               key: "isAttached",
               value: function isAttached() {
                 return this.root.is("rootElement");
@@ -10369,55 +10418,6 @@
               value: function _clearAttributes() {
                 this._attrs.clear();
               }
-            }, {
-              key: "index",
-              get: function get() {
-                var t;
-                if (!this.parent) return null;
-                if (null === (t = this.parent.getChildIndex(this))) throw new hn.a("model-node-not-found-in-parent", this);
-                return t;
-              }
-            }, {
-              key: "startOffset",
-              get: function get() {
-                var t;
-                if (!this.parent) return null;
-                if (null === (t = this.parent.getChildStartOffset(this))) throw new hn.a("model-node-not-found-in-parent", this);
-                return t;
-              }
-            }, {
-              key: "offsetSize",
-              get: function get() {
-                return 1;
-              }
-            }, {
-              key: "endOffset",
-              get: function get() {
-                return this.parent ? this.startOffset + this.offsetSize : null;
-              }
-            }, {
-              key: "nextSibling",
-              get: function get() {
-                var t = this.index;
-                return null !== t && this.parent.getChild(t + 1) || null;
-              }
-            }, {
-              key: "previousSibling",
-              get: function get() {
-                var t = this.index;
-                return null !== t && this.parent.getChild(t - 1) || null;
-              }
-            }, {
-              key: "root",
-              get: function get() {
-                var t = this;
-
-                for (; t.parent;) {
-                  t = t.parent;
-                }
-
-                return t;
-              }
             }]);
 
             return ws;
@@ -10438,6 +10438,16 @@
             }
 
             _createClass(ks, [{
+              key: "offsetSize",
+              get: function get() {
+                return this.data.length;
+              }
+            }, {
+              key: "data",
+              get: function get() {
+                return this._data;
+              }
+            }, {
               key: "is",
               value: function is(t) {
                 return "$text" === t || "model:$text" === t || "text" === t || "model:text" === t || "node" === t || "model:node" === t;
@@ -10453,16 +10463,6 @@
               key: "_clone",
               value: function _clone() {
                 return new ks(this.data, this.getAttributes());
-              }
-            }, {
-              key: "offsetSize",
-              get: function get() {
-                return this.data.length;
-              }
-            }, {
-              key: "data",
-              get: function get() {
-                return this._data;
               }
             }], [{
               key: "fromJSON",
@@ -10484,6 +10484,36 @@
             }
 
             _createClass(_s, [{
+              key: "startOffset",
+              get: function get() {
+                return null !== this.textNode.startOffset ? this.textNode.startOffset + this.offsetInText : null;
+              }
+            }, {
+              key: "offsetSize",
+              get: function get() {
+                return this.data.length;
+              }
+            }, {
+              key: "endOffset",
+              get: function get() {
+                return null !== this.startOffset ? this.startOffset + this.offsetSize : null;
+              }
+            }, {
+              key: "isPartial",
+              get: function get() {
+                return this.offsetSize !== this.textNode.offsetSize;
+              }
+            }, {
+              key: "parent",
+              get: function get() {
+                return this.textNode.parent;
+              }
+            }, {
+              key: "root",
+              get: function get() {
+                return this.textNode.root;
+              }
+            }, {
               key: "is",
               value: function is(t) {
                 return "$textProxy" === t || "model:$textProxy" === t || "textProxy" === t || "model:textProxy" === t;
@@ -10530,36 +10560,6 @@
               value: function getAttributeKeys() {
                 return this.textNode.getAttributeKeys();
               }
-            }, {
-              key: "startOffset",
-              get: function get() {
-                return null !== this.textNode.startOffset ? this.textNode.startOffset + this.offsetInText : null;
-              }
-            }, {
-              key: "offsetSize",
-              get: function get() {
-                return this.data.length;
-              }
-            }, {
-              key: "endOffset",
-              get: function get() {
-                return null !== this.startOffset ? this.startOffset + this.offsetSize : null;
-              }
-            }, {
-              key: "isPartial",
-              get: function get() {
-                return this.offsetSize !== this.textNode.offsetSize;
-              }
-            }, {
-              key: "parent",
-              get: function get() {
-                return this.textNode.parent;
-              }
-            }, {
-              key: "root",
-              get: function get() {
-                return this.textNode.root;
-              }
             }]);
 
             return _s;
@@ -10576,6 +10576,18 @@
               key: Symbol.iterator,
               value: function value() {
                 return this._nodes[Symbol.iterator]();
+              }
+            }, {
+              key: "length",
+              get: function get() {
+                return this._nodes.length;
+              }
+            }, {
+              key: "maxOffset",
+              get: function get() {
+                return this._nodes.reduce(function (t, e) {
+                  return t + e.offsetSize;
+                }, 0);
               }
             }, {
               key: "getNode",
@@ -10665,18 +10677,6 @@
                   return t.toJSON();
                 });
               }
-            }, {
-              key: "length",
-              get: function get() {
-                return this._nodes.length;
-              }
-            }, {
-              key: "maxOffset",
-              get: function get() {
-                return this._nodes.reduce(function (t, e) {
-                  return t + e.offsetSize;
-                }, 0);
-              }
             }]);
 
             return vs;
@@ -10697,6 +10697,21 @@
             }
 
             _createClass(ys, [{
+              key: "childCount",
+              get: function get() {
+                return this._children.length;
+              }
+            }, {
+              key: "maxOffset",
+              get: function get() {
+                return this._children.maxOffset;
+              }
+            }, {
+              key: "isEmpty",
+              get: function get() {
+                return 0 === this.childCount;
+              }
+            }, {
               key: "is",
               value: function is(t) {
                 var e = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -10851,21 +10866,6 @@
                 }
 
                 return n;
-              }
-            }, {
-              key: "childCount",
-              get: function get() {
-                return this._children.length;
-              }
-            }, {
-              key: "maxOffset",
-              get: function get() {
-                return this._children.maxOffset;
-              }
-            }, {
-              key: "isEmpty",
-              get: function get() {
-                return 0 === this.childCount;
               }
             }], [{
               key: "fromJSON",
@@ -11032,6 +11032,62 @@
             }
 
             _createClass(Cs, [{
+              key: "offset",
+              get: function get() {
+                return this.path[this.path.length - 1];
+              },
+              set: function set(t) {
+                this.path[this.path.length - 1] = t;
+              }
+            }, {
+              key: "parent",
+              get: function get() {
+                var t = this.root;
+
+                for (var _e80 = 0; _e80 < this.path.length - 1; _e80++) {
+                  if (t = t.getChild(t.offsetToIndex(this.path[_e80])), !t) throw new hn.a("model-position-path-incorrect", this, {
+                    position: this
+                  });
+                }
+
+                if (t.is("$text")) throw new hn.a("model-position-path-incorrect", this, {
+                  position: this
+                });
+                return t;
+              }
+            }, {
+              key: "index",
+              get: function get() {
+                return this.parent.offsetToIndex(this.offset);
+              }
+            }, {
+              key: "textNode",
+              get: function get() {
+                return Ts(this, this.parent);
+              }
+            }, {
+              key: "nodeAfter",
+              get: function get() {
+                var t = this.parent;
+                return Ps(this, t, Ts(this, t));
+              }
+            }, {
+              key: "nodeBefore",
+              get: function get() {
+                var t = this.parent;
+                return Es(this, t, Ts(this, t));
+              }
+            }, {
+              key: "isAtStart",
+              get: function get() {
+                return 0 === this.offset;
+              }
+            }, {
+              key: "isAtEnd",
+              get: function get() {
+                return this.offset == this.parent.maxOffset;
+              }
+            }, {
               key: "compareWith",
               value: function compareWith(t) {
                 if (this.root != t.root) return "different";
@@ -11290,62 +11346,6 @@
               value: function clone() {
                 return new this.constructor(this.root, this.path, this.stickiness);
               }
-            }, {
-              key: "offset",
-              get: function get() {
-                return this.path[this.path.length - 1];
-              },
-              set: function set(t) {
-                this.path[this.path.length - 1] = t;
-              }
-            }, {
-              key: "parent",
-              get: function get() {
-                var t = this.root;
-
-                for (var _e80 = 0; _e80 < this.path.length - 1; _e80++) {
-                  if (t = t.getChild(t.offsetToIndex(this.path[_e80])), !t) throw new hn.a("model-position-path-incorrect", this, {
-                    position: this
-                  });
-                }
-
-                if (t.is("$text")) throw new hn.a("model-position-path-incorrect", this, {
-                  position: this
-                });
-                return t;
-              }
-            }, {
-              key: "index",
-              get: function get() {
-                return this.parent.offsetToIndex(this.offset);
-              }
-            }, {
-              key: "textNode",
-              get: function get() {
-                return Ts(this, this.parent);
-              }
-            }, {
-              key: "nodeAfter",
-              get: function get() {
-                var t = this.parent;
-                return Ps(this, t, Ts(this, t));
-              }
-            }, {
-              key: "nodeBefore",
-              get: function get() {
-                var t = this.parent;
-                return Es(this, t, Ts(this, t));
-              }
-            }, {
-              key: "isAtStart",
-              get: function get() {
-                return 0 === this.offset;
-              }
-            }, {
-              key: "isAtEnd",
-              get: function get() {
-                return this.offset == this.parent.maxOffset;
-              }
             }], [{
               key: "_createAt",
               value: function _createAt(t, e) {
@@ -11441,6 +11441,21 @@
                   }
                 }, value, this);
               })
+            }, {
+              key: "isCollapsed",
+              get: function get() {
+                return this.start.isEqual(this.end);
+              }
+            }, {
+              key: "isFlat",
+              get: function get() {
+                return "same" == Nn(this.start.getParentPath(), this.end.getParentPath());
+              }
+            }, {
+              key: "root",
+              get: function get() {
+                return this.start.root;
+              }
             }, {
               key: "containsPosition",
               value: function containsPosition(t) {
@@ -11826,21 +11841,6 @@
                     i = this.end._getTransformedByDeletion(t, e);
 
                 return null == n && null == i ? null : (null == n && (n = t), null == i && (i = t), new Ss(n, i));
-              }
-            }, {
-              key: "isCollapsed",
-              get: function get() {
-                return this.start.isEqual(this.end);
-              }
-            }, {
-              key: "isFlat",
-              get: function get() {
-                return "same" == Nn(this.start.getParentPath(), this.end.getParentPath());
-              }
-            }, {
-              key: "root",
-              get: function get() {
-                return this.start.root;
               }
             }], [{
               key: "_createFromPositionAndShift",
@@ -12711,6 +12711,41 @@
             }
 
             _createClass(Vs, [{
+              key: "anchor",
+              get: function get() {
+                if (this._ranges.length > 0) {
+                  var _t96 = this._ranges[this._ranges.length - 1];
+                  return this._lastRangeBackward ? _t96.end : _t96.start;
+                }
+
+                return null;
+              }
+            }, {
+              key: "focus",
+              get: function get() {
+                if (this._ranges.length > 0) {
+                  var _t97 = this._ranges[this._ranges.length - 1];
+                  return this._lastRangeBackward ? _t97.start : _t97.end;
+                }
+
+                return null;
+              }
+            }, {
+              key: "isCollapsed",
+              get: function get() {
+                return 1 === this._ranges.length && this._ranges[0].isCollapsed;
+              }
+            }, {
+              key: "rangeCount",
+              get: function get() {
+                return this._ranges.length;
+              }
+            }, {
+              key: "isBackward",
+              get: function get() {
+                return !this.isCollapsed && this._lastRangeBackward;
+              }
+            }, {
               key: "isEqual",
               value: function isEqual(t) {
                 if (this.rangeCount != t.rangeCount) return !1;
@@ -12757,7 +12792,7 @@
             }, {
               key: "getRanges",
               value: /*#__PURE__*/regeneratorRuntime.mark(function getRanges() {
-                var _iterator129, _step129, _t96;
+                var _iterator129, _step129, _t98;
 
                 return regeneratorRuntime.wrap(function getRanges$(_context16) {
                   while (1) {
@@ -12774,9 +12809,9 @@
                           break;
                         }
 
-                        _t96 = _step129.value;
+                        _t98 = _step129.value;
                         _context16.next = 7;
-                        return new Ss(_t96.start, _t96.end);
+                        return new Ss(_t98.start, _t98.end);
 
                       case 7:
                         _context16.next = 3;
@@ -13130,41 +13165,6 @@
               value: function _popRange() {
                 this._ranges.pop();
               }
-            }, {
-              key: "anchor",
-              get: function get() {
-                if (this._ranges.length > 0) {
-                  var _t97 = this._ranges[this._ranges.length - 1];
-                  return this._lastRangeBackward ? _t97.end : _t97.start;
-                }
-
-                return null;
-              }
-            }, {
-              key: "focus",
-              get: function get() {
-                if (this._ranges.length > 0) {
-                  var _t98 = this._ranges[this._ranges.length - 1];
-                  return this._lastRangeBackward ? _t98.start : _t98.end;
-                }
-
-                return null;
-              }
-            }, {
-              key: "isCollapsed",
-              get: function get() {
-                return 1 === this._ranges.length && this._ranges[0].isCollapsed;
-              }
-            }, {
-              key: "rangeCount",
-              get: function get() {
-                return this._ranges.length;
-              }
-            }, {
-              key: "isBackward",
-              get: function get() {
-                return !this.isCollapsed && this._lastRangeBackward;
-              }
             }]);
 
             return Vs;
@@ -13307,6 +13307,51 @@
             }
 
             _createClass(qs, [{
+              key: "isCollapsed",
+              get: function get() {
+                return this._selection.isCollapsed;
+              }
+            }, {
+              key: "anchor",
+              get: function get() {
+                return this._selection.anchor;
+              }
+            }, {
+              key: "focus",
+              get: function get() {
+                return this._selection.focus;
+              }
+            }, {
+              key: "rangeCount",
+              get: function get() {
+                return this._selection.rangeCount;
+              }
+            }, {
+              key: "hasOwnRange",
+              get: function get() {
+                return this._selection.hasOwnRange;
+              }
+            }, {
+              key: "isBackward",
+              get: function get() {
+                return this._selection.isBackward;
+              }
+            }, {
+              key: "isGravityOverridden",
+              get: function get() {
+                return this._selection.isGravityOverridden;
+              }
+            }, {
+              key: "markers",
+              get: function get() {
+                return this._selection.markers;
+              }
+            }, {
+              key: "_ranges",
+              get: function get() {
+                return this._selection._ranges;
+              }
+            }, {
               key: "getRanges",
               value: function getRanges() {
                 return this._selection.getRanges();
@@ -13421,51 +13466,6 @@
               value: function _restoreGravity(t) {
                 this._selection.restoreGravity(t);
               }
-            }, {
-              key: "isCollapsed",
-              get: function get() {
-                return this._selection.isCollapsed;
-              }
-            }, {
-              key: "anchor",
-              get: function get() {
-                return this._selection.anchor;
-              }
-            }, {
-              key: "focus",
-              get: function get() {
-                return this._selection.focus;
-              }
-            }, {
-              key: "rangeCount",
-              get: function get() {
-                return this._selection.rangeCount;
-              }
-            }, {
-              key: "hasOwnRange",
-              get: function get() {
-                return this._selection.hasOwnRange;
-              }
-            }, {
-              key: "isBackward",
-              get: function get() {
-                return this._selection.isBackward;
-              }
-            }, {
-              key: "isGravityOverridden",
-              get: function get() {
-                return this._selection.isGravityOverridden;
-              }
-            }, {
-              key: "markers",
-              get: function get() {
-                return this._selection.markers;
-              }
-            }, {
-              key: "_ranges",
-              get: function get() {
-                return this._selection._ranges;
-              }
             }], [{
               key: "_getStoreAttributeKey",
               value: function _getStoreAttributeKey(t) {
@@ -13569,6 +13569,36 @@
             }
 
             _createClass($s, [{
+              key: "isCollapsed",
+              get: function get() {
+                return 0 === this._ranges.length ? this._document._getDefaultRange().isCollapsed : _get(_getPrototypeOf($s.prototype), "isCollapsed", this);
+              }
+            }, {
+              key: "anchor",
+              get: function get() {
+                return _get(_getPrototypeOf($s.prototype), "anchor", this) || this._document._getDefaultRange().start;
+              }
+            }, {
+              key: "focus",
+              get: function get() {
+                return _get(_getPrototypeOf($s.prototype), "focus", this) || this._document._getDefaultRange().end;
+              }
+            }, {
+              key: "rangeCount",
+              get: function get() {
+                return this._ranges.length ? this._ranges.length : 1;
+              }
+            }, {
+              key: "hasOwnRange",
+              get: function get() {
+                return this._ranges.length > 0;
+              }
+            }, {
+              key: "isGravityOverridden",
+              get: function get() {
+                return !!this._overriddenGravityRegister.size;
+              }
+            }, {
               key: "destroy",
               value: function destroy() {
                 for (var _t100 = 0; _t100 < this._ranges.length; _t100++) {
@@ -14038,36 +14068,6 @@
                 var e = this._model.schema.getNearestSelectionRange(t);
 
                 e && this._pushRange(e);
-              }
-            }, {
-              key: "isCollapsed",
-              get: function get() {
-                return 0 === this._ranges.length ? this._document._getDefaultRange().isCollapsed : _get(_getPrototypeOf($s.prototype), "isCollapsed", this);
-              }
-            }, {
-              key: "anchor",
-              get: function get() {
-                return _get(_getPrototypeOf($s.prototype), "anchor", this) || this._document._getDefaultRange().start;
-              }
-            }, {
-              key: "focus",
-              get: function get() {
-                return _get(_getPrototypeOf($s.prototype), "focus", this) || this._document._getDefaultRange().end;
-              }
-            }, {
-              key: "rangeCount",
-              get: function get() {
-                return this._ranges.length ? this._ranges.length : 1;
-              }
-            }, {
-              key: "hasOwnRange",
-              get: function get() {
-                return this._ranges.length > 0;
-              }
-            }, {
-              key: "isGravityOverridden",
-              get: function get() {
-                return !!this._overriddenGravityRegister.size;
               }
             }]);
 
@@ -16135,6 +16135,16 @@
             }
 
             _createClass(wa, [{
+              key: "length",
+              get: function get() {
+                return this._items.length;
+              }
+            }, {
+              key: "last",
+              get: function get() {
+                return this._items[this._items.length - 1];
+              }
+            }, {
               key: Symbol.iterator,
               value: function value() {
                 return this._items[Symbol.iterator]();
@@ -16177,16 +16187,6 @@
               key: "startsWith",
               value: function startsWith(t) {
                 return Array.from(this.getNames()).join(" ").startsWith(t);
-              }
-            }, {
-              key: "length",
-              get: function get() {
-                return this._items.length;
-              }
-            }, {
-              key: "last",
-              get: function get() {
-                return this._items[this._items.length - 1];
               }
             }]);
 
@@ -17280,11 +17280,6 @@
             }
 
             _createClass(Va, [{
-              key: "addOperation",
-              value: function addOperation(t) {
-                return t.batch = this, this.operations.push(t), t;
-              }
-            }, {
               key: "baseVersion",
               get: function get() {
                 var _iterator212 = _createForOfIteratorHelper(this.operations),
@@ -17302,6 +17297,11 @@
                 }
 
                 return null;
+              }
+            }, {
+              key: "addOperation",
+              value: function addOperation(t) {
+                return t.batch = this, this.operations.push(t), t;
               }
             }]);
 
@@ -17325,14 +17325,14 @@
                 return t.__className = this.constructor.className, delete t.batch, delete t.isDocumentOperation, t;
               }
             }], [{
-              key: "fromJSON",
-              value: function fromJSON(t) {
-                return new this(t.baseVersion);
-              }
-            }, {
               key: "className",
               get: function get() {
                 return "Operation";
+              }
+            }, {
+              key: "fromJSON",
+              value: function fromJSON(t) {
+                return new this(t.baseVersion);
               }
             }]);
 
@@ -17350,6 +17350,31 @@
               key: Symbol.iterator,
               value: function value() {
                 return this.getChildren();
+              }
+            }, {
+              key: "childCount",
+              get: function get() {
+                return this._children.length;
+              }
+            }, {
+              key: "maxOffset",
+              get: function get() {
+                return this._children.maxOffset;
+              }
+            }, {
+              key: "isEmpty",
+              get: function get() {
+                return 0 === this.childCount;
+              }
+            }, {
+              key: "root",
+              get: function get() {
+                return this;
+              }
+            }, {
+              key: "parent",
+              get: function get() {
+                return null;
               }
             }, {
               key: "is",
@@ -17482,31 +17507,6 @@
                 }
 
                 return n;
-              }
-            }, {
-              key: "childCount",
-              get: function get() {
-                return this._children.length;
-              }
-            }, {
-              key: "maxOffset",
-              get: function get() {
-                return this._children.maxOffset;
-              }
-            }, {
-              key: "isEmpty",
-              get: function get() {
-                return 0 === this.childCount;
-              }
-            }, {
-              key: "root",
-              get: function get() {
-                return this;
-              }
-            }, {
-              key: "parent",
-              get: function get() {
-                return null;
               }
             }], [{
               key: "fromJSON",
@@ -17660,6 +17660,11 @@
             }
 
             _createClass(Ga, [{
+              key: "type",
+              get: function get() {
+                return null === this.oldValue ? "addAttribute" : null === this.newValue ? "removeAttribute" : "changeAttribute";
+              }
+            }, {
               key: "clone",
               value: function clone() {
                 return new Ga(this.range, this.key, this.oldValue, this.newValue, this.baseVersion);
@@ -17733,20 +17738,15 @@
                   Wa(t.end.parent, t.end.index);
                 }(this.range, this.key, this.newValue);
               }
-            }, {
-              key: "type",
-              get: function get() {
-                return null === this.oldValue ? "addAttribute" : null === this.newValue ? "removeAttribute" : "changeAttribute";
-              }
             }], [{
-              key: "fromJSON",
-              value: function fromJSON(t, e) {
-                return new Ga(Ss.fromJSON(t.range, e), t.key, t.oldValue, t.newValue, t.baseVersion);
-              }
-            }, {
               key: "className",
               get: function get() {
                 return "AttributeOperation";
+              }
+            }, {
+              key: "fromJSON",
+              value: function fromJSON(t, e) {
+                return new Ga(Ss.fromJSON(t.range, e), t.key, t.oldValue, t.newValue, t.baseVersion);
               }
             }]);
 
@@ -17768,6 +17768,11 @@
             }
 
             _createClass(Ka, [{
+              key: "type",
+              get: function get() {
+                return "detach";
+              }
+            }, {
               key: "toJSON",
               value: function toJSON() {
                 var t = _get(_getPrototypeOf(Ka.prototype), "toJSON", this).call(this);
@@ -17783,11 +17788,6 @@
               key: "_execute",
               value: function _execute() {
                 Fa(Ss._createFromPositionAndShift(this.sourcePosition, this.howMany));
-              }
-            }, {
-              key: "type",
-              get: function get() {
-                return "detach";
               }
             }], [{
               key: "className",
@@ -17814,6 +17814,11 @@
             }
 
             _createClass(Qa, [{
+              key: "type",
+              get: function get() {
+                return "$graveyard" == this.targetPosition.root.rootName ? "remove" : "$graveyard" == this.sourcePosition.root.rootName ? "reinsert" : "move";
+              }
+            }, {
               key: "clone",
               value: function clone() {
                 return new this.constructor(this.sourcePosition, this.howMany, this.targetPosition, this.baseVersion);
@@ -17858,22 +17863,17 @@
 
                 return t.sourcePosition = this.sourcePosition.toJSON(), t.targetPosition = this.targetPosition.toJSON(), t;
               }
-            }, {
-              key: "type",
-              get: function get() {
-                return "$graveyard" == this.targetPosition.root.rootName ? "remove" : "$graveyard" == this.sourcePosition.root.rootName ? "reinsert" : "move";
-              }
             }], [{
+              key: "className",
+              get: function get() {
+                return "MoveOperation";
+              }
+            }, {
               key: "fromJSON",
               value: function fromJSON(t, e) {
                 var n = Cs.fromJSON(t.sourcePosition, e),
                     i = Cs.fromJSON(t.targetPosition, e);
                 return new this(n, t.howMany, i, t.baseVersion);
-              }
-            }, {
-              key: "className",
-              get: function get() {
-                return "MoveOperation";
               }
             }]);
 
@@ -17895,6 +17895,16 @@
             }
 
             _createClass(Ja, [{
+              key: "type",
+              get: function get() {
+                return "insert";
+              }
+            }, {
+              key: "howMany",
+              get: function get() {
+                return this.nodes.maxOffset;
+              }
+            }, {
               key: "clone",
               value: function clone() {
                 var t = new vs(_toConsumableArray(this.nodes).map(function (t) {
@@ -17931,17 +17941,12 @@
 
                 return t.position = this.position.toJSON(), t.nodes = this.nodes.toJSON(), t;
               }
-            }, {
-              key: "type",
-              get: function get() {
-                return "insert";
-              }
-            }, {
-              key: "howMany",
-              get: function get() {
-                return this.nodes.maxOffset;
-              }
             }], [{
+              key: "className",
+              get: function get() {
+                return "InsertOperation";
+              }
+            }, {
               key: "fromJSON",
               value: function fromJSON(t, e) {
                 var n = [];
@@ -17963,11 +17968,6 @@
                 var i = new Ja(Cs.fromJSON(t.position, e), n, t.baseVersion);
                 return i.shouldReceiveAttributes = t.shouldReceiveAttributes, i;
               }
-            }, {
-              key: "className",
-              get: function get() {
-                return "InsertOperation";
-              }
             }]);
 
             return Ja;
@@ -17988,6 +17988,11 @@
             }
 
             _createClass(Za, [{
+              key: "type",
+              get: function get() {
+                return "marker";
+              }
+            }, {
               key: "clone",
               value: function clone() {
                 return new Za(this.name, this.oldRange, this.newRange, this._markers, this.affectsData, this.baseVersion);
@@ -18011,20 +18016,15 @@
 
                 return this.oldRange && (t.oldRange = this.oldRange.toJSON()), this.newRange && (t.newRange = this.newRange.toJSON()), delete t._markers, t;
               }
-            }, {
-              key: "type",
-              get: function get() {
-                return "marker";
-              }
             }], [{
-              key: "fromJSON",
-              value: function fromJSON(t, e) {
-                return new Za(t.name, t.oldRange ? Ss.fromJSON(t.oldRange, e) : null, t.newRange ? Ss.fromJSON(t.newRange, e) : null, e.model.markers, t.affectsData, t.baseVersion);
-              }
-            }, {
               key: "className",
               get: function get() {
                 return "MarkerOperation";
+              }
+            }, {
+              key: "fromJSON",
+              value: function fromJSON(t, e) {
+                return new Za(t.name, t.oldRange ? Ss.fromJSON(t.oldRange, e) : null, t.newRange ? Ss.fromJSON(t.newRange, e) : null, e.model.markers, t.affectsData, t.baseVersion);
               }
             }]);
 
@@ -18046,6 +18046,11 @@
             }
 
             _createClass(Xa, [{
+              key: "type",
+              get: function get() {
+                return "rename";
+              }
+            }, {
               key: "clone",
               value: function clone() {
                 return new Xa(this.position.clone(), this.oldName, this.newName, this.baseVersion);
@@ -18074,20 +18079,15 @@
 
                 return t.position = this.position.toJSON(), t;
               }
-            }, {
-              key: "type",
-              get: function get() {
-                return "rename";
-              }
             }], [{
-              key: "fromJSON",
-              value: function fromJSON(t, e) {
-                return new Xa(Cs.fromJSON(t.position, e), t.oldName, t.newName, t.baseVersion);
-              }
-            }, {
               key: "className",
               get: function get() {
                 return "RenameOperation";
+              }
+            }, {
+              key: "fromJSON",
+              value: function fromJSON(t, e) {
+                return new Xa(Cs.fromJSON(t.position, e), t.oldName, t.newName, t.baseVersion);
               }
             }]);
 
@@ -18109,6 +18109,11 @@
             }
 
             _createClass(tc, [{
+              key: "type",
+              get: function get() {
+                return null === this.oldValue ? "addRootAttribute" : null === this.newValue ? "removeRootAttribute" : "changeRootAttribute";
+              }
+            }, {
               key: "clone",
               value: function clone() {
                 return new tc(this.root, this.key, this.oldValue, this.newValue, this.baseVersion);
@@ -18146,23 +18151,18 @@
 
                 return t.root = this.root.toJSON(), t;
               }
-            }, {
-              key: "type",
-              get: function get() {
-                return null === this.oldValue ? "addRootAttribute" : null === this.newValue ? "removeRootAttribute" : "changeRootAttribute";
-              }
             }], [{
+              key: "className",
+              get: function get() {
+                return "RootAttributeOperation";
+              }
+            }, {
               key: "fromJSON",
               value: function fromJSON(t, e) {
                 if (!e.getRoot(t.root)) throw new hn.a("rootattribute-operation-fromjson-no-root", this, {
                   rootName: t.root
                 });
                 return new tc(e.getRoot(t.root), t.key, t.oldValue, t.newValue, t.baseVersion);
-              }
-            }, {
-              key: "className",
-              get: function get() {
-                return "RootAttributeOperation";
               }
             }]);
 
@@ -18184,6 +18184,22 @@
             }
 
             _createClass(ec, [{
+              key: "type",
+              get: function get() {
+                return "merge";
+              }
+            }, {
+              key: "deletionPosition",
+              get: function get() {
+                return new Cs(this.sourcePosition.root, this.sourcePosition.path.slice(0, -1));
+              }
+            }, {
+              key: "movedRange",
+              get: function get() {
+                var t = this.sourcePosition.getShiftedBy(Number.POSITIVE_INFINITY);
+                return new Ss(this.sourcePosition, t);
+              }
+            }, {
               key: "clone",
               value: function clone() {
                 return new this.constructor(this.sourcePosition, this.howMany, this.targetPosition, this.graveyardPosition, this.baseVersion);
@@ -18220,34 +18236,18 @@
 
                 return t.sourcePosition = t.sourcePosition.toJSON(), t.targetPosition = t.targetPosition.toJSON(), t.graveyardPosition = t.graveyardPosition.toJSON(), t;
               }
-            }, {
-              key: "type",
-              get: function get() {
-                return "merge";
-              }
-            }, {
-              key: "deletionPosition",
-              get: function get() {
-                return new Cs(this.sourcePosition.root, this.sourcePosition.path.slice(0, -1));
-              }
-            }, {
-              key: "movedRange",
-              get: function get() {
-                var t = this.sourcePosition.getShiftedBy(Number.POSITIVE_INFINITY);
-                return new Ss(this.sourcePosition, t);
-              }
             }], [{
+              key: "className",
+              get: function get() {
+                return "MergeOperation";
+              }
+            }, {
               key: "fromJSON",
               value: function fromJSON(t, e) {
                 var n = Cs.fromJSON(t.sourcePosition, e),
                     i = Cs.fromJSON(t.targetPosition, e),
                     o = Cs.fromJSON(t.graveyardPosition, e);
                 return new this(n, t.howMany, i, o, t.baseVersion);
-              }
-            }, {
-              key: "className",
-              get: function get() {
-                return "MergeOperation";
               }
             }]);
 
@@ -18269,6 +18269,23 @@
             }
 
             _createClass(nc, [{
+              key: "type",
+              get: function get() {
+                return "split";
+              }
+            }, {
+              key: "moveTargetPosition",
+              get: function get() {
+                var t = this.insertionPosition.path.slice();
+                return t.push(0), new Cs(this.insertionPosition.root, t);
+              }
+            }, {
+              key: "movedRange",
+              get: function get() {
+                var t = this.splitPosition.getShiftedBy(Number.POSITIVE_INFINITY);
+                return new Ss(this.splitPosition, t);
+              }
+            }, {
               key: "clone",
               value: function clone() {
                 var t = new this.constructor(this.splitPosition, this.howMany, this.graveyardPosition, this.baseVersion);
@@ -18309,24 +18326,12 @@
 
                 return t.splitPosition = this.splitPosition.toJSON(), t.insertionPosition = this.insertionPosition.toJSON(), this.graveyardPosition && (t.graveyardPosition = this.graveyardPosition.toJSON()), t;
               }
-            }, {
-              key: "type",
-              get: function get() {
-                return "split";
-              }
-            }, {
-              key: "moveTargetPosition",
-              get: function get() {
-                var t = this.insertionPosition.path.slice();
-                return t.push(0), new Cs(this.insertionPosition.root, t);
-              }
-            }, {
-              key: "movedRange",
-              get: function get() {
-                var t = this.splitPosition.getShiftedBy(Number.POSITIVE_INFINITY);
-                return new Ss(this.splitPosition, t);
-              }
             }], [{
+              key: "className",
+              get: function get() {
+                return "SplitOperation";
+              }
+            }, {
               key: "getInsertionPosition",
               value: function getInsertionPosition(t) {
                 var e = t.path.slice(0, -1);
@@ -18340,11 +18345,6 @@
                     o = t.graveyardPosition ? Cs.fromJSON(t.graveyardPosition, e) : null,
                     r = new this(n, t.howMany, o, t.baseVersion);
                 return r.insertionPosition = i, r;
-              }
-            }, {
-              key: "className",
-              get: function get() {
-                return "SplitOperation";
               }
             }]);
 
@@ -18368,6 +18368,11 @@
             }
 
             _createClass(ic, [{
+              key: "document",
+              get: function get() {
+                return this._document;
+              }
+            }, {
               key: "is",
               value: function is(t, e) {
                 return e ? e === this.name && ("rootElement" === t || "model:rootElement" === t || "element" === t || "model:element" === t) : "rootElement" === t || "model:rootElement" === t || "element" === t || "model:element" === t || "node" === t || "model:node" === t;
@@ -18376,11 +18381,6 @@
               key: "toJSON",
               value: function toJSON() {
                 return this.rootName;
-              }
-            }, {
-              key: "document",
-              get: function get() {
-                return this._document;
               }
             }]);
 
@@ -19002,6 +19002,11 @@
             }
 
             _createClass(dc, [{
+              key: "isEmpty",
+              get: function get() {
+                return 0 == this._changesInElement.size && 0 == this._changedMarkers.size;
+              }
+            }, {
               key: "refreshItem",
               value: function refreshItem(t) {
                 if (this._isInInsertedElement(t.parent)) return;
@@ -19604,11 +19609,6 @@
                   _iterator247.f();
                 }
               }
-            }, {
-              key: "isEmpty",
-              get: function get() {
-                return 0 == this._changesInElement.size && 0 == this._changedMarkers.size;
-              }
             }]);
 
             return dc;
@@ -19818,6 +19818,11 @@
             }
 
             _createClass(bc, [{
+              key: "graveyard",
+              get: function get() {
+                return this.getRoot("$graveyard");
+              }
+            }, {
               key: "createRoot",
               value: function createRoot() {
                 var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "$root";
@@ -19923,11 +19928,6 @@
                     _iterator253.f();
                   }
                 } while (e);
-              }
-            }, {
-              key: "graveyard",
-              get: function get() {
-                return this.getRoot("$graveyard");
               }
             }]);
 
@@ -20228,6 +20228,18 @@
             }
 
             _createClass(_c, [{
+              key: "managedUsingOperations",
+              get: function get() {
+                if (!this._liveRange) throw new hn.a("marker-destroyed", this);
+                return this._managedUsingOperations;
+              }
+            }, {
+              key: "affectsData",
+              get: function get() {
+                if (!this._liveRange) throw new hn.a("marker-destroyed", this);
+                return this._affectsData;
+              }
+            }, {
               key: "getStart",
               value: function getStart() {
                 if (!this._liveRange) throw new hn.a("marker-destroyed", this);
@@ -20260,18 +20272,6 @@
               value: function _detachLiveRange() {
                 this._liveRange.stopDelegating("change:range", this), this._liveRange.stopDelegating("change:content", this), this._liveRange.detach(), this._liveRange = null;
               }
-            }, {
-              key: "managedUsingOperations",
-              get: function get() {
-                if (!this._liveRange) throw new hn.a("marker-destroyed", this);
-                return this._managedUsingOperations;
-              }
-            }, {
-              key: "affectsData",
-              get: function get() {
-                if (!this._liveRange) throw new hn.a("marker-destroyed", this);
-                return this._affectsData;
-              }
             }]);
 
             return _c;
@@ -20291,6 +20291,11 @@
             }
 
             _createClass(vc, [{
+              key: "type",
+              get: function get() {
+                return "noop";
+              }
+            }, {
               key: "clone",
               value: function clone() {
                 return new vc(this.baseVersion);
@@ -20303,11 +20308,6 @@
             }, {
               key: "_execute",
               value: function _execute() {}
-            }, {
-              key: "type",
-              get: function get() {
-                return "noop";
-              }
             }], [{
               key: "className",
               get: function get() {
@@ -21549,6 +21549,11 @@
             }
 
             _createClass(Kc, [{
+              key: "element",
+              get: function get() {
+                return null;
+              }
+            }, {
               key: "update",
               value: function update() {
                 this.fire("update");
@@ -21589,11 +21594,6 @@
               key: "getEditableElementsNames",
               value: function getEditableElementsNames() {
                 return this._editableElementsMap.keys();
-              }
-            }, {
-              key: "element",
-              get: function get() {
-                return null;
               }
             }, {
               key: "_editableElements",
@@ -21740,6 +21740,11 @@
             }
 
             _createClass(il, [{
+              key: "element",
+              get: function get() {
+                return this.view.element;
+              }
+            }, {
               key: "init",
               value: function init(t) {
                 var e = this.editor,
@@ -21797,11 +21802,6 @@
                   text: o,
                   isDirectHost: !1
                 });
-              }
-            }, {
-              key: "element",
-              get: function get() {
-                return this.view.element;
               }
             }]);
 
@@ -22552,6 +22552,11 @@
             }
 
             _createClass(Al, [{
+              key: "bindTemplate",
+              get: function get() {
+                return this._bindTemplate ? this._bindTemplate : this._bindTemplate = rl.bind(this, this);
+              }
+            }, {
               key: "createCollection",
               value: function createCollection(t) {
                 var e = new ol(t);
@@ -22619,11 +22624,6 @@
                 this.stopListening(), this._viewCollections.map(function (t) {
                   return t.destroy();
                 }), this.template && this.template._revertData && this.template.revert(this.element);
-              }
-            }, {
-              key: "bindTemplate",
-              get: function get() {
-                return this._bindTemplate ? this._bindTemplate : this._bindTemplate = rl.bind(this, this);
               }
             }]);
 
@@ -23042,6 +23042,37 @@
             }
 
             _createClass(Dl, [{
+              key: "first",
+              get: function get() {
+                return this.focusables.find(Ll) || null;
+              }
+            }, {
+              key: "last",
+              get: function get() {
+                return this.focusables.filter(Ll).slice(-1)[0] || null;
+              }
+            }, {
+              key: "next",
+              get: function get() {
+                return this._getFocusableItem(1);
+              }
+            }, {
+              key: "previous",
+              get: function get() {
+                return this._getFocusableItem(-1);
+              }
+            }, {
+              key: "current",
+              get: function get() {
+                var _this94 = this;
+
+                var t = null;
+                return null === this.focusTracker.focusedElement ? null : (this.focusables.find(function (e, n) {
+                  var i = e.element === _this94.focusTracker.focusedElement;
+                  return i && (t = n), i;
+                }), t);
+              }
+            }, {
               key: "focusFirst",
               value: function focusFirst() {
                 this._focus(this.first);
@@ -23083,37 +23114,6 @@
                 } while (i !== e);
 
                 return null;
-              }
-            }, {
-              key: "first",
-              get: function get() {
-                return this.focusables.find(Ll) || null;
-              }
-            }, {
-              key: "last",
-              get: function get() {
-                return this.focusables.filter(Ll).slice(-1)[0] || null;
-              }
-            }, {
-              key: "next",
-              get: function get() {
-                return this._getFocusableItem(1);
-              }
-            }, {
-              key: "previous",
-              get: function get() {
-                return this._getFocusableItem(-1);
-              }
-            }, {
-              key: "current",
-              get: function get() {
-                var _this94 = this;
-
-                var t = null;
-                return null === this.focusTracker.focusedElement ? null : (this.focusables.find(function (e, n) {
-                  var i = e.element === _this94.focusTracker.focusedElement;
-                  return i && (t = n), i;
-                }), t);
               }
             }]);
 
@@ -24451,6 +24451,24 @@
                 this.groupedItems.length !== t && this.view.fire("groupedItemsUpdate");
               }
             }, {
+              key: "_areItemsOverflowing",
+              get: function get() {
+                if (!this.ungroupedItems.length) return !1;
+                var t = this.viewElement,
+                    e = this.viewLocale.uiLanguageDirection,
+                    n = new os(t.lastChild),
+                    i = new os(t);
+
+                if (!this.cachedPadding) {
+                  var _n178 = rr.window.getComputedStyle(t),
+                      _i135 = "ltr" === e ? "paddingRight" : "paddingLeft";
+
+                  this.cachedPadding = Number.parseInt(_n178[_i135]);
+                }
+
+                return "ltr" === e ? n.right > i.right - this.cachedPadding : n.left < i.left + this.cachedPadding;
+              }
+            }, {
               key: "_enableGroupingOnResize",
               value: function _enableGroupingOnResize() {
                 var _this117 = this;
@@ -24513,24 +24531,6 @@
                 this.viewFocusables.clear(), this.ungroupedItems.map(function (t) {
                   _this119.viewFocusables.add(t);
                 }), this.groupedItems.length && this.viewFocusables.add(this.groupedItemsDropdown);
-              }
-            }, {
-              key: "_areItemsOverflowing",
-              get: function get() {
-                if (!this.ungroupedItems.length) return !1;
-                var t = this.viewElement,
-                    e = this.viewLocale.uiLanguageDirection,
-                    n = new os(t.lastChild),
-                    i = new os(t);
-
-                if (!this.cachedPadding) {
-                  var _n178 = rr.window.getComputedStyle(t),
-                      _i135 = "ltr" === e ? "paddingRight" : "paddingLeft";
-
-                  this.cachedPadding = Number.parseInt(_n178[_i135]);
-                }
-
-                return "ltr" === e ? n.right > i.right - this.cachedPadding : n.left < i.left + this.cachedPadding;
               }
             }]);
 
@@ -24699,6 +24699,11 @@
             }
 
             _createClass(fd, [{
+              key: "types",
+              get: function get() {
+                return this._native.types;
+              }
+            }, {
               key: "getData",
               value: function getData(t) {
                 return this._native.getData(t);
@@ -24707,11 +24712,6 @@
               key: "setData",
               value: function setData(t, e) {
                 this._native.setData(t, e);
-              }
-            }, {
-              key: "types",
-              get: function get() {
-                return this._native.types;
               }
             }]);
 
@@ -25458,6 +25458,11 @@
             }
 
             _createClass(Dd, [{
+              key: "batch",
+              get: function get() {
+                return this._batch || (this._batch = this.model.createBatch()), this._batch;
+              }
+            }, {
               key: "input",
               value: function input(t) {
                 this.size += t, this.size >= this.limit && this._reset(!0);
@@ -25482,11 +25487,6 @@
               value: function _reset(t) {
                 this.isLocked && !t || (this._batch = null, this.size = 0);
               }
-            }, {
-              key: "batch",
-              get: function get() {
-                return this._batch || (this._batch = this.model.createBatch()), this._batch;
-              }
             }]);
 
             return Dd;
@@ -25507,6 +25507,11 @@
             }
 
             _createClass(Ld, [{
+              key: "buffer",
+              get: function get() {
+                return this._buffer;
+              }
+            }, {
               key: "destroy",
               value: function destroy() {
                 _get(_getPrototypeOf(Ld.prototype), "destroy", this).call(this), this._buffer.destroy();
@@ -25526,11 +25531,6 @@
                 e.enqueueChange(this._buffer.batch, function (t) {
                   _this132._buffer.lock(), _this132._batches.add(_this132._buffer.batch), e.deleteContent(r), i && e.insertContent(t.createText(i, n.selection.getAttributes()), r), s ? t.setSelection(s) : r.is("documentSelection") || t.setSelection(r), _this132._buffer.unlock(), _this132._buffer.input(o);
                 });
-              }
-            }, {
-              key: "buffer",
-              get: function get() {
-                return this._buffer;
               }
             }]);
 
@@ -25853,6 +25853,11 @@
             }
 
             _createClass(qd, [{
+              key: "buffer",
+              get: function get() {
+                return this._buffer;
+              }
+            }, {
               key: "execute",
               value: function execute() {
                 var _this134 = this;
@@ -25918,11 +25923,6 @@
                     o = n.schema.getLimitElement(i),
                     r = o.getChild(0);
                 return i.parent == r && !!t.containsEntireContent(r) && !!n.schema.checkChild(o, "paragraph") && "paragraph" != r.name;
-              }
-            }, {
-              key: "buffer",
-              get: function get() {
-                return this._buffer;
               }
             }]);
 
@@ -27008,13 +27008,6 @@
 
             var _super86 = _createSuper(uu);
 
-            _createClass(uu, null, [{
-              key: "pluginName",
-              get: function get() {
-                return "UndoEditing";
-              }
-            }]);
-
             function uu(t) {
               var _this139;
 
@@ -27044,6 +27037,11 @@
                 }), this.listenTo(this._undoCommand, "revert", function (t, e, n) {
                   _this140._redoCommand.addBatch(n);
                 }), t.keystrokes.set("CTRL+Z", "undo"), t.keystrokes.set("CTRL+Y", "redo"), t.keystrokes.set("CTRL+SHIFT+Z", "redo");
+              }
+            }], [{
+              key: "pluginName",
+              get: function get() {
+                return "UndoEditing";
               }
             }]);
 
@@ -27179,14 +27177,14 @@
                 this._actions.remove(t), this.hasAny = !!this._actions.length;
               }
             }, {
-              key: Symbol.iterator,
-              value: function value() {
-                return this._actions[Symbol.iterator]();
-              }
-            }, {
               key: "first",
               get: function get() {
                 return this._actions.get(0);
+              }
+            }, {
+              key: Symbol.iterator,
+              value: function value() {
+                return this._actions[Symbol.iterator]();
               }
             }], [{
               key: "pluginName",
@@ -27211,6 +27209,16 @@
             }
 
             _createClass(wu, [{
+              key: "error",
+              get: function get() {
+                return this._reader.error;
+              }
+            }, {
+              key: "data",
+              get: function get() {
+                return this._data;
+              }
+            }, {
               key: "read",
               value: function read(t) {
                 var _this143 = this;
@@ -27231,16 +27239,6 @@
               key: "abort",
               value: function abort() {
                 this._reader.abort();
-              }
-            }, {
-              key: "error",
-              get: function get() {
-                return this._reader.error;
-              }
-            }, {
-              key: "data",
-              get: function get() {
-                return this._data;
               }
             }]);
 
@@ -27378,34 +27376,48 @@
             }
 
             _createClass(_u, [{
+              key: "file",
+              get: function get() {
+                var _this147 = this;
+
+                return this._filePromiseWrapper ? this._filePromiseWrapper.promise.then(function (t) {
+                  return _this147._filePromiseWrapper ? t : null;
+                }) : Promise.resolve(null);
+              }
+            }, {
+              key: "data",
+              get: function get() {
+                return this._reader.data;
+              }
+            }, {
               key: "read",
               value: function read() {
-                var _this147 = this;
+                var _this148 = this;
 
                 if ("idle" != this.status) throw new hn.a("filerepository-read-wrong-status", this);
                 return this.status = "reading", this.file.then(function (t) {
-                  return _this147._reader.read(t);
+                  return _this148._reader.read(t);
                 }).then(function (t) {
-                  if ("reading" !== _this147.status) throw _this147.status;
-                  return _this147.status = "idle", t;
+                  if ("reading" !== _this148.status) throw _this148.status;
+                  return _this148.status = "idle", t;
                 })["catch"](function (t) {
-                  if ("aborted" === t) throw _this147.status = "aborted", "aborted";
-                  throw _this147.status = "error", _this147._reader.error ? _this147._reader.error : t;
+                  if ("aborted" === t) throw _this148.status = "aborted", "aborted";
+                  throw _this148.status = "error", _this148._reader.error ? _this148._reader.error : t;
                 });
               }
             }, {
               key: "upload",
               value: function upload() {
-                var _this148 = this;
+                var _this149 = this;
 
                 if ("idle" != this.status) throw new hn.a("filerepository-upload-wrong-status", this);
                 return this.status = "uploading", this.file.then(function () {
-                  return _this148._adapter.upload();
+                  return _this149._adapter.upload();
                 }).then(function (t) {
-                  return _this148.uploadResponse = t, _this148.status = "idle", t;
+                  return _this149.uploadResponse = t, _this149.status = "idle", t;
                 })["catch"](function (t) {
-                  if ("aborted" === _this148.status) throw "aborted";
-                  throw _this148.status = "error", t;
+                  if ("aborted" === _this149.status) throw "aborted";
+                  throw _this149.status = "error", t;
                 });
               }
             }, {
@@ -27430,20 +27442,6 @@
                     e.isFulfilled = !0, i(t);
                   });
                 }), e;
-              }
-            }, {
-              key: "file",
-              get: function get() {
-                var _this149 = this;
-
-                return this._filePromiseWrapper ? this._filePromiseWrapper.promise.then(function (t) {
-                  return _this149._filePromiseWrapper ? t : null;
-                }) : Promise.resolve(null);
-              }
-            }, {
-              key: "data",
-              get: function get() {
-                return this._reader.data;
               }
             }]);
 
@@ -29094,13 +29092,6 @@
 
             var _super106 = _createSuper(wh);
 
-            _createClass(wh, null, [{
-              key: "pluginName",
-              get: function get() {
-                return "TwoStepCaretMovement";
-              }
-            }]);
-
             function wh(t) {
               var _this163;
 
@@ -29160,6 +29151,11 @@
                 }(o, e) ? o.isAtEnd && !kh(i, e) && yh(o, e) ? (vh(t), _h(n, e, o), !0) : (this._isNextGravityRestorationSkipped = !0, this._overrideGravity(), !1) : void 0;
               }
             }, {
+              key: "_isGravityOverridden",
+              get: function get() {
+                return !!this._overrideUid;
+              }
+            }, {
               key: "_overrideGravity",
               value: function _overrideGravity() {
                 this._overrideUid = this.editor.model.change(function (t) {
@@ -29175,10 +29171,10 @@
                   t.restoreSelectionGravity(_this165._overrideUid), _this165._overrideUid = null;
                 });
               }
-            }, {
-              key: "_isGravityOverridden",
+            }], [{
+              key: "pluginName",
               get: function get() {
-                return !!this._overrideUid;
+                return "TwoStepCaretMovement";
               }
             }]);
 
@@ -29261,6 +29257,11 @@
             }
 
             _createClass(Ch, [{
+              key: "length",
+              get: function get() {
+                return this._definitions.size;
+              }
+            }, {
               key: "add",
               value: function add(t) {
                 var _this166 = this;
@@ -29367,11 +29368,6 @@
                     }
                   });
                 };
-              }
-            }, {
-              key: "length",
-              get: function get() {
-                return this._definitions.size;
               }
             }]);
 
@@ -29722,18 +29718,6 @@
 
             var _super109 = _createSuper(ef);
 
-            _createClass(ef, null, [{
-              key: "pluginName",
-              get: function get() {
-                return "LinkEditing";
-              }
-            }, {
-              key: "requires",
-              get: function get() {
-                return [wh, Wd, bd];
-              }
-            }]);
-
             function ef(t) {
               var _this171;
 
@@ -30033,6 +30017,16 @@
                 }, {
                   priority: "low"
                 });
+              }
+            }], [{
+              key: "pluginName",
+              get: function get() {
+                return "LinkEditing";
+              }
+            }, {
+              key: "requires",
+              get: function get() {
+                return [wh, Wd, bd];
               }
             }]);
 
@@ -30669,13 +30663,6 @@
 
             var _super115 = _createSuper(kf);
 
-            _createClass(kf, null, [{
-              key: "pluginName",
-              get: function get() {
-                return "WidgetTypeAround";
-              }
-            }]);
-
             function kf(t) {
               var _this180;
 
@@ -31031,6 +31018,11 @@
                 }, {
                   priority: "high"
                 });
+              }
+            }], [{
+              key: "pluginName",
+              get: function get() {
+                return "WidgetTypeAround";
               }
             }]);
 
@@ -31718,13 +31710,6 @@
 
             var _super122 = _createSuper(Lf);
 
-            _createClass(Lf, null, [{
-              key: "pluginName",
-              get: function get() {
-                return "ContextualBalloon";
-              }
-            }]);
-
             function Lf(t) {
               var _this193;
 
@@ -31777,6 +31762,11 @@
 
                 if (!e) throw new hn.a("contextualballoon-showstack-stack-not-exist", this);
                 this._visibleStack !== e && this._showView(Array.from(e.values()).pop());
+              }
+            }, {
+              key: "_visibleStack",
+              get: function get() {
+                return this._viewToStack.get(this.visibleView);
               }
             }, {
               key: "_getStackId",
@@ -31854,10 +31844,10 @@
                   limiter: this.positionLimiter
                 })), t;
               }
-            }, {
-              key: "_visibleStack",
+            }], [{
+              key: "pluginName",
               get: function get() {
-                return this._viewToStack.get(this.visibleView);
+                return "ContextualBalloon";
               }
             }]);
 
@@ -32709,18 +32699,6 @@
 
             var _super133 = _createSuper(om);
 
-            _createClass(om, null, [{
-              key: "requires",
-              get: function get() {
-                return [ku, rf, bd];
-              }
-            }, {
-              key: "pluginName",
-              get: function get() {
-                return "ImageUploadEditing";
-              }
-            }]);
-
             function om(t) {
               var _this203;
 
@@ -32913,6 +32891,16 @@
                   data: o,
                   width: i
                 }, e);
+              }
+            }], [{
+              key: "requires",
+              get: function get() {
+                return [ku, rf, bd];
+              }
+            }, {
+              key: "pluginName",
+              get: function get() {
+                return "ImageUploadEditing";
               }
             }]);
 
@@ -33144,13 +33132,6 @@
 
             var _super139 = _createSuper(fm);
 
-            _createClass(fm, null, [{
-              key: "pluginName",
-              get: function get() {
-                return "HeadingEditing";
-              }
-            }]);
-
             function fm(t) {
               var _this208;
 
@@ -33229,6 +33210,11 @@
                 });
               }
             }], [{
+              key: "pluginName",
+              get: function get() {
+                return "HeadingEditing";
+              }
+            }, {
               key: "requires",
               get: function get() {
                 return [dm];
@@ -33799,6 +33785,18 @@
             }
 
             _createClass(Rm, [{
+              key: "localizedDefaultStylesTitles",
+              get: function get() {
+                var t = this.editor.t;
+                return {
+                  "Full size image": t("Full size image"),
+                  "Side image": t("Side image"),
+                  "Left aligned image": t("Left aligned image"),
+                  "Centered image": t("Centered image"),
+                  "Right aligned image": t("Right aligned image")
+                };
+              }
+            }, {
               key: "init",
               value: function init() {
                 var t = function (t, e) {
@@ -33857,18 +33855,6 @@
                     }), e.editing.view.focus();
                   }), o;
                 });
-              }
-            }, {
-              key: "localizedDefaultStylesTitles",
-              get: function get() {
-                var t = this.editor.t;
-                return {
-                  "Full size image": t("Full size image"),
-                  "Side image": t("Side image"),
-                  "Left aligned image": t("Left aligned image"),
-                  "Centered image": t("Centered image"),
-                  "Right aligned image": t("Right aligned image")
-                };
               }
             }], [{
               key: "pluginName",
@@ -34648,6 +34634,31 @@
                 this.listenTo(t.ui, "update", o), this.listenTo(this._balloon, "change:visibleView", o);
               }
             }, {
+              key: "_isFormInPanel",
+              get: function get() {
+                return this._balloon.hasView(this.formView);
+              }
+            }, {
+              key: "_areActionsInPanel",
+              get: function get() {
+                return this._balloon.hasView(this.actionsView);
+              }
+            }, {
+              key: "_areActionsVisible",
+              get: function get() {
+                return this._balloon.visibleView === this.actionsView;
+              }
+            }, {
+              key: "_isUIInPanel",
+              get: function get() {
+                return this._isFormInPanel || this._areActionsInPanel;
+              }
+            }, {
+              key: "_isUIVisible",
+              get: function get() {
+                return this._balloon.visibleView == this.formView || this._areActionsVisible;
+              }
+            }, {
               key: "_getBalloonPositionData",
               value: function _getBalloonPositionData() {
                 var t = this.editor.editing.view,
@@ -34720,31 +34731,6 @@
                 t.markers.has("link-ui") && t.change(function (t) {
                   t.removeMarker("link-ui");
                 });
-              }
-            }, {
-              key: "_isFormInPanel",
-              get: function get() {
-                return this._balloon.hasView(this.formView);
-              }
-            }, {
-              key: "_areActionsInPanel",
-              get: function get() {
-                return this._balloon.hasView(this.actionsView);
-              }
-            }, {
-              key: "_areActionsVisible",
-              get: function get() {
-                return this._balloon.visibleView === this.actionsView;
-              }
-            }, {
-              key: "_isUIInPanel",
-              get: function get() {
-                return this._isFormInPanel || this._areActionsInPanel;
-              }
-            }, {
-              key: "_isUIVisible",
-              get: function get() {
-                return this._balloon.visibleView == this.formView || this._areActionsVisible;
               }
             }], [{
               key: "requires",
@@ -36228,13 +36214,6 @@
 
             var _super159 = _createSuper(Og);
 
-            _createClass(Og, null, [{
-              key: "pluginName",
-              get: function get() {
-                return "MediaEmbedEditing";
-              }
-            }]);
-
             function Og(t) {
               var _this243;
 
@@ -36355,6 +36334,11 @@
                   }
                 });
               }
+            }], [{
+              key: "pluginName",
+              get: function get() {
+                return "MediaEmbedEditing";
+              }
             }]);
 
             return Og;
@@ -36366,18 +36350,6 @@
             _inherits(Dg, _ud53);
 
             var _super160 = _createSuper(Dg);
-
-            _createClass(Dg, null, [{
-              key: "requires",
-              get: function get() {
-                return [bd, gu];
-              }
-            }, {
-              key: "pluginName",
-              get: function get() {
-                return "AutoMediaEmbed";
-              }
-            }]);
 
             function Dg(t) {
               var _this244;
@@ -36447,6 +36419,16 @@
                   });
                 }, 100)) : o.detach();
               }
+            }], [{
+              key: "requires",
+              get: function get() {
+                return [bd, gu];
+              }
+            }, {
+              key: "pluginName",
+              get: function get() {
+                return "AutoMediaEmbed";
+              }
             }]);
 
             return Dg;
@@ -36515,6 +36497,14 @@
                 this._focusCycler.focusFirst();
               }
             }, {
+              key: "url",
+              get: function get() {
+                return this.urlInputView.fieldView.element.value.trim();
+              },
+              set: function set(t) {
+                this.urlInputView.fieldView.element.value = t.trim();
+              }
+            }, {
               key: "isValid",
               value: function isValid() {
                 this.resetFormStatus();
@@ -36568,14 +36558,6 @@
                     "class": n
                   }
                 }), i && o.delegate("execute").to(this, i), o;
-              }
-            }, {
-              key: "url",
-              get: function get() {
-                return this.urlInputView.fieldView.element.value.trim();
-              },
-              set: function set(t) {
-                this.urlInputView.fieldView.element.value = t.trim();
               }
             }]);
 
@@ -37424,11 +37406,6 @@
             }
 
             _createClass(np, [{
-              key: "getPositionBefore",
-              value: function getPositionBefore() {
-                return this._table.root.document.model.createPositionAt(this._table.getChild(this.row), this._cellIndex);
-              }
-            }, {
               key: "isAnchor",
               get: function get() {
                 return this.row === this.cellAnchorRow && this.column === this.cellAnchorColumn;
@@ -37442,6 +37419,11 @@
               key: "cellHeight",
               get: function get() {
                 return parseInt(this.cell.getAttribute("rowspan") || 1);
+              }
+            }, {
+              key: "getPositionBefore",
+              value: function getPositionBefore() {
+                return this._table.root.document.model.createPositionAt(this._table.getChild(this.row), this._cellIndex);
               }
             }]);
 
@@ -41987,13 +41969,6 @@
 
             var _super205 = _createSuper(_class21);
 
-            _createClass(_class21, null, [{
-              key: "pluginName",
-              get: function get() {
-                return "TextTransformation";
-              }
-            }]);
-
             function _class21(t) {
               var _this279;
 
@@ -42117,6 +42092,11 @@
                     }
                   });
                 }), o.bind("isEnabled").to(this);
+              }
+            }], [{
+              key: "pluginName",
+              get: function get() {
+                return "TextTransformation";
               }
             }]);
 

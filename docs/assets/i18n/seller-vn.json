@@ -234,7 +234,8 @@
 				},
 				"order":{
 					"order":"Đơn Hàng",
-					"inprogress":"Đơn Cần Xử Lý"
+					"inprogress":"Đơn Cần Xử Lý",
+					"inprogress-pre-order":"Đơn Cần Xử Lý Đặt Trước"
 
 				},
 				"shop":{

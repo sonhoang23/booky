@@ -1,5 +1,5 @@
 (function () {
-  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
   function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -12725,6 +12725,16 @@
           }
 
           _createClass(Zone, [{
+            key: "parent",
+            get: function get() {
+              return this._parent;
+            }
+          }, {
+            key: "name",
+            get: function get() {
+              return this._name;
+            }
+          }, {
             key: "get",
             value: function get(key) {
               var zone = this.getZoneWith(key);
@@ -12957,41 +12967,11 @@
                 zoneDelegates[i]._updateTaskCount(task.type, count);
               }
             }
-          }, {
-            key: "parent",
-            get: function get() {
-              return this._parent;
-            }
-          }, {
-            key: "name",
-            get: function get() {
-              return this._name;
-            }
           }], [{
             key: "assertZonePatched",
             value: function assertZonePatched() {
               if (global['Promise'] !== patches['ZoneAwarePromise']) {
                 throw new Error('Zone.js has detected that ZoneAwarePromise `(window|global).Promise` ' + 'has been overwritten.\n' + 'Most likely cause is that a Promise polyfill has been loaded ' + 'after Zone.js (Polyfilling Promise api is not necessary when zone.js is loaded. ' + 'If you must load one, do so before loading zone.js.)');
-              }
-            }
-          }, {
-            key: "__load_patch",
-            // tslint:disable-next-line:require-internal-with-underscore
-            value: function __load_patch(name, fn) {
-              var ignoreDuplicate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-              if (patches.hasOwnProperty(name)) {
-                // `checkDuplicate` option is defined from global variable
-                // so it works for all modules.
-                // `ignoreDuplicate` can work for the specified module
-                if (!ignoreDuplicate && checkDuplicate) {
-                  throw Error('Already loaded patch: ' + name);
-                }
-              } else if (!global['__Zone_disable_' + name]) {
-                var perfName = 'Zone:' + name;
-                mark(perfName);
-                patches[name] = fn(global, Zone, _api);
-                performanceMeasure(perfName, perfName);
               }
             }
           }, {
@@ -13014,6 +12994,26 @@
             key: "currentTask",
             get: function get() {
               return _currentTask;
+            } // tslint:disable-next-line:require-internal-with-underscore
+
+          }, {
+            key: "__load_patch",
+            value: function __load_patch(name, fn) {
+              var ignoreDuplicate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+              if (patches.hasOwnProperty(name)) {
+                // `checkDuplicate` option is defined from global variable
+                // so it works for all modules.
+                // `ignoreDuplicate` can work for the specified module
+                if (!ignoreDuplicate && checkDuplicate) {
+                  throw Error('Already loaded patch: ' + name);
+                }
+              } else if (!global['__Zone_disable_' + name]) {
+                var perfName = 'Zone:' + name;
+                mark(perfName);
+                patches[name] = fn(global, Zone, _api);
+                performanceMeasure(perfName, perfName);
+              }
             }
           }]);
 
@@ -13245,6 +13245,16 @@
           }
 
           _createClass(ZoneTask, [{
+            key: "zone",
+            get: function get() {
+              return this._zone;
+            }
+          }, {
+            key: "state",
+            get: function get() {
+              return this._state;
+            }
+          }, {
             key: "cancelScheduleRequest",
             value: function cancelScheduleRequest() {
               this._transitionTo(notScheduled, scheduling);
@@ -13284,16 +13294,6 @@
                 zone: this.zone.name,
                 runCount: this.runCount
               };
-            }
-          }, {
-            key: "zone",
-            get: function get() {
-              return this._zone;
-            }
-          }, {
-            key: "state",
-            get: function get() {
-              return this._state;
             }
           }], [{
             key: "invokeTask",
@@ -14289,7 +14289,82 @@
         var noop = function noop() {};
 
         var ZoneAwarePromise = /*#__PURE__*/function () {
-          _createClass(ZoneAwarePromise, null, [{
+          function ZoneAwarePromise(executor) {
+            _classCallCheck(this, ZoneAwarePromise);
+
+            var promise = this;
+
+            if (!(promise instanceof ZoneAwarePromise)) {
+              throw new Error('Must be an instanceof Promise.');
+            }
+
+            promise[symbolState] = UNRESOLVED;
+            promise[symbolValue] = []; // queue;
+
+            try {
+              executor && executor(makeResolver(promise, RESOLVED), makeResolver(promise, REJECTED));
+            } catch (error) {
+              resolvePromise(promise, false, error);
+            }
+          }
+
+          _createClass(ZoneAwarePromise, [{
+            key: Symbol.toStringTag,
+            get: function get() {
+              return 'Promise';
+            }
+          }, {
+            key: Symbol.species,
+            get: function get() {
+              return ZoneAwarePromise;
+            }
+          }, {
+            key: "then",
+            value: function then(onFulfilled, onRejected) {
+              var C = this.constructor[Symbol.species];
+
+              if (!C || typeof C !== 'function') {
+                C = this.constructor || ZoneAwarePromise;
+              }
+
+              var chainPromise = new C(noop);
+              var zone = Zone.current;
+
+              if (this[symbolState] == UNRESOLVED) {
+                this[symbolValue].push(zone, chainPromise, onFulfilled, onRejected);
+              } else {
+                scheduleResolveOrReject(this, zone, chainPromise, onFulfilled, onRejected);
+              }
+
+              return chainPromise;
+            }
+          }, {
+            key: "catch",
+            value: function _catch(onRejected) {
+              return this.then(null, onRejected);
+            }
+          }, {
+            key: "finally",
+            value: function _finally(onFinally) {
+              var C = this.constructor[Symbol.species];
+
+              if (!C || typeof C !== 'function') {
+                C = ZoneAwarePromise;
+              }
+
+              var chainPromise = new C(noop);
+              chainPromise[symbolFinally] = symbolFinally;
+              var zone = Zone.current;
+
+              if (this[symbolState] == UNRESOLVED) {
+                this[symbolValue].push(zone, chainPromise, onFinally, onFinally);
+              } else {
+                scheduleResolveOrReject(this, zone, chainPromise, onFinally, onFinally);
+              }
+
+              return chainPromise;
+            }
+          }], [{
             key: "toString",
             value: function toString() {
               return ZONE_AWARE_PROMISE_TO_STRING;
@@ -14441,83 +14516,6 @@
               }
 
               return promise;
-            }
-          }]);
-
-          function ZoneAwarePromise(executor) {
-            _classCallCheck(this, ZoneAwarePromise);
-
-            var promise = this;
-
-            if (!(promise instanceof ZoneAwarePromise)) {
-              throw new Error('Must be an instanceof Promise.');
-            }
-
-            promise[symbolState] = UNRESOLVED;
-            promise[symbolValue] = []; // queue;
-
-            try {
-              executor && executor(makeResolver(promise, RESOLVED), makeResolver(promise, REJECTED));
-            } catch (error) {
-              resolvePromise(promise, false, error);
-            }
-          }
-
-          _createClass(ZoneAwarePromise, [{
-            key: "then",
-            value: function then(onFulfilled, onRejected) {
-              var C = this.constructor[Symbol.species];
-
-              if (!C || typeof C !== 'function') {
-                C = this.constructor || ZoneAwarePromise;
-              }
-
-              var chainPromise = new C(noop);
-              var zone = Zone.current;
-
-              if (this[symbolState] == UNRESOLVED) {
-                this[symbolValue].push(zone, chainPromise, onFulfilled, onRejected);
-              } else {
-                scheduleResolveOrReject(this, zone, chainPromise, onFulfilled, onRejected);
-              }
-
-              return chainPromise;
-            }
-          }, {
-            key: "catch",
-            value: function _catch(onRejected) {
-              return this.then(null, onRejected);
-            }
-          }, {
-            key: "finally",
-            value: function _finally(onFinally) {
-              var C = this.constructor[Symbol.species];
-
-              if (!C || typeof C !== 'function') {
-                C = ZoneAwarePromise;
-              }
-
-              var chainPromise = new C(noop);
-              chainPromise[symbolFinally] = symbolFinally;
-              var zone = Zone.current;
-
-              if (this[symbolState] == UNRESOLVED) {
-                this[symbolValue].push(zone, chainPromise, onFinally, onFinally);
-              } else {
-                scheduleResolveOrReject(this, zone, chainPromise, onFinally, onFinally);
-              }
-
-              return chainPromise;
-            }
-          }, {
-            key: Symbol.toStringTag,
-            get: function get() {
-              return 'Promise';
-            }
-          }, {
-            key: Symbol.species,
-            get: function get() {
-              return ZoneAwarePromise;
             }
           }]);
 

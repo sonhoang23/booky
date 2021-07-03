@@ -13,11 +13,11 @@
 
   function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+  function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
   function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-  function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+  function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
   function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
@@ -218,8 +218,42 @@
 
 
         _createClass(CKEditorComponent, [{
+          key: "disabled",
+          get: function get() {
+            if (this.editorInstance) {
+              return this.editorInstance.isReadOnly;
+            }
+
+            return this.initiallyDisabled;
+          }
+          /**
+           * The instance of the editor created by this component.
+           */
+          ,
+          set: function set(isDisabled) {
+            this.setDisabledState(isDisabled);
+          }
+        }, {
+          key: "editorInstance",
+          get: function get() {
+            var editorWatchdog = this.editorWatchdog;
+
+            if (this.watchdog) {
+              // Temporarily use the `_watchdogs` internal map as the `getItem()` method throws
+              // an error when the item is not registered yet.
+              // See https://github.com/ckeditor/ckeditor5-angular/issues/177.
+              editorWatchdog = this.watchdog._watchdogs.get(this.id);
+            }
+
+            if (editorWatchdog) {
+              return editorWatchdog.editor;
+            }
+
+            return null;
+          } // Implementing the AfterViewInit interface.
+
+        }, {
           key: "ngAfterViewInit",
-          // Implementing the AfterViewInit interface.
           value: function ngAfterViewInit() {
             this.attachToWatchdog();
           } // Implementing the OnDestroy interface.
@@ -493,40 +527,6 @@
                 });
               });
             });
-          }
-        }, {
-          key: "disabled",
-          set: function set(isDisabled) {
-            this.setDisabledState(isDisabled);
-          },
-          get: function get() {
-            if (this.editorInstance) {
-              return this.editorInstance.isReadOnly;
-            }
-
-            return this.initiallyDisabled;
-          }
-          /**
-           * The instance of the editor created by this component.
-           */
-
-        }, {
-          key: "editorInstance",
-          get: function get() {
-            var editorWatchdog = this.editorWatchdog;
-
-            if (this.watchdog) {
-              // Temporarily use the `_watchdogs` internal map as the `getItem()` method throws
-              // an error when the item is not registered yet.
-              // See https://github.com/ckeditor/ckeditor5-angular/issues/177.
-              editorWatchdog = this.watchdog._watchdogs.get(this.id);
-            }
-
-            if (editorWatchdog) {
-              return editorWatchdog.editor;
-            }
-
-            return null;
           }
         }]);
 
@@ -1423,8 +1423,19 @@
 
 
         _createClass(EditorWatchdog, [{
-          key: "_restart",
+          key: "editor",
+          get: function get() {
+            return this._editor;
+          }
+          /**
+           * @inheritDoc
+           */
 
+        }, {
+          key: "_item",
+          get: function get() {
+            return this._editor;
+          }
           /**
            * Sets the function that is responsible for the editor creation.
            * It expects a function that should return a promise.
@@ -1462,6 +1473,9 @@
            * @fires restart
            * @returns {Promise}
            */
+
+        }, {
+          key: "_restart",
           value: function _restart() {
             var _this7 = this;
 
@@ -1670,20 +1684,6 @@
            * @event restart
            */
 
-        }, {
-          key: "editor",
-          get: function get() {
-            return this._editor;
-          }
-          /**
-           * @inheritDoc
-           */
-
-        }, {
-          key: "_item",
-          get: function get() {
-            return this._editor;
-          }
         }]);
 
         return EditorWatchdog;

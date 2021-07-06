@@ -76,7 +76,9 @@ let OrderDetailSelectModalComponent = class OrderDetailSelectModalComponent {
                 this.orderAndOrderDetail = result.resultObj;
                 console.log(this.orderAndOrderDetail);
                 this.orderStateResponses = result.resultObj.orderStateResponses;
-                this.orderStateResponses.sort((a, b) => {
+                this.orderStateResponses
+                    //.map(x=>{x.dateCreated.})
+                    .sort((a, b) => {
                     if (a.orderStatus && b.orderStatus) {
                         return parseInt(a.orderStatus) - parseInt(b.orderStatus);
                     }

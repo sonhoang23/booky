@@ -163,7 +163,8 @@
                 console.log(_this.orderAndOrderDetail);
                 _this.orderStateResponses = result.resultObj.orderStateResponses;
 
-                _this.orderStateResponses.sort(function (a, b) {
+                _this.orderStateResponses //.map(x=>{x.dateCreated.})
+                .sort(function (a, b) {
                   if (a.orderStatus && b.orderStatus) {
                     return parseInt(a.orderStatus) - parseInt(b.orderStatus);
                   } else {
